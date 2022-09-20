@@ -81,19 +81,22 @@ include '../include/busquedas.php';
                         <?php 
                           $ejec_busc_per_acad = buscarPeriodoAcademico($conexion); 
                           while ($res_busc_per_acad=mysqli_fetch_array($ejec_busc_per_acad)){
+                            $id_director = $res_busc_per_acad['director'];
+                            $busc_direc = buscarDocenteById($conexion, $id_director);
+                            $res_busc_direc = mysqli_fetch_array($busc_direc);
                         ?>
                         <tr>
                           <td><?php echo $res_busc_per_acad['id']; ?></td>
                           <td><?php echo $res_busc_per_acad['nombre']; ?></td>
                           <td><?php echo $res_busc_per_acad['fecha_inicio']; ?></td>
                           <td><?php echo $res_busc_per_acad['fecha_fin']; ?></td>
-                          <td><?php echo $res_busc_per_acad['director']; ?></td>
+                          <td><?php echo $res_busc_direc['apellidos_nombres']; ?></td>
                           <td><?php echo $res_busc_per_acad['fecha_actas']; ?></td>
                           <td>
                             <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_per_acad['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  
                         <?php
-                         //include('include/acciones_periodo_academico.php');
+                         include('include/acciones_periodo_academico.php');
                           };
                         ?>
 
