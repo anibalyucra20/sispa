@@ -36,11 +36,11 @@ function buscarDocenteById($conexion, $id){
 	return mysqli_query($conexion, $sql);
 }
 function buscarCarreras($conexion){
-	$sql = "SELECT * FROM carrera_profesional";
+	$sql = "SELECT * FROM programa_estudios";
 	return mysqli_query($conexion, $sql);
 }
 function buscarCarrerasById($conexion, $id){
-	$sql = "SELECT * FROM carrera_profesional WHERE id=$id";
+	$sql = "SELECT * FROM programa_estudios WHERE id=$id";
 	return mysqli_query($conexion, $sql);
 }
 function buscarSemestre($conexion){
