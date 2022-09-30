@@ -68,7 +68,7 @@ function buscarUdById($conexion, $id){
 	return mysqli_query($conexion, $sql);
 }
 function buscarModuloFormativo($conexion){
-	$sql = "SELECT * FROM modulo_formativo";
+	$sql = "SELECT * FROM modulo_profesional";
 	return mysqli_query($conexion, $sql);
 }
 function buscarModuloFormativoById($conexion, $id){
