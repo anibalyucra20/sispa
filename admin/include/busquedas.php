@@ -52,7 +52,7 @@ function buscarSemestreById($conexion, $id){
 	return mysqli_query($conexion, $sql);
 }
 function buscarUdByCarSem($conexion, $idCarrera, $idSemestre){
-	$sql = "SELECT * FROM unidades_didacticas WHERE id_carrera = '$idCarrera' AND id_semestre= '$idSemestre' ORDER BY id";
+	$sql = "SELECT * FROM unidad_didactica WHERE id_carrera = '$idCarrera' AND id_semestre= '$idSemestre' ORDER BY id";
 	return mysqli_query($conexion, $sql);
 }
 function buscarUdByCarSemInCursosDocente($conexion, $idCarrera, $idSemestre){
@@ -60,11 +60,11 @@ function buscarUdByCarSemInCursosDocente($conexion, $idCarrera, $idSemestre){
 	return mysqli_query($conexion, $sql);
 }
 function buscarUnidadDidactica($conexion){
-	$sql = "SELECT * FROM unidades_didacticas";
+	$sql = "SELECT * FROM unidad_didactica";
 	return mysqli_query($conexion, $sql);
 }
 function buscarUdById($conexion, $id){
-	$sql = "SELECT * FROM unidades_didacticas WHERE id='$id'";
+	$sql = "SELECT * FROM unidad_didactica WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
 function buscarModuloFormativo($conexion){
@@ -72,11 +72,11 @@ function buscarModuloFormativo($conexion){
 	return mysqli_query($conexion, $sql);
 }
 function buscarModuloFormativoById($conexion, $id){
-	$sql = "SELECT * FROM modulo_formativo WHERE id='$id'";
+	$sql = "SELECT * FROM modulo_profesional WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
 function buscarModuloFormativoByIdCarrera($conexion, $id){
-	$sql = "SELECT * FROM modulo_formativo WHERE id_carrera_profesional = '$id' ORDER BY id";
+	$sql = "SELECT * FROM modulo_profesional WHERE id_programa_estudio = '$id' ORDER BY id";
 	return mysqli_query($conexion, $sql);
 }
 function buscarMatricula($conexion){

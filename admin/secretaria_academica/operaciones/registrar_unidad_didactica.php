@@ -1,0 +1,41 @@
+<?php
+include "../../../include/conexion.php";
+
+$ud = $_POST['ud'];
+$carrera = $_POST['carrera_m'];
+$modulo = $_POST['modulo'];
+$semestre = $_POST['semestre'];
+$creditos = $_POST['creditos'];
+$horas = $_POST['horas'];
+$tipo = $_POST['tipo'];
+
+//consulta para poder generar el orden de la ud en el semestre
+$consul = "SELECT * FROM unidad_didactica WHERE id_semestre='$semestre' AND id_modulo='$modulo' AND id_programa_estudio='$carrera'";
+$ejec_consl = mysqli_query($conexion, $consul);
+$conteo = mysqli_num_rows($ejec_consl);
+$orden =$conteo+1;
+
+
+	$insertar = "INSERT INTO unidad_didactica (descripcion, id_programa_estudio, id_modulo, id_semestre, creditos, horas, tipo, orden) VALUES ('$ud','$carrera','$modulo','$semestre','$creditos','$horas','$tipo','$orden')";
+	$ejecutar_insetar = mysqli_query($conexion, $insertar);
+	if ($ejecutar_insetar) {
+			echo "<script>
+            
+                window.location= '../unidad_didactica.php'
+    			</script>";
+	}else{
+		echo "<script>
+			alert('Error al registrar, por favor verifique sus datos');
+			window.history.back();
+				</script>
+			";
+	};
+
+
+
+
+
+
+mysqli_close($conexion);
+
+?>
