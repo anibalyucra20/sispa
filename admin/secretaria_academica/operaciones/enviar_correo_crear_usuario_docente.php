@@ -66,7 +66,7 @@ if ($cont_usu_doc == 0) {
                                     <p style="text-align: center; font-size: 1.0rem; color: #f1f1f1; text-shadow: 2px 2px 2px #cfcfcf; ">INSTITUTO DE EDUCACIÓN SUPERIOR TECNOLÓGICO PÚBLICO HUANTA</p>
                                 </div>
                                 <div>
-                                    <h2 style="text-align:center;">SISTEMA DE PORTAFOLIO DOCENTE</h2>
+                                    <h1 style="text-align:center;">SISTEMA DE PORTAFOLIO DOCENTE</h1>
                                     <h3 style="text-align:center; color: #3c4858;">GENERAR CONTRASEÑA</h3>
                                     <p style="font-size:1.0rem; color: #2A2C2B; margin-top: 2em; margin-bottom: 2em; margin-left: 1.5em;">
                             
