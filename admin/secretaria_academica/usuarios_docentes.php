@@ -142,7 +142,8 @@ include '../include/busquedas.php';
                         
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-9 col-sm-9 col-xs-9">Se enviará un correo al docente para que registre su contraseña </label>
+                        <label class="control-label col-md-9 col-sm-9 col-xs-9">
+                          Ojo: Se enviará un correo al docente para que registre su contraseña </label>
                         <br>
                         <br>
                       </div>
