@@ -1,8 +1,7 @@
 <?php
-$con = mysqli_connect('localhost','root','','prueba');
+header("location: admin/");
 
-
-
+/*
 
 $ud="ud"; //variable para nombre de arrays de uds
 $nud = "ud"; //variable para crear objetos en array
@@ -74,5 +73,5 @@ foreach ($personas as $key_per => $per) {
 			echo "$dato = $valor <br>";
 		}
 }
-
+*/
 ?>
