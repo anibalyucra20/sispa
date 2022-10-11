@@ -2,7 +2,7 @@
 include 'include/verificar_sesion.php';
 include '../../include/conexion.php';
 include '../include/busquedas.php';
-$conexion->set_charset("utf8");
+$conexion->set_charset("utf-8");
 ?>
 <!DOCTYPE html>
 <html lang="es">
