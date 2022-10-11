@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost","root","root","sispa");
+$conexion = mysqli_connect("localhost","yhkfkumh_sispa","sispa@admin","yhkfkumh_sispa");
 if ($conexion) {
 	
 }else{
