@@ -59,7 +59,7 @@ if ($cont_usu_doc == 0) {
                             </head>
                             <body>
                             <div style="width: 100%; font-family: Roboto; font-size: 0.8em; display: inline;">
-                                <div style="background-color:rgb(17,17,29); border-radius: 10px 10px 0px 0px; height: 60px; text-align: center;">
+                                <div style="background-color:rgb(17,17,29); border-radius: 10px 10px 0px 0px; height: 30px; text-align: center;">
                                     <img src="https://sispa.iestphuanta.edu.pe/img/logo.png" alt="www.iestphuanta.edu.pe" style="padding: 0.2em; text-align: center;">
                                 </div>
                                 <div style="background-color:rgb(17,17,29); border-radius: 0px 0px 0px 0px; height: 60px; margin-top: 0px; padding-top: 2px; padding-bottom: 10px;">
