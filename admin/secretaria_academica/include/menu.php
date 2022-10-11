@@ -27,7 +27,7 @@
                 <ul class="nav side-menu">
                   <li><a href="../../admin/"><i class="fa fa-home"></i>Inicio</a>
                   </li>
-                  <li><a><i class="fa fa-pencil-square-o"></i>Mantenimiento<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-gears"></i>Mantenimiento<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="datos.php">Datos Institucionales</a></li>
                       <li><a href="programa_estudio.php">Programas de estudio</a></li>
@@ -38,7 +38,7 @@
                       <li><a href="cargo.php">Cargos</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-pencil-square-o"></i>Módulo Académico<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-book"></i>Módulo Académico<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a>Planificación<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
@@ -71,7 +71,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-pencil-square-o"></i>Módulo Portafolio<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-briefcase"></i>Módulo Portafolio<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a>Competencias de Programa de estudios<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
