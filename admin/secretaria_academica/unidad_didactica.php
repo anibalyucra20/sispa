@@ -2,6 +2,7 @@
 include 'include/verificar_sesion.php';
 include '../../include/conexion.php';
 include '../include/busquedas.php';
+$conexion->set_charset("utf8");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -89,6 +90,7 @@ include '../include/busquedas.php';
                         <?php 
                           $ejec_busc_ud = buscarUnidadDidactica($conexion); 
                           while ($res_busc_ud=mysqli_fetch_array($ejec_busc_ud)){
+                  
                         ?>
                         <tr>
                           <td><?php echo $res_busc_ud['id']; ?></td>
