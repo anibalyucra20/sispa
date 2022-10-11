@@ -70,7 +70,7 @@ if ($cont_usu_doc == 0) {
                                     <h3 style="text-align:center; color: #3c4858;">GENERAR CONTRASEÑA</h3>
                                     <p style="font-size:1.0rem; color: #2A2C2B; margin-top: 2em; margin-bottom: 2em; margin-left: 1.5em;">
                             
-                                        Hola '.$docente.', para poder generar tu contraseña, Haz click <a href="https://sispa.iestphuanta.edu.pe/admin/login/generar_acceso.php?id='.$id_docente.'">Aquí</a>.<br>
+                                        Hola '.$docente.', para poder generar tu contraseña, Haz click <a href="https://sispa.iestphuanta.edu.pe/admin/login/generar_acceso.php?data='.$id_docente.'">Aquí</a>.<br>
                                         
                                         <br>
                                         <br>
