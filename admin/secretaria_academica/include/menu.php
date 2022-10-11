@@ -55,7 +55,7 @@
                       <li><a>Docentes<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <li class="sub_menu"><a href="docente.php">Relación de Docentes</a></li>
-                            <li class="sub_menu"><a href="usuario_docente.php">Usuarios Docentes</a></li>
+                            <li class="sub_menu"><a href="usuarios_docentes.php">Usuarios Docentes</a></li>
                           </ul>
                       </li>
                       <li><a>Estudiantes<span class="fa fa-chevron-down"></span></a>

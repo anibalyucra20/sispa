@@ -104,8 +104,16 @@ function buscarGenero($conexion){
 	$sql = "SELECT * FROM genero";
 	return mysqli_query($conexion, $sql);
 }
+function buscarUsuarioDocente($conexion){
+	$sql = "SELECT * FROM usuarios_docentes";
+	return mysqli_query($conexion, $sql);
+}
 function buscarUsuarioDocenteByUser($conexion, $usuario){
 	$sql = "SELECT * FROM usuarios_docentes WHERE usuario='$usuario' ORDER BY id LIMIT 1";
+	return mysqli_query($conexion, $sql);
+}
+function buscarUsuarioDocenteById($conexion, $id){
+	$sql = "SELECT * FROM usuarios_docentes WHERE id_docente='$id' ORDER BY id LIMIT 1";
 	return mysqli_query($conexion, $sql);
 }
 
