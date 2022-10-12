@@ -1,48 +1,36 @@
 <?php
 include "../../include/conexion.php";
+include "../include/busquedas.php";
 
-$email = $_POST['email'];
+$id = $_POST['data'];
 $password = $_POST['password'];
 $dni = $_POST['dni'];
-$nom_ap = $_POST['nombres'];
-$direccion = $_POST['direccion'];
-$telefono = $_POST['telefono'];
-$hoy = date("Y-m-d");
-$sexo = 3; //se coloca 3 por que es un sexo sin especificar en la base de datos
-$tipo_persona = 4; //se coloca 4 porque es el tipo invitado en la base de datos
+// validar si el docente ya tiene usuario
+$busc_usu_doc = buscarUsuarioDocenteById($conexion, $id);
+$cont_busc_usu_doc = mysqli_num_rows($busc_usu_doc);
 
-$consulta_validacion = "SELECT * FROM personas WHERE dni='$dni'";
-$resultado_con_valid = mysqli_query($conexion, $consulta_validacion);
-$total_res = mysqli_num_rows($resultado_con_valid);
-if ($total_res > 0) {
-	echo "<script>
-                alert('Ya existe un Usuario Registrado con los datos Ingresados');
-                window.location= '../login/'
-    </script>";
-}else{
-	$consulta_validacion_email = "SELECT * FROM usuarios WHERE correo='$email'";
-	$resultado_con_valid_email = mysqli_query($conexion, $consulta_validacion_email);
-	$total_res_email = mysqli_num_rows($resultado_con_valid_email);
-	if ($total_res_email > 0) {
+if ($cont_busc_usu_doc == 0) {
+	$pass_secure = password_hash($password, PASSWORD_DEFAULT);
+	$crear_user = "INSERT INTO usuarios_docentes (id_docente, usuario, password) VALUES ('$id', '$dni', '$pass_secure')";
+	$ejec_crear_user = mysqli_query($conexion, $crear_user);
+	if ($ejec_crear_user) {
 		echo "<script>
-                alert('Ya existe un Usuario Registrado el Correo Ingresado');
+			alert('Registro exitoso, por favor Inicie Sesión');
+			window.location= '../login/'
+			</script>";
+	}else{
+		echo "<script>
+		alert('Error al Registrar Usuario, por favor contacte al administrador');
+		window.history.back();
+			</script>
+		";
+	}
+}else{
+	echo "<script>
+                alert('Ud. Ya cuenta con una cuenta, por favor contacte con el administrador');
                 window.location= '../login/'
     </script>";
-	}else{
-	$sql = "INSERT INTO personas (dni, apellidos_nombres, direccion, telefono, fecha_nac, id_sexo, id_tipo_persona, fecha_registro)
-	VALUES ('$dni','$nom_ap','$direccion','$telefono','','$sexo','$tipo_persona','$hoy')";
-
-	$ejecutar = mysqli_query($conexion, $sql);
-		if ($ejecutar) {
-			header('Location: create_user.php?email='.$email."&pass=".$password."&dni=".$dni."");
-		}else{
-			echo "<script>
-                alert('Error al registrar usuario, Intente Nuevamente');
-                window.location= 'crearcuenta.php'
-    		</script>";
-		};
-	};
-};
+}
 
 
 ?>
