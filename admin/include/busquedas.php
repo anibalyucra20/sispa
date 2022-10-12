@@ -35,6 +35,10 @@ function buscarDocenteById($conexion, $id){
 	$sql = "SELECT * FROM docente WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarDocenteByDni($conexion, $dni){
+	$sql = "SELECT * FROM docente WHERE dni='$dni'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarCarreras($conexion){
 	$sql = "SELECT * FROM programa_estudios";
 	return mysqli_query($conexion, $sql);

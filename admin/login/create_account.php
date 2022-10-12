@@ -10,20 +10,30 @@ $busc_usu_doc = buscarUsuarioDocenteById($conexion, $id);
 $cont_busc_usu_doc = mysqli_num_rows($busc_usu_doc);
 
 if ($cont_busc_usu_doc == 0) {
-	$pass_secure = password_hash($password, PASSWORD_DEFAULT);
-	$crear_user = "INSERT INTO usuarios_docentes (id_docente, usuario, password) VALUES ('$id', '$dni', '$pass_secure')";
-	$ejec_crear_user = mysqli_query($conexion, $crear_user);
-	if ($ejec_crear_user) {
-		echo "<script>
-			alert('Registro exitoso, por favor Inicie Sesión');
-			window.location= '../login/'
-			</script>";
+	$busc_doc = buscarDocenteByDni($conexion, $dni);
+	$cont_b_doc = mysqli_num_rows($busc_doc);
+	if ($cont_b_doc > 0) {
+		$pass_secure = password_hash($password, PASSWORD_DEFAULT);
+		$crear_user = "INSERT INTO usuarios_docentes (id_docente, usuario, password) VALUES ('$id', '$dni', '$pass_secure')";
+		$ejec_crear_user = mysqli_query($conexion, $crear_user);
+		if ($ejec_crear_user) {
+			echo "<script>
+				alert('Registro exitoso, por favor Inicie Sesión');
+				window.location= '../login/'
+				</script>";
+		}else{
+			echo "<script>
+				alert('Error al Registrar Usuario, por favor contacte al administrador');
+				window.history.back();
+				</script>
+			";
+	}
 	}else{
 		echo "<script>
-		alert('Error al Registrar Usuario, por favor contacte al administrador');
-		window.history.back();
-			</script>
-		";
+				alert('Error, el DNI no coincide con el registro');
+				window.history.back();
+				</script>
+			";
 	}
 }else{
 	echo "<script>
