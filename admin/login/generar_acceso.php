@@ -9,7 +9,7 @@
 
     <title>Generar Contraseña<?php include ("../../include/header_title.php"); ?></title>
     <!--icono en el titulo-->
-    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
     <!-- Bootstrap -->
     <link href="../../Gentella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -29,7 +29,7 @@
 
       <div class="login_wrapper">
         <div id="register" class="">
-          <center><img src="../img/logo.png" width="150px"></center>
+          <center><img src="../../img/logo.png" width="150px"></center>
           <section class="login_content">
             <form role="form" action="create_account.php" method="POST">
               <h1>Crear Cuenta</h1>
