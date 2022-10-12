@@ -35,25 +35,13 @@
               <h1>Crear Constraseña</h1>
 
               <div>
-                <input type="text" class="form-control" placeholder="Correo" required="" name="email" maxlength="80"/>
-              </div>  
-              <div>
-                <input type="password" class="form-control" placeholder="Contraseña" required="" name="password" maxlength="50"/>
+                <input type="text" class="form-control" placeholder="Ingrese su DNI" required="" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="dni" maxlength="12"/>
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="Dni" required="" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="dni" maxlength="8"/>
+                <input type="password" class="form-control" placeholder="Ingrese Contraseña" required="" name="password" maxlength="50"/>
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="Apellidos y Nombres" required="" name="nombres" maxlength="140"/>
-              </div>
-              <div>
-                <input type="text" class="form-control" placeholder="Dirección" required="" name="direccion" maxlength="200"/>
-              </div>
-              <div>
-                <input type="text" class="form-control" placeholder="Telefono" required="" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="telefono" maxlength="12"/>
-              </div>
-              <div>
-                <button type="submit" class="btn btn-default submit">Registrarse</button>
+                <button type="submit" class="btn btn-default submit">Guardar</button>
               </div>
 
               <div class="clearfix"></div>
@@ -69,7 +57,7 @@
 
                 <div>
                   <h1>I.E.S.T.P. "HUANTA"</h1>
-                  <p>Bienvenido a la Biblioteca Virtual, Inicie Sesion para acceder a los materiales de lectura</p>
+                  <p>Bienvenido a la Sistema de portafolio docente</p>
                 </div>
               </div>
             </form>
