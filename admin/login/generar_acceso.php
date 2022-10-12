@@ -32,7 +32,7 @@
           <center><img src="../../img/logo.png" width="150px"></center>
           <section class="login_content">
             <form role="form" action="create_account.php" method="POST">
-              <h1>Crear Cuenta</h1>
+              <h1>Crear Constraseña</h1>
 
               <div>
                 <input type="text" class="form-control" placeholder="Correo" required="" name="email" maxlength="80"/>
