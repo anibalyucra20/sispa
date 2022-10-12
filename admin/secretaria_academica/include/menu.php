@@ -129,7 +129,7 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href=""> Mi perfil</a></li>
                     <li><a href="">Ayuda</a></li>
-                    <li><a href=""><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
+                    <li><a href="../../include/cerrar_sesion.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
                 </li>
                 <li class="">
