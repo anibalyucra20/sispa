@@ -35,6 +35,7 @@
               <h1>Crear Constraseña</h1>
 
               <div>
+                <input type="hidden" name="id" value="<?php echo $_GET['data']; ?>">
                 <input type="text" class="form-control" placeholder="Ingrese su DNI" required="" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" name="dni" maxlength="12"/>
               </div>
               <div>
