@@ -15,6 +15,10 @@ function buscarPeriodoAcademico($conexion){
 	$sql = "SELECT * FROM periodo_academico";
 	return mysqli_query($conexion, $sql);
 }
+function buscarPeriodoAcademicoInvert($conexion){
+	$sql = "SELECT * FROM periodo_academico ORDER BY id DESC";
+	return mysqli_query($conexion, $sql);
+}
 function buscarPeriodoAcadById($conexion, $id){
 	$sql = "SELECT * FROM periodo_academico WHERE id='$id'";
 	return mysqli_query($conexion, $sql);

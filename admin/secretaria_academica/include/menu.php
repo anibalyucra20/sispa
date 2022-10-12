@@ -145,7 +145,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                   <?php
-                    $buscar_periodos = buscarPeriodoAcademico($conexion);
+                    $buscar_periodos = buscarPeriodoAcademicoInvert($conexion);
                     while ($res_busc_periodos = mysqli_fetch_array($buscar_periodos)) {
                       ?>
                     <li><a href="operaciones/actualizar_sesion_periodo.php?dato=<?php echo $res_busc_periodos['id']; ?>"><?php echo $res_busc_periodos['nombre']; ?></a></li>
