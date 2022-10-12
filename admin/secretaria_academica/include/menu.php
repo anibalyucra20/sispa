@@ -3,7 +3,10 @@
    <!-- <div class="navbar nav_title" style="border: 0;">
       <a href="index.php" class=""><i class=""></i> <span>Biblioteca</span></a>
     </div>-->
-
+    <?php 
+    $busc_user_sesion = buscarDocenteById($conexion, $_SESSION['id_secretario']);
+    $res_b_u_sesion = mysqli_fetch_array($busc_user_sesion);
+    ?>
     <div class="clearfix"></div>
 
       <!-- menu profile quick info -->
@@ -13,7 +16,7 @@
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
-                <h2><?php echo "admin"; ?></h2>
+                <h2><?php echo $res_b_u_sesion['apellidos_nombres']; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -123,7 +126,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="../img_perfil/no_imagen.jpg" alt=""><?php echo "admin"; ?>
+                    <img src="../img_perfil/no_imagen.jpg" alt=""><?php echo $res_b_u_sesion['apellidos_nombres']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
