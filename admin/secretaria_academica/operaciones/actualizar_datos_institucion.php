@@ -17,7 +17,7 @@ $ejec_consulta = mysqli_query($conexion, $consulta);
 	if ($ejec_consulta) {
 			echo "<script>
 					alert('Datos actualizados de manera Correcta');
-					window.location= '../datos.php'
+					window.location= '../datos.php';
 				</script>
 			";
 	}else {

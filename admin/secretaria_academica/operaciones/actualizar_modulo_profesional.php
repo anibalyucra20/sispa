@@ -10,7 +10,7 @@ $ejec_consulta = mysqli_query($conexion, $consulta);
 if ($ejec_consulta) {
 	echo "<script>
 			alert('Registro Actualizado de manera Correcta');
-			window.location= '../modulo_formativo.php'
+			window.location= '../modulo_formativo.php';
 		</script>
 	";
 }else {

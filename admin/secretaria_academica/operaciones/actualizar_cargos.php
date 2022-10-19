@@ -9,7 +9,7 @@ $ejec_consulta = mysqli_query($conexion, $consulta);
 if ($ejec_consulta) {
 	echo "<script>
 			
-			window.location= '../cargo.php'
+			window.location= '../cargo.php';
 		</script>
 	";
 }else {
