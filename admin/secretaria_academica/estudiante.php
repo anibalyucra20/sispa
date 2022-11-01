@@ -130,7 +130,7 @@ include '../include/busquedas.php';
                   </div>
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/registrar_docente.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                    <form role="form" action="operaciones/registrar_estudiante.php" class="form-horizontal form-label-left input_mask" method="POST" >
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -161,17 +161,6 @@ include '../include/busquedas.php';
                             <?php
                             }
                             ?>
-                          </select>
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Condición Laboral : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" name="cond_laboral" value="" required="required">
-                            <option></option>
-                            <option value="CONTRATADO">CONTRATADO</option>
-                            <option value="NOMBRADO">NOMBRADO</option>
                           </select>
                           <br>
                         </div>
@@ -267,9 +256,9 @@ include '../include/busquedas.php';
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Observación : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Condición : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" name="observacion" value="" required="required">
+                          <select class="form-control" name="condicion" value="" required="required">
                             <option></option>
                           <?php 
                             $ejec_busc_obs = buscarCondicion($conexion);
@@ -282,6 +271,17 @@ include '../include/busquedas.php';
                             <?php
                             }
                             ?>
+                          </select>
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Discapacidad : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" name="discapacidad" value="" required="required">
+                            <option></option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
                           </select>
                           <br>
                         </div>
