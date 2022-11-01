@@ -103,7 +103,6 @@ include '../include/busquedas.php';
                             <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_doc['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  
                         <?php
-                         //include('include/acciones_docentes.php');
                           };
                         ?>
 
@@ -119,7 +118,7 @@ include '../include/busquedas.php';
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Docente</h4>
+                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Estudiante</h4>
                         </div>
                         <div class="modal-body">
                           <!--INICIO CONTENIDO DE MODAL-->
@@ -147,54 +146,6 @@ include '../include/busquedas.php';
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Condición Laboral : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" name="cond_laboral" value="" required="required">
-                            <option></option>
-                            <option value="CONTRATADO">CONTRATADO</option>
-                            <option value="NOMBRADO">NOMBRADO</option>
-                          </select>
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="date" class="form-control" name="fecha_nac" required="required">
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nivel de Formación : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="niv_formacion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Teléfono : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="Number" class="form-control" name="telefono" required="required" maxlength="15">
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo Electrónico : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="email" class="form-control" name="email" required="required">
-                          <br>
-                          
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Dirección : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="direccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                          <br>
-                          
-                        </div>
-                      </div>
-                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Género : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <select class="form-control" id="genero" name="genero" value="" required="required">
@@ -215,18 +166,120 @@ include '../include/busquedas.php';
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cargo : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Condición Laboral : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="cargo" name="cargo" value="" required="required">
+                          <select class="form-control" name="cond_laboral" value="" required="required">
+                            <option></option>
+                            <option value="CONTRATADO">CONTRATADO</option>
+                            <option value="NOMBRADO">NOMBRADO</option>
+                          </select>
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="date" class="form-control" name="fecha_nac" required="required">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Dirección : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" name="direccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo Electrónico : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="email" class="form-control" name="email" required="required">
+                          <br>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Teléfono : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="Number" class="form-control" name="telefono" required="required" maxlength="15">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Año de Ingreso : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="date" class="form-control" name="anio_ingreso" required="required">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Carrera Profesional : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control"  id="carrera" name="carrera" value="" required="required">
                             <option></option>
                           <?php 
-                            $ejec_busc_car = buscarCargo($conexion);
-                            while ($res__busc_car = mysqli_fetch_array($ejec_busc_car)) {
-                              $id_car = $res__busc_car['id'];
-                              $car = $res__busc_car['descripcion'];
+                            $ejec_busc_carr = buscarCarreras($conexion);
+                            while ($res__busc_carr = mysqli_fetch_array($ejec_busc_carr)) {
+                              $id_carr = $res__busc_carr['id'];
+                              $carr = $res__busc_carr['nombre'];
                               ?>
-                              <option value="<?php echo $id_car;
-                              ?>"><?php echo $car; ?></option>
+                              <option value="<?php echo $id_carr;
+                              ?>"><?php echo $carr; ?></option>
+                            <?php
+                            }
+                            ?>
+                          </select>
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" id="semestre" name="semestre" value="" required="required">
+                            <option></option>
+                          <?php 
+                            $ejec_busc_sem = buscarSemestre($conexion);
+                            while ($res_busc_sem = mysqli_fetch_array($ejec_busc_sem)) {
+                              $id_sem = $res_busc_sem['id'];
+                              $sem = $res_busc_sem['semestre'];
+                              ?>
+                              <option value="<?php echo $id_sem;
+                              ?>"><?php echo $sem; ?></option>
+                            <?php
+                            }
+                            ?>
+                          </select>
+                          <br>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sección : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" name="seccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="1">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Turno : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" name="turno" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="20" value="MAÑANA">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Observación : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" name="observacion" value="" required="required">
+                            <option></option>
+                          <?php 
+                            $ejec_busc_obs = buscarCondicion($conexion);
+                            while ($res_busc_obs = mysqli_fetch_array($ejec_busc_obs)) {
+                              $id_obs = $res_busc_obs['id'];
+                              $obs = $res_busc_obs['descripcion'];
+                              ?>
+                              <option value="<?php echo $id_obs;
+                              ?>"><?php echo $obs; ?></option>
                             <?php
                             }
                             ?>
