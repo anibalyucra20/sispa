@@ -126,6 +126,12 @@ function buscarUsuarioDocenteById($conexion, $id){
 }
 
 
+function buscarCondicion($conexion){
+	$sql = "SELECT * FROM condicion";
+	return mysqli_query($conexion, $sql);
+}
+
+
 
 
 // -------------------------- FUNCIONES ACTUALIZAR --------------------------
