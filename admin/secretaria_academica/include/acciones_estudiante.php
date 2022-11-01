@@ -16,7 +16,7 @@
                   
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/actualizar_docente.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="operaciones/actualizar_estudiante.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
                       <input type="hidden" name="id" value="<?php echo $res_busc_est['id']; ?>">
                       <input type="hidden" name="dni_a" value="<?php echo $res_busc_est['dni']; ?>">
                       <div class="form-group">
@@ -29,7 +29,27 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellidos y Nombres : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="ap_nom" required="" value="<?php echo $res_busc_est['apellidos_nombre']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <input type="text" class="form-control" name="ap_nom" required="" value="<?php echo $res_busc_est['apellidos_nombres']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Género : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" id="genero" name="genero" value="<?php echo $res_busc_est['id_genero']; ?>" required="required">
+                            <option></option>
+                          <?php 
+                            $ejec_busc_gen = buscarGenero($conexion);
+                            while ($res_busc_gen = mysqli_fetch_array($ejec_busc_gen)) {
+                              $id_gen = $res_busc_gen['id'];
+                              $gen = $res_busc_gen['genero'];
+                              ?>
+                              <option value="<?php echo $id_gen;
+                              ?>"<?php if($res_busc_est['id_genero']== $id_gen){ echo "selected";} ?>><?php echo $gen; ?></option>
+                            <?php
+                            }
+                            ?>
+                          </select>
                           <br>
                         </div>
                       </div>
