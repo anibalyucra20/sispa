@@ -98,7 +98,7 @@ include '../include/busquedas.php';
                             $ejec_busc_sem = buscarSemestreById($conexion, $id_sem);
                             $res_busc_sem=mysqli_fetch_array($ejec_busc_sem);
                           ?>
-                          <td><?php echo $res_busc_sem['nombre']; ?></td>
+                          <td><?php echo $res_busc_sem['descripcion']; ?></td>
                           <td>
                             <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_doc['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  
