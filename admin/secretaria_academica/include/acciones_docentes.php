@@ -38,7 +38,7 @@
                           <select class="form-control" name="cond_laboral" value="<?php echo $res_busc_doc['cond_laboral']; ?>" required="required">
                             <option></option>
                             <option value="CONTRATADO" <?php if("CONTRATADO"==$res_busc_doc['cond_laboral']){ echo "selected";} ?>>CONTRATADO</option>
-                            <option value="NOMBRADO" <?php if("CONTRATADO"==$res_busc_doc['cond_laboral']){ echo "selected";} ?>>NOMBRADO</option>
+                            <option value="NOMBRADO" <?php if("NOMBRADO"==$res_busc_doc['cond_laboral']){ echo "selected";} ?>>NOMBRADO</option>
                           </select>
                           <br>
                         </div>
