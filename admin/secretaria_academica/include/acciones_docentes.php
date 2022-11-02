@@ -17,24 +17,25 @@
                   <div class="x_content">
                     <br />
                     <form role="form" action="operaciones/registrar_docente.php" class="form-horizontal form-label-left input_mask" method="POST" >
-                      <div class="form-group">
+                    <input type="hidden" name="id" value="<?php echo $res_busc_doc['id']; ?>">
+                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" name="dni" required="required" maxlength="8">
+                          <input type="number" class="form-control" name="dni" required="required" maxlength="8" value="<?php echo $res_busc_doc['dni']; ?>" >
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellidos y Nombres : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="nom_ap" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <input type="text" class="form-control" name="nom_ap" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_doc['apellidos_nombres']; ?>">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Condición Laboral : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" name="cond_laboral" value="" required="required">
+                          <select class="form-control" name="cond_laboral" value="<?php echo $res_busc_doc['cond_laboral']; ?>" required="required">
                             <option></option>
                             <option value="CONTRATADO">CONTRATADO</option>
                             <option value="NOMBRADO">NOMBRADO</option>
@@ -45,28 +46,28 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="date" class="form-control" name="fecha_nac" required="required">
+                          <input type="date" class="form-control" name="fecha_nac" required="required" value="<?php echo $res_busc_doc['fecha_nac']; ?>">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nivel de Formación : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="niv_formacion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <input type="text" class="form-control" name="niv_formacion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_doc['nivel_educacion']; ?>">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Teléfono : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="Number" class="form-control" name="telefono" required="required" maxlength="15">
+                          <input type="Number" class="form-control" name="telefono" required="required" maxlength="15" value="<?php echo $res_busc_doc['telefono']; ?>">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo Electrónico : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="email" class="form-control" name="email" required="required">
+                          <input type="email" class="form-control" name="email" required="required" value="<?php echo $res_busc_doc['correo']; ?>">
                           <br>
                           
                         </div>
@@ -74,7 +75,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Dirección : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="direccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <input type="text" class="form-control" name="direccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_doc['direccion']; ?>">
                           <br>
                           
                         </div>
@@ -82,7 +83,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Género : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="genero" name="genero" value="" required="required">
+                          <select class="form-control" id="genero" name="genero" value="<?php echo $res_busc_doc['id_genero']; ?>" required="required">
                             <option></option>
                           <?php 
                             $ejec_busc_gen = buscarGenero($conexion);
@@ -102,7 +103,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Cargo : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="cargo" name="cargo" value="" required="required">
+                          <select class="form-control" id="cargo" name="cargo" value="<?php echo $res_busc_doc['id_cargo']; ?>" required="required">
                             <option></option>
                           <?php 
                             $ejec_busc_car = buscarCargo($conexion);
