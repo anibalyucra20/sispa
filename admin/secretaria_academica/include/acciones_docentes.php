@@ -37,8 +37,8 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <select class="form-control" name="cond_laboral" value="<?php echo $res_busc_doc['cond_laboral']; ?>" required="required">
                             <option></option>
-                            <option value="CONTRATADO">CONTRATADO</option>
-                            <option value="NOMBRADO">NOMBRADO</option>
+                            <option value="CONTRATADO" <?php if("CONTRATADO"==$res_busc_doc['cond_laboral']){ echo "selected";} ?>>CONTRATADO</option>
+                            <option value="NOMBRADO" <?php if("CONTRATADO"==$res_busc_doc['cond_laboral']){ echo "selected";} ?>>NOMBRADO</option>
                           </select>
                           <br>
                         </div>
@@ -92,7 +92,7 @@
                               $gen = $res_busc_gen['genero'];
                               ?>
                               <option value="<?php echo $id_gen;
-                              ?>"><?php echo $gen; ?></option>
+                              ?>" <?php if($id_gen==$res_busc_doc['id_genero']){ echo "selected";} ?>><?php echo $gen; ?></option>
                             <?php
                             }
                             ?>
@@ -112,7 +112,7 @@
                               $car = $res__busc_car['descripcion'];
                               ?>
                               <option value="<?php echo $id_car;
-                              ?>"><?php echo $car; ?></option>
+                              ?>" <?php if($id_car==$res_busc_doc['id_cargo']){ echo "selected";} ?>><?php echo $car; ?></option>
                             <?php
                             }
                             ?>
