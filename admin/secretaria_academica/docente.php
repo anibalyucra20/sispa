@@ -104,7 +104,7 @@ include '../include/busquedas.php';
                             <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_doc['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  
                         <?php
-                         //include('include/acciones_docentes.php');
+                         include('include/acciones_docentes.php');
                           };
                         ?>
 
