@@ -245,8 +245,7 @@ $res_busc_est=mysqli_fetch_array($ejec_busc_est);
                       
                       
                       <div align="center">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          <button class="btn btn-primary" type="reset">Deshacer Cambios</button>
+                      <a class="btn btn-primary" href="studiante.php"><i class="fa fa-pencil-square-o"></i> Cancelar</a>
                           <button type="submit" class="btn btn-primary">Guardar</button>
                       </div>
                     </form>
