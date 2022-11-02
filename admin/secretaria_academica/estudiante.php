@@ -100,10 +100,10 @@ include '../include/busquedas.php';
                           ?>
                           <td><?php echo $res_busc_sem['descripcion']; ?></td>
                           <td>
-                          <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_est['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
+                          <a class="btn btn-success" href="editar_estudiante.php?id=<?php echo $res_busc_est['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</a></td>
                         </tr>  
                         <?php
-                          include('include/acciones_estudiante.php');
+                          //include('include/acciones_estudiante.php');
                           };
                         ?>
 
