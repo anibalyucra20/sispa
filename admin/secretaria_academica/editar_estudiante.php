@@ -19,7 +19,7 @@ $res_busc_est=mysqli_fetch_array($ejec_busc_est);
 	  
     <title>Editar Estudiante<?php include ("../../include/header_title.php"); ?></title>
     <!--icono en el titulo-->
-    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
     <!-- Bootstrap -->
     <link href="../../Gentella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
