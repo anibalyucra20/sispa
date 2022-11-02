@@ -28,13 +28,13 @@ if(($dni_a <> $dni) && ($conteo == 0)){
 	";
     }else {
         echo "<script>
-			alert('Error al Actualizar Registro, por favor contacte con el administrador');
+			alert('Error al Actualizar Registro, por favor contacte con el administrador..');
 			window.history.back();
 		</script>
 	";
     }
 
-}elseif (($dni_a == $dni)&&($conteo == 1)) {
+}elseif (($dni_a == $dni)) {
     $sql = "UPDATE docente SET apellidos_nombres='$nom_ap', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', id_genero='$genero', nivel_educacion='$niv_formacion', cond_laboral='$cond_laboral', id_cargo='$id_cargo' WHERE id=$id";
     $ejec_consulta = mysqli_query($conexion, $sql);
     if ($ejec_consulta) {
