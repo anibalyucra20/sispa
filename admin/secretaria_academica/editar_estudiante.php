@@ -245,7 +245,7 @@ $res_busc_est=mysqli_fetch_array($ejec_busc_est);
                       
                       
                       <div align="center">
-                      <a class="btn btn-primary" href="studiante.php"><i class="fa fa-pencil-square-o"></i> Cancelar</a>
+                      <a class="btn btn-primary" href="estudiante.php"> Cancelar</a>
                           <button type="submit" class="btn btn-primary">Guardar</button>
                       </div>
                     </form>
