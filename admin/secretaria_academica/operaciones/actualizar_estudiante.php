@@ -38,8 +38,8 @@ if(($dni_a <> $dni) && ($conteo == 0)){
 	";
     }
 
-}elseif ($dni_a == $dni) {
-    $sql = "UPDATE estudiante SET apellidos_nombres='$nom_ap', id_genero='$genero', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', anio_ingreso='$anio_ingreso', id_programa_estudios='$carrera', id_semestre='$semestre', seccion='$seccion', turno='$turno', id_condicion='$condicion', discapacidad='$discapacidad' WHERE id=$id";
+}elseif (($dni_a == $dni)&&($conteo == 1)) {
+    $sql = "UPDATE estudiante SET apellidos_nombres='$nom_ap', id_genero='$genero', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', anio_ingreso='$anio_ingreso', id_semestre='$semestre', seccion='$seccion', turno='$turno', id_condicion='$condicion', discapacidad='$discapacidad' WHERE id=$id";
     $ejec_consulta = mysqli_query($conexion, $sql);
     if ($ejec_consulta) {
         echo "<script>
