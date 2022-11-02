@@ -16,8 +16,9 @@
                   
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/registrar_docente.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                    <form role="form" action="operaciones/actualizar_docente.php" class="form-horizontal form-label-left input_mask" method="POST" >
                     <input type="hidden" name="id" value="<?php echo $res_busc_doc['id']; ?>">
+                    <input type="hidden" name="dni_a" value="<?php echo $res_busc_doc['dni']; ?>">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
