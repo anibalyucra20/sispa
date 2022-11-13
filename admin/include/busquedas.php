@@ -142,6 +142,11 @@ function buscarCompetenciasByIdModulo($conexion, $id){
 	$sql = "SELECT * FROM competencias WHERE id_modulo_formativo='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarIndicadorLogroCompetenciasByIdCompetencia($conexion, $id){
+	$sql = "SELECT * FROM indicador_logro_competencia WHERE id_competencia='$id'";
+	return mysqli_query($conexion, $sql);
+}
+
 function buscarCapacidades($conexion){
 	$sql = "SELECT * FROM capacidades";
 	return mysqli_query($conexion, $sql);

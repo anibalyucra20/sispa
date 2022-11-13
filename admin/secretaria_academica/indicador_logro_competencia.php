@@ -56,7 +56,7 @@ $res_b_comp = mysqli_fetch_array($buscar_comp);
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="">
-                    <h2 align="center">Indicadores de Logro de Competencia - <?php echo $res_b_comp['codigo']." - ".$res_b_comp['descripcion']; ?></h2>
+                    <h2 align="center">Indicadores de Logro de Competencia</h2>
                     <button class="btn btn-success" data-toggle="modal" data-target=".registrar"><i class="fa fa-plus-square"></i> Nuevo</button>
 
                     <div class="clearfix"></div>
@@ -67,25 +67,23 @@ $res_b_comp = mysqli_fetch_array($buscar_comp);
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th>Identificador</th>
-                          <th>Código</th>
-                          <th>Tipo</th>
-                          <th>Nombre</th>
-                          <th>Resolución</th>
+                          <th>Correlativo</th>
+                          <th>Código de Competencia</th>
+                          <th>Competencia</th>
+                          <th>Indicador de Logro</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
-                          $busc_carrera = buscarCarreras($conexion); 
-                          while ($res_busc_carrera=mysqli_fetch_array($busc_carrera)){
+                          $b_indicadores = buscarIndicadorLogroCompetenciasByIdCompetencia($conexion, $id_competencia); 
+                          while ($res_busc_indicadores=mysqli_fetch_array($b_indicadores)){
                         ?>
                         <tr>
-                          <td><?php echo $res_busc_carrera['id']; ?></td>
-                          <td><?php echo $res_busc_carrera['codigo']; ?></td>
-                          <td><?php echo $res_busc_carrera['tipo']; ?></td>
-                          <td><?php echo $res_busc_carrera['nombre']; ?></td>
-                          <td><?php echo $res_busc_carrera['resolucion']; ?></td>
+                          <td><?php echo $res_busc_indicadores['correlativo']; ?></td>
+                          <td><?php echo $res_b_comp['codigo']; ?></td>
+                          <td><?php echo $res_b_comp['descripcion']; ?></td>
+                          <td><?php echo $res_busc_indicadores['descripcion']; ?></td>
                           <td>
                             <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_carrera['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  
