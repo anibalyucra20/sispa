@@ -124,7 +124,7 @@ include '../include/busquedas.php';
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Unidad Didáctica</h4>
+                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Competencia</h4>
                         </div>
                         <div class="modal-body">
                           <!--INICIO CONTENIDO DE MODAL-->
@@ -136,14 +136,8 @@ include '../include/busquedas.php';
                   </div>
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/registrar_unidad_didactica.php" class="form-horizontal form-label-left input_mask" method="POST" >
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Unidad Didáctica : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="ud" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                          <br>
-                        </div>
-                      </div>
+                    <form role="form" action="operaciones/registrar_competencia.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                      
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Programa de Estudios : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -174,47 +168,29 @@ include '../include/busquedas.php';
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="semestre" name="semestre" value="" required="required">
-                            <option></option>
-                          <?php 
-                            $ejec_busc_sem = buscarSemestre($conexion);
-                            while ($res_busc_sem = mysqli_fetch_array($ejec_busc_sem)) {
-                              $id_sem = $res_busc_sem['id'];
-                              $sem = $res_busc_sem['descripcion'];
-                              ?>
-                              <option value="<?php echo $id_sem;
-                              ?>"><?php echo $sem; ?></option>
-                            <?php
-                            }
-                            ?>
-                          </select>
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Créditos : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" name="creditos" required="required">
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Horas : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" name="horas" required="required">
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Competencia: </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control" id="tipo" name="tipo" value="" required="required">
                                 <option value=""></option>
-                                <option value="ESPECIALIDAD">ESPECIALIDAD</option>
+                                <option value="ESPECÍFICA">ESPECÍFICA</option>
                                 <option value="EMPLEABILIDAD">EMPLEABILIDAD</option>
                             </select>
+                          <br>
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Código : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" class="form-control" name="codigo" required="required">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <textarea class="form-control" rows="3" style="width: 100%; height: 165px;" name="descripcion" required="required"></textarea>
+                          
                           <br>
                           <br>
                         </div>
