@@ -103,7 +103,7 @@ $res_b_cap = mysqli_fetch_array($buscar_cap);
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Indicador de Logro para la Competencia <?php echo $res_b_comp['codigo'] ?></h4>
+                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Indicador de Logro para la Capacidad <?php echo $res_b_cap['codigo'] ?></h4>
                         </div>
                         <div class="modal-body">
                           <!--INICIO CONTENIDO DE MODAL-->
@@ -115,7 +115,7 @@ $res_b_cap = mysqli_fetch_array($buscar_cap);
                   </div>
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/registrar_indicador_logro_competencia.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                    <form role="form" action="operaciones/registrar_indicador_logro_capacidad.php" class="form-horizontal form-label-left input_mask" method="POST" >
                     <input type="hidden" name="id" value="<?php echo $id_capacidad; ?>">
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción : </label>
