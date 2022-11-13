@@ -287,8 +287,12 @@ include '../include/busquedas.php';
     <script type="text/javascript">
       $(document).ready(function(){
         recargarlista();
+        recargar_ud();
         $('#carrera_m').change(function(){
           recargarlista();
+        });
+        $('#modulo').change(function(){
+        recargar_ud();
         });
       })
     </script>
