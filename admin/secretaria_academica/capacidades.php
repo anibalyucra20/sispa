@@ -303,8 +303,18 @@ include '../include/busquedas.php';
           }
       });
      }
-     
-
+    </script>
+    <script type="text/javascript">
+     function recargar_ud(){
+      $.ajax({
+        type:"POST",
+        url:"../operaciones/obtener_ud.php",
+        data:"id_modulo="+ $('#modulo').val(),
+          success:function(r){
+            $('#unidad_didactica').html(r);
+          }
+      });
+     }
     </script>
     
      <?php mysqli_close($conexion); ?>

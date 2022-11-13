@@ -79,6 +79,10 @@ function buscarUdById($conexion, $id){
 	$sql = "SELECT * FROM unidad_didactica WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarUdByIdModulo($conexion, $id){
+	$sql = "SELECT * FROM unidad_didactica WHERE id_modulo='$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarModuloFormativo($conexion){
 	$sql = "SELECT * FROM modulo_profesional";
 	return mysqli_query($conexion, $sql);
