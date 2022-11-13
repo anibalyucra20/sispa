@@ -22,7 +22,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Código : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="number" name="codigo" value="<?php echo $res_busc_indicadores['codigo']; ?>" required="required">
+                            <input type="text" name="codigo" value="<?php echo $res_busc_indicadores['codigo']; ?>" required="required">
                           <br><br>
                         </div>
                       </div>
