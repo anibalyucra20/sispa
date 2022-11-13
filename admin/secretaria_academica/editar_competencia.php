@@ -85,13 +85,13 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
                   
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/actualizar_unidad_didactiva.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
-                      <input type="hidden" name="id" value="<?php echo $res_busc_ud['id']; ?>">
+                    <form role="form" action="operaciones/actualizar_competencia.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
+                      <input type="hidden" name="id" value="<?php echo $id_competencia; ?>">
                       
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Programa de Estudios : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="carrera_m" name="carrera_m" value="<?php echo $res_busc_ud['id_carrera']; ?>" required="">
+                          <select class="form-control" id="carrera_m" name="carrera_m" value="<?php echo $id_p_e; ?>" required="">
                             <option></option>
                           <?php 
                             $ejec_busc_car_prof = buscarCarreras($conexion);
