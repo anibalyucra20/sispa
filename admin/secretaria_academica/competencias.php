@@ -104,7 +104,7 @@ include '../include/busquedas.php';
                           <td><?php echo $res_busc_comp['descripcion']; ?></td>
                           <td>
                             <a class="btn btn-success" href="editar_competencia.php?id=<?php echo $res_busc_comp['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</a>
-                           <a title="Ver Indicadores de Logro de la Competencia" class="btn btn-success" href="indicador_logro_competencia.php?id=<?php echo $res_busc_comp['id']; ?>"><i class="fa fa-eye"></i>Indicadores de Logro</a>
+                           <a title="Ver Indicadores de Logro de la Competencia" class="btn btn-primary" href="indicador_logro_competencia.php?id=<?php echo $res_busc_comp['id']; ?>"><i class="fa fa-eye"></i>Indicadores de Logro</a>
                           </td>
                         </tr>  
                         <?php
