@@ -113,9 +113,9 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Módulo Formativo : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="modulo" name="modulo" value="<?php echo $res_busc_ud['id_modulo']; ?>" required="required">
+                          <select class="form-control" id="modulo" name="modulo" value="<?php echo $res_busc_comp['id_modulo']; ?>" required="required">
                             <?php
-                            $ejec_busc_modu = buscarModuloFormativoByIdCarrera($conexion, $id_carrera);
+                            $ejec_busc_modu = buscarModuloFormativoByIdCarrera($conexion, $id_p_e);
                             while ($res_busc_modu = mysqli_fetch_array($ejec_busc_modu)) {
                               $id_modu = $res_busc_modu['id'];
                               $modu= $res_busc_modu['nro_modulo'];
@@ -134,10 +134,10 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Competencia: </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control" id="tipo" name="tipo" value="<?php echo $res_busc_ud['tipo_competencia']; ?>" required="required">
+                            <select class="form-control" id="tipo" name="tipo" value="<?php echo $res_busc_comp['tipo_competencia']; ?>" required="required">
                                 <option value=""></option>
-                                <option value="ESPECÍFICA" <?php if("ESPECÍFICA"==$res_busc_ud['tipo_competencia']){echo "selected";} ?>>ESPECÍFICA</option>
-                                <option value="EMPLEABILIDAD" <?php if("EMPLEABILIDAD"==$res_busc_ud['tipo_competencia']){echo "selected";} ?>>EMPLEABILIDAD</option>
+                                <option value="ESPECÍFICA" <?php if("ESPECÍFICA"==$res_busc_comp['tipo_competencia']){echo "selected";} ?>>ESPECÍFICA</option>
+                                <option value="EMPLEABILIDAD" <?php if("EMPLEABILIDAD"==$res_busc_comp['tipo_competencia']){echo "selected";} ?>>EMPLEABILIDAD</option>
                             </select>
                           <br>
                         </div>
@@ -145,14 +145,14 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Código : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="codigo" value="<?php echo $res_busc_ud['codigo']; ?>" required="required">
+                          <input type="text" class="form-control" name="codigo" value="<?php echo $res_busc_comp['codigo']; ?>" required="required">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                        <textarea class="form-control" rows="3" style="width: 100%; height: 165px;" name="descripcion" required="required"><?php echo $res_busc_ud['descripcion']; ?></textarea>
+                        <textarea class="form-control" rows="3" style="width: 100%; height: 165px;" name="descripcion" required="required"><?php echo $res_busc_comp['descripcion']; ?></textarea>
                           <br>
                           <br>
                         </div>
