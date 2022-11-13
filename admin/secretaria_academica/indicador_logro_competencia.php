@@ -85,10 +85,10 @@ $res_b_comp = mysqli_fetch_array($buscar_comp);
                           <td><?php echo $res_b_comp['descripcion']; ?></td>
                           <td><?php echo $res_busc_indicadores['correlativo'].".- ".$res_busc_indicadores['descripcion']; ?></td>
                           <td>
-                            <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_carrera['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
+                            <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_indicadores['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  
                         <?php
-                         include('include/acciones_programa_estudio.php');
+                         include('include/acciones_indicador_logro_competencia.php');
                           };
                         ?>
 

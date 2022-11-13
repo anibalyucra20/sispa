@@ -14,7 +14,7 @@ $descripcion = $_POST['descripcion'];
 	$ejecutar_insetar = mysqli_query($conexion, $insertar);
 	if ($ejecutar_insetar) {
 			echo "<script>
-                window.location= '../indicador_logro_competencia.php?id=".$id_competencia."'
+                window.location= '../indicador_logro_competencia.php?id=".$id_competencia."';
     			</script>";
 	}else{
 		echo "<script>
