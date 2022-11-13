@@ -24,18 +24,13 @@ include 'include/verificar_sesion.php';
     <link href="../../Gentella/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../../Gentella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- bootstrap-wysiwyg -->
-    <link href="../../Gentella/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-    <!-- Select2 -->
-    <link href="../../Gentella/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
-    <!-- Switchery -->
-    <link href="../../Gentella/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
-    <!-- starrr -->
-    <link href="../../Gentella/vendors/starrr/dist/starrr.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="../../Gentella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    
-    
+    <!-- Datatables -->
+    <link href="../../Gentella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="../../Gentella/build/css/custom.min.css" rel="stylesheet">
 
@@ -119,46 +114,34 @@ include 'include/verificar_sesion.php';
     </div>
 
     <!-- jQuery -->
-    <script src="../../Gentella/vendors/jquery/dist/jquery.min.js"></script>
+   <script src="../../Gentella/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../../Gentella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="../../Gentella/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../../Gentella/vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../../Gentella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
     <script src="../../Gentella/vendors/iCheck/icheck.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="../../Gentella/vendors/moment/min/moment.min.js"></script>
-    <script src="../../Gentella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!-- bootstrap-wysiwyg -->
-    <script src="../../Gentella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-    <script src="../../Gentella/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-    <script src="../../Gentella/vendors/google-code-prettify/src/prettify.js"></script>
-    <!-- jQuery Tags Input -->
-    <script src="../../Gentella/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-    <!-- Switchery -->
-    <script src="../../Gentella/vendors/switchery/dist/switchery.min.js"></script>
-    <!-- Select2 -->
-    <script src="../../Gentella/vendors/select2/dist/js/select2.full.min.js"></script>
-    <!-- Parsley -->
-    <script src="../../Gentella/vendors/parsleyjs/dist/parsley.min.js"></script>
-    <!-- Autosize -->
-    <script src="../../Gentella/vendors/autosize/dist/autosize.min.js"></script>
-    <!-- jQuery autocomplete -->
-    <script src="../../Gentella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-    <!-- starrr -->
-    <script src="../../Gentella/vendors/starrr/dist/starrr.js"></script>
+    <!-- Datatables -->
+    <script src="../../Gentella/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../../Gentella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../../Gentella/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../../Gentella/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../../Gentella/vendors/pdfmake/build/vfs_fonts.js"></script>
+
     <!-- Custom Theme Scripts -->
     <script src="../../Gentella/build/js/custom.min.js"></script>
-
-
-	  <!--prueba tabla-->
-    
-    <script src="../include/tabla/jquery.dataTables.min.js"></script>
-    <script src="../include/tabla/dataTables.bootstrap.min.js"></script>
     <script>
     $(document).ready(function() {
     $('#example').DataTable({
