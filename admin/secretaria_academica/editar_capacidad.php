@@ -90,8 +90,8 @@ $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
                   
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/actualizar_competencia.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
-                      <input type="hidden" name="id" value="<?php echo $id_competencia; ?>">
+                    <form role="form" action="operaciones/actualizar_capacidad.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
+                      <input type="hidden" name="id" value="<?php echo $id_capacidad; ?>">
                       
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Programa de Estudios : </label>
