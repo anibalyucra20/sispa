@@ -14,7 +14,6 @@ $carrera = $_POST['carrera'];
 $semestre = $_POST['semestre'];
 $seccion = $_POST['seccion'];
 $turno = $_POST['turno'];
-$condicion = $_POST['condicion'];
 $discapacidad = $_POST['discapacidad'];
 
 //verificar que el dni solo este registrado en 1 carrera
@@ -22,7 +21,7 @@ $busc_est_car = "SELECT * FROM estudiante WHERE dni='$dni' AND id_programa_estud
 $ejec_busc_est_car = mysqli_query($conexion, $busc_est_car);
 $conteo = mysqli_num_rows($ejec_busc_est_car);
 if(($dni_a <> $dni) && ($conteo == 0)){
-    $sql = "UPDATE estudiante SET dni='$dni', apellidos_nombres='$nom_ap', id_genero='$genero', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', anio_ingreso='$anio_ingreso', id_programa_estudios='$carrera', id_semestre='$semestre', seccion='$seccion', turno='$turno', id_condicion='$condicion', discapacidad='$discapacidad' WHERE id=$id";
+    $sql = "UPDATE estudiante SET dni='$dni', apellidos_nombres='$nom_ap', id_genero='$genero', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', anio_ingreso='$anio_ingreso', id_programa_estudios='$carrera', id_semestre='$semestre', seccion='$seccion', turno='$turno', discapacidad='$discapacidad' WHERE id=$id";
     $ejec_consulta = mysqli_query($conexion, $sql);
     if ($ejec_consulta) {
         echo "<script>
@@ -39,7 +38,7 @@ if(($dni_a <> $dni) && ($conteo == 0)){
     }
 
 }elseif (($dni_a == $dni)&&($conteo == 1)) {
-    $sql = "UPDATE estudiante SET apellidos_nombres='$nom_ap', id_genero='$genero', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', anio_ingreso='$anio_ingreso', id_semestre='$semestre', seccion='$seccion', turno='$turno', id_condicion='$condicion', discapacidad='$discapacidad' WHERE id=$id";
+    $sql = "UPDATE estudiante SET apellidos_nombres='$nom_ap', id_genero='$genero', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', anio_ingreso='$anio_ingreso', id_semestre='$semestre', seccion='$seccion', turno='$turno', discapacidad='$discapacidad' WHERE id=$id";
     $ejec_consulta = mysqli_query($conexion, $sql);
     if ($ejec_consulta) {
         echo "<script>

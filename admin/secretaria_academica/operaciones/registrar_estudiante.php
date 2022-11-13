@@ -13,7 +13,6 @@ $carrera = $_POST['carrera'];
 $semestre = $_POST['semestre'];
 $seccion = $_POST['seccion'];
 $turno = $_POST['turno'];
-$condicion = $_POST['condicion'];
 $discapacidad = $_POST['discapacidad'];
 
 //verificar si el estudiante ya esta registrado
@@ -28,7 +27,7 @@ if ($conteo > 0) {
 			";
 	}else{
 
-	$insertar = "INSERT INTO estudiante (dni, apellidos_nombres, id_genero, fecha_nac, direccion, correo, telefono, anio_ingreso, id_programa_estudios, id_semestre, seccion, turno, id_condicion, discapacidad) VALUES ('$dni','$nom_ap','$genero', '$fecha_nac', '$direccion', '$email', '$telefono', '$anio_ingreso', '$carrera', '$semestre', '$seccion', '$turno', '$condicion', '$discapacidad')";
+	$insertar = "INSERT INTO estudiante (dni, apellidos_nombres, id_genero, fecha_nac, direccion, correo, telefono, anio_ingreso, id_programa_estudios, id_semestre, seccion, turno, discapacidad) VALUES ('$dni','$nom_ap','$genero', '$fecha_nac', '$direccion', '$email', '$telefono', '$anio_ingreso', '$carrera', '$semestre', '$seccion', '$turno', '$discapacidad')";
 	$ejecutar_insetar = mysqli_query($conexion, $insertar);
 	if ($ejecutar_insetar) {
 		//buscaremos el id del ultimo estudiante registrado para poder crear su usuario y contraseña

@@ -207,26 +207,7 @@ $res_busc_est=mysqli_fetch_array($ejec_busc_est);
                           <br>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Condición : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" name="condicion" value="<?php echo $res_busc_est['id_condicion']; ?>" required="required">
-                            <option></option>
-                          <?php 
-                            $ejec_busc_obs = buscarCondicion($conexion);
-                            while ($res_busc_obs = mysqli_fetch_array($ejec_busc_obs)) {
-                              $id_obs = $res_busc_obs['id'];
-                              $obs = $res_busc_obs['descripcion'];
-                              ?>
-                              <option value="<?php echo $id_obs;
-                              ?>" <?php if($res_busc_est['id_condicion']== $id_obs){ echo "selected";} ?>><?php echo $obs; ?></option>
-                            <?php
-                            }
-                            ?>
-                          </select>
-                          <br>
-                        </div>
-                      </div>
+                      
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Discapacidad : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
