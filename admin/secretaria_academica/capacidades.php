@@ -134,7 +134,7 @@ include '../include/busquedas.php';
                   </div>
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/registrar_competencia.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                    <form role="form" action="operaciones/registrar_capacidad.php" class="form-horizontal form-label-left input_mask" method="POST" >
                       
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Programa de Estudios : </label>
