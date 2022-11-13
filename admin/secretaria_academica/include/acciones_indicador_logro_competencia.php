@@ -7,7 +7,7 @@
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel" align="center">Editar Cargo</h4>
+                          <h4 class="modal-title" id="myModalLabel" align="center">Editar Indicador de Logro de Competencia</h4>
                         </div>
                         <div class="modal-body">
                           <!--INICIO CONTENIDO DE MODAL-->
@@ -16,10 +16,11 @@
                   
                   <div class="x_content">
                     <br />
-                    <form role="form" action="operaciones/actualizar_cargos.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="operaciones/actualizar_indicador_logro_competencia.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
                       <input type="hidden" name="id" value="<?php echo $res_busc_indicadores['id']; ?>">
+                      <input type="hidden" name="id_competencia" value="<?php echo $res_busc_indicadores['id_competencia']; ?>">
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Correlativo : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="number" name="correlativo" value="<?php echo $res_busc_indicadores['correlativo']; ?>" required="required">
                           <br><br>
