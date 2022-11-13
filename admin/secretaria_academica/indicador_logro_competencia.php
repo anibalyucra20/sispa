@@ -83,7 +83,7 @@ $res_b_comp = mysqli_fetch_array($buscar_comp);
                           <td><?php echo $res_busc_indicadores['correlativo']; ?></td>
                           <td><?php echo $res_b_comp['codigo']; ?></td>
                           <td><?php echo $res_b_comp['descripcion']; ?></td>
-                          <td><?php echo $res_busc_indicadores['descripcion']; ?></td>
+                          <td><?php echo $res_busc_indicadores['correlativo'].".- ".$res_busc_indicadores['descripcion']; ?></td>
                           <td>
                             <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_carrera['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  
