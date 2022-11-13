@@ -40,6 +40,11 @@
         <div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row tile_count">
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Periodo Académico</span>
+              <div class="count"><?php echo ""; ?>2022-II</div>
+              <span class="count_bottom"><a href=""><i class="green">Ver</i></a></span>
+            </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-check-square-o"></i> Matrículas</span>
               <div class="count"><?php echo ""; ?>100</div>
@@ -51,9 +56,9 @@
               <span class="count_bottom"><a href="programacion.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total</span>
-              <div class="count"><?php echo ""; ?></div>
-              <span class="count_bottom"><a href=""><i class="green">Ver</i></a></span>
+              <span class="count_top"><i class="fa fa-user"></i> Evaluación</span>
+              <div class="count"><?php echo ""; ?>50</div>
+              <span class="count_bottom"><a href="evaluacion.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-send"></i>TOTAL</span>
