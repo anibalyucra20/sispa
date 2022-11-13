@@ -265,8 +265,7 @@ $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
     <script type="text/javascript">
       $(document).ready(function(){
         recargarlista();
-        recargar_ud();
-        recargar_competencias();
+        
         $('#carrera_m').change(function(){
           recargarlista();
         });
