@@ -155,6 +155,11 @@ function buscarCapacidadesById($conexion, $id){
 	$sql = "SELECT * FROM capacidades WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id){
+	$sql = "SELECT * FROM indicador_logro_capacidad WHERE id_capacidad='$id'";
+	return mysqli_query($conexion, $sql);
+}
+
 
 
 
