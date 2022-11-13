@@ -32,7 +32,7 @@
           <center><img src="../../img/logo.png" width="150px"></center>
           <section class="login_content">
             <form role="form" action="create_account.php" method="POST">
-              <h1>Crear Constraseña</h1>
+              <h1>Crear Contraseña</h1>
 
               <div>
                 <input type="hidden" name="data" value="<?php echo $_GET['data']; ?>">

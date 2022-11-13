@@ -126,8 +126,8 @@ function buscarUsuarioDocenteById($conexion, $id){
 }
 
 
-function buscarCondicion($conexion){
-	$sql = "SELECT * FROM condicion";
+function buscarCompetencias($conexion){
+	$sql = "SELECT * FROM competencias";
 	return mysqli_query($conexion, $sql);
 }
 

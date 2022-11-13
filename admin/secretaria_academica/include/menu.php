@@ -45,13 +45,11 @@
                   <li><a><i class="fa fa-users"></i> Docentes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li class="sub_menu"><a href="docente.php">Relación de Docentes</a></li>
-                      <li class="sub_menu"><a href="usuarios_docentes.php">Usuarios Docentes</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-graduation-cap"></i> Estudiantes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li class="sub_menu"><a href="estudiante.php">Relación de Estudiantes</a></li>
-                      <li class="sub_menu"><a href="usuario_estudiante.php">Usuarios Estudiantes</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-book"></i> Evaluación <span class="fa fa-chevron-down"></span></a>
@@ -69,8 +67,8 @@
                       <li><a href="datos.php">Datos Institucionales</a></li>
                       <li><a href="programa_estudio.php">Programas de estudio</a></li>
                       <li><a href="modulo_formativo.php">Módulos Formativos</a></li>
-                      <li><a href="Competencias.php">Competencias</a></li>
-                      <li><a href="Capacidades.php">Capacidades</a></li>
+                      <li><a href="competencias.php">Competencias</a></li>
+                      <li><a href="capacidades.php">Capacidades</a></li>
                       <li><a href="semestre.php">Semestre</a></li>
                       <li><a href="unidad_didactica.php">Unidades Didacticas</a></li>
                       <li><a href="obervacion.php">Observaciones</a></li>
