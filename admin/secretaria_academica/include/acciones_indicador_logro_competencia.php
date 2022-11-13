@@ -19,13 +19,15 @@
                     <form role="form" action="operaciones/actualizar_cargos.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
                       <input type="hidden" name="id" value="<?php echo $res_busc_indicadores['id']; ?>">
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cargo : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="cargo" required="" maxlength="100" value="<?php echo $res_busc_indicadores['descripcion']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                        <textarea class="form-control" rows="3" style="width: 100%; height: 165px;" name="descripcion" required="required"><?php echo $res_busc_indicadores['descripcion']; ?></textarea>
+                          
                           <br>
                           <br>
                         </div>
                       </div>
+                      
                       
                       
                       <div align="center">
