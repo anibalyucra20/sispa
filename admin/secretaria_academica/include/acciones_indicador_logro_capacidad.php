@@ -18,7 +18,7 @@
                     <br />
                     <form role="form" action="operaciones/actualizar_indicador_logro_capacidad.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
                       <input type="hidden" name="id" value="<?php echo $res_busc_indicadores['id']; ?>">
-                      <input type="hidden" name="id_capacidad" value="<?php echo $id_capacidad; ?>">
+                      <input type="hidden" name="id_capacidad" value="<?php echo $res_busc_indicadores['id_capacidad']; ?>">
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Código : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
