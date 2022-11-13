@@ -59,6 +59,11 @@
                       <li class="sub_menu"><a href="evaluacion.php">Registro de Evaluación</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-bar-chart"></i>Reportes<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="reportes.php">reportes</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-gears"></i>Mantenimiento<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="datos.php">Datos Institucionales</a></li>
@@ -72,11 +77,7 @@
                       <li><a href="Capacidades.php">Capacidades</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart"></i>Reportes<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="reportes.php">reportes</a></li>
-                    </ul>
-                  </li>
+                  
                 </ul>
               </div>
 
