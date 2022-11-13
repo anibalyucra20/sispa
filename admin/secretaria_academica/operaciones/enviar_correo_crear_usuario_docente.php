@@ -65,17 +65,17 @@ if ($cont_usu_doc == 0) {
                             <body>
                             <div style="width: 100%; font-family: Roboto; font-size: 0.8em; display: inline;">
                                 <div style="background-color:rgb(17,17,29); border-radius: 10px 10px 0px 0px; height: 60px; text-align: center;">
-                                    <img src="<?php echo $datos_sistema['pagina']."/".$datos_sistema['logo']; ?>" alt="<?php echo $datos_sistema['pagina']; ?>" style="padding: 0.5em; text-align: center;" height="90%">
+                                    <img src="'.$datos_sistema['pagina']."/".$datos_sistema['logo'].'" alt="'.$datos_sistema["pagina"].'" style="padding: 0.5em; text-align: center;" height="90%">
                                 </div>
                                 <div style="background-color:rgb(17,17,29); border-radius: 0px 0px 0px 0px; height: 60px; margin-top: 0px; padding-top: 2px; padding-bottom: 10px;">
-                                    <p style="text-align: center; font-size: 1.0rem; color: #f1f1f1; text-shadow: 2px 2px 2px #cfcfcf; "><?php echo $datos_iest['nombre_institucion']; ?></p>
+                                    <p style="text-align: center; font-size: 1.0rem; color: #f1f1f1; text-shadow: 2px 2px 2px #cfcfcf; ">'.$datos_iest["nombre_institucion"].'</p>
                                 </div>
                                 <div>
                                     <h1 style="text-align:center;">SISTEMA DE PORTAFOLIO DOCENTE</h1>
                                     <h3 style="text-align:center; color: #3c4858;">GENERAR CONTRASEÑA</h3>
                                     <p style="font-size:1.0rem; color: #2A2C2B; margin-top: 2em; margin-bottom: 2em; margin-left: 1.5em;">
                             
-                                        Hola '.$docente.', para poder generar tu contraseña, Haz click <a href="<?php echo $datos_sistema['dominio_sistema'];?>/admin/login/generar_acceso.php?data='.$id_docente.'">Aquí</a>.<br>
+                                        Hola '.$docente.', para poder generar tu contraseña, Haz click <a href="'.$datos_sistema['dominio_sistema'].'/admin/login/generar_acceso.php?data='.$id_docente.'">Aquí</a>.<br>
                                         
                                         <br>
                                         <br>
@@ -91,7 +91,7 @@ if ($cont_usu_doc == 0) {
                                             <a href="tel:(066) 322296"
                                                style="text-decoration: none; color: #f1f1f1; ">Jr. Córdova 650 Huanta - Ayacucho - Perú
                                                 &nbsp;|&nbsp; Teléfono: (066) 322296</a>
-                                            <br> <?php echo $datos_iest['nombre_institucion']; ?>
+                                            <br> '. $datos_iest['nombre_institucion'].'
                                         </strong>
                                     </p>
                                 </div>
