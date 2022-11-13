@@ -15,6 +15,8 @@ include '../include/busquedas.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
     <title>Competencias<?php include ("../../include/header_title.php"); ?></title>
+    <!--icono en el titulo-->
+    <link rel="shortcut icon" href="../../img/favicon.ico">
     <!-- Bootstrap -->
     <link href="../../Gentella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -218,8 +220,6 @@ include '../include/busquedas.php';
          /footer content -->
       </div>
     </div>
-
-    <!-- jQuery -->
    <!-- jQuery -->
    <script src="../../Gentella/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
