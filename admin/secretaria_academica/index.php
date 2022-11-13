@@ -43,7 +43,7 @@
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-calendar"></i> Periodo Académico</span>
               <div class="count"><?php echo ""; ?>2022-II</div>
-              <span class="count_bottom"><a href=""><i class="green"></i></a></span>
+              <span class="count_bottom"><a href=""><i class="green">.</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-child"></i> Estudiantes</span>
