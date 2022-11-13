@@ -41,9 +41,14 @@
           <!-- top tiles -->
           <div class="row tile_count">
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Periodo Académico</span>
+              <span class="count_top"><i class="fa fa-calendar"></i> Periodo Académico</span>
               <div class="count"><?php echo ""; ?>2022-II</div>
-              <span class="count_bottom"><a href=""><i class="green">Ver</i></a></span>
+              
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-child"></i> Estudiantes</span>
+              <div class="count"><?php echo ""; ?>254</div>
+              <span class="count_bottom"><a href="estudiante.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-check-square-o"></i> Matrículas</span>
@@ -56,21 +61,17 @@
               <span class="count_bottom"><a href="programacion.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Evaluación</span>
+              <span class="count_top"><i class="fa fa-pencil-square-o"></i> Evaluación</span>
               <div class="count"><?php echo ""; ?>50</div>
               <span class="count_bottom"><a href="evaluacion.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-send"></i>TOTAL</span>
-              <div class="count"><?php echo ""; ?></div>
-              <span class="count_bottom"><a href=""><i class="green">Ver </i></a></span>
+              <span class="count_top"><i class="fa fa-line-chart"></i>Reportes</span>
+              <div class="count"><?php echo ""; ?>2022-II</div>
+              <span class="count_bottom"><a href="reportes.php"><i class="green">Ver </i></a></span>
             </div>
             
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-comment"></i> Total</span>
-              <div class="count"><?php echo ""; ?></div>
-              <span class="count_bottom"><a href=""><i class="green">Ver</i></a></span>
-            </div>
+            
           </div>
    
 
