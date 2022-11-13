@@ -156,8 +156,19 @@ $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Competencia : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="competencia" name="competencia" value="" required="required">
+                          <select class="form-control" id="competencia" name="competencia" value="<?php echo $id_competencia; ?>" required="required">
                             <!--las opciones se cargan con ajax y javascript  dependiendo de la carrera elegida,verificar en la parte final-->
+                            <?php 
+                            $ejec_busc_comp = buscarCompetenciasByIdModulo($conexion, $id_modulo);
+                            while ($res_busc_comp = mysqli_fetch_array($ejec_busc_comp)) {
+                              $id_comp = $res_busc_comp['id'];
+                              $comp = $res_busc_comp['descripcion'];
+                              ?>
+                              <option value="<?php echo $id_comp;
+                              ?>" <?php if($id_comp==$id_competencia){ echo "selected";} ?>><?php echo $res_busc_comp['codigo'].' - '.$comp; ?></option>
+                            <?php
+                            }
+                            ?>
                           </select>
                           <br>
                         </div>
