@@ -136,8 +136,8 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control" id="tipo" name="tipo" value="<?php echo $res_busc_ud['tipo_competencia']; ?>" required="required">
                                 <option value=""></option>
-                                <option value="ESPECÍFICA" <?php if("ESPECÍFICA"==$res_busc_ud['tipo_competencia']){echo "selected"} ?>>ESPECÍFICA</option>
-                                <option value="EMPLEABILIDAD" <?php if("EMPLEABILIDAD"==$res_busc_ud['tipo_competencia']){echo "selected"} ?>>EMPLEABILIDAD</option>
+                                <option value="ESPECÍFICA" <?php if("ESPECÍFICA"==$res_busc_ud['tipo_competencia']){echo "selected";} ?>>ESPECÍFICA</option>
+                                <option value="EMPLEABILIDAD" <?php if("EMPLEABILIDAD"==$res_busc_ud['tipo_competencia']){echo "selected";} ?>>EMPLEABILIDAD</option>
                             </select>
                           <br>
                         </div>
