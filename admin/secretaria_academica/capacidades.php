@@ -72,7 +72,7 @@ include '../include/busquedas.php';
                           <th>Identificador</th>
                           <th>Programa de Estudios</th>
                           <th>Módulo</th>
-                          <th>Tipo de Competencia</th>
+                          <th>Competencia</th>
                           <th>Codigo</th>
                           <th>Descripcion</th>
                           <th>Acciones</th>
@@ -80,14 +80,17 @@ include '../include/busquedas.php';
                       </thead>
                       <tbody>
                         <?php 
-                          $ejec_busc_competencias = buscarCompetencias($conexion); 
-                          while ($res_busc_comp=mysqli_fetch_array($ejec_busc_competencias)){
+                          $ejec_busc_capacidades = buscarCapacidades($conexion); 
+                          while ($res_busc_cap=mysqli_fetch_array($ejec_busc_capacidades)){
                   
                         ?>
                         <tr>
-                          <td><?php echo $res_busc_comp['id']; ?></td>
+                          <td><?php echo $res_busc_cap['id']; ?></td>
                           <?php 
-                          $id_modulo = $res_busc_comp['id_modulo_formativo'];
+                          $id_competencia = $res_busc_cap['id_competencia'];
+                          $busc_competencia = buscarCompetenciasById($conexion, $id_competencia);
+                          $res_b_competencia = mysqli_fetch_array($busc_competencia);
+                          $id_modulo = $res_b_competencia['id_modulo_formativo'];
                           $ejec_busc_modulo = buscarModuloFormativoById($conexion, $id_modulo);
                           $res_busc_modulo =mysqli_fetch_array($ejec_busc_modulo);
                           $id_carrera = $res_busc_modulo['id_programa_estudio'];
@@ -99,11 +102,11 @@ include '../include/busquedas.php';
                           
                           ?>
                           <td><?php echo "M".$res_busc_modulo['nro_modulo']." - ".$res_busc_modulo['descripcion']; ?></td>
-                          <td><?php echo $res_busc_comp['tipo_competencia']; ?></td>
-                          <td><?php echo $res_busc_comp['codigo']; ?></td>
-                          <td><?php echo $res_busc_comp['descripcion']; ?></td>
+                          <td><?php echo $res_b_competencia['codigo']; ?></td>
+                          <td><?php echo $res_busc_cap['codigo']; ?></td>
+                          <td><?php echo $res_busc_cap['descripcion']; ?></td>
                           <td>
-                            <a class="btn btn-success" href="editar_competencia.php?id=<?php echo $res_busc_comp['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</a></td>
+                            <a class="btn btn-success" href="editar_competencia.php?id=<?php echo $res_busc_cap['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</a></td>
                         </tr>  
                         <?php
                           };
@@ -119,7 +122,7 @@ include '../include/busquedas.php';
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Competencia</h4>
+                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Capacidad</h4>
                         </div>
                         <div class="modal-body">
                           <!--INICIO CONTENIDO DE MODAL-->
@@ -163,14 +166,20 @@ include '../include/busquedas.php';
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Competencia: </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Unidad Didáctica : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control" id="tipo" name="tipo" value="" required="required">
-                                <option value=""></option>
-                                <option value="ESPECÍFICA">ESPECÍFICA</option>
-                                <option value="EMPLEABILIDAD">EMPLEABILIDAD</option>
-                            </select>
+                          <select class="form-control" id="unidad_didactica" name="unidad_didactica" value="" required="required">
+                            <!--las opciones se cargan con ajax y javascript  dependiendo de la carrera elegida,verificar en la parte final-->
+                          </select>
                           <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Competencia : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" id="competencia" name="competencia" value="" required="required">
+                            <!--las opciones se cargan con ajax y javascript  dependiendo de la carrera elegida,verificar en la parte final-->
+                          </select>
                           <br>
                         </div>
                       </div>

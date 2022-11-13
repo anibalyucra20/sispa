@@ -68,9 +68,7 @@
                       <li><a href="programa_estudio.php">Programas de estudio</a></li>
                       <li><a href="modulo_formativo.php">Módulos Formativos</a></li>
                       <li><a href="competencias.php">Competencias</a></li>
-                      <li><a href="indicadores_competencias.php">Indicadores de Logro de Competencia</a></li>
                       <li><a href="capacidades.php">Capacidades</a></li>
-                      <li><a href="indicadores_capacidades.php">Indicadores de logro de Capacidades</a></li>
                       <li><a href="semestre.php">Semestre</a></li>
                       <li><a href="unidad_didactica.php">Unidades Didacticas</a></li>
                       <li><a href="obervacion.php">Observaciones</a></li>
