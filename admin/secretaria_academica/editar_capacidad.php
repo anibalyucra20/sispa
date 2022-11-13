@@ -136,8 +136,19 @@ $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Unidad Didáctica : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="unidad_didactica" name="unidad_didactica" value="" required="required">
+                          <select class="form-control" id="unidad_didactica" name="unidad_didactica" value="<?php echo $res_busc_cap['id_unidad_didactica']; ?>" required="required">
                             <!--las opciones se cargan con ajax y javascript  dependiendo de la carrera elegida,verificar en la parte final-->
+                            <?php 
+                            $ejec_busc_ud = buscarUdByIdModulo($conexion, $id_modulo);
+                            while ($res_busc_ud = mysqli_fetch_array($ejec_busc_ud)) {
+                              $id_ud = $res_busc_ud['id'];
+                              $ud = $res_busc_ud['descripcion'];
+                              ?>
+                              <option value="<?php echo $id_ud;
+                              ?>" <?php if($id_ud==$res_busc_cap['id_unidad_didactica']){ echo "selected";} ?>><?php echo $ud; ?></option>
+                            <?php
+                            }
+                            ?>
                           </select>
                           <br>
                         </div>
