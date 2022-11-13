@@ -146,6 +146,10 @@ function buscarCapacidades($conexion){
 	$sql = "SELECT * FROM capacidades";
 	return mysqli_query($conexion, $sql);
 }
+function buscarCapacidadesById($conexion, $id){
+	$sql = "SELECT * FROM capacidades WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
 
 
 

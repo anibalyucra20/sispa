@@ -3,13 +3,18 @@ include 'include/verificar_sesion.php';
 include '../../include/conexion.php';
 include '../include/busquedas.php';
 
-$id_competencia = $_GET['id'];
-$ejec_busc_comp = buscarCompetenciasById($conexion, $id_competencia); 
-$res_busc_comp=mysqli_fetch_array($ejec_busc_comp);
-$id_modulo = $res_busc_comp['id_modulo_formativo'];
-$busc_modulo = buscarModuloFormativoById($conexion, $id_modulo);
-$res_b_modulo = mysqli_fetch_array($busc_modulo);
-$id_p_e = $res_b_modulo['id_programa_estudio'];
+$id_capacidad = $_GET['id'];
+$ejec_busc_cap = buscarCapacidadesById($conexion, $id_capacidad); 
+$res_busc_cap=mysqli_fetch_array($ejec_busc_cap);
+$id_competencia = $res_busc_cap['id_competencia'];
+$busc_competencia = buscarCompetenciasById($conexion, $id_competencia);
+$res_b_competencia = mysqli_fetch_array($busc_competencia);
+$id_modulo = $res_b_competencia['id_modulo_formativo'];
+$ejec_busc_modulo = buscarModuloFormativoById($conexion, $id_modulo);
+$res_busc_modulo =mysqli_fetch_array($ejec_busc_modulo);
+$id_carrera = $res_busc_modulo['id_programa_estudio'];
+$ejec_busc_carrera = buscarCarrerasById($conexion, $id_carrera);
+$res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,7 +26,7 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
-    <title>Competencias <?php include ("../../include/header_title.php"); ?></title>
+    <title>Capacidades <?php include ("../../include/header_title.php"); ?></title>
     <!--icono en el titulo-->
     <link rel="shortcut icon" href="../img/favicon.ico">
     <!-- Bootstrap -->
@@ -91,7 +96,7 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Programa de Estudios : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="carrera_m" name="carrera_m" value="" required="required">
+                          <select class="form-control" id="carrera_m" name="carrera_m" value="<?php echo $id_carrera; ?>" required="required">
                             <option></option>
                           <?php 
                             $ejec_busc_carr = buscarCarreras($conexion);
@@ -100,7 +105,7 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
                               $carr = $res__busc_carr['nombre'];
                               ?>
                               <option value="<?php echo $id_carr;
-                              ?>"><?php echo $carr; ?></option>
+                              ?>" <?php if($id_carr==$id_carrera){ echo "selected";} ?>><?php echo $carr; ?></option>
                             <?php
                             }
                             ?>
