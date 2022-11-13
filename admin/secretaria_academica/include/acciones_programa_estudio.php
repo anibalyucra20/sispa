@@ -58,7 +58,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Perfil de Egresado : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                        <textarea class="form-control"  value="<?php echo $res_busc_carrera['perfil_egresado']; ?>" rows="3" style="width: 100%; height: 165px;" name="perfil_egreso" required="required"></textarea>
+                        <textarea class="form-control"  rows="3" style="width: 100%; height: 165px;" name="perfil_egreso" required="required"><?php echo $res_busc_carrera['perfil_egresado']; ?></textarea>
                           <br>
                           <br>
                         </div>
