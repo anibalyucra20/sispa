@@ -10,7 +10,7 @@ $id_modulo = $_POST['id_modulo'];
 
 		$cadena = '<option></option>';
 		while ($mostrar=mysqli_fetch_array($ejec_cons)) {
-			$cadena=$cadena.'<option value='.$mostrar['id'].'>'.$mostrar['codigo'].'</option>';
+			$cadena=$cadena.'<option value='.$mostrar['id'].'>'.$mostrar['descripcion'].'</option>';
 		}
 		echo $cadena;
 
