@@ -41,33 +41,7 @@
                       <li><a href="cargo.php">Cargos</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-book"></i>Módulo Académico<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      
-                      <li><a>Matrículas<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="matricula.php">Registro de Matrícula</a></li>
-                          </ul>
-                      </li>
-                      <li><a>Docentes<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="docente.php">Relación de Docentes</a></li>
-                            <li class="sub_menu"><a href="usuarios_docentes.php">Usuarios Docentes</a></li>
-                          </ul>
-                      </li>
-                      <li><a>Estudiantes<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="estudiante.php">Relación de Estudiantes</a></li>
-                            <li class="sub_menu"><a href="usuario_estudiante.php">Usuarios Estudiantes</a></li>
-                          </ul>
-                      </li>
-                      <li><a>Evaluación<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="evaluacion.php">Registro de Evaluación</a></li>
-                          </ul>
-                      </li>
-                    </ul>
-                  </li>
+                  
                   <li><a><i class="fa fa-briefcase"></i>Módulo Portafolio<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a>Competencias de Programa de estudios<span class="fa fa-chevron-down"></span></a>
@@ -116,12 +90,6 @@
                   <li><a><i class="fa fa-bug"></i> Evaluación <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li class="sub_menu"><a href="evaluacion.php">Registro de Evaluación</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bug"></i> Docentes <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="docente.php">Relación de Docentes</a></li>
-                      <li class="sub_menu"><a href="usuarios_docentes.php">Usuarios Docentes</a></li>
                     </ul>
                   </li>
                 </ul>
