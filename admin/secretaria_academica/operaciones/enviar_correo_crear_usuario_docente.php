@@ -18,10 +18,15 @@ $docente = $res_busc_doc['apellidos_nombres'];
 //buscar si docente ya tiene usuario
 $busc_usu_doc = buscarUsuarioDocenteById($conexion, $id_docente);
 $cont_usu_doc = mysqli_num_rows($busc_usu_doc);
+//buscar datos de sistema  para aplicar datos generales
+$buscar_sistema = buscarDatosSistema($conexion);
+$datos_sistema = mysqli_fetch_array($buscar_sistema);
+$buscar_datos_generales = buscarDatosGenerales($conexion);
+$datos_iest = mysqli_fetch_array($buscar_datos_generales);
 if ($cont_usu_doc == 0) {
 	
 		//enviamos correo
-		$asunto = "Genera contraseña para Sistema de Portafolio Docente";
+		$asunto = "Actualiza contraseña para Sistema de Portafolio Docente";
 		//Create an instance; passing `true` enables exceptions
 		$mail = new PHPMailer(true);
 
@@ -29,15 +34,15 @@ if ($cont_usu_doc == 0) {
             //Server settings
             $mail->SMTPDebug = 0;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'sispa.iestphuanta.edu.pe';                     //Set the SMTP server to send through
+            $mail->Host       = $datos_sistema['host_email'];                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'sispa@sispa.iestphuanta.edu.pe';                     //SMTP username
-            $mail->Password   = 'send@email.sispa';                               //SMTP password
+            $mail->Username   = $datos_sistema['email_email'];                     //SMTP username
+            $mail->Password   = $datos_sistema['password_email'];                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->Port       = $datos_sistema['puerto_email'];                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('sispa@sispa.iestphuanta.edu.pe', 'SISPA IESTP HUANTA');
+            $mail->setFrom($datos_sistema['email_email'], 'SISPA'.$datos_sistema['titulo']);
             $mail->addAddress($correo, $docente);     //Add a recipient
             //$mail->addAddress('ellen@example.com');               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
@@ -60,17 +65,17 @@ if ($cont_usu_doc == 0) {
                             <body>
                             <div style="width: 100%; font-family: Roboto; font-size: 0.8em; display: inline;">
                                 <div style="background-color:rgb(17,17,29); border-radius: 10px 10px 0px 0px; height: 60px; text-align: center;">
-                                    <img src="https://sispa.iestphuanta.edu.pe/img/logo.png" alt="www.iestphuanta.edu.pe" style="padding: 0.5em; text-align: center;" height="90%">
+                                    <img src="<?php echo $datos_sistema['pagina']."/".$datos_sistema['logo']; ?>" alt="<?php echo $datos_sistema['pagina']; ?>" style="padding: 0.5em; text-align: center;" height="90%">
                                 </div>
                                 <div style="background-color:rgb(17,17,29); border-radius: 0px 0px 0px 0px; height: 60px; margin-top: 0px; padding-top: 2px; padding-bottom: 10px;">
-                                    <p style="text-align: center; font-size: 1.0rem; color: #f1f1f1; text-shadow: 2px 2px 2px #cfcfcf; ">INSTITUTO DE EDUCACIÓN SUPERIOR TECNOLÓGICO PÚBLICO HUANTA</p>
+                                    <p style="text-align: center; font-size: 1.0rem; color: #f1f1f1; text-shadow: 2px 2px 2px #cfcfcf; "><?php echo $datos_iest['nombre_institucion']; ?></p>
                                 </div>
                                 <div>
                                     <h1 style="text-align:center;">SISTEMA DE PORTAFOLIO DOCENTE</h1>
                                     <h3 style="text-align:center; color: #3c4858;">GENERAR CONTRASEÑA</h3>
                                     <p style="font-size:1.0rem; color: #2A2C2B; margin-top: 2em; margin-bottom: 2em; margin-left: 1.5em;">
                             
-                                        Hola '.$docente.', para poder generar tu contraseña, Haz click <a href="https://sispa.iestphuanta.edu.pe/admin/login/generar_acceso.php?data='.$id_docente.'">Aquí</a>.<br>
+                                        Hola '.$docente.', para poder generar tu contraseña, Haz click <a href="<?php echo $datos_sistema['dominio_sistema'];?>/admin/login/generar_acceso.php?data='.$id_docente.'">Aquí</a>.<br>
                                         
                                         <br>
                                         <br>
@@ -86,7 +91,7 @@ if ($cont_usu_doc == 0) {
                                             <a href="tel:(066) 322296"
                                                style="text-decoration: none; color: #f1f1f1; ">Jr. Córdova 650 Huanta - Ayacucho - Perú
                                                 &nbsp;|&nbsp; Teléfono: (066) 322296</a>
-                                            <br> Instituto de Educación Superior Tecnológico Público Huanta
+                                            <br> <?php echo $datos_iest['nombre_institucion']; ?>
                                         </strong>
                                     </p>
                                 </div>

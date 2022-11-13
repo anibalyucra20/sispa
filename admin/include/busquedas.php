@@ -4,6 +4,10 @@ function buscarDatosGenerales($conexion){
 	$sql = "SELECT * FROM datos_institucionales WHERE id=1";
 	return mysqli_query($conexion, $sql);
 }
+function buscarDatosSistema($conexion){
+	$sql = "SELECT * FROM sistema WHERE id=1";
+	return mysqli_query($conexion, $sql);
+}
 function buscarDatosSesion(){
 
 }
@@ -114,10 +118,6 @@ function buscarGenero($conexion){
 }
 function buscarUsuarioDocente($conexion){
 	$sql = "SELECT * FROM usuarios_docentes";
-	return mysqli_query($conexion, $sql);
-}
-function buscarUsuarioDocenteByUser($conexion, $usuario){
-	$sql = "SELECT * FROM usuarios_docentes WHERE usuario='$usuario' ORDER BY id LIMIT 1";
 	return mysqli_query($conexion, $sql);
 }
 function buscarUsuarioDocenteById($conexion, $id){
