@@ -69,12 +69,13 @@
                       <li><a href="datos.php">Datos Institucionales</a></li>
                       <li><a href="programa_estudio.php">Programas de estudio</a></li>
                       <li><a href="modulo_formativo.php">Módulos Formativos</a></li>
+                      <li><a href="Competencias.php">Competencias</a></li>
+                      <li><a href="Capacidades.php">Capacidades</a></li>
                       <li><a href="semestre.php">Semestre</a></li>
                       <li><a href="unidad_didactica.php">Unidades Didacticas</a></li>
                       <li><a href="obervacion.php">Observaciones</a></li>
                       <li><a href="cargo.php">Cargos</a></li>
-                      <li><a href="Competencias.php">Competencias</a></li>
-                      <li><a href="Capacidades.php">Capacidades</a></li>
+                      <li><a href="sistema.php">Sistema</a></li>
                     </ul>
                   </li>
                   
