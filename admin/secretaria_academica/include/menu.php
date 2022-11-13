@@ -41,16 +41,6 @@
                       <li><a href="cargo.php">Cargos</a></li>
                     </ul>
                   </li>
-                  
-                  <li><a><i class="fa fa-briefcase"></i>Módulo Portafolio<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a>Competencias de Programa de estudios<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            
-                          </ul>
-                      </li>
-                    </ul>
-                  </li>
                   <li><a><i class="fa fa-bar-chart"></i>Reportes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reportes.php">reportes</a></li>
