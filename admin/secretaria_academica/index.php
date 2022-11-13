@@ -41,14 +41,14 @@
           <!-- top tiles -->
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-file-pdf-o"></i> Prueba</span>
+              <span class="count_top"><i class="fa fa-check-square-o"></i> Matrículas</span>
               <div class="count"><?php echo ""; ?>100</div>
-              <span class="count_bottom"><a href=""><i class="green">link</i></a></span>
+              <span class="count_bottom"><a href="matricula.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-child"></i>Total </span>
+              <span class="count_top"><i class="fa fa-book"></i>Unidades Didácticas Programadas</span>
               <div class="count"><?php echo ""; ?>32</div>
-              <span class="count_bottom"><a href=""><i class="green">Ver</i></a></span>
+              <span class="count_bottom"><a href="programacion.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total</span>
