@@ -15,15 +15,13 @@ $res_busc_doc = mysqli_fetch_array($ejec_busc_doc);
 $correo = $res_busc_doc['correo'];
 $docente = $res_busc_doc['apellidos_nombres'];
 
-//buscar si docente ya tiene usuario
-$busc_usu_doc = buscarUsuarioDocenteById($conexion, $id_docente);
-$cont_usu_doc = mysqli_num_rows($busc_usu_doc);
+$cont_doc = mysqli_num_rows($ejec_busc_doc);
 //buscar datos de sistema  para aplicar datos generales
 $buscar_sistema = buscarDatosSistema($conexion);
 $datos_sistema = mysqli_fetch_array($buscar_sistema);
 $buscar_datos_generales = buscarDatosGenerales($conexion);
 $datos_iest = mysqli_fetch_array($buscar_datos_generales);
-if ($cont_usu_doc == 0) {
+if ($cont_doc > 0) {
 	
 		//enviamos correo
 		$asunto = "Actualiza contraseña para Sistema de Portafolio Docente";
