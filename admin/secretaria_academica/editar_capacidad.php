@@ -116,9 +116,20 @@ $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Módulo Formativo : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="modulo" name="modulo" value="" required="required">
+                          <select class="form-control" id="modulo" name="modulo" value="<?php echo $id_modulo; ?>" required="required">
                             <!--las opciones se cargan con ajax y javascript  dependiendo de la carrera elegida,verificar en la parte final-->
-                          </select>
+                            <?php 
+                            $ejec_busc_mod_car = buscarModuloFormativoByIdCarrera($conexion, $id_carrera);
+                            while ($res_busc_mod_carr = mysqli_fetch_array($ejec_busc_mod_car)) {
+                              $id_mod = $res_busc_mod_carr['id'];
+                              $mod = $res_busc_mod_carr['descripcion'];
+                              ?>
+                              <option value="<?php echo $id_mod;
+                              ?>" <?php if($id_mod==$id_modulo){ echo "selected";} ?>><?php echo "M".$res_busc_mod_carr['nro_modulo']." - ".$mod; ?></option>
+                            <?php
+                            }
+                            ?>
+                            </select>
                           <br>
                         </div>
                       </div>
