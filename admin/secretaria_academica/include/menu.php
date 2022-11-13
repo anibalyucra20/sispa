@@ -68,24 +68,13 @@
                       <li><a href="unidad_didactica.php">Unidades Didacticas</a></li>
                       <li><a href="obervacion.php">Observaciones</a></li>
                       <li><a href="cargo.php">Cargos</a></li>
+                      <li><a href="Competencias.php">Competencias</a></li>
+                      <li><a href="Capacidades.php">Capacidades</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart"></i>Reportes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reportes.php">reportes</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="menu_section">
-                <h3>Módulo Portafolio</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Competencias de Programa de estudios <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="p">otros</a></li>
-                      <li><a href="#level2_1">otros</a></li>
-                      <li><a href="#level2_2">otros</a></li>
                     </ul>
                   </li>
                 </ul>
