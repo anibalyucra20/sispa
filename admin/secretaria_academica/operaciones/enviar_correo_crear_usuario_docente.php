@@ -15,13 +15,15 @@ $res_busc_doc = mysqli_fetch_array($ejec_busc_doc);
 $correo = $res_busc_doc['correo'];
 $docente = $res_busc_doc['apellidos_nombres'];
 
-$cont_doc = mysqli_num_rows($ejec_busc_doc);
+//buscar si docente ya tiene usuario
+$busc_usu_doc = buscarUsuarioDocenteById($conexion, $id_docente);
+$cont_usu_doc = mysqli_num_rows($busc_usu_doc);
 //buscar datos de sistema  para aplicar datos generales
 $buscar_sistema = buscarDatosSistema($conexion);
 $datos_sistema = mysqli_fetch_array($buscar_sistema);
 $buscar_datos_generales = buscarDatosGenerales($conexion);
 $datos_iest = mysqli_fetch_array($buscar_datos_generales);
-if ($cont_doc > 0) {
+if ($cont_usu_doc == 0) {
 	
 		//enviamos correo
 		$asunto = "Actualiza contraseña para Sistema de Portafolio Docente";
@@ -40,7 +42,7 @@ if ($cont_doc > 0) {
             $mail->Port       = $datos_sistema['puerto_email'];                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($datos_sistema['email_email'], 'SISPA '.$datos_sistema['titulo']);
+            $mail->setFrom($datos_sistema['email_email'], 'SISPA'.$datos_sistema['titulo']);
             $mail->addAddress($correo, $docente);     //Add a recipient
             //$mail->addAddress('ellen@example.com');               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
