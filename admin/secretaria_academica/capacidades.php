@@ -288,11 +288,15 @@ include '../include/busquedas.php';
       $(document).ready(function(){
         recargarlista();
         recargar_ud();
+        recargar_competencias();
         $('#carrera_m').change(function(){
           recargarlista();
         });
         $('#modulo').change(function(){
         recargar_ud();
+        });
+        $('#modulo').change(function(){
+        recargar_competencias();
         });
       })
     </script>
@@ -316,6 +320,18 @@ include '../include/busquedas.php';
         data:"id_modulo="+ $('#modulo').val(),
           success:function(r){
             $('#unidad_didactica').html(r);
+          }
+      });
+     }
+    </script>
+    <script type="text/javascript">
+     function recargar_competencias(){
+      $.ajax({
+        type:"POST",
+        url:"../operaciones/obtener_competencias.php",
+        data:"id_modulo="+ $('#modulo').val(),
+          success:function(r){
+            $('#competencia').html(r);
           }
       });
      }
