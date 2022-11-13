@@ -9,7 +9,7 @@ include '../../include/busquedas.php';
 		require '../../../PHPMailer/PHPMailer.php';
 		require '../../../PHPMailer/SMTP.php';
 
-$id_docente = $_POST['docente'];
+$id_docente = $GET['docente'];
 $ejec_busc_doc = buscarDocenteById($conexion, $id_docente);
 $res_busc_doc = mysqli_fetch_array($ejec_busc_doc);
 $correo = $res_busc_doc['correo'];
