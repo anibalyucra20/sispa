@@ -130,6 +130,10 @@ function buscarCompetencias($conexion){
 	$sql = "SELECT * FROM competencias";
 	return mysqli_query($conexion, $sql);
 }
+function buscarCompetenciasById($conexion, $id){
+	$sql = "SELECT * FROM competencias WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
 
 
 

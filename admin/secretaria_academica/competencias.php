@@ -103,7 +103,7 @@ include '../include/busquedas.php';
                           <td><?php echo $res_busc_comp['codigo']; ?></td>
                           <td><?php echo $res_busc_comp['descripcion']; ?></td>
                           <td>
-                            <a class="btn btn-success" href="editar_ud.php?id=<?php echo $res_busc_ud['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</a></td>
+                            <a class="btn btn-success" href="editar_competencia.php?id=<?php echo $res_busc_comp['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</a></td>
                         </tr>  
                         <?php
                           };
