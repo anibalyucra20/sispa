@@ -26,33 +26,16 @@ if ($conteo > 0) {
 				</script>
 			";
 	}else{
+	$pass = $dni."@huanta";
+	$pass_secure = password_hash($pass, PASSWORD_DEFAULT);
 
-	$insertar = "INSERT INTO estudiante (dni, apellidos_nombres, id_genero, fecha_nac, direccion, correo, telefono, anio_ingreso, id_programa_estudios, id_semestre, seccion, turno, discapacidad) VALUES ('$dni','$nom_ap','$genero', '$fecha_nac', '$direccion', '$email', '$telefono', '$anio_ingreso', '$carrera', '$semestre', '$seccion', '$turno', '$discapacidad')";
+	$insertar = "INSERT INTO estudiante (dni, apellidos_nombres, id_genero, fecha_nac, direccion, correo, telefono, anio_ingreso, id_programa_estudios, id_semestre, seccion, turno, discapacidad, password) VALUES ('$dni','$nom_ap','$genero', '$fecha_nac', '$direccion', '$email', '$telefono', '$anio_ingreso', '$carrera', '$semestre', '$seccion', '$turno', '$discapacidad', '$pass_secure')";
 	$ejecutar_insetar = mysqli_query($conexion, $insertar);
 	if ($ejecutar_insetar) {
-		//buscaremos el id del ultimo estudiante registrado para poder crear su usuario y contraseña
-		$busc_ult_est = "SELECT * FROM estudiante WHERE dni='$dni' AND id_programa_estudios='$carrera'";
-		$ejec_busc_ult_est = mysqli_query($conexion, $busc_ult_est);
-		$res_busc_ult_est = mysqli_fetch_array($ejec_busc_ult_est);
-		$id_ult_est = $res_busc_ult_est['id'];
-
-		$pass = $dni."@huanta";
-		$pass_secure = password_hash($pass, PASSWORD_DEFAULT);
-		$crear_user = "INSERT INTO usuarios_estudiante (id_estudiante, usuario, password) VALUES ('$id_ult_est', '$dni', '$pass_secure')";
-		$ejec_crear_user = mysqli_query($conexion, $crear_user);
-		if ($ejec_crear_user) {
 			echo "<script>
                 alert('Registro Existoso');
                 window.location= '../estudiante.php'
     			</script>";
-		}else{
-			echo "<script>
-			alert('Error al Registrar estudiante, por favor contacte al administrador');
-			window.history.back();
-				</script>
-			";
-		}
-			
 	}else{
 		echo "<script>
 			alert('Error al registrar estudiante, por favor verifique sus datos');

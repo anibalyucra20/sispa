@@ -4,15 +4,13 @@ include ("../include/busquedas.php");
 $usuario = $_POST['usuario'];
 $pass = $_POST['password'];
 
-$ejec_busc = buscarUsuarioDocenteByUser($conexion, $usuario);
+$ejec_busc = buscarDocenteByDni($conexion, $usuario);
 $res_busc = mysqli_fetch_array($ejec_busc);
 $cont = mysqli_num_rows($ejec_busc);
 
 if(($cont == 1)&&(password_verify($pass,$res_busc['password']))){
-	$id_docente = $res_busc['id_docente'];
-	$buscar_docente = buscarDocenteById($conexion, $id_docente);
-	$res_buscar_docente = mysqli_fetch_array($buscar_docente);
-	$cargo_docente = $res_buscar_docente['id_cargo'];
+	$id_docente = $res_busc['id'];
+	$cargo_docente = $res_busc['id_cargo'];
 	$buscar_periodo = buscarPresentePeriodoAcad($conexion);
 	$res_b_periodo = mysqli_fetch_array($buscar_periodo);
 	$presente_periodo = $res_b_periodo['id_periodo_acad'];
