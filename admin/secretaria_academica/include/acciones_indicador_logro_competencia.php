@@ -21,6 +21,13 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="number" name="correlativo" value="<?php echo $res_busc_indicadores['correlativo']; ?>" required="required">
+                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                         <textarea class="form-control" rows="3" style="width: 100%; height: 165px;" name="descripcion" required="required"><?php echo $res_busc_indicadores['descripcion']; ?></textarea>
                           
                           <br>
