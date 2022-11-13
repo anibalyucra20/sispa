@@ -46,9 +46,7 @@
                     <ul class="nav child_menu">
                       <li><a>Competencias de Programa de estudios<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="p">otros</a></li>
-                            <li><a href="#level2_1">otros</a></li>
-                            <li><a href="#level2_2">otros</a></li>
+                            
                           </ul>
                       </li>
                     </ul>
@@ -94,7 +92,18 @@
                   </li>
                 </ul>
               </div>
-              
+              <div class="menu_section">
+                <h3>Módulo Portafolio</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-bug"></i> Competencias de Programa de estudios <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li class="sub_menu"><a href="p">otros</a></li>
+                      <li><a href="#level2_1">otros</a></li>
+                      <li><a href="#level2_2">otros</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
 
             </div>
             <!-- /sidebar menu -->
