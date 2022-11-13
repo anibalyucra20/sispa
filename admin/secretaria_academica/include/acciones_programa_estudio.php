@@ -53,6 +53,13 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="text" class="form-control" name="resolucion" required="" value="<?php echo $res_busc_carrera['resolucion']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                           <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Perfil de Egresado : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <textarea class="form-control" rows="3" style="width: 100%; height: 165px;" name="perfil_egreso" required="required"></textarea>
+                          <br>
                           <br>
                         </div>
                       </div>
