@@ -90,12 +90,12 @@
               <a data-toggle="tooltip" data-placement="top" title="Configuración" href="sistema.php">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
-              <!--<a data-toggle="tooltip" data-placement="top" title="Pantalla Completa">
+              <a data-toggle="tooltip" data-placement="top" title="">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Bloquear">
+              <a data-toggle="tooltip" data-placement="top" title="">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>-->
+              </a>
               <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesión" href="../../include/cerrar_sesion.php">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
