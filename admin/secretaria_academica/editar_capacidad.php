@@ -264,7 +264,7 @@ $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
     <!--script para obtener los modulos dependiendo de la carrera que seleccione-->
     <script type="text/javascript">
       $(document).ready(function(){
-        recargarlista();
+        
         
         $('#carrera_m').change(function(){
           recargarlista();
