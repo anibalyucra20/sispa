@@ -107,7 +107,7 @@ include '../include/busquedas.php';
                           <td><?php echo $res_busc_cap['descripcion']; ?></td>
                           <td>
                             <a class="btn btn-success" href="editar_capacidad.php?id=<?php echo $res_busc_cap['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</a>
-                            <a title="Ver Indicadores de Logro de la Capacidad" class="btn btn-primary" href="indicador_logro_capacidad.php?id=<?php echo $res_busc_cap['id']; ?>"><i class="fa fa-sitemap"></i> Indicadores</a>
+                            <a title="Ver Indicadores de Logro de la Capacidad" class="btn btn-primary" href="indicador_logro_capacidad.php?id=<?php echo $res_busc_cap['id']; ?>"><i class="fa fa-sitemap"></i> </a>
                           </td>
                         </tr>  
                         <?php
