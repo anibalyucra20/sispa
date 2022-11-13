@@ -15,15 +15,12 @@ $res_busc_doc = mysqli_fetch_array($ejec_busc_doc);
 $correo = $res_busc_doc['correo'];
 $docente = $res_busc_doc['apellidos_nombres'];
 
-//buscar si docente ya tiene usuario
-$busc_usu_doc = buscarUsuarioDocenteById($conexion, $id_docente);
-$cont_usu_doc = mysqli_num_rows($busc_usu_doc);
+
 //buscar datos de sistema  para aplicar datos generales
 $buscar_sistema = buscarDatosSistema($conexion);
 $datos_sistema = mysqli_fetch_array($buscar_sistema);
 $buscar_datos_generales = buscarDatosGenerales($conexion);
 $datos_iest = mysqli_fetch_array($buscar_datos_generales);
-if ($cont_usu_doc == 0) {
 	
 		//enviamos correo
 		$asunto = "Actualiza contraseña para Sistema de Portafolio Docente";
@@ -111,13 +108,6 @@ if ($cont_usu_doc == 0) {
             echo "Error correo: {$mail->ErrorInfo}";
         }
 
-}else{
-	echo "<script>
-			alert('El docente ya cuenta con un usuario');
-			window.history.back();
-		</script>
-	";
-}
 
 
 ?>
