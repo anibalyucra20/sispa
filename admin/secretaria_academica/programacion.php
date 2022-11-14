@@ -183,7 +183,7 @@ include '../include/busquedas.php';
                             $ejec_busc_sem = buscarSemestre($conexion);
                             while ($res__busc_sem = mysqli_fetch_array($ejec_busc_sem)) {
                               $id_sem = $res__busc_sem['id'];
-                              $sem = $res__busc_sem['nombre'];
+                              $sem = $res__busc_sem['descripcion'];
                               ?>
                               <option value="<?php echo $id_sem;
                               ?>"><?php echo $sem; ?></option>
