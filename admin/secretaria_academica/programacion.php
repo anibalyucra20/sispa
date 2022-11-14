@@ -351,7 +351,7 @@ include '../include/busquedas.php';
       $.ajax({
         type:"POST",
         url:"../operaciones/obtener_ud_sem.php",
-        data: {carr: carr, sem: sem},
+        data: {id_modulo: carr, id_semestre: sem},
           success:function(r){
             $('#unidad_didactica').html(r);
           }
