@@ -32,8 +32,8 @@ if($conteo_b_programacion_existe > 0){
     $id_programacion = $res_b_ult_prog['id'];
 
     //crear silabo de la programacion hecha
-    $reg_silabo = "INSERT INTO silabo (id_programacion_unidad_didactica, promedio_indicadores_logro) VALUES ('$id_programacion', 'completar')";
-    $ejec_reg_silabo = mysqli_query($reg_silabo);
+    $reg_silabo = "INSERT INTO silabo (id_programacion_unidad_didactica) VALUES ('$id_programacion')";
+    $ejec_reg_silabo = mysqli_query($conexion, $reg_silabo);
 
 
 
