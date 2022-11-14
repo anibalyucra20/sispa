@@ -24,7 +24,24 @@ if($conteo_b_programacion_existe > 0){
 }else{
     $consulta = "INSERT INTO programacion_unidad_didactica (id_unidad_didactica, id_docente, id_periodo_acad, cant_calificacion) VALUES ('$unidad_didactica','$docente','$periodo_actual','$cantidad')";
     $ejecutar_insertar = mysqli_query($conexion, $consulta);
-    if ($ejecutar_insertar) {
+
+    
+    //buscamos el id de la programacion hecha
+    $busc_ult_prog = buscarProgramacionByUdDocentePeriodo($conexion, $unidad_didactica, $docente, $periodo_actual);
+    $res_b_ult_prog = mysqli_fetch_array($busc_ult_prog);
+    $id_programacion = $res_b_ult_prog['id'];
+
+    //crear silabo de la programacion hecha
+    $reg_silabo = "INSERT INTO silabo (id_programacion_unidad_didactica) VALUES ('$id_programacion')";
+    $ejec_reg_silabo = mysqli_fetch_array($reg_silabo);
+
+
+
+
+
+
+
+    if ($ejec_reg_silabo) {
         echo "<script>
         
             window.location= '../programacion.php'
