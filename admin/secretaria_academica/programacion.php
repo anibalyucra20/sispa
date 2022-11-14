@@ -92,7 +92,7 @@ include '../include/busquedas.php';
                           $id_programa_estudio = $res_b_unidad_didactica['id_programa_estudio'];
                           $id_modulo_formativo = $res_b_unidad_didactica['id_modulo'];
                           $id_semestre = $res_b_unidad_didactica['id_semestre'];
-                          $id_docente = $res_b_unidad_didactica['id_docente'];
+                          $id_docente = $res_busc_programacion['id_docente'];
 
                           $busc_semestre = buscarSemestreById($conexion, $id_semestre);
                           $res_b_semestre = mysqli_fetch_array($busc_semestre);
