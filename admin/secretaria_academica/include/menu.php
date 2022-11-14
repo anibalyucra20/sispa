@@ -71,7 +71,6 @@
                       <li><a href="capacidades.php">Capacidades</a></li>
                       <li><a href="semestre.php">Semestre</a></li>
                       <li><a href="unidad_didactica.php">Unidades Didacticas</a></li>
-                      <li><a href="obervacion.php">Observaciones</a></li>
                       <li><a href="cargo.php">Cargos</a></li>
                       <li><a href="sistema.php">Sistema</a></li>
                     </ul>
