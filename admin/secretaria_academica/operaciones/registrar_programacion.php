@@ -81,18 +81,7 @@ if($conteo_b_programacion_existe > 0){
             $reg_act_eva = "INSERT INTO actividad_evaluacion_sesion_aprendizaje (id_sesion_aprendizaje, momento) VALUES ('$id_sesion', '$momento')";
             $ejec_reg_act_eva = mysqli_query($conexion, $reg_act_eva);
         }
-        if ($ejec_reg_act_eva) {
-            echo "<script>
-            
-                window.location= '../programacion.php'
-                </script>";
-        }else{
-        echo "<script>
-            alert('Error al registrar, por favor verifique sus datos');
-            window.history.back();
-                </script>
-            ";
-        };
+        
     }
 
 
@@ -101,7 +90,18 @@ if($conteo_b_programacion_existe > 0){
 
     
 }
-
+if ($ejec_reg_act_eva) {
+    echo "<script>
+    
+        window.location= '../programacion.php'
+        </script>";
+}else{
+echo "<script>
+    alert('Error al registrar, por favor verifique sus datos');
+    window.history.back();
+        </script>
+    ";
+};
 
 
 mysqli_close($conexion);

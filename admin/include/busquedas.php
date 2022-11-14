@@ -165,16 +165,16 @@ function buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id){
 
 
 function buscarSilaboByIdProgramacion($conexion, $id){
-	$sql = "SELECT * FROM silabo WHERE id_programacion_unidad_didactica='$id'";
+	$sql = "SELECT * FROM silabo WHERE id_programacion_unidad_didactica='$id' LIMIT 1";
 	return mysqli_query($conexion, $sql);
 }
 function buscarProgActividadesSilaboByIdSilabo($conexion, $id){
-	$sql = "SELECT * FROM programacion_actividades_silabo WHERE id_silabo='$id'";
+	$sql = "SELECT * FROM programacion_actividades_silabo WHERE id_silabo='$id' LIMIT 1";
 	return mysqli_query($conexion, $sql);
 }
 
 function buscarSesionByIdProgramacionActividades($conexion, $id){
-	$sql = "SELECT * FROM sesion_aprendizaje WHERE id_programacion_actividad_silabo='$id'";
+	$sql = "SELECT * FROM sesion_aprendizaje WHERE id_programacion_actividad_silabo='$id' LIMIT 1";
 	return mysqli_query($conexion, $sql);
 }
 
