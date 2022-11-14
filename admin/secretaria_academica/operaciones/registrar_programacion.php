@@ -23,7 +23,8 @@ if($conteo_b_programacion_existe > 0){
 			";
 }else{
     $consulta = "INSERT INTO programacion_unidad_didactica (id_unidad_didactica, id_docente, id_periodo_acad, cant_calificacion) VALUES ('$unidad_didactica','$docente','$periodo_actual','$cantidad')";
-    if ($ejecutar_insetar) {
+    $ejecutar_insertar = mysqli_query($conexion, $consulta);
+    if ($ejecutar_insertar) {
         echo "<script>
         
             window.location= '../programacion.php'
