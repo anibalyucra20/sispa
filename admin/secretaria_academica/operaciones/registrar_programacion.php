@@ -1,5 +1,6 @@
 <?php
 include "../../../include/conexion.php";
+include '../../include/busquedas.php';
 
 $unidad_didactica = $_POST['unidad_didactica'];
 $docente = $_POST['docente'];
