@@ -159,7 +159,7 @@ function buscarCapacidadesByIdUd($conexion, $id){
 	return mysqli_query($conexion, $sql);
 }
 function buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id){
-	$sql = "SELECT * FROM indicador_logro_capacidad WHERE id_capacidad='$id'";
+	$sql = "SELECT * FROM indicador_logro_capacidad WHERE id_capacidad='$id' LIMIT 1";
 	return mysqli_query($conexion, $sql);
 }
 
