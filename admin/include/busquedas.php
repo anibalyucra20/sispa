@@ -112,6 +112,10 @@ function buscarProgramacionById($conexion, $id){
 	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarProgramacionByUdDocentePeriodo($conexion, $ud, $docente, $periodo){
+	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id_unidad_didactica='$ud' AND id_docente='$docente' AND id_periodo_acad='$periodo'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarCargo($conexion){
 	$sql = "SELECT * FROM cargo";
 	return mysqli_query($conexion, $sql);
