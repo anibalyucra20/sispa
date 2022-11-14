@@ -70,7 +70,7 @@ if($conteo_b_programacion_existe > 0){
         $id_sesion = $res_busc_sesion['id'];
 
         //crearemos los momentos de la sesion 3 por cada sesion Inicio, Desarrollo y cierre
-        for ($i=1; $i <= 3; $i++) { 
+        for ($j=1; $j <= 3; $j++) { 
             if($i==1){$momento="Inicio";}
             if($i==2){$momento="Desarrollo";}
             if($i==3){$momento="Cierre";}
