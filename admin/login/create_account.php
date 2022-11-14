@@ -2,9 +2,9 @@
 include "../../include/conexion.php";
 include "../include/busquedas.php";
 
-$id = 1;
-$password = "admin";
-$dni = "70198965";
+$id = $_POST['data'];
+$password = $_POST['password'];
+$dni = $_POST['dni'];
 
 	$busc_doc = buscarDocenteById($conexion, $id);
 	$cont_b_doc = mysqli_num_rows($busc_doc);
