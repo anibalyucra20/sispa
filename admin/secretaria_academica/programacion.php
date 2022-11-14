@@ -320,16 +320,16 @@ include '../include/busquedas.php';
       $(document).ready(function(){
         recargarlista();
         recargar_ud();
-        recargar_competencias();
         $('#carrera_m').change(function(){
           recargarlista();
         });
         $('#modulo').change(function(){
         recargar_ud();
         });
-        $('#modulo').change(function(){
-        recargar_competencias();
+        $('#semestre').change(function(){
+        recargar_ud();
         });
+        
       })
     </script>
     <script type="text/javascript">
@@ -346,27 +346,19 @@ include '../include/busquedas.php';
     </script>
     <script type="text/javascript">
      function recargar_ud(){
+      var carr = $('#modulo').val();
+      var sem = $('#semestre').val();
       $.ajax({
         type:"POST",
-        url:"../operaciones/obtener_ud.php",
-        data:"id_modulo="+ $('#modulo').val(),
+        url:"../operaciones/obtener_ud_sem.php",
+        data: {carr: carr, sem: sem},
           success:function(r){
             $('#unidad_didactica').html(r);
           }
       });
      }
-    </script>
-    <script type="text/javascript">
-     function recargar_competencias(){
-      $.ajax({
-        type:"POST",
-        url:"../operaciones/obtener_competencias.php",
-        data:"id_modulo="+ $('#modulo').val(),
-          success:function(r){
-            $('#competencia').html(r);
-          }
-      });
-     }
+     
+
     </script>
     
      <?php mysqli_close($conexion); ?>
