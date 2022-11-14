@@ -33,7 +33,7 @@ if($conteo_b_programacion_existe > 0){
 
     //crear silabo de la programacion hecha
     $reg_silabo = "INSERT INTO silabo (id_programacion_unidad_didactica) VALUES ('$id_programacion')";
-    $ejec_reg_silabo = mysqli_fetch_array($reg_silabo);
+    $ejec_reg_silabo = mysqli_query($reg_silabo);
 
 
 
