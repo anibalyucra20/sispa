@@ -54,7 +54,7 @@ if($conteo_b_programacion_existe > 0){
     $id_ind_logro_competencia = $res_b_i_logro_competencia['id']; // id indicador logro competencia
     //crear la programacion del silabo por 16 semanas de clase - 16 sesiones
     for ($i=1; $i <=16 ; $i++) { 
-        $reg_prog_act_silabo = "INSERT INTO programacion_actividades_silabo (id_silabo, semana) VALUES ('$id_programacion', '$i')";
+        $reg_prog_act_silabo = "INSERT INTO programacion_actividades_silabo (id_silabo, semana) VALUES ('$id_silabo', '$i')";
         $ejec_reg_prog_act_silabo = mysqli_query($conexion, $reg_prog_act_silabo);
         //buscamos el id de lo ingresado para registrar la siguiente tabla
         $busc_prog_act_silabo = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
@@ -62,7 +62,7 @@ if($conteo_b_programacion_existe > 0){
         $id_prog_act_silabo = $res_b_prog_act_silabo['id'];
         //procedemos a registrar la tabla sesion_aprendizaje-- 1 para cada tabla anterior
         $reg_sesion_aprendizaje = "INSERT INTO sesion_aprendizaje (id_programacion_actividad_silabo, id_ind_logro_competencia_vinculado, id_ind_logro_capacidad_vinculado) VALUES ('$id_prog_act_silabo', '$id_ind_logro_competencia', '$id_ind_logro_capacidad')";
-        $ejec_reg_prog_act_silabo = mysqli_query($conexion, $reg_prog_act_silabo);
+        $ejec_reg_sesion = mysqli_query($conexion, $reg_sesion_aprendizaje);
 
         //buscamos el id de la anterior tabla para hacer registros en las siguientes tablas
         $busc_sesion = buscarSesionByIdProgramacionActividades($conexion, $id_prog_act_silabo);
