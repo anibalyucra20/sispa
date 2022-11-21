@@ -65,7 +65,7 @@ include '../include/busquedas.php';
                   </div>
                   <div class="x_content">
                     <br />
-                    <form role="form" id="myform" action="operaciones/registrar_programacion__d.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                    <form role="form" id="myform" action="operaciones/registrar_matricula.php" class="form-horizontal form-label-left input_mask" method="POST" >
 
                     <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI estudiante: </label>
@@ -125,8 +125,8 @@ include '../include/busquedas.php';
                       </div>
                       
                       <div class="form-group">
-                        <input type="text" id="arr_uds" name="arr_uds">
-                        <input type="text" id="mat_relacion" name="mat_relacion">
+                        <input type="hidden" id="arr_uds" name="arr_uds">
+                        <input type="hidden" id="mat_relacion" name="mat_relacion" required>
                         <label class="col-md-3 col-sm-3 col-xs-12 control-label">Seleccione las unidades didáticas :
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12" id="udss">
@@ -159,7 +159,7 @@ include '../include/busquedas.php';
               <div class="col-md-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Unidades Didácticas a Matricular</h2>
+                    <h2>Unidades Didácticas para Matricula</h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -170,7 +170,7 @@ include '../include/busquedas.php';
                         <label class="col-md-3 col-sm-3 col-xs-12 control-label">
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12" id="uds_selec">
-                        
+                        Aún no hay Unidades Didácticas Agregadas para la Matrícula
                         </div>
                       </div>
    
