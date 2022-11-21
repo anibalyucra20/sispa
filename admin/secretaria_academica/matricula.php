@@ -65,7 +65,7 @@ include '../include/busquedas.php';
                   </div>
                   <div class="x_content">
                     <br />
-                    <form role="form" id="myform" action="operaciones/registrar_programacion.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                    <form role="form" id="myform" action="operaciones/registrar_programacion__d.php" class="form-horizontal form-label-left input_mask" method="POST" >
 
                     <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI estudiante: </label>
@@ -125,47 +125,14 @@ include '../include/busquedas.php';
                       </div>
                       
                       <div class="form-group">
+                        <input type="text" id="arr_uds" name="arr_uds">
+                        <input type="text" id="mat_relacion" name="mat_relacion">
                         <label class="col-md-3 col-sm-3 col-xs-12 control-label">Seleccione 
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12" id="udss">
-                          <div class="checkbox">
+                        <div class="checkbox">
                             <label>
-                              <input type="checkbox" value=""> Option one. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
+                              <input type="checkbox" value="all"> Todos
                             </label>
                           </div>
                           
@@ -193,7 +160,7 @@ include '../include/busquedas.php';
               <div class="col-md-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Unidades Didácticas</h2>
+                    <h2>Unidades Didácticas a Matricular</h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -201,21 +168,10 @@ include '../include/busquedas.php';
                     <br />
                     <form class="form-horizontal form-label-left">
                       <div class="form-group">
-                        <label class="col-md-3 col-sm-3 col-xs-12 control-label">Checkboxes and radios
-                          <br>
-                          <small class="text-navy">Normal Bootstrap elements</small>
+                        <label class="col-md-3 col-sm-3 col-xs-12 control-label">
                         </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option one. select more than one options
-                            </label>
-                          </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value=""> Option two. select more than one options
-                            </label>
-                          </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12" id="uds_selec">
+                        
                         </div>
                       </div>
    
@@ -277,25 +233,22 @@ include '../include/busquedas.php';
     <script type="text/javascript">
       $(document).ready(function(){
         
-        recargar_ud();
-        $('#modulo').change(function(){
-        recargar_ud();
-        });
+        
         $('#semestre').change(function(){
-        recargar_ud();
+        
+          listar_uds();
         });
         
       })
     </script>
     <script type="text/javascript">
-         function recargarest(){
+        function recargarest(){
+        // funcion para traer datos del estudiante
         // Creando el objeto para hacer el request
         var request = new XMLHttpRequest();
         request.responseType = 'json';
-
         // Objeto PHP que consultaremos
         request.open("POST", "../operaciones/obtener_estudiante.php");
-
         // Definiendo el listener
         request.onreadystatechange = function(){
             // Revision si fue completada la peticion y si fue exitosa
@@ -306,13 +259,12 @@ include '../include/busquedas.php';
                 document.getElementById("id_pe").value = this.response.pe;
                 document.getElementById("id_sem").value = this.response.sem;
                 cargarpe();
+                
             }
         };
-
         // Recogiendo la data del HTML
         var myForm = document.getElementById("myform");
         var formData = new FormData(myForm);
-
         // Enviando la data al PHP
         request.send(formData);
     }
@@ -325,26 +277,95 @@ include '../include/busquedas.php';
         data:"id="+ $('#id_pe').val(),
           success:function(r){
             $('#carrera_m').html(r);
+            listar_uds();
+
           }
       });
      }
     </script>
     <script type="text/javascript">
-     function recargar_ud(){
-      var carr = $('#modulo').val();
+     function listar_uds(){
+      var carr = $('#carrera_m').val();
       var sem = $('#semestre').val();
       $.ajax({
         type:"POST",
-        url:"../operaciones/obtener_ud_sem.php",
-        data: {id_modulo: carr, id_semestre: sem},
+        url:"../operaciones/cargar_ud_check.php",
+        data: {id_pe: carr, id_sem: sem},
           success:function(r){
-            $('#unidad_didactica').html(r);
+            $('#udss').html(r);
           }
       });
-     }
+    }
+    </script>
+    <script type="text/javascript">
+      unidades_didac = [];
+      function gen_arr_uds(){
+      
+      $("input[name='unidades_didacticas']:checked").each(function ()
+      {
+      //Mediante la función push agregamos al arreglo los values de los checkbox
+      unidades_didac.push(($(this).attr("value")));
+      unidades_didac = [...new Set(unidades_didac)];
+      });
+      // Utilizamos console.log para ver comprobar que en realidad contiene algo el arreglo
+      document.getElementById("arr_uds").value = unidades_didac;
+      console.log(unidades_didac.length);
+      listar_ud_mat();
 
+      }
+    </script>
+    <script>
+      function hola(pp){
+        $.ajax({
+        type:"POST",
+        url:"../operaciones/prueba.php",
+        data: {id_ud: pp},
+          success:function(r){
+            console.log(r);
+            return r;
+          }
+      });
+      };
+    </script>
+    <script type="text/javascript">
+     function listar_ud_mat(){
+        // elimaremos las unidades didacticas para insertar segun el array
+        var div_d = document.getElementById('uds_selec');
+        while(div_d.firstChild) {
+            div_d.removeChild(div_d.firstChild);
+            }
+        for(var value of unidades_didac) {
+          //prueba envio de datos
+          $.ajax({
+        type:"POST",
+        url:"../operaciones/prueba.php",
+        data: {id_ud: value},
+          success:function(r){
+            console.log(r);
+            descripcion = r;
+          }
+      });
+      // fin prueba
+
+          $('#uds_selec')
+            .append(`<div class="checkbox"><label><input type="checkbox" id="ud_${value}" name="uds_mat" value="${value}" onchange="gen_arr_mat();" checked>${descripcion}</label></div>`);
+        }
+        gen_arr_mat();
+     };
     </script>
     
+    <script type="text/javascript">
+      function gen_arr_mat(){
+      var unidades_didac_mat = [];
+      $("input[name='uds_mat']:checked").each(function ()
+      {
+      //Mediante la función push agregamos al arreglo los values de los checkbox
+      unidades_didac_mat.push(($(this).attr("value")));
+      });
+      // Utilizamos console.log para ver comprobar que en realidad contiene algo el arreglo
+      document.getElementById("mat_relacion").value = unidades_didac_mat;
+      }
+    </script>
     
      <?php mysqli_close($conexion); ?>
   </body>

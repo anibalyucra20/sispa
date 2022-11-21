@@ -69,7 +69,7 @@ function buscarSemestreById($conexion, $id){
 	return mysqli_query($conexion, $sql);
 }
 function buscarUdByCarSem($conexion, $idCarrera, $idSemestre){
-	$sql = "SELECT * FROM unidad_didactica WHERE id_carrera = '$idCarrera' AND id_semestre= '$idSemestre' ORDER BY id";
+	$sql = "SELECT * FROM unidad_didactica WHERE id_programa_estudio = '$idCarrera' AND id_semestre= '$idSemestre' ORDER BY id";
 	return mysqli_query($conexion, $sql);
 }
 function buscarUdByModSem($conexion, $idModulo, $idSemestre){
