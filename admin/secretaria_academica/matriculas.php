@@ -59,8 +59,7 @@ include '../include/busquedas.php';
                 <div class="x_panel">
                   <div class="">
                     <h2 align="center">Matrículas</h2>
-                    <button class="btn btn-success" data-toggle="modal" data-target=".registrar"><i class="fa fa-plus-square"></i> Nuevo</button>
-
+                    <a href="matricula.php" class="btn btn-success"><i class="fa fa-plus-square"></i> Nuevo</a>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -122,134 +121,7 @@ include '../include/busquedas.php';
 
                       </tbody>
                     </table>
-                    <!--MODAL REGISTRAR-->
-                    <div class="modal fade registrar" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="myModalLabel" align="center">Registrar Programación de Unidad Didáctica</h4>
-                        </div>
-                        <div class="modal-body">
-                          <!--INICIO CONTENIDO DE MODAL-->
-                  <div class="x_panel">
                     
-                  <div class="" align="center">
-                    <h2 ></h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br />
-                    <form role="form" action="operaciones/registrar_programacion.php" class="form-horizontal form-label-left input_mask" method="POST" >
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI estudiante: </label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input class="form-control" type="number" name="dni_est" id="dni_est">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input class="btn btn-success" type="button" name="btn_buscar" id="btn_buscar" value="Buscar">
-                                <br>
-                                <br>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Estudiante : </label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="hidden" id="id_est" name="id_est">
-                                <input class="form-control" type="text" name="estudiante" id="estudiante" readonly>
-                                <br>
-                            </div>
-                        </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Programa de Estudios : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="carrera_m" name="carrera_m" value="" required="required">
-                            <option></option>
-                            <!-- datos a traer segun los datos del estudiante -->
-                          </select>
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Módulo Formativo : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="modulo" name="modulo" value="" required="required">
-                            <!--las opciones se cargan con ajax y javascript  dependiendo de la carrera-->
-                          </select>
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="semestre" name="semestre" value="" required="required">
-                          <option></option>
-                          <?php 
-                            $ejec_busc_sem = buscarSemestre($conexion);
-                            while ($res__busc_sem = mysqli_fetch_array($ejec_busc_sem)) {
-                              $id_sem = $res__busc_sem['id'];
-                              $sem = $res__busc_sem['descripcion'];
-                              ?>
-                              <option value="<?php echo $id_sem;
-                              ?>"><?php echo $sem; ?></option>
-                            <?php
-                            }
-                            ?>
-                          </select>
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Unidad Didáctica : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="unidad_didactica" name="unidad_didactica" value="" required="required">
-                            <!--las opciones se cargan con ajax y javascript  dependiendo de la carrera elegida,verificar en la parte final-->
-                          </select>
-                          <br>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Docente : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="docente" name="docente" value="" required="required">
-                          <option></option>
-                          <?php 
-                            $ejec_busc_doc = buscarDocente($conexion);
-                            while ($res__busc_docente = mysqli_fetch_array($ejec_busc_doc)) {
-                              $id_doc = $res__busc_docente['id'];
-                              $doc = $res__busc_docente['apellidos_nombres'];
-                              ?>
-                              <option value="<?php echo $id_doc;
-                              ?>"><?php echo $doc; ?></option>
-                            <?php
-                            }
-                            ?>
-                          </select>
-                          <br>
-                          <br>
-                        </div>
-                      </div>
-                      
-                      
-                      
-                      <div align="center">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                          
-                          <button type="submit" class="btn btn-primary">Guardar</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                          <!--FIN DE CONTENIDO DE MODAL-->
-                  </div>
-                </div>
-              </div>
-            </div>
 
 
           </div>
