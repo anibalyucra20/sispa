@@ -35,6 +35,10 @@ function buscarEstudianteById($conexion,$id){
 	$sql = "SELECT * FROM estudiante WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarEstudianteByDni($conexion,$dni){
+	$sql = "SELECT * FROM estudiante WHERE dni='$dni'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarDocente($conexion){
 	$sql = "SELECT * FROM docente";
 	return mysqli_query($conexion, $sql);
@@ -55,6 +59,7 @@ function buscarCarrerasById($conexion, $id){
 	$sql = "SELECT * FROM programa_estudios WHERE id=$id";
 	return mysqli_query($conexion, $sql);
 }
+
 function buscarSemestre($conexion){
 	$sql = "SELECT * FROM semestre";
 	return mysqli_query($conexion, $sql);
@@ -177,6 +182,7 @@ function buscarSesionByIdProgramacionActividades($conexion, $id){
 	$sql = "SELECT * FROM sesion_aprendizaje WHERE id_programacion_actividad_silabo='$id'";
 	return mysqli_query($conexion, $sql);
 }
+
 
 // -------------------------- FUNCIONES ACTUALIZAR --------------------------
 

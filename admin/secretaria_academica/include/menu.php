@@ -39,7 +39,7 @@
                   </li>
                   <li><a><i class="fa fa-check-square-o"></i> Matrículas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="matricula.php">Registro de Matrícula</a></li>
+                      <li class="sub_menu"><a href="matriculas.php">Registro de Matrícula</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-users"></i> Docentes <span class="fa fa-chevron-down"></span></a>
@@ -82,7 +82,7 @@
             </div>
             <!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
+            <!-- /menu footer buttons 
             <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Configuración" href="sistema.php">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -97,7 +97,7 @@
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
-            <!-- /menu footer buttons -->
+            /menu footer buttons -->
   </div>
 </div>
 <!-- top navigation -->
