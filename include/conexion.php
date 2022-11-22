@@ -7,5 +7,5 @@ if ($conexion) {
 }else{
 	echo "error de conexion a la base de datos";
 }
-//$conexion->set_charset("utf8");
+$conexion->set_charset("utf8");
 ?>
