@@ -308,7 +308,7 @@ include '../include/busquedas.php';
       // Utilizamos console.log para ver comprobar que en realidad contiene algo el arreglo
       document.getElementById("arr_uds").value = unidades_didac;
       listar_ud_mat();
-      gen_arr_mat();
+      setTimeout(gen_arr_mat(), 100);
 
       }
     </script>
@@ -329,7 +329,7 @@ include '../include/busquedas.php';
             $('#uds_selec').html(r);
           }
         })
-        setTimeout(gen_arr_mat(), 50);
+        setTimeout(gen_arr_mat(), 100);
         
     };
     </script>
