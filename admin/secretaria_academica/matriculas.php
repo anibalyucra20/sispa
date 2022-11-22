@@ -73,7 +73,6 @@ include '../include/busquedas.php';
                           <th>Estudiante</th>
                           <th>Programa de Estudios</th>
                           <th>Semestre</th>
-                          <th>Docente</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
@@ -92,16 +91,12 @@ include '../include/busquedas.php';
                           
                           $id_programa_estudio = $res_busc_matricula['id_programa_estudio'];
                           $id_semestre = $res_busc_matricula['id_semestre'];
-                          $id_docente = $res_busc_matricula['id_docente'];
-
+                          
                           $busc_semestre = buscarSemestreById($conexion, $id_semestre);
                           $res_b_semestre = mysqli_fetch_array($busc_semestre);
 
                           $ejec_busc_carrera = buscarCarrerasById($conexion, $id_programa_estudio);
                           $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
-
-                          $busc_docente = buscarDocenteById($conexion, $id_docente);
-                          $res_b_docente = mysqli_fetch_array($busc_docente);
                           ?>
                           <td><?php echo $res_b_estudiante['dni']; ?></td>
                           <td><?php echo $res_b_estudiante['apellidos_nombres']; ?></td>
@@ -110,9 +105,8 @@ include '../include/busquedas.php';
                           
                           ?>
                           <td><?php echo $res_b_semestre['descripcion']; ?></td>
-                          <td><?php echo $res_b_docente['apellidos_nombres']; ?></td>
                           <td>
-                            <a class="btn btn-success" href="editar_matricula.php?id=<?php echo $res_busc_programacion['id']; ?>"><i class="fa fa-pencil-square-o"></i> </a>
+                            <a class="btn btn-success" href="editar_matricula.php?id=<?php echo $res_busc_matricula['id']; ?>"><i class="fa fa-pencil-square-o"></i> </a>
                           </td>
                         </tr>  
                         <?php

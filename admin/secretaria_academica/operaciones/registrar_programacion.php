@@ -111,7 +111,7 @@ if($conteo_b_programacion_existe > 0){
 		        ";
             }
     echo "<script>
-                alert('Registro Exitoso');
+                
                 window.location= '../programacion.php'
     			</script>";
     
