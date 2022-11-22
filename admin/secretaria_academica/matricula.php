@@ -311,17 +311,7 @@ include '../include/busquedas.php';
 
       }
     </script>
-    <script type="text/javascript">
-      function gen_arr_mat(){
-      var unidades_didac_mat = [];
-      $("input[name='uds_matri']:checked").each(function(){
-      //Mediante la función push agregamos al arreglo los values de los checkbox
-      unidades_didac_mat.push(($(this).attr("value")));
-      });
-      // Utilizamos console.log para ver comprobar que en realidad contiene algo el arreglo
-      document.getElementById("mat_relacion").value = unidades_didac_mat;
-      };
-    </script>
+    
     <script type="text/javascript">
     function listar_ud_mat(){
         // elimaremos las unidades didacticas para insertar segun el array
@@ -335,12 +325,23 @@ include '../include/busquedas.php';
         url:"../operaciones/listar_ud_matricula.php",
         data: {datos: unidades_didac},
           success:function(r){
-            $('#uds_selec').html(r)
+            $('#uds_selec').html(r);
           }
         })
-        setTimeout(gen_arr_mat(), 200);
+        setTimeout(gen_arr_mat(), 3000);
         
     };
+    </script>
+    <script type="text/javascript">
+      function gen_arr_mat(){
+      var unidades_didac_mat = [];
+      $("input[name='uds_matri']:checked").each(function(){
+      //Mediante la función push agregamos al arreglo los values de los checkbox
+      unidades_didac_mat.push(($(this).attr("value")));
+      });
+      // Utilizamos console.log para ver comprobar que en realidad contiene algo el arreglo
+      document.getElementById("mat_relacion").value = unidades_didac_mat;
+      };
     </script>
     <script type="text/javascript">
     function select_all(){
