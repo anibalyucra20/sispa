@@ -6,9 +6,12 @@ if (isset($_POST['datos'])) {
     $arr_uds = $_POST['datos'];
     $cadena = '';
 	foreach ($arr_uds as $id) {
-		$ejec_cons = buscarUdById($conexion, $id);
+		$ejec_cons = buscarProgramacionById($conexion, $id);
 		$mostrar=mysqli_fetch_array($ejec_cons);
-		$cadena=$cadena.'<div class="checkbox"><label><input type="checkbox" name="uds_matri" value="'.$id.'" onchange="gen_arr_mat();" checked>'.$mostrar['descripcion'].'</label></div>';
+		$id_ud = $mostrar['id_unidad_didactica'];
+		$busc_ud = buscarUdById($conexion, $id_ud);
+		$res_ud = mysqli_fetch_array($busc_ud);
+		$cadena=$cadena.'<div class="checkbox"><label><input type="checkbox" name="uds_matri" value="'.$id.'" onchange="gen_arr_mat();" checked>'.$res_ud['descripcion'].'</label></div>';
 	}
 		echo $cadena;
 }else{

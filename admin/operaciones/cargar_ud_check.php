@@ -22,7 +22,7 @@ $id_sem = $_POST['id_sem'];
 			$cont = mysqli_num_rows($busc_progr);
 			if($cont>0){
 				$res_ud = mysqli_fetch_array($busc_progr);
-				$cadena=$cadena.'<div class="checkbox"><label><input type="checkbox" name="unidades_didacticas" onchange="gen_arr_uds();" value="'.$mostrar["id"].'">'.$mostrar["descripcion"].'</label></div>';
+				$cadena=$cadena.'<div class="checkbox"><label><input type="checkbox" name="unidades_didacticas" onchange="gen_arr_uds();" value="'.$res_ud["id"].'">'.$mostrar["descripcion"].'</label></div>';
 			}
 			
 		}
