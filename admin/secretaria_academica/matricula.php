@@ -338,7 +338,7 @@ include '../include/busquedas.php';
             $('#uds_selec').html(r)
           }
         })
-        setTimeout(gen_arr_mat, 50);
+        setTimeout(gen_arr_mat, 200);
         
     };
     </script>
