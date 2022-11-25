@@ -4,7 +4,7 @@
       <a href="index.php" class=""><i class=""></i> <span>Biblioteca</span></a>
     </div>-->
     <?php 
-    $busc_user_sesion = buscarDocenteById($conexion, $_SESSION['id_secretario']);
+    $busc_user_sesion = buscarDocenteById($conexion, $_SESSION['id_docente']);
     $res_b_u_sesion = mysqli_fetch_array($busc_user_sesion);
     ?>
     <div class="clearfix"></div>
@@ -30,52 +30,11 @@
                 <ul class="nav side-menu">
                   <li><a href="../../admin/"><i class="fa fa-home"></i>Inicio</a>
                   </li>
-                  <li><a><i class="fa fa-calendar"></i> Planificacion <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="periodo_academico.php">Periodos Academicos</a></li>
-                      <li><a href="presente_periodo.php">Datos del Presente Academico</a></li>
-                      <li><a href="programacion.php">Programacion de Clases</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-check-square-o"></i> Matrículas <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="matriculas.php">Registro de Matrícula</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-users"></i> Docentes <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="docente.php">Relación de Docentes</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-graduation-cap"></i> Estudiantes <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="estudiante.php">Relación de Estudiantes</a></li>
-                    </ul>
-                  </li>
                   <li><a><i class="fa fa-book"></i> Evaluación <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="evaluacion.php">Registro de Evaluación</a></li>
+                      <li class="sub_menu"><a href="unidades_didacticas.php">Registro de Evaluación</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart"></i>Reportes<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="reportes.php">reportes</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-gears"></i>Mantenimiento<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="datos.php">Datos Institucionales</a></li>
-                      <li><a href="programa_estudio.php">Programas de estudio</a></li>
-                      <li><a href="modulo_formativo.php">Módulos Formativos</a></li>
-                      <li><a href="competencias.php">Competencias</a></li>
-                      <li><a href="capacidades.php">Capacidades</a></li>
-                      <li><a href="semestre.php">Semestre</a></li>
-                      <li><a href="unidad_didactica.php">Unidades Didacticas</a></li>
-                      <li><a href="cargo.php">Cargos</a></li>
-                      <li><a href="sistema.php">Sistema</a></li>
-                    </ul>
-                  </li>
-                  
                 </ul>
               </div>
 

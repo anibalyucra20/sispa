@@ -108,10 +108,23 @@ function buscarMatricula($conexion){
 	$sql = "SELECT * FROM matricula";
 	return mysqli_query($conexion, $sql);
 }
+function buscarMatriculaById($conexion, $id){
+	$sql = "SELECT * FROM matricula WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarMatriculaByEstudiantePeriodo($conexion, $id_estudiante, $id_periodo_acad){
 	$sql = "SELECT * FROM matricula WHERE id_estudiante='$id_estudiante' AND id_periodo_acad = '$id_periodo_acad'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog){
+	$sql = "SELECT * FROM detalle_matricula_unidad_didactica WHERE id_programacion_ud = '$id_prog' ORDER BY id";
+	return mysqli_query($conexion, $sql);
+}
+function buscarCalificacionByIdDetalleMatricula($conexion, $id_detalle){
+	$sql = "SELECT * FROM calificaciones WHERE id_detalle_matricula = '$id_detalle' ORDER BY nro_calificacion";
+	return mysqli_query($conexion, $sql);
+}
+
 
 function buscarProgramacion($conexion){
 	$sql = "SELECT * FROM programacion_unidad_didactica";
@@ -119,6 +132,10 @@ function buscarProgramacion($conexion){
 }
 function buscarProgramacionById($conexion, $id){
 	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
+function buscarProgramacionByIdDocente($conexion, $id){
+	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id_docente='$id'";
 	return mysqli_query($conexion, $sql);
 }
 function buscarProgramacionByUd_Peridodo($conexion, $id_ud, $periodo){

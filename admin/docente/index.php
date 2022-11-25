@@ -45,31 +45,13 @@
               <div class="count"><?php echo ""; ?>2022-II</div>
               <span class="count_bottom"><a href=""><i class="green">.</i></a></span>
             </div>
+            
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-child"></i> Estudiantes</span>
-              <div class="count"><?php echo ""; ?>254</div>
-              <span class="count_bottom"><a href="estudiante.php"><i class="green">Ver</i></a></span>
+              <span class="count_top"><i class="fa fa-pencil-square-o"></i> Mis Unidades Didácticas</span>
+              <div class="count"><?php echo ""; ?>03</div>
+              <span class="count_bottom"><a href="unidades_didacticas.php"><i class="green">Ver</i></a></span>
             </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-check-square-o"></i> Matrículas</span>
-              <div class="count"><?php echo ""; ?>100</div>
-              <span class="count_bottom"><a href="matricula.php"><i class="green">Ver</i></a></span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-book"></i>Unidades Didácticas Programadas</span>
-              <div class="count"><?php echo ""; ?>32</div>
-              <span class="count_bottom"><a href="programacion.php"><i class="green">Ver</i></a></span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-pencil-square-o"></i> Evaluación</span>
-              <div class="count"><?php echo ""; ?>50</div>
-              <span class="count_bottom"><a href="evaluacion.php"><i class="green">Ver</i></a></span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-line-chart"></i>Reportes</span>
-              <div class="count"><?php echo ""; ?>2022-II</div>
-              <span class="count_bottom"><a href="reportes.php"><i class="green">Ver </i></a></span>
-            </div>
+            
             
             
           </div>
