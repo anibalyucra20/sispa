@@ -153,14 +153,11 @@ $res_b_comp = mysqli_fetch_array($buscar_comp);
         </div>
         <!-- /page content -->
 
-        <!-- footer content 
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-         /footer content -->
+         <!-- footer content -->
+         <?php
+        include ("../../include/footer.php"); 
+        ?>
+        <!-- /footer content -->
       </div>
     </div>
 <!-- jQuery -->

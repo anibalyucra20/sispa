@@ -8,9 +8,7 @@ function buscarDatosSistema($conexion){
 	$sql = "SELECT * FROM sistema WHERE id=1";
 	return mysqli_query($conexion, $sql);
 }
-function buscarDatosSesion(){
 
-}
 function buscarPresentePeriodoAcad($conexion){
 	$sql = "SELECT * FROM presente_periodo_acad ORDER BY id LIMIT 1";
 	return mysqli_query($conexion, $sql);
@@ -136,6 +134,10 @@ function buscarProgramacionById($conexion, $id){
 }
 function buscarProgramacionByIdDocente($conexion, $id){
 	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id_docente='$id'";
+	return mysqli_query($conexion, $sql);
+}
+function buscarProgramacionByIdDocentePeriodo($conexion, $id_docente, $id_periodo){
+	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id_docente='$id_docente' AND id_periodo_acad='$id_periodo'";
 	return mysqli_query($conexion, $sql);
 }
 function buscarProgramacionByUd_Peridodo($conexion, $id_ud, $periodo){

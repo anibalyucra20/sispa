@@ -241,14 +241,11 @@ $res_busc_est=mysqli_fetch_array($ejec_busc_est);
         </div>
         <!-- /page content -->
 
-        <!-- footer content 
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-         /footer content -->
+         <!-- footer content -->
+         <?php
+        include ("../../include/footer.php"); 
+        ?>
+        <!-- /footer content -->
       </div>
     </div>
 

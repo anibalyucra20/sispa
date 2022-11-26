@@ -40,7 +40,7 @@
         <div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row tile_count">
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-calendar"></i> Periodo Académico</span>
               <div class="count"><?php echo ""; ?>2022-II</div>
               <span class="count_bottom"><a href=""><i class="green">.</i></a></span>
@@ -81,13 +81,11 @@
         <!-- /page content -->
 
         
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!--/footer content -->
+         <!-- footer content -->
+         <?php
+        include ("../../include/footer.php"); 
+        ?>
+        <!-- /footer content -->
       </div>
     </div>
 

@@ -3,7 +3,6 @@ include "../../../include/conexion.php";
 include '../../include/busquedas.php';
 $id_prog = $_POST['id_prog'];
 $cant_calif = $_POST['cant_calif'];
-echo $cant_calif."<br>";
 
 $b_detalle_matricula = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
 while ($r_b_det_mat = mysqli_fetch_array($b_detalle_matricula)) {
@@ -16,7 +15,11 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_matricula)) {
     for ($i=1; $i <= $cant_calif ; $i++) {
         $res_nota = $_POST[$r_b_est['dni']."_".$i];
         if ((is_numeric($res_nota))&&($res_nota>=0 && $res_nota<=20)) {
-            $calificacion = $res_nota;
+            if (($res_nota>=0 && $res_nota<10) && strlen($res_nota)==1) {
+                $calificacion = "0".$res_nota;
+            }else {
+                $calificacion = $res_nota;
+            }
             //echo " - ".$calificacion;
         }else{
             $calificacion = "";
@@ -25,13 +28,14 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_matricula)) {
         $ejec_consulta = mysqli_query($conexion, $consulta);
         
     }
-    echo "<br>";
+    
 }
 echo "<script>
 			
 			window.location= '../calificaciones.php?id=".$id_prog."';
 		</script>
 	";
+
 
 
 

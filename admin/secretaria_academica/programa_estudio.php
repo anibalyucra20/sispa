@@ -165,6 +165,7 @@ include '../include/busquedas.php';
                     </form>
                   </div>
                 </div>
+                </div>
                           <!--FIN DE CONTENIDO DE MODAL-->
       </div>
     </div>
@@ -183,14 +184,11 @@ include '../include/busquedas.php';
         </div>
         <!-- /page content -->
 
-        <!-- footer content 
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-         /footer content -->
+         <!-- footer content -->
+        <?php
+        include ("../../include/footer.php"); 
+        ?>
+        <!-- /footer content -->
       </div>
     </div>
 <!-- jQuery -->

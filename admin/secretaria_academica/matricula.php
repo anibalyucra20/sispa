@@ -188,13 +188,10 @@ include '../include/busquedas.php';
         </div>
         <!-- /page content -->
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
+         <!-- footer content -->
+         <?php
+        include ("../../include/footer.php"); 
+        ?>
         <!-- /footer content -->
       </div>
     </div>

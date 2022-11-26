@@ -35,20 +35,28 @@
     <div class="container body">
       <div class="main_container">
           <?php 
-          include ("include/menu.php"); ?>
+          include ("include/menu.php"); 
+          $b_periodo_act = buscarPresentePeriodoAcad($conexion);
+          $r_b_periodo_act = mysqli_fetch_array($b_periodo_act);
+          $b_perido = buscarPeriodoAcadById($conexion, $r_b_periodo_act['id_periodo_acad']);
+          $r_b_per = mysqli_fetch_array($b_perido);
+          $b_progs = buscarProgramacionByIdDocentePeriodo($conexion, $_SESSION['id_docente'], $r_b_periodo_act['id_periodo_acad']);
+          $cont_prog = mysqli_num_rows($b_progs);
+          
+          ?>
         <!-- page content -->
         <div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row tile_count">
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-calendar"></i> Periodo Académico</span>
-              <div class="count"><?php echo ""; ?>2022-II</div>
+              <div class="count"><?php echo $r_b_per['nombre']; ?></div>
               <span class="count_bottom"><a href=""><i class="green">.</i></a></span>
             </div>
             
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-pencil-square-o"></i> Mis Unidades Didácticas</span>
-              <div class="count"><?php echo ""; ?>03</div>
+              <div class="count"><?php echo $cont_prog; ?></div>
               <span class="count_bottom"><a href="unidades_didacticas.php"><i class="green">Ver</i></a></span>
             </div>
             
@@ -63,12 +71,9 @@
         <!-- /page content -->
 
         
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
+        <?php
+        include ("../../include/footer.php"); 
+        ?>
         <!--/footer content -->
       </div>
     </div>

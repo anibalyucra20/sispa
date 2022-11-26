@@ -25,13 +25,12 @@ include '../include/busquedas.php';
     <link href="../../Gentella/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../../Gentella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- Datatables -->
-    <link href="../../Gentella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="../../Gentella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="../../Gentella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="../../Gentella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="../../Gentella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
+    <!-- bootstrap-progressbar -->
+    <link href="../../Gentella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../../Gentella/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../Gentella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../../Gentella/build/css/custom.min.css" rel="stylesheet">
     <!-- Script obtenido desde CDN jquery -->
@@ -51,7 +50,7 @@ include '../include/busquedas.php';
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
+          
            
             <div class="clearfix"></div>
             <div class="row">
@@ -117,20 +116,20 @@ include '../include/busquedas.php';
                       </tbody>
                     </table>
                     
+                  </div>
 
-
+                </div>
+            
+              </div>
+            </div>
           </div>
-        </div>
         <!-- /page content -->
 
          <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+         <?php
+        include ("../../include/footer.php"); 
+        ?>
+         <!-- /footer content -->
       </div>
     </div>
 
@@ -188,29 +187,7 @@ include '../include/busquedas.php';
 
     } );
     </script>
-    <!--script para obtener los modulos dependiendo de la carrera que seleccione-->
-    <script type="text/javascript">
-      $(document).ready(function(){
-        recargarlista();
-        $('#carrera_m').change(function(){
-          recargarlista();
-        });
-      })
-    </script>
-    <script type="text/javascript">
-     function recargarlista(){
-      $.ajax({
-        type:"POST",
-        url:"../operaciones/obtener_modulos.php",
-        data:"id_carrera="+ $('#carrera_m').val(),
-          success:function(r){
-            $('#modulo').html(r);
-          }
-      });
-     }
-     
-
-    </script>
+    
     
      <?php mysqli_close($conexion); ?>
   </body>
