@@ -135,7 +135,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                           }
                           ?>
                           <td><center><b><?php
-                          if ($suma==0) {
+                          if ($suma_notas==0) {
                             echo "";
                           }else{
                           $promedio = number_format($suma_notas/$cont_notas, 0);
