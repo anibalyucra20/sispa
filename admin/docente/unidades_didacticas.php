@@ -107,7 +107,9 @@ include '../include/busquedas.php';
                           ?>
                           <td><?php echo $res_busc_docente['apellidos_nombres']; ?></td>
                           <td>
-                          <a class="btn btn-success" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a></td>
+                            <a title="Sílabos" class="btn btn-primary" href="silabos.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-book"></i></a>
+                            <a title="Calificaciones" class="btn btn-success" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                          </td>
                         </tr>  
                         <?php
                           };

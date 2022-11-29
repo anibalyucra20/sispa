@@ -80,12 +80,12 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="">
-                    <<h2 align="center"><b>Evaluación - <?php echo $r_b_ud['descripcion']; ?></b></h2>
+                    <h2 align="center"><b>Evaluación - <?php echo $r_b_ud['descripcion']; ?></b></h2>
                     
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <br />
+                    <br>
                     <form role="form" action="operaciones/actualizar_calificacion.php" class="form-horizontal form-label-left input_mask" method="POST" >
                     <input type="hidden" name="id_prog" value="<?php echo $id_prog; ?>">
                     <input type="hidden" name="cant_calif" value="<?php echo $total_indicadores; ?>">

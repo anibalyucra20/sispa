@@ -1,8 +1,6 @@
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
-   <!-- <div class="navbar nav_title" style="border: 0;">
-      <a href="index.php" class=""><i class=""></i> <span>Biblioteca</span></a>
-    </div>-->
+   
     <?php 
     $busc_user_sesion = buscarDocenteById($conexion, $_SESSION['id_docente']);
     $res_b_u_sesion = mysqli_fetch_array($busc_user_sesion);
@@ -30,33 +28,14 @@
                 <ul class="nav side-menu">
                   <li><a href="../../admin/"><i class="fa fa-home"></i>Inicio</a>
                   </li>
-                  <li><a><i class="fa fa-book"></i> Evaluación <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-pencil-square-o"></i> Unidades Didácticas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="unidades_didacticas.php">Registro de Evaluación</a></li>
+                      <li class="sub_menu"><a href="unidades_didacticas.php">Unidades Didácticas</a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
-
             </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons 
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Configuración" href="sistema.php">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesión" href="../../include/cerrar_sesion.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            /menu footer buttons -->
   </div>
 </div>
 <!-- top navigation -->
@@ -98,73 +77,6 @@
                     ?>
                   </ul>
                 </li>
-                
-<!--
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              -->
               </ul>
             </nav>
           </div>
