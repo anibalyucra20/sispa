@@ -2,7 +2,18 @@
 include 'include/verificar_sesion.php';
 include '../../include/conexion.php';
 include '../include/busquedas.php';
-
+$id_prog = $_GET['id'];
+$b_prog = buscarProgramacionById($conexion, $id_prog);
+$res_b_prog = mysqli_fetch_array($b_prog);
+if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
+    //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
+    //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
+    echo "<script>
+			alert('Error Usted no cuenta con los permisos para acceder a la Página Solicitada');
+			window.history.back();
+		</script>
+	";
+}else {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +25,7 @@ include '../include/busquedas.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
-    <title>unidades didácticas<?php include ("../../include/header_title.php"); ?></title>
+    <title>Sesiones de Aprendizaje<?php include ("../../include/header_title.php"); ?></title>
    <!--icono en el titulo-->
    <link rel="shortcut icon" href="../../img/favicon.ico">
     <!-- Bootstrap -->
@@ -46,7 +57,25 @@ include '../include/busquedas.php';
       <div class="main_container">
         <!--menu-->
           <?php 
-          include ("include/menu.php"); ?>
+          include ("include/menu.php"); 
+          
+          $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
+        $r_b_ud = mysqli_fetch_array($b_ud);
+        //buscar programa de estudio
+        $b_pe = buscarCarrerasById($conexion, $r_b_ud['id_programa_estudio']);
+        $r_b_pe = mysqli_fetch_array($b_pe);
+        //buscar modulo profesional
+        $b_mod = buscarModuloFormativoById($conexion, $r_b_ud['id_modulo']);
+        $r_b_mod = mysqli_fetch_array($b_mod);
+        //buscar semestre
+        $b_sem = buscarSemestreById($conexion, $r_b_ud['id_semestre']);
+        $r_b_sem = mysqli_fetch_array($b_sem);
+        //buscamos el silabo y sus datos
+        $b_silabo = buscarSilaboByIdProgramacion($conexion, $id_prog);
+        $r_b_silabo = mysqli_fetch_array($b_silabo);
+        $id_silabo = $r_b_silabo['id'];
+        
+        ?>
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -57,7 +86,7 @@ include '../include/busquedas.php';
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="">
-                    <h2 align="center">Unidades Didácticas</h2>
+                    <h2 align="center">Sesiones de Aprendizaje - <?php echo $r_b_ud['descripcion']; ?></h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -67,49 +96,35 @@ include '../include/busquedas.php';
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th>Nro</th>
+                          <th>Semana</th>
                           <th>Unidad Didactica</th>
-                          <th>Programa de Estudios</th>
-                          <th>Semestre</th>
                           <th>Docente</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
-                          $id_docente = $_SESSION['id_docente'];
-                          $ejec_busc_prog = buscarProgramacionByIdDocente($conexion, $id_docente);
-                          $contador = 0; 
-                          while ($res_busc_prog=mysqli_fetch_array($ejec_busc_prog)){
-                            $contador++;
-                            $id_ud = $res_busc_prog['id_unidad_didactica'];
-                            $b_ud = buscarUdById($conexion, $id_ud);
-                            $res_b_ud = mysqli_fetch_array($b_ud);
+                          //buscamos las programaciones de actividades
+                            $b_prog_act = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
+                            while ($res_b_prog_act=mysqli_fetch_array($b_prog_act)){
+                                // buscamos la sesion que corresponde
+                                $id_act = $res_b_prog_act['id'];
+                                $b_sesion = buscarSesionByIdProgramacionActividades($conexion, $id_act);
+                                $r_b_sesion = mysqli_fetch_array($b_sesion);
+                                $id_sesion = $r_b_sesion['id'];
+                                $id_docente = $res_b_prog['id_docente'];
                         ?>
                         <tr>
-                          <td><?php echo $contador; ?></td>
-                          <td><?php echo $res_b_ud['descripcion']; ?></td>
-                          <?php 
-                          $id_carrera = $res_b_ud['id_programa_estudio'];
-                          $ejec_busc_carrera = buscarCarrerasById($conexion, $id_carrera);
-                          $res_busc_carrera =mysqli_fetch_array($ejec_busc_carrera);
-                          ?>
-                          <td><?php echo $res_busc_carrera['nombre']; ?></td>
-                          <?php 
-                         $id_semestre = $res_b_ud['id_semestre'];
-                         $ejec_busc_semestre= buscarSemestreById($conexion, $id_semestre);
-                         $res_busc_semestre =mysqli_fetch_array($ejec_busc_semestre);
-                          ?>
-                          <td><?php echo $res_busc_semestre['descripcion']; ?></td>
+                          <td><?php echo $res_b_prog_act['semana']; ?></td>
+                          <td><?php echo $r_b_ud['descripcion']; ?></td>
                           <?php 
                           $ejec_busc_docente= buscarDocenteById($conexion, $id_docente);
                           $res_busc_docente =mysqli_fetch_array($ejec_busc_docente);
                           ?>
                           <td><?php echo $res_busc_docente['apellidos_nombres']; ?></td>
                           <td>
-                            <a title="Sílabos" class="btn btn-warning" href="silabos.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-book"></i></a>
-                            <a title="Sesiones de Aprendizaje" class="btn btn-primary" href="sesiones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-briefcase"></i></a>
-                            <a title="Calificaciones" class="btn btn-info" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                            <a title="Ver / Editar" class="btn btn-success" href="sesion_de_aprendizaje.php?id=<?php echo $r_b_sesion['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                            <a title="Imprimir" class="btn btn-info" href=""><i class="fa fa-print"></i></a>
                             
                           </td>
                         </tr>  
@@ -196,3 +211,4 @@ include '../include/busquedas.php';
      <?php mysqli_close($conexion); ?>
   </body>
 </html>
+<?php } ?>

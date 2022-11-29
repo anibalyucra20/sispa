@@ -43,15 +43,13 @@ foreach ($detalle_matricula as $valor) {
     //buscamos el ultimo registro de detalle matricula
     $id_detalle_matricula = mysqli_insert_id($conexion);
 
-    //creamos array para almacenar las capacidades de las unidades didacticas
-    $list_capacidades = array();
     //buscamos la capacidad de la unidad didactica
     $busc_capacidad = buscarCapacidadesByIdUd($conexion, $id_ud);
     
     $orden = 1; //orden en el que inicia las calificaciones
+    $error = 0;
     while ($res_b_capacidad = mysqli_fetch_array($busc_capacidad)) {
         $id_capacidad = $res_b_capacidad['id'];
-        $list_capacidades[] = $id_capacidad;
         
         // buscar indicadores de logro de capacidad para saber cuantos calificaciones crearemos
         $b_indicador = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id_capacidad);
@@ -59,7 +57,7 @@ foreach ($detalle_matricula as $valor) {
         
         while ($res_b_capacidad = mysqli_fetch_array($b_indicador)) {
             //REGISTRAMOS LAS CALIFICACION SEGUN LA CANTIDAD DE INDICADORES DE LOGRO
-            $reg_calificacion = "INSERT INTO calificaciones (id_detalle_matricula, nro_calificacion) VALUES ('$id_detalle_matricula','$orden')";
+            $reg_calificacion = "INSERT INTO calificaciones (id_detalle_matricula, nro_calificacion, calificacion) VALUES ('$id_detalle_matricula','$orden','')";
             $ejecutar_reg_calificacion = mysqli_query($conexion, $reg_calificacion);
             $orden = $orden+1;
         }
@@ -72,7 +70,6 @@ foreach ($detalle_matricula as $valor) {
 		";
     }
     
-
     echo "<script>
                 window.location= '../matricula.php'
     			</script>";

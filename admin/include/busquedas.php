@@ -195,9 +195,17 @@ function buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id){
 	return mysqli_query($conexion, $sql);
 }
 
-
+function buscarSilaboById($conexion, $id){
+	$sql = "SELECT * FROM silabo WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarSilaboByIdProgramacion($conexion, $id){
 	$sql = "SELECT * FROM silabo WHERE id_programacion_unidad_didactica='$id'";
+	return mysqli_query($conexion, $sql);
+}
+
+function buscarProgActividadesSilaboById($conexion, $id){
+	$sql = "SELECT * FROM programacion_actividades_silabo WHERE id='$id' ORDER BY semana";
 	return mysqli_query($conexion, $sql);
 }
 function buscarProgActividadesSilaboByIdSilabo($conexion, $id){
@@ -205,8 +213,21 @@ function buscarProgActividadesSilaboByIdSilabo($conexion, $id){
 	return mysqli_query($conexion, $sql);
 }
 
+function buscarSesionById($conexion, $id){
+	$sql = "SELECT * FROM sesion_aprendizaje WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarSesionByIdProgramacionActividades($conexion, $id){
 	$sql = "SELECT * FROM sesion_aprendizaje WHERE id_programacion_actividad_silabo='$id'";
+	return mysqli_query($conexion, $sql);
+}
+
+function buscarMomentosSesionByIdSesion($conexion, $id){
+	$sql = "SELECT * FROM momentos_sesion_aprendizaje WHERE id_sesion_aprendizaje='$id'";
+	return mysqli_query($conexion, $sql);
+}
+function buscarActividadesEvaluacionByIdSesion($conexion, $id){
+	$sql = "SELECT * FROM actividad_evaluacion_sesion_aprendizaje WHERE id_sesion_aprendizaje='$id'";
 	return mysqli_query($conexion, $sql);
 }
 
