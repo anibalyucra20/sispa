@@ -77,7 +77,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
         $b_periodo = buscarPeriodoAcadById($conexion, $res_b_prog['id_periodo_acad']);
         $r_b_periodo = mysqli_fetch_array($b_periodo); 
         //buscar datos de docente
-        $b_docente = buscarDocenteById($conexion, $_SESSION['id_docente']);
+        $b_docente = buscarDocenteById($conexion, $res_b_prog['id_docente']);
         $r_b_docente = mysqli_fetch_array($b_docente);
         //buscar datos de unidad didactica
         $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
@@ -180,7 +180,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                           
                           ?></td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                           <td>Indicador(es) de logro de competencia a la que se vincula</td>
                           <td>
                             <?php
@@ -192,7 +192,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 </label>
                             </div>
                           </td>
-                        </tr>
+                        </tr>-->
                         <tr>
                           <td>Tema o Actividad</td>
                           <td>: <?php echo $r_b_prog_act['contenidos_basicos'];?></td>
@@ -203,9 +203,9 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 <div class="col-md-4 col-sm-4 col-xs-4"> 
                                 <select name="tipo_actividad" id="tipo_actividad" class="form-control">
                                     <option value=""></option>
-                                    <option value="">TEORICO</option>
-                                    <option value="">PRACTICO</option>
-                                    <option value="">TEORICO-PRACTICO</option>
+                                    <option value="TEORICO" <?php if ($r_b_sesion['tipo_actividad']=="TEORICO") { echo "selected";} ?>>TEORICO</option>
+                                    <option value="PRÁCTICO" <?php if ($r_b_sesion['tipo_actividad']=="PRÁCTICO") { echo "selected";} ?>>PRÁCTICO</option>
+                                    <option value="TEORICO-PRÁCTICO" <?php if ($r_b_sesion['tipo_actividad']=="TEORICO-PRÁCTICO") { echo "selected";} ?>>TEORICO-PRÁCTICO</option>
                                 </select>
                                 </div>
                             </td>
@@ -216,9 +216,9 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 <div class="col-md-4 col-sm-4 col-xs-4">
                                 <select name="tipo_sesion" id="tipo_sesion" class="form-control">
                                     <option value=""></option>
-                                    <option value="">Presencial</option>
-                                    <option value="">Virtual sincrónica</option>
-                                    <option value="">Virtual Asincrónica</option>
+                                    <option value="Presencial" <?php if ($r_b_sesion['tipo_sesion']=="Presencial") { echo "selected";} ?>>Presencial</option>
+                                    <option value="Virtual sincrónica" <?php if ($r_b_sesion['tipo_sesion']=="Virtual sincrónica") { echo "selected";} ?>>Virtual sincrónica</option>
+                                    <option value="Virtual Asincrónica" <?php if ($r_b_sesion['tipo_sesion']=="Virtual Asincrónica") { echo "selected";} ?>>Virtual Asincrónica</option>
                                 </select>
                                 </div>
                             </td>
@@ -228,7 +228,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                           <td>Fecha de Desarrollo</td>
                             <td> 
                                 <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="date" class="form-control" name="fecha_desarrollo" value="<?php ?>">
+                                <input type="date" class="form-control" name="fecha_desarrollo" value="<?php echo $r_b_sesion['fecha_desarrollo']; ?>">
                                 </div>
                             </td>
                             
@@ -247,47 +247,56 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 <tr>
                                   <td width="20%">Indicador de Logro de Competencia a la que se vincula</td>
                                   <td>
+                                  <div class="col-md-9 col-sm-9 col-xs-9"> 
+                                    <select name="ind_logro_competencia" id="ind_logro_competencia" class="form-control">
+                                      <option value=""></option>
+                                      
+                                    
                                     <?php
                                     $b_comp_ud = buscarCompetenciasByIdModulo($conexion, $r_b_ud['id_modulo']);
                                     while ($r_b_comp_ud = mysqli_fetch_array($b_comp_ud)) {
                                       $b_ind_log_comp = buscarIndicadorLogroCompetenciasByIdCompetencia($conexion, $r_b_comp_ud['id']);
                                       while ($r_b_ind_log_comp = mysqli_fetch_array($b_ind_log_comp)) {
                                       ?>
-                                        <div clas="checkbox">
-                                          <label>
-                                            <input type="checkbox" value=""><?php echo $r_b_ind_log_comp['descripcion']; ?>
-                                          </label>
-                                        </div>
+                                      <option value="<?php echo $r_b_ind_log_comp['id']; ?>" <?php if ($r_b_ind_log_comp['id'] == $r_b_sesion['id_ind_logro_competencia_vinculado']) {
+                                        echo "selected";
+                                      } ?>><?php echo $r_b_ind_log_comp['descripcion']; ?></option>
+                                      
                                       <?php
                                       }
                                     }
                                     ?>
+                                    </select>
+                                  </div>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Indicador de Logro de Capacidad a la que se vincula</td>
                                   <td>
+                                    <div class="col-md-9 col-sm-9 col-xs-9"> 
+                                      <select name="ind_logro_capacidad" id="ind_logro_capacidad" class="form-control">
+                                        <option value=""></option>
                                     <?php
                                     $b_cap_ud = buscarCapacidadesByIdUd($conexion, $r_b_ud['id']);
                                     while ($r_b_cap_ud = mysqli_fetch_array($b_cap_ud)) {
                                       $b_ind_cap_ud = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_cap_ud['id']);
                                       while ($r_b_ind_cap_ud = mysqli_fetch_array($b_ind_cap_ud)) {
                                       ?>
-                                        <div clas="checkbox">
-                                          <label>
-                                            <input type="checkbox" value=""><?php echo $r_b_ind_cap_ud['descripcion']; ?>
-                                          </label>
-                                        </div>
+                                        <option value="<?php echo $r_b_ind_cap_ud['id']; ?>" <?php if ($r_b_ind_cap_ud['id'] == $r_b_sesion['id_ind_logro_capacidad_vinculado']) {
+                                        echo "selected";
+                                      } ?>><?php echo $r_b_ind_cap_ud['descripcion']; ?></option>
                                       <?php
                                       }
                                     }
                                     ?>
+                                      </select>
+                                    </div>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>Logro de Sesión</td>
                                   <td>
-                                    <input type="text" name="metodologia_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="">
+                                    <input type="text" name="logro_sesion" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['logro_sesion']; ?>">
                                   </td>
                                 </tr>
                           </tbody>
@@ -320,13 +329,13 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                     </td>
                                     <td width="45%">
                                         <label for="">Estrategias:</label><br>
-                                        <input type="text" name="metodologia_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['estrategia'];?>">
+                                        <input type="text" name="estrategia_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['estrategia'];?>">
                                     </td>
                                     <td rowspan="2" width="20%">
                                         <input type="text" name="recursos_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['recursos'];?>">
                                     </td>
                                     <td rowspan="2">
-                                        <input type="number" max="50" min="0" class="form-control" value="<?php echo $r_b_momentos_sesion['tiempo'];?>" placeholder="Tiempo en Minutos">
+                                        <input type="number" name="tiempo_<?php echo $r_b_momentos_sesion['id']; ?>" max="50" min="0" class="form-control" value="<?php echo $r_b_momentos_sesion['tiempo'];?>" placeholder="Tiempo en Minutos">
                                     </td>
                                 </tr>
                                 <tr>
@@ -361,19 +370,19 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 ?>
                                 <tr>
                                     <td><center>
-                                        <input type="text" name="metodologia_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['indicador_logro_sesion'];?>">
+                                        <input type="text" name="indicador_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['indicador_logro_sesion'];?>">
                                         </center>
                                     </td>
                                     <td><center>
-                                            <input type="text" name="metodologia_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['tecnica'];?>">
+                                            <input type="text" name="tecnicas_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['tecnica'];?>">
                                         </center>
                                     </td>
                                     <td><center>
-                                            <input type="text" name="metodologia_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['instrumentos'];?>">
+                                            <input type="text" name="instrumentos_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['instrumentos'];?>">
                                         </center>
                                     </td>
                                     <td><center>
-                                        <input type="number" max="50" min="0" class="form-control" value="<?php echo $r_b_actividades_eval['peso'];?>" placeholder="Tiempo en Minutos">
+                                        <input type="number" name="peso_eva_<?php echo $r_b_actividades_eval['id']; ?>" max="50" min="0" class="form-control" value="<?php echo $r_b_actividades_eval['peso'];?>" placeholder="Tiempo en Minutos">
                                         </center>
                                     </td>
                                     <td><center>

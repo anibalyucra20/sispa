@@ -96,7 +96,9 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                 <div class="x_panel">
                   <div class="">
                     <h2 align="center"><b>Sílabo - <?php echo $r_b_ud['descripcion']; ?></b></h2>
-                    <a href="imprimir_silabo.php?data=<?php echo $id_prog; ?>" class="btn btn-info" target="_blank"><i class="fa fa-print"></i>Imprimir</a>
+                    <form action="imprimir_silabo.php" method="POST" target="_blank"><input type="hidden" name="data" value="<?php echo $id_prog; ?>" >
+                    <button type="submit" class="btn btn-info">Imprimir</button>
+                    </form>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -148,7 +150,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         </tr>
                         <tr>
                           <td>Horario</td>
-                          <td>
+                          <td>:
                             <input type="text" name="horario" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['horario']; ?>">
                             
                             </td>

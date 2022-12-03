@@ -3,7 +3,7 @@ include 'include/verificar_sesion.php';
 include "../../include/conexion.php";
 include '../include/busquedas.php';
 
-$id_prog = $_GET['data'];
+$id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
 if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
@@ -11,7 +11,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
     //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
     echo "<script>
 			alert('Error Usted no cuenta con los permisos para acceder a la Página Solicitada');
-			window.history.back();
+			window.close();
 		</script>
 	";
 }else {
