@@ -183,54 +183,12 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         <tr>
                           <td>Indicador(es) de logro de competencia a la que se vincula</td>
                           <td>
+                            <?php
+                              
+                            ?>
                             <div clas="checkbox">
                                 <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
-                                </label>
-                            </div>
-                            <div clas="checkbox">
-                                <label for="">
-                                  <input type="checkbox">Prueba
+                                  <input type="checkbox">Para Revisar
                                 </label>
                             </div>
                           </td>
@@ -277,6 +235,63 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         </tr>
                       </tbody>
                     </table>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                          <thead>
+                              <tr>
+                                <th colspan="2"><center>PLANIFICACION DE APRENDIZAJE</center></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                                <tr>
+                                  <td width="20%">Indicador de Logro de Competencia a la que se vincula</td>
+                                  <td>
+                                    <?php
+                                    $b_comp_ud = buscarCompetenciasByIdModulo($conexion, $r_b_ud['id_modulo']);
+                                    while ($r_b_comp_ud = mysqli_fetch_array($b_comp_ud)) {
+                                      $b_ind_log_comp = buscarIndicadorLogroCompetenciasByIdCompetencia($conexion, $r_b_comp_ud['id']);
+                                      while ($r_b_ind_log_comp = mysqli_fetch_array($b_ind_log_comp)) {
+                                      ?>
+                                        <div clas="checkbox">
+                                          <label>
+                                            <input type="checkbox" value=""><?php echo $r_b_ind_log_comp['descripcion']; ?>
+                                          </label>
+                                        </div>
+                                      <?php
+                                      }
+                                    }
+                                    ?>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Indicador de Logro de Capacidad a la que se vincula</td>
+                                  <td>
+                                    <?php
+                                    $b_cap_ud = buscarCapacidadesByIdUd($conexion, $r_b_ud['id']);
+                                    while ($r_b_cap_ud = mysqli_fetch_array($b_cap_ud)) {
+                                      $b_ind_cap_ud = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_cap_ud['id']);
+                                      while ($r_b_ind_cap_ud = mysqli_fetch_array($b_ind_cap_ud)) {
+                                      ?>
+                                        <div clas="checkbox">
+                                          <label>
+                                            <input type="checkbox" value=""><?php echo $r_b_ind_cap_ud['descripcion']; ?>
+                                          </label>
+                                        </div>
+                                      <?php
+                                      }
+                                    }
+                                    ?>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Logro de Sesión</td>
+                                  <td>
+                                    <input type="text" name="metodologia_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="">
+                                  </td>
+                                </tr>
+                          </tbody>
+                      </table>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped jambo_table bulk_action">

@@ -10,8 +10,7 @@ $descripcion = $_POST['descripcion'];
 	$ejecutar_insetar = mysqli_query($conexion, $insertar);
 	if ($ejecutar_insetar) {
 			echo "<script>
-                window.location= '../capacidades.php'
-    			</script>";
+                window.location= '../indicador_logro_capacidad.php?id=".mysqli_insert_id($conexion)."'</script>";
 	}else{
 		echo "<script>
 			alert('Error al registrar, por favor verifique sus datos');

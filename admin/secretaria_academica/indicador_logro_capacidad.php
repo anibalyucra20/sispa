@@ -56,9 +56,9 @@ $res_b_cap = mysqli_fetch_array($buscar_cap);
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="">
-                    <h2 align="center">Indicadores de Logro de Capacidad</h2>
+                    <h2 align="center">Indicadores de Logro de Capacidad - <?php echo $res_b_cap['codigo'] ?></h2>
                     <button class="btn btn-success" data-toggle="modal" data-target=".registrar"><i class="fa fa-plus-square"></i> Nuevo</button>
-
+                    <a href="capacidades.php" class="btn btn-default">Regresar</a>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">

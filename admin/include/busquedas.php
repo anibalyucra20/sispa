@@ -49,6 +49,13 @@ function buscarDocenteByDni($conexion, $dni){
 	$sql = "SELECT * FROM docente WHERE dni='$dni'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarCoordinadorAreaByIdPe($conexion, $id_pe){
+	$sql = "SELECT * FROM docente WHERE id_programa_estudio='$id_pe' AND id_cargo='4'";
+	return mysqli_query($conexion, $sql);
+}
+
+
+
 function buscarCarreras($conexion){
 	$sql = "SELECT * FROM programa_estudios";
 	return mysqli_query($conexion, $sql);
@@ -171,6 +178,10 @@ function buscarCompetenciasById($conexion, $id){
 }
 function buscarCompetenciasByIdModulo($conexion, $id){
 	$sql = "SELECT * FROM competencias WHERE id_modulo_formativo='$id'";
+	return mysqli_query($conexion, $sql);
+}
+function buscarCompetenciasEspecialidadByIdModulo($conexion, $id){
+	$sql = "SELECT * FROM competencias WHERE id_modulo_formativo='$id' AND tipo_competencia='ESPECÍFICA'";
 	return mysqli_query($conexion, $sql);
 }
 function buscarIndicadorLogroCompetenciasByIdCompetencia($conexion, $id){

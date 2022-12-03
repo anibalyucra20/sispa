@@ -14,7 +14,7 @@ include '../include/busquedas.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
-    <title>unidades didácticas<?php include ("../../include/header_title.php"); ?></title>
+    <title>Matrícula<?php include ("../../include/header_title.php"); ?></title>
     <!--icono en el titulo-->
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <!-- Bootstrap -->
@@ -125,8 +125,8 @@ include '../include/busquedas.php';
                       </div>
                       
                       <div class="form-group">
-                        <input type="hidden" id="arr_uds" name="arr_uds">
-                        <input type="hidden" id="mat_relacion" name="mat_relacion" required>
+                        <input type="text" id="arr_uds" name="arr_uds">
+                        <input type="text" id="mat_relacion" name="mat_relacion" required>
                         <label class="col-md-3 col-sm-3 col-xs-12 control-label">Seleccione las unidades didáticas :
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12" id="udss">

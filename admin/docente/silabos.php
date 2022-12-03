@@ -96,7 +96,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                 <div class="x_panel">
                   <div class="">
                     <h2 align="center"><b>Sílabo - <?php echo $r_b_ud['descripcion']; ?></b></h2>
-                    
+                    <a href="imprimir_silabo.php?data=<?php echo $id_prog; ?>" class="btn btn-info" target="_blank"><i class="fa fa-print"></i>Imprimir</a>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -204,7 +204,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         <tbody>
                             <tr>
                                 <td>
-                                <input type="text" name="metodologia" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="Deductivo,Analítico,Aprendizaje basado en competencias">
+                                <input type="text" name="metodologia" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['metodologia']; ?>">
                                 </td>
                             </tr>
                             <thead>
@@ -214,7 +214,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                             </thead>
                             <tr>
                                 <td>
-                                <input type="text" name="recursos_didacticos" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="Libros digitales,Foros,Chats,Video Tutoriales,Wikis,Videos explicativos">
+                                <input type="text" name="recursos_didacticos" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['recursos_didacticos']; ?>">
                                 </td>
                             </tr>
                             <thead>
@@ -226,11 +226,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 <td>
                                     <div class="control-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <textarea name="sistema_evaluacion" id="sistema_evaluacion" rows="8" style="width:100%; resize: none; height:auto;">
-* La escala de calificación es vigesimal y el calificativo mínimo aprobatorio es trece (13). En todos los casos la fracción 0.5 o más se considera como una unidad a favor del estudiante.
-* El estudiante que en la evaluación de una o más Capacidades Terminales programadas en la Unidad Didáctica (Asignaturas), obtenga nota desaprobatoria entre diez (10) y doce (12), tiene derecho a participar en el proceso de recuperación programado.
-* El estudiante que después de realizado el proceso de recuperación obtuviera nota menor a trece (13), en una o más capacidades terminales de una Unidad Didáctica, desaprueba la misma, por tanto, repite la Unidad Didáctica.
-* El estudiante que acumulará inasistencias injustificadas en número igual o mayor al 30% del total de horas programadas en la Unidad Didáctica, será desaprobado en forma automática, sin derecho a recuperación.</textarea>
+                                            <textarea name="sistema_evaluacion" id="sistema_evaluacion" rows="8" style="width:100%; resize: none; height:auto;"><?php echo $r_b_silabo['sistema_evaluacion']; ?></textarea>
                                         </div>
                                     </div>
                                 </td>
@@ -252,10 +248,10 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" name="indicadores_estrategias" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="Identificación o reconocimiento del tema tratado, Valoración del dominio de los nuevos temas tratados, Capacidad de Resumen, Participación y contribución en clase, Capacidad para el trabajo en equipo">
+                                    <input type="text" name="indicadores_estrategias" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['estrategia_evaluacion_indicadores']; ?>">
                                 </td>
                                 <td>
-                                    <input type="text" name="tecnicas_estrategias" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="Observación,Exposición,Pruebas escritas,Estudio de caso,El debate,Exposición oral,Guías">
+                                    <input type="text" name="tecnicas_estrategias" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['estrategia_evaluacion_tecnica']; ?>">
                                 </td>
                             </tr>   
                         </tbody>
@@ -272,7 +268,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         
                         <tr>
                             <td>
-                                <input type="text" name="recursos_bib_imp" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="">
+                                <input type="text" name="recursos_bib_imp" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['recursos_bibliograficos_impresos']; ?>">
                             </td>
                         </tr>
                         <thead>
@@ -282,7 +278,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         </thead>
                         <tr>
                             <td>
-                                <input type="text" name="recursos_bib_digi" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="">
+                                <input type="text" name="recursos_bib_digi" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['recursos_bibliograficos_digitales']; ?>">
                             </td>
                         </tr>
                         </tbody>
