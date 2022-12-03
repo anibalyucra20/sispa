@@ -230,6 +230,26 @@ include '../include/busquedas.php';
                           <br>
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Programa de Estudios : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" id="pe" name="pe" value="" required="required">
+                            <option></option>
+                          <?php 
+                            $b_busc_car = buscarCarreras($conexion);
+                            while ($res_b_busc_car = mysqli_fetch_array($b_busc_car)) {
+                              $id_pe = $res_b_busc_car['id'];
+                              $pe = $res_b_busc_car['nombre'];
+                              ?>
+                              <option value="<?php echo $id_pe;
+                              ?>"><?php echo $pe; ?></option>
+                            <?php
+                            }
+                            ?>
+                          </select>
+                          <br>
+                        </div>
+                      </div>
                       <div align="center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                           

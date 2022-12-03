@@ -10,6 +10,7 @@ $genero = $_POST['genero'];
 $telefono = $_POST['telefono'];
 $email = $_POST['email'];
 $cargo = $_POST['cargo'];
+$pe = $_POST['pe'];
 
 //verificar si el docente ya esta registrado
 	$busc_ult_docente = "SELECT * FROM docente WHERE dni='$dni'";
@@ -25,7 +26,7 @@ if ($conteo > 0) {
 	$pass = $dni.'_sispa';
 	$pass_secure = password_hash($pass, PASSWORD_DEFAULT);
 
-	$insertar = "INSERT INTO docente (dni, apellidos_nombres, fecha_nac, direccion, correo, telefono, id_genero, nivel_educacion, cond_laboral, id_cargo, password) VALUES ('$dni','$nom_ap','$fecha_nac', '$direccion', '$email', '$telefono', '$genero', '$niv_formacion', '$cond_laboral', '$cargo', '$pass_secure')";
+	$insertar = "INSERT INTO docente (dni, apellidos_nombres, fecha_nac, direccion, correo, telefono, id_genero, nivel_educacion, cond_laboral, id_cargo, id_programa_estudio, password) VALUES ('$dni','$nom_ap','$fecha_nac', '$direccion', '$email', '$telefono', '$genero', '$niv_formacion', '$cond_laboral', '$cargo', '$pe', '$pass_secure')";
 	$ejecutar_insetar = mysqli_query($conexion, $insertar);
 	if ($ejecutar_insetar) {
 		
