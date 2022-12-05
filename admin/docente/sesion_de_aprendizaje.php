@@ -111,7 +111,9 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                 <div class="x_panel">
                   <div class="">
                     <h2 align="center"><b>Sesión de Aprendizaje - Semana <?php echo $r_b_prog_act['semana'];?> - <?php echo $r_b_ud['descripcion']; ?></b></h2>
-                    
+                    <form action="imprimir_sesion.php" method="GET" target="_blank"><input type="hidden" name="data" value="<?php echo $id_sesion; ?>" >
+                    <button type="submit" class="btn btn-info">Imprimir</button>
+                    </form>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -195,7 +197,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                         </tr>-->
                         <tr>
                           <td>Tema o Actividad</td>
-                          <td>: <?php echo $r_b_prog_act['contenidos_basicos'];?></td>
+                          <td>: <?php echo $r_b_prog_act['actividades_aprendizaje'];?></td>
                         </tr>
                         <tr>
                           <td>Actividades de tipo</td>

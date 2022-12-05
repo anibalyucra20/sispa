@@ -184,6 +184,10 @@ function buscarCompetenciasEspecialidadByIdModulo($conexion, $id){
 	$sql = "SELECT * FROM competencias WHERE id_modulo_formativo='$id' AND tipo_competencia='ESPECÍFICA'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarIndicadorLogroCompetenciasById($conexion, $id){
+	$sql = "SELECT * FROM indicador_logro_competencia WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarIndicadorLogroCompetenciasByIdCompetencia($conexion, $id){
 	$sql = "SELECT * FROM indicador_logro_competencia WHERE id_competencia='$id'";
 	return mysqli_query($conexion, $sql);
@@ -199,6 +203,10 @@ function buscarCapacidadesById($conexion, $id){
 }
 function buscarCapacidadesByIdUd($conexion, $id){
 	$sql = "SELECT * FROM capacidades WHERE id_unidad_didactica='$id'";
+	return mysqli_query($conexion, $sql);
+}
+function buscarIndicadorLogroCapacidadById($conexion, $id){
+	$sql = "SELECT * FROM indicador_logro_capacidad WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
 function buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id){
