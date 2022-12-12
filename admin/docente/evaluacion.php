@@ -114,7 +114,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                             $count = 1;
                             while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
                                 ?>
-                                <th><center><?php echo $r_b_evaluacion['detalle'] ?> <a class="btn btn-primary" href="criterios_evaluacion.php?data=<?php echo $id_prog;?>&data2=<?php echo $nro_calificacion; ?>&data3=<?php echo $r_b_evaluacion['detalle'] ?>"><i class="fa fa-edit"></i>Editar</a><br>Ponderado: <input type="number" name="ponderad_<?php echo $count; ?>" value="<?php echo $r_b_evaluacion['ponderado']; ?>" min="0" max="100">%</center></th>
+                                <th><center><?php echo $r_b_evaluacion['detalle'] ?> <a class="btn btn-primary" href="criterios_evaluacion.php?data=<?php echo $id_prog;?>&data2=<?php echo $nro_calificacion; ?>&data3=<?php echo $r_b_evaluacion['detalle'] ?>"><i class="fa fa-edit"></i> Editar</a><br>Ponderado: <input type="number" name="ponderad_<?php echo $count; ?>" value="<?php echo $r_b_evaluacion['ponderado']; ?>" min="0" max="100">%</center></th>
                             
                                 <?php
                                 $count +=1;

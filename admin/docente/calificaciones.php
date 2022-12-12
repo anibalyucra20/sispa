@@ -109,7 +109,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                   
                                   while ($r_b_calificacion = mysqli_fetch_array($b_calificacion)) {
                                     ?>
-                                    <th><center>Calificación <?php echo $cont_ind; ?> <a class="btn btn-primary" href="evaluacion.php?data=<?php echo $id_prog;?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-edit"></i>Editar</a><br>Ponderado: <input type="number" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100" ></center></th>
+                                    <th><center>Calificación <?php echo $cont_ind; ?> <a class="btn btn-primary" href="evaluacion.php?data=<?php echo $id_prog;?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-edit"></i> Editar</a><br>Ponderado: <input type="number" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100" ></center></th>
                                     <?php
                                     $cont_ind +=1;
                                   }
