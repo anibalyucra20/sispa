@@ -114,13 +114,13 @@ foreach ($detalle_matricula as $valor) {
     }
 
     
-    /*
+    
     echo "<script>
                 alert('Matricula Exitosa');
                 window.location= '../matricula.php'
     			</script>";
 
-    */
+    
 }
 
 }

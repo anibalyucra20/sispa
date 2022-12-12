@@ -125,8 +125,8 @@ include '../include/busquedas.php';
                       </div>
                       
                       <div class="form-group">
-                        <input type="text" id="arr_uds" name="arr_uds">
-                        <input type="text" id="mat_relacion" name="mat_relacion" required>
+                        <input type="hidden" id="arr_uds" name="arr_uds">
+                        <input type="hidden" id="mat_relacion" name="mat_relacion" required>
                         <label class="col-md-3 col-sm-3 col-xs-12 control-label">Seleccione las unidades didáticas :
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12" id="udss">
