@@ -2,8 +2,13 @@
 include 'include/verificar_sesion.php';
 include '../../include/conexion.php';
 include '../include/busquedas.php';
-$id_prog = $_GET['id'];
+
+$id_prog = $_GET['data'];
+$nro_calificacion = $_GET['data2'];
+$detalle_eva = $_GET['data3'];
+
 $b_prog = buscarProgramacionById($conexion, $id_prog);
+
 $res_b_prog = mysqli_fetch_array($b_prog);
 if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
     //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
@@ -25,7 +30,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
-    <title>Calificaciones<?php include ("../../include/header_title.php"); ?></title>
+    <title>Criterios de Evaluación<?php include ("../../include/header_title.php"); ?></title>
     <!--icono en el titulo-->
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <!-- Bootstrap -->
@@ -59,9 +64,10 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
         <!--menu-->
           <?php 
           include ("include/menu.php"); 
-          $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
-        $r_b_ud = mysqli_fetch_array($b_ud);
-        //buscamos la cantidad de indicadores para definir la cantidad de calificaciones
+            $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
+            $r_b_ud = mysqli_fetch_array($b_ud);
+            
+            //buscamos la cantidad de indicadores para definir la cantidad de calificaciones
         $b_capacidades =buscarCapacidadesByIdUd($conexion, $res_b_prog['id_unidad_didactica']);
         $total_indicadores = 0;
         while ($r_b_capacidades = mysqli_fetch_array($b_capacidades)) {
@@ -80,50 +86,47 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="">
-                    <h2 align="center"><b>Calificaciones - <?php echo $r_b_ud['descripcion']; ?></b></h2>
+                    <h2 align="center"><b>Evaluación - <?php echo "Calificacion ".$nro_calificacion." - ".$detalle_eva." - ".$r_b_ud['descripcion']; ?></b></h2>
                     
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <br>
-                    <form role="form" action="operaciones/actualizar_ponderado_calificacion.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                    <form role="form" action="operaciones/actualizar_calificacion.php" class="form-horizontal form-label-left input_mask" method="POST" >
                     <input type="hidden" name="id_prog" value="<?php echo $id_prog; ?>">
-                    
+                    <input type="hidden" name="nro_calificacion" value="<?php echo $nro_calificacion; ?>">
+                    <input type="hidden" name="detalle_eva" value="<?php echo $detalle_eva; ?>">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                       <tr>
+                          <?php 
+                            $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
+                            $r_b_det_mat = mysqli_fetch_array($b_detalle_mat);
+                            $b_calificacion = buscarCalificacionByIdDetalleMatricula_nro($conexion, $r_b_det_mat['id'], $nro_calificacion);
+                            $r_b_calificacion = mysqli_fetch_array($b_calificacion);
+                            $b_evaluacion = buscarEvaluacionByIdCalificacion_detalle($conexion, $r_b_calificacion['id'], $detalle_eva);
+                            $r_b_evaluacion = mysqli_fetch_array($b_evaluacion);
+                            $b_criterio_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_evaluacion['id']);
+                            $cont_col = mysqli_num_rows($b_criterio_evaluacion)+1;
                           
+                          ?> 
                           <th rowspan="2"><center>DNI</center></th>
                           <th rowspan="2"><center>APELLIDOS Y NOMBRES</center></th>
-                          <th colspan="<?php echo $total_indicadores; ?>"><center>CALIFICACIONES</center></th>
-                          <th rowspan="2"><center>PROMEDIO FINAL</center></th>
+                          <th colspan="<?php echo $cont_col; ?>"><center>EVALUACIÓN - <?php echo $detalle_eva; ?></center></th>
+                          
                         </tr>
+                        
                         <tr>
-                            <?php
-                            $b_capacidades =buscarCapacidadesByIdUd($conexion, $res_b_prog['id_unidad_didactica']);
-                            $cont_ind = 1;
-                            
-                                  $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
-                                  $r_b_det_mat = mysqli_fetch_array($b_detalle_mat);
-                                  $b_calificacion = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
-                                  
-                                  while ($r_b_calificacion = mysqli_fetch_array($b_calificacion)) {
-                                    ?>
-                                    <th><center>Calificación <?php echo $cont_ind; ?> <a class="btn btn-primary" href="evaluacion.php?data=<?php echo $id_prog;?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-eye"></i></a><br>Ponderado: <input type="number" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100" ></center></th>
-                                    <?php
-                                    $cont_ind +=1;
-                                  }
-                                  ?>
-
-                                  <?php
-                                  
+                            <?php 
+                                $cont = 1;
+                                while ($r_b_criterio_evaluacion = mysqli_fetch_array($b_criterio_evaluacion)) {
+                                    echo '<th><center><input type="text" name="criterio_'.$cont.'" id="criterio_'.$cont.'" value="'.$r_b_criterio_evaluacion['detalle'].'"><br><br>Ponderado: <input type="number" id="ponderado_'.$cont.'" name="ponderado_'.$cont.'" value="'.$r_b_criterio_evaluacion['ponderado'].'" min="0" max="100">%</center></th>';
+                                    $cont +=1;
+                                }
+                                echo '<th><center>'.'Promedio'.'</center></th>';
                                 
-                                
-                            
-                            
                             
                             ?>
-                            
                         </tr>
                       </thead>
                       <tbody>
@@ -142,50 +145,38 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                           <td><?php echo $r_b_est['dni']; ?></td>
                           <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
                           <?php 
-                          //buscar las calificaciones
-                          $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
+                          $suma_notas = 0;
+                          $cont_notas = 0;
                           $suma_calificacion = 0;
-                          while ($r_b_calificacion = mysqli_fetch_array($b_calificaciones)) {
-                            
-                            $id_calificacion = $r_b_calificacion['id'];
-                            //buscamos las evaluaciones
-                            $suma_evaluacion = 0;
-                            $b_evaluacion = buscarEvaluacionByIdCalificacion($conexion, $id_calificacion);
+
+                            $b_calificacion = buscarCalificacionByIdDetalleMatricula_nro($conexion, $r_b_det_mat['id'], $nro_calificacion);
+                            while ($r_b_calificacion = mysqli_fetch_array($b_calificacion)) {
+                            $b_evaluacion = buscarEvaluacionByIdCalificacion_detalle($conexion, $r_b_calificacion['id'], $detalle_eva);
                             while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
-                              $id_evaluacion = $r_b_evaluacion['id'];
+                            $suma_evaluacion = 0;
                               //buscamos los criterios de evaluacion
-                              $b_criterio_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $id_evaluacion);
+                              $b_criterio_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_evaluacion['id']);
                               $suma_criterios = 0;
                               while ($r_b_criterio_evaluacion = mysqli_fetch_array($b_criterio_evaluacion)) {
                                 if (is_numeric($r_b_criterio_evaluacion['calificacion'])) {
                                   $suma_criterios += (($r_b_criterio_evaluacion['ponderado']/100)*$r_b_criterio_evaluacion['calificacion']);
                                 }
+                                  echo '<td><center><input type="number" id="'.$r_b_est['dni']."_".$r_b_criterio_evaluacion['id'].'" name="'.$r_b_est['dni']."_".$r_b_criterio_evaluacion['id'].'" value="'.$r_b_criterio_evaluacion['calificacion'].'" min="0" max="20"></center></td>';
                               }
-                              $suma_criterios = round($suma_criterios);
-                              $suma_evaluacion += ($r_b_evaluacion['ponderado']/100)*$suma_criterios;
                             }
-                              $suma_calificacion += ($r_b_calificacion['ponderado']/100)*$suma_evaluacion;
                               
-                            if ($suma_evaluacion != 0) {
-                              $calificacion = round($suma_evaluacion);
-                            }else {
-                              $calificacion = "";
+                              if ($suma_criterios==0) {
+                                $mostrar = "";
+                              }else{
+                                $mostrar = number_format($suma_criterios, 0);
+                              }
+                              echo '<td><center><input type="number" id="" name="" value="'.$mostrar.'" min="0" max="20" disabled></center></td>';
+                            
                             }
-                            echo '<td><input type="number" value="'.$calificacion.'" min="0" max="20" disabled> </td>';
-                          }
+                          
                           ?>
                           
                           
-                            <?php
-                            if ($suma_calificacion != 0) {
-                              $calificacion_final = round($suma_calificacion);
-                            }else {
-                              $calificacion_final = "";
-                            }
-                          echo '<td><input type="number" value="'.$calificacion_final.'" min="0" max="20" disabled> </td>';
-                           ?>
-                            
-                           
                         </tr>
                         <?php } ?>
                       </tbody>
@@ -193,11 +184,10 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                     <div align="center">
                         <br>
                         <br>
-                        <a href="unidades_didacticas.php" class="btn btn-danger">Regresar</a>
+                        <a href="evaluacion.php?data=<?php echo $id_prog;?>&data2=<?php echo $nro_calificacion;?>" class="btn btn-danger">Regresar</a>
                         <button type="submit" class="btn btn-success">Guardar</button>
-                        
                     </div>
-                  </form>
+                    </form>
 
 
           </div>

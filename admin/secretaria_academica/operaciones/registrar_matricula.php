@@ -43,38 +43,84 @@ foreach ($detalle_matricula as $valor) {
     //buscamos el ultimo registro de detalle matricula
     $id_detalle_matricula = mysqli_insert_id($conexion);
 
+    //buscamos la cantidad de indicadores tenemos para calcular el ponderado
+    $cont_ind = 0; 
+    $busc_capacidad_p = buscarCapacidadesByIdUd($conexion, $id_ud);
+    while ($res_b_capacidad_p = mysqli_fetch_array($busc_capacidad_p)) {
+        //buscamos indicadores de logro de capacidad
+        $b_indicador_p = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $res_b_capacidad_p['id']);
+        while ($res_b_capacidad_p = mysqli_fetch_array($b_indicador_p)) {
+            $cont_ind += 1;
+        }
+    }
     //buscamos la capacidad de la unidad didactica
     $busc_capacidad = buscarCapacidadesByIdUd($conexion, $id_ud);
     
     $orden = 1; //orden en el que inicia las calificaciones
-    $error = 0;
+    
     while ($res_b_capacidad = mysqli_fetch_array($busc_capacidad)) {
         $id_capacidad = $res_b_capacidad['id'];
         
         // buscar indicadores de logro de capacidad para saber cuantos calificaciones crearemos
         $b_indicador = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id_capacidad);
-        $cont_ind = mysqli_num_rows($b_indicador);
         
         while ($res_b_capacidad = mysqli_fetch_array($b_indicador)) {
+            $ponderado_calificaciones = round(100/$cont_ind);
             //REGISTRAMOS LAS CALIFICACION SEGUN LA CANTIDAD DE INDICADORES DE LOGRO
-            $reg_calificacion = "INSERT INTO calificaciones (id_detalle_matricula, nro_calificacion, calificacion) VALUES ('$id_detalle_matricula','$orden','')";
+            $reg_calificacion = "INSERT INTO calificaciones (id_detalle_matricula, nro_calificacion, ponderado) VALUES ('$id_detalle_matricula','$orden','$ponderado_calificaciones')";
             $ejecutar_reg_calificacion = mysqli_query($conexion, $reg_calificacion);
             $orden = $orden+1;
+            
+            $id_calificacion = mysqli_insert_id($conexion);
+            $ponderado_evaluacion = round(100/3);
+            //registramos las evaluaciones para las calificaciones - se crearan 3 --> conceptual, procedimental y actitudinal
+            for ($i=1; $i <= 3; $i++) {
+                if ($i==1){ $det_eva = "Conceptual";};
+                if ($i==2){ $det_eva = "Procedimental";};
+                if ($i==3){ $det_eva = "Actitudinal";};
+                $reg_evaluacion = "INSERT INTO evaluacion (id_calificacion, detalle, ponderado) VALUES ('$id_calificacion','$det_eva','$ponderado_evaluacion')";
+                $ejecutar_reg_evaluacion = mysqli_query($conexion, $reg_evaluacion);
+
+                $id_evaluacion = mysqli_insert_id($conexion);
+                $ponderado_c_evaluacion = round(100/5);
+                // registramos los 5 criterios de evaluacion para cada evaluacion
+                for ($j=1; $j <= 5; $j++) { 
+                    $reg_criterio_evaluacion = "INSERT INTO criterio_evaluacion (id_evaluacion, detalle, ponderado, calificacion) VALUES ('$id_evaluacion','','$ponderado_c_evaluacion','')";
+                    $ejecutar_reg_criterio_evaluacion = mysqli_query($conexion, $reg_criterio_evaluacion);
+                }
+            }
+
         }
     }
-    if (!$ejecutar_reg_det_mat) {
-        echo "<script>
-			alert('El estudiante ya esta matriculado en este periodo Académico');
-			window.history.back();
-		</script>
-		";
+    //procedemos a crear el registro de asistencia para cada sesion de la ud programada
+    $id_programacion = $valor;
+    //buscar silabo
+    $b_silabo = buscarSilaboByIdProgramacion($conexion, $id_programacion);
+    $r_b_silabo = mysqli_fetch_array($b_silabo);
+    $id_silabo = $r_b_silabo['id'];
+    //buscar programacion de actividades de silabo
+    $b_prog_act_silabo = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
+
+    while ($r_b_prog_act_silabo = mysqli_fetch_array($b_prog_act_silabo)) {
+        $id_prog_act_silabo = $r_b_prog_act_silabo['id'];
+        //buscamos las sesiones de aprendizaje para generar las asistencias
+        $b_sesion_apre = buscarSesionByIdProgramacionActividades($conexion, $id_prog_act_silabo);
+        while ($r_b_sesion_apre = mysqli_fetch_array($b_sesion_apre)) {
+            //generamos asistencia para cada sesion de aprendizaje
+            $id_sesion = $r_b_sesion_apre['id'];
+            $r_asistencia = "INSERT INTO asistencia (id_sesion_aprendizaje, id_estudiante, asistencia) VALUES ('$id_sesion','$id_est','')";
+            $ejecutar_r_asistencia = mysqli_query($conexion, $r_asistencia);
+        }
     }
+
     
+    /*
     echo "<script>
+                alert('Matricula Exitosa');
                 window.location= '../matricula.php'
     			</script>";
 
-    
+    */
 }
 
 }
