@@ -107,7 +107,7 @@ transform: rotate(180deg);
                     <input type="hidden" name="id_prog" id="id_prog" value="<?php echo $id_prog; ?>">
                     <input type="hidden" name="nro_calificacion" id="nro_calificacion" value="<?php echo $nro_calificacion; ?>">
                     <input type="hidden" name="cant_calif" value="<?php echo $total_indicadores; ?>">
-                    <table id="" class="table table-striped table-bordered" style="width:100%">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                       <tr>
                           <th rowspan="3"><center>DNI</center></th>
