@@ -157,6 +157,10 @@ function buscarCriterioEvaluacionByEvaluacion($conexion, $id){
 	$sql = "SELECT * FROM criterio_evaluacion WHERE id_evaluacion = '$id' ORDER BY id";
 	return mysqli_query($conexion, $sql);
 }
+function buscarCriterioEvaluacionByEvaluacionOrden($conexion, $id, $orden){
+	$sql = "SELECT * FROM criterio_evaluacion WHERE id_evaluacion = '$id' AND orden='$orden' ORDER BY id";
+	return mysqli_query($conexion, $sql);
+}
 
 
 function buscarProgramacion($conexion){
