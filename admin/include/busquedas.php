@@ -281,6 +281,11 @@ function buscarActividadesEvaluacionByIdSesion($conexion, $id){
 	$sql = "SELECT * FROM actividad_evaluacion_sesion_aprendizaje WHERE id_sesion_aprendizaje='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarAsistenciaBySesionAndEstudiante($conexion, $id, $estudiante){
+	$sql = "SELECT * FROM asistencia WHERE id_sesion_aprendizaje='$id' AND id_estudiante='$estudiante'";
+	return mysqli_query($conexion, $sql);
+}
+
 
 
 // -------------------------- FUNCIONES ACTUALIZAR --------------------------

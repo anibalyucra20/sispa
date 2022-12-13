@@ -110,6 +110,7 @@ include '../include/busquedas.php';
                             <a title="Sílabos" class="btn btn-warning" href="silabos.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-book"></i></a>
                             <a title="Sesiones de Aprendizaje" class="btn btn-primary" href="sesiones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-briefcase"></i></a>
                             <a title="Calificaciones" class="btn btn-info" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                            <a title="Asistencia" class="btn btn-success" href="asistencias.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-group"></i></a>
                             
                           </td>
                         </tr>  
