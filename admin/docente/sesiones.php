@@ -49,6 +49,16 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
   src="https://code.jquery.com/jquery-3.6.0.js"
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
+  <script>
+    function confirmard(){
+      var r = confirm("Estas Seguro de Duplicar la sesion?");
+      if (r == true) {
+        return true;
+      }else{
+        return false;
+      }
+    }
+  </script>
 
   </head>
 
@@ -97,6 +107,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                       <thead>
                         <tr>
                           <th>Semana</th>
+                          <th>Sesión</th>
                           <th>Unidad Didactica</th>
                           <th>Docente</th>
                           <th>Acciones</th>
@@ -110,12 +121,16 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 // buscamos la sesion que corresponde
                                 $id_act = $res_b_prog_act['id'];
                                 $b_sesion = buscarSesionByIdProgramacionActividades($conexion, $id_act);
-                                $r_b_sesion = mysqli_fetch_array($b_sesion);
+                                $contar = 0;
+                                while ($r_b_sesion = mysqli_fetch_array($b_sesion)) {
+                                 $contar +=1;
+                                
                                 $id_sesion = $r_b_sesion['id'];
                                 $id_docente = $res_b_prog['id_docente'];
                         ?>
                         <tr>
                           <td><?php echo $res_b_prog_act['semana']; ?></td>
+                          <td><?php echo $contar; ?></td>
                           <td><?php echo $r_b_ud['descripcion']; ?></td>
                           <?php 
                           $ejec_busc_docente= buscarDocenteById($conexion, $id_docente);
@@ -125,16 +140,18 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                           <td>
                             <a title="Ver / Editar" class="btn btn-success" href="sesion_de_aprendizaje.php?id=<?php echo $r_b_sesion['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
                             <a title="Imprimir" class="btn btn-info" target="_blank" href="imprimir_sesion.php?data=<?php echo $r_b_sesion['id']; ?>"><i class="fa fa-print"></i></a>
+                            <a title="Duplicar Sesión de Aprendizaje" class="btn btn-warning" href="operaciones/duplicar_sesion.php?data=<?php echo $r_b_sesion['id']; ?>&data2=<?php echo $id_prog; ?>" onclick="return confirmard();"><i class="fa fa-plus-square"></i></a>
                           </td>
                         </tr>  
                         <?php
+                        }
                           };
                         ?>
 
                       </tbody>
                     </table>
                     
-                  </div>
+                    </div>
 
                 </div>
             

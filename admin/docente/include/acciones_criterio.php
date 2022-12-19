@@ -24,18 +24,19 @@
                   ?>
                   <input type="hidden" id="ord_crit_<?php echo $r_b_critt_eva['id']; ?>" value="<?php echo $r_b_critt_eva['orden']; ?>">
                   <input type="hidden" id="detalle_eva_<?php echo $r_b_critt_eva['id']; ?>" value="<?php echo $r_b_eva_crit['detalle']; ?>">
+                  <input type="hidden"  id="peso_crit_<?php echo $r_b_critt_eva['id']; ?>" name="" value="<?php echo $r_b_critt_eva['ponderado']; ?>" min="0" max="100" >
                   <input type="text" class="form-control" id="ndetalle_<?php echo $r_b_critt_eva['id']; ?>" required="" value="<?php echo $r_b_critt_eva['detalle']; ?>">
                   
                   <br>
                 </div>
             </div>   
-            <div class="form-group">
+            <!--<div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">Ponderado (peso) : </label>
                 <div class="col-md-9 col-sm-9 col-xs-12">
-                  <input type="number"  id="peso_crit_<?php echo $r_b_critt_eva['id']; ?>" name="" value="<?php echo $r_b_critt_eva['ponderado']; ?>" min="0" max="100" >%
+                  
                   <br>
                 </div>
-            </div> 
+            </div> -->
             <div align="center">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
               <button class="btn btn-primary" type="reset">Deshacer Cambios</button>

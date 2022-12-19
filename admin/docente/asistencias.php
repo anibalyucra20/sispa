@@ -116,7 +116,7 @@ transform: rotate(180deg);
                     <input type="hidden" name="id_prog" value="<?php echo $id_prog; ?>">
                     <input type="hidden" name="cant_as" value="<?php echo $cont_asis; ?>">
                     
-                    <table id="" class="table table-striped table-bordered" style="width:100%">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                       <tr>
                           
@@ -181,14 +181,13 @@ transform: rotate(180deg);
                                             $r_b_asistencia = mysqli_fetch_array($b_asistencia);
                                             ?>
                                             <td>
-                                                <select name="<?php echo $r_b_estudiante['dni']."_".$r_b_asistencia['id'] ?>" id="<?php echo $r_b_estudiante['dni']."_".$r_b_asistencia['id'] ?>">
+                                              
+                                              <select name="<?php echo $r_b_estudiante['dni']."_".$r_b_asistencia['id'] ?>" id="<?php echo $r_b_estudiante['dni']."_".$r_b_asistencia['id'] ?>">
                                                     <option value=""></option>
                                                     <option value="P" <?php if($r_b_asistencia['asistencia']=="P"){echo "selected";} ?>>P</option>
                                                     <option value="F" <?php if($r_b_asistencia['asistencia']=="F"){echo "selected";} ?>>F</option>
                                                 </select>
                                             </td>
-
-
                                             <?php
                                             if ($r_b_asistencia['asistencia']=="F") {
                                                 $cont_inasistencia += 1;

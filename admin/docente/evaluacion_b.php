@@ -155,7 +155,7 @@ transform: rotate(180deg);
                                     
                                     <p class="verticalll" id=""><?php echo $r_b_critt_eva['detalle']; ?></p>
                                     <br>
-                                    Peso: <?php echo $r_b_critt_eva['ponderado']; ?>%
+                                    <!--Peso: <?php echo $r_b_critt_eva['ponderado']; ?>%-->
                                     </center>
                                 </th>
                                 <?php
@@ -202,11 +202,14 @@ transform: rotate(180deg);
                               //buscamos los criterios de evaluacion
                               $b_criterio_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $id_evaluacion);
                               $suma_criterios = 0;
+                              $cont_c = 0;
                               while ($r_b_criterio_evaluacion = mysqli_fetch_array($b_criterio_evaluacion)) {
                                 if (is_numeric($r_b_criterio_evaluacion['calificacion'])) {
-                                  $suma_criterios += (($r_b_criterio_evaluacion['ponderado']/100)*$r_b_criterio_evaluacion['calificacion']);
+                                  $suma_criterios += $r_b_criterio_evaluacion['calificacion'];
+                                  $cont_c += 1;
+                                  //$suma_criterios += (($r_b_criterio_evaluacion['ponderado']/100)*$r_b_criterio_evaluacion['calificacion']);
                                 }
-                                if ($r_b_criterio_evaluacion['calificacion']>12) {
+                                if ($r_b_criterio_evaluacion['calificacion']>12 && $r_b_criterio_evaluacion['calificacion']<=20) {
                                   $colort = 'style="color:blue; "';
                                 }else{
                                   $colort = 'style="color:red; "';
@@ -214,11 +217,17 @@ transform: rotate(180deg);
                                 echo '<td width="20px"><input type="number" '.$colort.' id="" name="'.$r_b_est['dni'].'_'.$r_b_criterio_evaluacion['id'].'" value="'.$r_b_criterio_evaluacion['calificacion'].'" min="0" max="20" ></td>';
                               }
                               
-                              $suma_evaluacion += ($r_b_evaluacion['ponderado']/100)*$suma_criterios;
-                              if ($suma_criterios==0) {
+                              //$suma_evaluacion += ($r_b_evaluacion['ponderado']/100)*$suma_criterios;
+                              if ($cont_c>0) {
+                                $calificacion = round($suma_criterios/$cont_c);
+                              }else {
+                                $calificacion = round($suma_criterios);
+                              }
+                              //$calificacion = $suma_criterios/$cont_c;
+                              if ($calificacion==0) {
                                 $mostrar = "";
                               }else{
-                                $mostrar = round($suma_criterios);
+                                $mostrar = round($calificacion);
                               }
                               if ($mostrar>12) {
                                 echo '<th><center><font color="blue">'.$mostrar.'</font></center></th>';
