@@ -39,7 +39,7 @@
             </div> -->
             <div align="center">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button class="btn btn-primary" type="reset">Deshacer Cambios</button>
+              
               <button type="button" class="btn btn-primary" onclick="lansarForm(<?php echo $r_b_critt_eva['id']; ?>)">Guardar</button>
             </div>
                     
