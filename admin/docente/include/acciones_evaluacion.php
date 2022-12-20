@@ -34,7 +34,6 @@
             </div> 
             <div align="center">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button class="btn btn-primary" type="reset">Deshacer Cambios</button>
               <button type="button" class="btn btn-primary" onclick="actualizarEvaluacion(<?php echo $r_b_evaluacion['id']; ?>)">Guardar</button>
             </div>
                     
