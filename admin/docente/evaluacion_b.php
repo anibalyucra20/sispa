@@ -113,6 +113,7 @@ transform: rotate(180deg);
                           <th rowspan="3"><center>DNI</center></th>
                           <th rowspan="3"><center>APELLIDOS Y NOMBRES</center></th>
                           <th colspan="18"><center>EVALUACIÓN</center></th>
+                          <th rowspan="3" bgcolor="#D5D2D2"><center><p class="verticalll">PROMEDIO DE CALIFICACIÓN</p></center></th>
                           
                         </tr>
                         <tr>
@@ -164,7 +165,7 @@ transform: rotate(180deg);
                                 }
                                 ?>
                                 <th height="auto" width="20px" bgcolor="#D5D2D2"><center>
-                                <p class="verticalll">Promedio</p>
+                                <p class="verticalll">Promedio <?php echo $r_b_evaluacion['detalle']; ?></p>
                                 </center></th>
                                 <?php
                                 
@@ -196,9 +197,10 @@ transform: rotate(180deg);
                             $b_calificacion = buscarCalificacionByIdDetalleMatricula_nro($conexion, $r_b_det_mat['id'], $nro_calificacion);
                             while ($r_b_calificacion = mysqli_fetch_array($b_calificacion)) {
                             $b_evaluacion = buscarEvaluacionByIdCalificacion($conexion, $r_b_calificacion['id']);
+                            $suma_evaluacion = 0;
                             while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
                               $id_evaluacion = $r_b_evaluacion['id'];
-                              $suma_evaluacion = 0;
+                              
                               //buscamos los criterios de evaluacion
                               $b_criterio_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $id_evaluacion);
                               $suma_criterios = 0;
@@ -234,7 +236,19 @@ transform: rotate(180deg);
                               }else{
                                 echo '<th><center><font color="red">'.$mostrar.'</font></center></th>';
                               }
-                              
+                              $suma_evaluacion += ($r_b_evaluacion['ponderado']/100)*$calificacion;
+                            }
+                            if ($suma_evaluacion != 0) {
+                              $calificacion_e = round($suma_evaluacion);
+                            }else {
+                              $calificacion_e = "";
+                            }
+                            if ($calificacion_e>12) {
+                              //echo '<td><center><font color="blue">'.$calificacion.'</font></center></td>';
+                              echo '<th><center><input type="number" style="color:blue;" value="'.$calificacion_e.'" min="0" max="20" disabled></center></th>';
+                            }else{
+                              //echo '<td><center><font color="red">'.$calificacion.'</font></center></td>';
+                              echo '<th><center><input type="number" style="color:red;" value="'.$calificacion_e.'" min="0" max="20" disabled></center></th>';
                             }
                         }
                           
