@@ -81,6 +81,10 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                 <div class="x_panel">
                   <div class="">
                     <h2 align="center"><b>Calificaciones - <?php echo $r_b_ud['descripcion']; ?></b></h2>
+                    <form action="imprimir_calificaciones.php" method="POST" target="_blank">
+                      <input type="hidden" name="data" value="<?php echo $id_prog; ?>" >
+                    <button type="submit" class="btn btn-info">Imprimir</button>
+                    </form>
                     
                     <div class="clearfix"></div>
                   </div>
