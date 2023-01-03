@@ -54,12 +54,7 @@
                   </li>
                   <li><a><i class="fa fa-book"></i> Evaluación <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="evaluacion.php">Registro de Evaluación</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart"></i>Reportes<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="reportes.php">reportes</a></li>
+                      <li class="sub_menu"><a href="evaluaciones.php">Registro de Evaluación</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-gears"></i>Mantenimiento<span class="fa fa-chevron-down"></span></a>
@@ -67,10 +62,10 @@
                       <li><a href="datos.php">Datos Institucionales</a></li>
                       <li><a href="programa_estudio.php">Programas de estudio</a></li>
                       <li><a href="modulo_formativo.php">Módulos Formativos</a></li>
-                      <li><a href="competencias.php">Competencias</a></li>
-                      <li><a href="capacidades.php">Capacidades</a></li>
                       <li><a href="semestre.php">Semestre</a></li>
                       <li><a href="unidad_didactica.php">Unidades Didacticas</a></li>
+                      <li><a href="competencias.php">Competencias</a></li>
+                      <li><a href="capacidades.php">Capacidades</a></li>
                       <li><a href="cargo.php">Cargos</a></li>
                       <li><a href="sistema.php">Sistema</a></li>
                     </ul>

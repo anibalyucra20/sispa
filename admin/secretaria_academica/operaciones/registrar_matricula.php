@@ -37,7 +37,7 @@ foreach ($detalle_matricula as $valor) {
     $id_ud = $res_b_prog['id_unidad_didactica'];
 
     //REGISTRAMOS EL DETALLE DE LA MATRICULA
-    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, id_programacion_ud) VALUES ('$id_matricula','$valor')";
+    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, id_programacion_ud, recuperacion) VALUES ('$id_matricula','$valor','')";
     $ejecutar_reg_det_mat = mysqli_query($conexion, $reg_det_mat);
 
     //buscamos el ultimo registro de detalle matricula

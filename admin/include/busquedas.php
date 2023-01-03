@@ -175,6 +175,10 @@ function buscarProgramacionByIdDocente($conexion, $id){
 	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id_docente='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarProgramacionByIdPeriodo($conexion, $id){
+	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id_periodo_acad='$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarProgramacionByIdDocentePeriodo($conexion, $id_docente, $id_periodo){
 	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id_docente='$id_docente' AND id_periodo_acad='$id_periodo'";
 	return mysqli_query($conexion, $sql);

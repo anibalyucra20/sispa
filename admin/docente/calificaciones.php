@@ -51,6 +51,17 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
 
+  <style>
+    p.verticalll{
+  /* idéntico a rotateZ(45deg); */
+
+  writing-mode: vertical-lr;
+transform: rotate(180deg);
+
+  
+}
+  </style>
+
   </head>
 
   <body class="nav-md">
@@ -81,9 +92,13 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                 <div class="x_panel">
                   <div class="">
                     <h2 align="center"><b>Calificaciones - <?php echo $r_b_ud['descripcion']; ?></b></h2>
-                    <form action="imprimir_calificaciones.php" method="POST" target="_blank">
+                    <form action="prueba_tcpdf.php" method="POST" target="_blank">
                       <input type="hidden" name="data" value="<?php echo $id_prog; ?>" >
                     <button type="submit" class="btn btn-info">Imprimir</button>
+                    </form>
+                    <form action="generar_excel.php" method="POST" target="_blank">
+                      <input type="hidden" name="data" value="<?php echo $id_prog; ?>" >
+                    <button type="submit" class="btn btn-warning">Reporte Registra</button>
                     </form>
                     
                     <div class="clearfix"></div>
@@ -93,14 +108,15 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                     <form role="form" action="operaciones/actualizar_ponderado_calificacion.php" class="form-horizontal form-label-left input_mask" method="POST" >
                     <input type="hidden" name="id_prog" value="<?php echo $id_prog; ?>">
                     
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table id="" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                       <tr>
                           
                           <th rowspan="2"><center>DNI</center></th>
                           <th rowspan="2"><center>APELLIDOS Y NOMBRES</center></th>
-                          <th colspan="<?php echo $total_indicadores; ?>"><center>CALIFICACIONES</center></th>
-                          <th rowspan="2"><center>PROMEDIO FINAL</center></th>
+                          <th colspan="<?php echo $total_indicadores; ?>"><center>INDICADORES DE LOGRO</center></th>
+                          <th rowspan="2"><center><p class="verticalll">RECUPERACION</p></center></th>
+                          <th rowspan="2"><center><p class="verticalll">PROMEDIO FINAL</p></center></th>
                         </tr>
                         <tr>
                             <?php
@@ -113,7 +129,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                   
                                   while ($r_b_calificacion = mysqli_fetch_array($b_calificacion)) {
                                     ?>
-                                    <th><center>Calificación <?php echo $cont_ind; ?> <a class="btn btn-primary" href="evaluacion_b.php?data=<?php echo $id_prog;?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-edit"></i> Evaluar</a><br>Ponderado: 
+                                    <th><center>Indicador - <?php echo $cont_ind; ?> <a class="btn btn-primary" href="evaluacion_b.php?data=<?php echo $id_prog;?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-edit"></i> Evaluar</a><br>Ponderado: 
                                     <input type="number" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100" >%</center></th>
                                     <?php
                                     $cont_ind +=1;
@@ -202,10 +218,24 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                             }else {
                               $calificacion_final = "";
                             }
+                            if ($calificacion_final<=12 && $calificacion_final>=10) {
+                              if ($r_b_det_mat['recuperacion']>12) {
+                                echo'<td><input type="number" style="color:blue;" name="recuperacion_'.$r_b_det_mat['id'].'" value="'.$r_b_det_mat['recuperacion'].'" min="0" max="20" ></td>';
+                              }else{
+                                echo'<td><input type="number" style="color:red;" name="recuperacion_'.$r_b_det_mat['id'].'" value="'.$r_b_det_mat['recuperacion'].'" min="0" max="20" ></td>';
+                              }
+
+                            }else{
+                              echo'<td></td>';
+                            }
+                            if ($r_b_det_mat['recuperacion']!='') {
+                                $calificacion_final = $r_b_det_mat['recuperacion'];
+                            }
                             if ($calificacion_final>12) {
                               //echo '<th><center><font color="blue">'.$calificacion_final.'</font></center></th>';
                               echo '<th><center><input type="number" style="color:blue;" value="'.$calificacion_final.'" min="0" max="20" disabled></center></th>';
                             }else{
+                              
                               //echo '<th><center><font color="red">'.$calificacion_final.'</font></center></th>';
                               echo '<th><center><input type="number" style="color:red;" value="'.$calificacion_final.'" min="0" max="20" disabled></center></th>';
                             }

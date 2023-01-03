@@ -107,8 +107,8 @@ transform: rotate(180deg);
                     <input type="hidden" name="id_prog" id="id_prog" value="<?php echo $id_prog; ?>">
                     <input type="hidden" name="nro_calificacion" id="nro_calificacion" value="<?php echo $nro_calificacion; ?>">
                     <input type="hidden" name="cant_calif" value="<?php echo $total_indicadores; ?>">
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
-                      <thead>
+                    <table id="" class="table table-striped jambo_table bulk_action" style="width:100%">
+                      
                       <tr>
                           <th rowspan="3"><center>DNI</center></th>
                           <th rowspan="3"><center>APELLIDOS Y NOMBRES</center></th>
@@ -172,7 +172,7 @@ transform: rotate(180deg);
                             }  ?>
                         </tr>
                         
-                      </thead>
+                      
                       <tbody>
                       <?php 
                         $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);

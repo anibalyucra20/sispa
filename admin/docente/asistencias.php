@@ -116,7 +116,7 @@ transform: rotate(180deg);
                     <input type="hidden" name="id_prog" value="<?php echo $id_prog; ?>">
                     <input type="hidden" name="cant_as" value="<?php echo $cont_asis; ?>">
                     
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table id="" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                       <tr>
                           
