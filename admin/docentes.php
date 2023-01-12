@@ -63,30 +63,31 @@ include 'include/busquedas.php';
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th>Identificador</th>
+                          <th>Nro</th>
                           <th>DNI</th>
                           <th>Apellidos y Nombres</th>
                           <th>Cond. Laboral</th>
                           <th>Fecha de Nacimiento</th>
-                          <th>Nivel de Formación</th>
                           <th>Teléfono</th>
                           <th>Correo</th>
                           <th>Cargo</th>
+                          <th>Activo</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <?php 
-                          $ejec_busc_doc = buscarDocente($conexion); 
+                        <?php
+                          $contr = 0; 
+                          $ejec_busc_doc = buscarDocenteOrdesByApellidosNombres($conexion); 
                           while ($res_busc_doc=mysqli_fetch_array($ejec_busc_doc)){
+                            $contr +=1;
                         ?>
                         <tr>
-                          <td><?php echo $res_busc_doc['id']; ?></td>
+                          <td><?php echo $contr; ?></td>
                           <td><?php echo $res_busc_doc['dni']; ?></td>
                           <td><?php echo $res_busc_doc['apellidos_nombres']; ?></td>
                           <td><?php echo $res_busc_doc['cond_laboral']; ?></td>
                           <td><?php echo $res_busc_doc['fecha_nac']; ?></td>
-                          <td><?php echo $res_busc_doc['nivel_educacion']; ?></td>
                           <td><?php echo $res_busc_doc['telefono']; ?></td>
                           <td><?php echo $res_busc_doc['correo']; ?></td>
                           <?php
@@ -95,6 +96,7 @@ include 'include/busquedas.php';
                             $res_busc_carg=mysqli_fetch_array($ejec_busc_carg);
                           ?>
                           <td><?php echo $res_busc_carg['descripcion']; ?></td>
+                          <td><?php if ($res_busc_doc['activo']== 0) { echo "NO";}else { echo "SI";} ?></td>
                           <td>
                             <button class="btn btn-success" data-toggle="modal" data-target=".edit_<?php echo $res_busc_doc['id']; ?>"><i class="fa fa-pencil-square-o"></i> Editar</button></td>
                         </tr>  

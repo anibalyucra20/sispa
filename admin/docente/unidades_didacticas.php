@@ -46,7 +46,7 @@ include '../include/busquedas.php';
       <div class="main_container">
         <!--menu-->
           <?php 
-          include ("include/menu.php"); ?>
+          include ("include/menu_docente.php"); ?>
 
         <!-- page content -->
         <div class="right_col" role="main">

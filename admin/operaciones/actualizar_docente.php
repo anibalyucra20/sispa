@@ -14,18 +14,19 @@ $telefono = $_POST['telefono'];
 $email = $_POST['email'];
 $cargo = $_POST['cargo'];
 $pe = $_POST['pe'];
+$activo = $_POST['activo'];
 
 //verificar que el dni solo este registrado 1 vez
 $busc_doc = "SELECT * FROM docente WHERE dni='$dni'";
 $ejec_busc_doc = mysqli_query($conexion, $busc_doc);
 $conteo = mysqli_num_rows($ejec_busc_doc);
 if(($dni_a != $dni) && ($conteo == 0)){
-    $sql = "UPDATE docente SET dni='$dni', apellidos_nombres='$nom_ap', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', id_genero='$genero', nivel_educacion='$niv_formacion', cond_laboral='$cond_laboral', id_cargo='$cargo',id_programa_estudio='$pe' WHERE id=$id";
+    $sql = "UPDATE docente SET dni='$dni', apellidos_nombres='$nom_ap', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', id_genero='$genero', nivel_educacion='$niv_formacion', cond_laboral='$cond_laboral', id_cargo='$cargo',id_programa_estudio='$pe', activo='$activo' WHERE id=$id";
     $ejec_consulta = mysqli_query($conexion, $sql);
     if ($ejec_consulta) {
         echo "<script>
 			alert('Registro Actualizado de manera Correcta');
-			window.location= '../docente.php';
+			window.location= '../docentes.php';
 		</script>
 	";
     }else {
@@ -37,12 +38,12 @@ if(($dni_a != $dni) && ($conteo == 0)){
     }
 
 }elseif (($dni_a == $dni)) {
-    $sql = "UPDATE docente SET apellidos_nombres='$nom_ap', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', id_genero='$genero', nivel_educacion='$niv_formacion', cond_laboral='$cond_laboral', id_cargo='$cargo',id_programa_estudio='$pe' WHERE id=$id";
+    $sql = "UPDATE docente SET apellidos_nombres='$nom_ap', fecha_nac='$fecha_nac', direccion='$direccion', correo='$email', telefono='$telefono', id_genero='$genero', nivel_educacion='$niv_formacion', cond_laboral='$cond_laboral', id_cargo='$cargo',id_programa_estudio='$pe', activo='$activo' WHERE id=$id";
     $ejec_consulta = mysqli_query($conexion, $sql);
     if ($ejec_consulta) {
         echo "<script>
 			alert('Registro Actualizado de manera Correcta');
-			window.location= '../docente.php';
+			window.location= '../docentes.php';
 		</script>
 	";
     }else {

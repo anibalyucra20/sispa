@@ -140,6 +140,17 @@
                           <br>
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Activo : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" id="activo" name="activo" value="" required="required">
+                            <option></option>
+                            <option value="1" <?php if($res_busc_doc['activo']==1){ echo "selected"; } ?>>SI</option>
+                            <option value="0" <?php if($res_busc_doc['activo']==0){ echo "selected"; } ?>>NO</option>
+                          </select>
+                          <br>
+                        </div>
+                      </div>
                       <div align="center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                           

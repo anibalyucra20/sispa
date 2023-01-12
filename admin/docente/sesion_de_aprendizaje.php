@@ -72,7 +72,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
       <div class="main_container">
         <!--menu-->
           <?php 
-          include ("include/menu.php"); 
+          include ("include/menu_docente.php"); 
         //buscar datos del periodo
         $b_periodo = buscarPeriodoAcadById($conexion, $res_b_prog['id_periodo_acad']);
         $r_b_periodo = mysqli_fetch_array($b_periodo); 

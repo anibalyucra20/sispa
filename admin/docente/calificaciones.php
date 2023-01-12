@@ -68,7 +68,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
       <div class="main_container">
         <!--menu-->
         <?php
-        include("include/menu.php");
+        include("include/menu_docente.php");
         $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
         $r_b_ud = mysqli_fetch_array($b_ud);
         //buscamos la cantidad de indicadores para definir la cantidad de calificaciones

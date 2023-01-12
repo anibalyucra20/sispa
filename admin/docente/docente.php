@@ -35,7 +35,7 @@
     <div class="container body">
       <div class="main_container">
           <?php 
-          include ("include/menu.php"); 
+          include ("include/menu_docente.php"); 
           $b_periodo_act = buscarPresentePeriodoAcad($conexion);
           $r_b_periodo_act = mysqli_fetch_array($b_periodo_act);
           $b_perido = buscarPeriodoAcadById($conexion, $r_b_periodo_act['id_periodo_acad']);

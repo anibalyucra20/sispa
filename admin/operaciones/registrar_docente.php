@@ -27,13 +27,13 @@ if ($conteo > 0) {
 	$pass = $dni.'_sispa';
 	$pass_secure = password_hash($pass, PASSWORD_DEFAULT);
 
-	$insertar = "INSERT INTO docente (dni, apellidos_nombres, fecha_nac, direccion, correo, telefono, id_genero, nivel_educacion, cond_laboral, id_cargo, id_programa_estudio, password) VALUES ('$dni','$nom_ap','$fecha_nac', '$direccion', '$email', '$telefono', '$genero', '$niv_formacion', '$cond_laboral', '$cargo', '$pe', '$pass_secure')";
+	$insertar = "INSERT INTO docente (dni, apellidos_nombres, fecha_nac, direccion, correo, telefono, id_genero, nivel_educacion, cond_laboral, id_cargo, id_programa_estudio, password, activo) VALUES ('$dni','$nom_ap','$fecha_nac', '$direccion', '$email', '$telefono', '$genero', '$niv_formacion', '$cond_laboral', '$cargo', '$pe', '$pass_secure', 1)";
 	$ejecutar_insetar = mysqli_query($conexion, $insertar);
 	if ($ejecutar_insetar) {
 		
 			echo "<script>
                 alert('Registro Existoso');
-                window.location= '../docente.php'
+                window.location= '../docentes.php'
     			</script>";
 			
 	}else{
