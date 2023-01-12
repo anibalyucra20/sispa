@@ -1,6 +1,6 @@
 <?php
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
+include "../../include/conexion.php";
 
 $id = $_POST['id'];
 $sem = $_POST['semestre'];

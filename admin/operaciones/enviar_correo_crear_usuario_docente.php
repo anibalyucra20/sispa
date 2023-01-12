@@ -1,14 +1,14 @@
 <?php 
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
-include '../../include/busquedas.php';
+include "../../include/conexion.php";
+include '../include/busquedas.php';
 		use PHPMailer\PHPMailer\PHPMailer;
 		use PHPMailer\PHPMailer\Exception;
 
 		//enviar correo
-		require '../../../PHPMailer/Exception.php';
-		require '../../../PHPMailer/PHPMailer.php';
-		require '../../../PHPMailer/SMTP.php';
+		require '../../PHPMailer/Exception.php';
+		require '../../PHPMailer/PHPMailer.php';
+		require '../../PHPMailer/SMTP.php';
 
 $id_docente = $_GET['docente'];
 $ejec_busc_doc = buscarDocenteById($conexion, $id_docente);

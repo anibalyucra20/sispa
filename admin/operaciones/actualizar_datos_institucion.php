@@ -1,6 +1,6 @@
 <?php
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
+include "../../include/conexion.php";
 $id = 1;
 $cod_modular = $_POST['cod_modular'];
 $ruc = $_POST['ruc'];

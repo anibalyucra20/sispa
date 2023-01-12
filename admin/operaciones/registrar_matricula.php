@@ -1,7 +1,7 @@
 <?php
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
-include '../../include/busquedas.php';
+include "../../include/conexion.php";
+include '../include/busquedas.php';
 
 $id_periodo_acad = $_SESSION['periodo'];
 $id_est = $_POST['id_est'];

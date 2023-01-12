@@ -1,6 +1,6 @@
 <?php
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
+include "../../include/conexion.php";
 
 $unidad_didactica = $_POST['unidad_didactica'];
 $competencia = $_POST['competencia'];

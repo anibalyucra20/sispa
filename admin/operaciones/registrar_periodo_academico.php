@@ -1,6 +1,6 @@
 <?php
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
+include "../../include/conexion.php";
 session_start();
 $periodo = $_POST['per_acad'];
 $fecha_inicio = $_POST['fecha_inicio'];

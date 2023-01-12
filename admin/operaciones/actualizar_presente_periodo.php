@@ -1,6 +1,6 @@
 <?php
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
+include "../../include/conexion.php";
 session_start();
 $id = $_POST['id'];
 $id_per_acad = $_POST['id_per_acad'];

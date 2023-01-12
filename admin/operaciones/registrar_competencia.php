@@ -1,6 +1,6 @@
 <?php
 include '../include/verificar_sesion_secretaria.php';
-include "../../../include/conexion.php";
+include "../../include/conexion.php";
 
 $modulo = $_POST['modulo'];
 $tipo = $_POST['tipo'];
