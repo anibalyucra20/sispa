@@ -1,5 +1,5 @@
 <?php 
-include '../include/verificar_sesion_secretaria.php';
+include '../include/verificar_sesion_secretaria_operaciones.php';
 include "../../include/conexion.php";
 include '../include/busquedas.php';
 		use PHPMailer\PHPMailer\PHPMailer;

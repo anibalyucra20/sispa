@@ -9,7 +9,7 @@ if(isset($_SESSION['id_director'])){
 }elseif(isset($_SESSION['id_jefe_area'])){
     header("location: coordinador_pe.php");
 }elseif(isset($_SESSION['id_docente'])){
-    header("location: docente/");
+    header("location: docente.php");
 }else{
     header("location: login/");
 }

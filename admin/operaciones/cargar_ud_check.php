@@ -1,5 +1,5 @@
 <?php
-session_start();
+include '../include/verificar_sesion_secretaria_operaciones.php';
 include '../../include/conexion.php';
 include '../include/busquedas.php';
 

@@ -1,5 +1,5 @@
 <?php
-include '../include/verificar_sesion_secretaria.php';
+include '../include/verificar_sesion_secretaria_operaciones.php';
 $id_per = $_GET['dato'];
 if(!isset($_SESSION['id_secretario'])){
     header("location: ../index.php");

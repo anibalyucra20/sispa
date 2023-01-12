@@ -1,5 +1,5 @@
 <?php
-include '../include/verificar_sesion_secretaria.php';
+include '../include/verificar_sesion_secretaria_operaciones.php';
 include "../../include/conexion.php";
 $id = 1;
 $cod_modular = $_POST['cod_modular'];
