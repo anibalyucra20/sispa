@@ -101,6 +101,9 @@ if (!($mostrar_archivo)) {
                     } else {
                         $calificacion = "";
                     }
+                    if ($r_b_det_mat['recuperacion'] != '') {
+                        $calificacion = $r_b_det_mat['recuperacion'];
+                      }
                 ?>
                     <tr>
                         <td><?php echo $ord; ?></td>
