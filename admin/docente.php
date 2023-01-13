@@ -57,7 +57,7 @@
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-pencil-square-o"></i> Mis Unidades Didácticas</span>
               <div class="count"><?php echo $cont_prog; ?></div>
-              <span class="count_bottom"><a href="unidades_didacticas.php"><i class="green">Ver</i></a></span>
+              <span class="count_bottom"><a href="calificaciones_unidades_didacticas.php"><i class="green">Ver</i></a></span>
             </div>
             
             

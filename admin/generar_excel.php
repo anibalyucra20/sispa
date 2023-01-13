@@ -24,6 +24,11 @@ if (!($mostrar_archivo)) {
 } else {
     /*header ("Content-Type: application/vnd.ms-excel; charset=iso-8859-1");
     header ("Content-Disposition: attachment; filename=plantilla.xls");*/
+
+    $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
+    $r_b_ud = mysqli_fetch_array($b_ud);
+    $titulo_archivo = "Reporte_".$r_b_ud['descripcion']."_".date("d")."_".date("m")."_".date("Y");
+    
 ?>
 
     <!DOCTYPE html>
@@ -43,6 +48,8 @@ if (!($mostrar_archivo)) {
     </head>
 
     <body>
+        <?php echo $titulo_archivo; ?>
+        <input type="hidden" id="nombre_archivo" value="<?php echo $titulo_archivo; ?>">
         <table border="1" id="tabla">
             <thead>
                 <tr>
@@ -111,11 +118,12 @@ if (!($mostrar_archivo)) {
     </body>
     <!-- script para exportar a excel -->
     <script>
+        let nombre = document.getElementById("nombre_archivo");
         const $tabla = document.querySelector("#tabla");
             window.addEventListener("load", function() {
             let tableExport = new TableExport($tabla, {
                 exportButtons: false, // No queremos botones
-                filename: "Reporte de prueba", //Nombre del archivo de Excel
+                filename: nombre.value, //Nombre del archivo de Excel
                 sheetname: "Plantilla", //Título de la hoja
             });
             let datos = tableExport.getExportData();
