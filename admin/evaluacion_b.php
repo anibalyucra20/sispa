@@ -114,7 +114,7 @@ if (!($mostrar_archivo)) {
 
                   ?>
                       <div class="">
-                        <h2 align="center"><b>Evaluación - <?php echo "Calificacion " . $nro_calificacion . " - " . $r_b_ud['descripcion']; ?></b></h2>
+                        <h2 align="center"><b>Evaluación - <?php echo "Indicador de Logro " . $nro_calificacion . " - " . $r_b_ud['descripcion']; ?></b></h2>
 
                         <div class="clearfix"></div>
                       </div>
