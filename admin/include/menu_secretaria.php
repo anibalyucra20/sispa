@@ -54,7 +54,7 @@
                   </li>
                   <li><a><i class="fa fa-book"></i> Evaluación <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="evaluaciones.php">Registro de Evaluación</a></li>
+                      <li class="sub_menu"><a href="calificaciones_unidades_didacticas.php">Registro de Evaluación</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-gears"></i>Mantenimiento<span class="fa fa-chevron-down"></span></a>

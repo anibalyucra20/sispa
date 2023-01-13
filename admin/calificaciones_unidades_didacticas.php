@@ -1,5 +1,5 @@
 <?php
-include 'include/verificar_sesion_docente.php';
+include 'include/verificar_sesion_docente_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
 
@@ -45,8 +45,32 @@ include 'include/busquedas.php';
     <div class="container body">
       <div class="main_container">
         <!--menu-->
-          <?php 
-          include ("include/menu_docente.php"); ?>
+          <?php
+          
+          $per_select = $_SESSION['periodo'];
+          if(isset($_SESSION['id_docente'])){
+            $m_silabos = 1;
+            $m_sesiones = 1;
+            $m_calificaciones = 1;
+            $m_asistencia = 1;
+            $id_docente = $_SESSION['id_docente'];
+            include ("include/menu_docente.php");
+            $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
+          }elseif(isset($_SESSION['id_secretario'])) {
+            $m_silabos = 0;
+            $m_sesiones = 0;
+            $m_calificaciones = 1;
+            $m_asistencia = 0;
+            include ("include/menu_secretaria.php");
+            $var_consulta = "WHERE id_periodo_acad=".$per_select;
+          }else {
+            $m_silabos = 0;
+            $m_sesiones = 0;
+            $m_calificaciones = 0;
+            $m_asistencia = 0;
+            $var_consulta = "";
+          }
+           ?>
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -77,8 +101,7 @@ include 'include/busquedas.php';
                       </thead>
                       <tbody>
                         <?php 
-                          $id_docente = $_SESSION['id_docente'];
-                          $ejec_busc_prog = buscarProgramacionByIdDocente($conexion, $id_docente);
+                          $ejec_busc_prog = buscarProgramacionEspecial($conexion, $var_consulta);
                           $contador = 0; 
                           while ($res_busc_prog=mysqli_fetch_array($ejec_busc_prog)){
                             $contador++;
@@ -102,16 +125,31 @@ include 'include/busquedas.php';
                           ?>
                           <td><?php echo $res_busc_semestre['descripcion']; ?></td>
                           <?php 
-                          $ejec_busc_docente= buscarDocenteById($conexion, $id_docente);
+                          $ejec_busc_docente= buscarDocenteById($conexion, $res_busc_prog['id_docente']);
                           $res_busc_docente =mysqli_fetch_array($ejec_busc_docente);
                           ?>
                           <td><?php echo $res_busc_docente['apellidos_nombres']; ?></td>
                           <td>
-                            <a title="Sílabos" class="btn btn-warning" href="silabos.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-book"></i></a>
-                            <a title="Sesiones de Aprendizaje" class="btn btn-primary" href="sesiones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-briefcase"></i></a>
-                            <a title="Calificaciones" class="btn btn-info" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
-                            <a title="Asistencia" class="btn btn-success" href="asistencias.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-group"></i></a>
-                            
+                            <?php if ($m_silabos) {
+                              ?>
+                              <a title="Sílabos" class="btn btn-warning" href="silabos.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-book"></i></a>
+                              <?php
+                            } ?>
+                            <?php if ($m_sesiones) {
+                              ?>
+                              <a title="Sesiones de Aprendizaje" class="btn btn-primary" href="sesiones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-briefcase"></i></a>
+                              <?php
+                            } ?>
+                            <?php if ($m_calificaciones) {
+                              ?>
+                              <a title="Calificaciones" class="btn btn-info" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                              <?php
+                            } ?>
+                            <?php if ($m_asistencia) {
+                              ?>
+                              <a title="Asistencia" class="btn btn-success" href="asistencias.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-group"></i></a>
+                              <?php
+                            } ?>
                           </td>
                         </tr>  
                         <?php

@@ -229,7 +229,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                       <div align="center">
                         <br>
                         <br>
-                        <a href="unidades_didacticas.php" class="btn btn-danger">Regresar</a>
+                        <a href="calificaciones_unidades_didacticas.php" class="btn btn-danger">Regresar</a>
                         <button type="submit" class="btn btn-success">Guardar</button>
 
                       </div>

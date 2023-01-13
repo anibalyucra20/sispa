@@ -1,12 +1,19 @@
 <?php
-include 'include/verificar_sesion_docente.php';
-include "../include/conexion.php";
-include 'include/busquedas.php';
+include_once('include/verificar_sesion_docente_secretaria.php');
+require_once('../tcpdf/tcpdf.php');
+include_once('../include/conexion.php');
+include_once('include/busquedas.php');
 
 $id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
-if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
+if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
+    $mostrar_archivo = 1;
+  }else{
+    $mostrar_archivo = 0;
+  }
+
+if (!($mostrar_archivo)) {
     //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
     //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
     echo "<script>
@@ -15,142 +22,24 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
 		</script>
 	";
 }else {
-
-require '../fpdf185/fpdf.php';
-	
-	class PDF extends FPDF
-	{
-		function Header()
-		{
-			$this->Image('silabo/cabeza.png', 5, 3, 190,);
-			$this->SetFont('Arial','B',15);
-			$this->Cell(30);
-			$this->Cell(120,10, '',0,0,'C');
-			$this->Ln(20);
-		}
-		
-		function Footer()
-		{
-			$this->SetY(-15);
-			$this->Image('silabo/pie.png', 15, 278, 181);
-			$this->SetFont('Arial','B', 10);
-            $this->Cell(0,10, 'Pag. '.$this->PageNo().'             ',0,0,'R' );
-            //$this->Cell(0,10, 'Pag. '.$this->PageNo().'/{nb}',0,0,'R' );
-		}
-        
-        
-
-
-var $widths;
-var $aligns;
-
-function SetWidths($w)
-{
-    //Set the array of column widths
-    $this->widths=$w;
-}
-
-function SetAligns($a)
-{
-    //Set the array of column alignments
-    $this->aligns=$a;
-}
-
-function Row($data)
-{
-    //Calculate the height of the row
-    $nb=0;
-    for($i=0;$i<count($data);$i++)
-        $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
-    $h=5*$nb;
-    //Issue a page break first if needed
-    $this->CheckPageBreak($h);
-    //Draw the cells of the row
-    for($i=0;$i<count($data);$i++)
-    {
-        $w=$this->widths[$i];
-        $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
-        //Save the current position
-        $x=$this->GetX();
-        $y=$this->GetY();
-        //Draw the border
-        $this->Rect($x,$y,$w,$h);
-        //Print the text
-        $this->MultiCell($w,5,$data[$i],0,$a);
-        //Put the position to the right of the cell
-        $this->SetXY($x+$w,$y);
-    }
-    //Go to the next line
-    $this->Ln($h);
-}
-
-function CheckPageBreak($h)
-{
-    //If the height h would cause an overflow, add a new page immediately
-    if($this->GetY()+$h>$this->PageBreakTrigger)
-        $this->AddPage($this->CurOrientation);
-}
-
-function NbLines($w,$txt)
-{
-    //Computes the number of lines a MultiCell of width w will take
-    $cw=&$this->CurrentFont['cw'];
-    if($w==0)
-        $w=$this->w-$this->rMargin-$this->x;
-    $wmax=($w-2*$this->cMargin)*1000/$this->FontSize;
-    $s=str_replace("\r",'',$txt);
-    $nb=strlen($s);
-    if($nb>0 and $s[$nb-1]=="\n")
-        $nb--;
-    $sep=-1;
-    $i=0;
-    $j=0;
-    $l=0;
-    $nl=1;
-    while($i<$nb)
-    {
-        $c=$s[$i];
-        if($c=="\n")
-        {
-            $i++;
-            $sep=-1;
-            $j=$i;
-            $l=0;
-            $nl++;
-            continue;
-        }
-        if($c==' ')
-            $sep=$i;
-        $l+=$cw[$c];
-        if($l>$wmax)
-        {
-            if($sep==-1)
-            {
-                if($i==$j)
-                    $i++;
-            }
-            else
-                $i=$sep+1;
-            $sep=-1;
-            $j=$i;
-            $l=0;
-            $nl++;
-        }
-        else
-            $i++;
-    }
-    return $nl;
-}
-
-
-	}
-
-
     
+        // Extend the TCPDF class to create custom Header and Footer
+    class MYPDF extends TCPDF {
 
-    // INICIAMOS A CREAR EL PDF
 
-        //buscamos los datos para imprimir
+
+        // Page footer
+        public function Footer() {
+            // Position at 15 mm from bottom
+            $this->SetY(-15);
+            // Set font
+            $this->SetFont('helvetica', 'I', 8);
+            // Page number
+            $this->Cell(0, 10, '´Página '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+        }
+    }  
+
+    //buscamos los datos para imprimir
 
         //buscar datos de institucion
         $b_datos_insti = buscarDatosGenerales($conexion);
@@ -194,51 +83,417 @@ function NbLines($w,$txt)
             $cont_indicadores = mysqli_num_rows($b_indicador_capac);
             $total_indicadores = $total_indicadores+$cont_indicadores;
         };
-
-        //fecha de hoy
-
-
-    $pdf = new PDF('L','mm','A4');
-	$pdf->AliasNbPages();
-	$pdf->AddPage();
-	$pdf->SetLeftMargin(20);
-	//$pdf->SetAutoPageBreak(1 , 15);
-	$pdf->SetFillColor(232,232,232);
-	$pdf->SetFont('Arial','B',12);
-	$pdf->MultiCell(170,6,utf8_decode("CATASTRO DEL PROGRAMA DE ESTUDIOS DE ".$r_b_pe['nombre']),0,'C',0);
-	$pdf->Cell(180,3,'',0,1,'C',0);
-    $pdf->SetFont('Arial','B',10);
-    $pdf->Cell(70,6,utf8_decode('       Docente'),0,0,'',0);
-    $pdf->MultiCell(100,6,utf8_decode(": ".$r_b_docente['apellidos_nombres']),0,'',0);
-    $pdf->Cell(70,6,utf8_decode('       Módulo Profesional'),0,0,'',0);
-    $pdf->MultiCell(100,6,utf8_decode(": ".$r_b_mod['descripcion']),0,'',0);
-    $pdf->Cell(70,6,utf8_decode('       Unidad Didáctica'),0,0,'',0);
-    $pdf->MultiCell(100,6,utf8_decode(": ".$r_b_ud['descripcion']),0,'',0);
-    $pdf->Cell(70,6,utf8_decode('       Créditos'),0,0,'',0);
-    $pdf->Cell(100,6,utf8_decode(": ".$r_b_ud['creditos']),0,1,'',0);
-    $pdf->Cell(70,6,utf8_decode('       Semestre Académico'),0,0,'',0);
-    $pdf->Cell(100,6,utf8_decode(": ".$r_b_sem['descripcion']),0,1,'',0);
-    $pdf->Cell(70,6,utf8_decode('       N° de Horas Semanal'),0,0,'',0);
-    $pdf->Cell(100,6,utf8_decode(": ".$r_b_ud['horas']/16),0,1,'',0);
-	
-    $pdf->Cell(180,3,'',0,1,'C',0);
-    $pdf->Cell(7,6,utf8_decode('No'),1,0,'',0);
-    $pdf->Cell(90,6,utf8_decode('APELLIDOS Y NOMBRES'),1,0,'C',0);
-    for ($i=1; $i <= $total_indicadores ; $i++) { 
         
-        $pdf->Cell(15,6,utf8_decode('Calif. '.$i),1,0,'C',0);
+
+
+
+
+
+        $pdf = new TCPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
+        $pdf->SetCreator(PDF_CREATOR);  
+        $pdf->SetTitle("calificaciones - ".$r_b_ud['descripcion']);  
+        $pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
+        $pdf->SetDefaultMonospacedFont('helvetica');  
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);  
+        $pdf->SetMargins(PDF_MARGIN_LEFT, '10', PDF_MARGIN_RIGHT);  
+        $pdf->setPrintHeader(false);  
+        $pdf->setPrintFooter(true);  
+        $pdf->SetAutoPageBreak(TRUE, 10);  
+        $pdf->SetFont('helvetica', '', 11);  
+        $pdf->AddPage('L', 'A3');  
+
+        $fechas ='';
+        $cont_asis = '';
+        $cont = 1;
+        $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
+        while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
+            $cont_asis .= '<tr>';
+            $b_matricula = buscarMatriculaById($conexion, $r_b_det_mat['id_matricula']);
+            $r_b_matricula = mysqli_fetch_array($b_matricula);
+            $b_estudiante = buscarEstudianteById($conexion,$r_b_matricula['id_estudiante']);
+            $r_b_estudiante = mysqli_fetch_array($b_estudiante);
+
+            $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
+            $asis = '';
+            $cont_inasistencia=0;
+            while ($r_prog_act_sil = mysqli_fetch_array($b_prog_act_sil)) {
+                $id_prog_act_s = $r_prog_act_sil['id'];
+                $b_sesion_aprendizaje = buscarSesionByIdProgramacionActividades($conexion, $id_prog_act_s);
+                $r_b_sesion_apr = mysqli_fetch_array($b_sesion_aprendizaje);
+                $id_sesion_apr = $r_b_sesion_apr['id'];
+                $b_asistencia = buscarAsistenciaBySesionAndEstudiante($conexion, $id_sesion_apr, $r_b_estudiante['id']);
+                $r_b_asistencia = mysqli_fetch_array($b_asistencia);
+                $dataaa = $r_b_sesion_apr['fecha_desarrollo'];
+                $asistencia = $r_b_asistencia['asistencia'];
+
+                $fechas .='<td ><font size="10">'.$dataaa.'</font></td>';
+                if ($asistencia=="F") {
+                    $asis .= '<td align="center"><font size="10" color="red">'.$asistencia.'</font></td>';
+                }else{
+                    $asis .= '<td align="center"><font size="10" color="blue">'.$asistencia.'</font></td>';
+                }
+                
+                if ($r_b_asistencia['asistencia']=="F") {
+                    $cont_inasistencia += 1;
+                }
+            }
+            if ($cont_inasistencia>0) {
+                $porcent_ina = round($cont_inasistencia*100/16);
+            }else{
+                $porcent_ina=0;
+            }
+            if ($porcent_ina>30) {
+                $cont_asis .= '<td align="center" height="5px"><font size="10">'.$cont.'</font></td>'.$asis.'<td align="center"><font size="10" color="red">'.$cont_inasistencia.'</font></td><td align="center"><font size="10" color="red">'.$porcent_ina.'</font></td>';
+            }else {
+                $cont_asis .= '<td align="center" height="5px"><font size="10">'.$cont.'</font></td>'.$asis.'<td align="center"><font size="10" color="blue">'.$cont_inasistencia.'</font></td><td align="center"><font size="10" color="blue">'.$porcent_ina.'</font></td>';
+            }
+            
+            $cont +=1;
+            $cont_asis .= '</tr>';
+        }
+        $m_rest = '';
+        for ($i=$cont; $i <= 40; $i++) { 
+            $vacios = '';
+            for ($j=1; $j <= 16; $j++) { 
+                $vacios.= '<td></td>';
+            }
+            $m_rest .='<tr><td align="center"><font size="10">'.$i.'</font></td>'.$vacios.'<td></td><td></td></tr>';
+        }
+        
+        // mostrar indicadores
+        $capacid = '';
+        $num_contr_ind = 1;
+        $b_capacidad =buscarCapacidadesByIdUd($conexion, $res_b_prog['id_unidad_didactica']);
+        while ($r_b_capacidad = mysqli_fetch_array($b_capacidad)) {
+            $b_indicador_capaci = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_capacidad['id']);
+            while ($r_b_indicador_capaci = mysqli_fetch_array($b_indicador_capaci)) {
+                $detalle_ind_log = $r_b_indicador_capaci['descripcion'];
+                $capacid .= '<tr><td width="8%" align="center">'.$num_contr_ind.'</td><td width="92%">'.$detalle_ind_log.'</td></tr>';
+                $num_contr_ind +=1;
+            }
+        };
+        $vacios_ind_log = '';
+        for ($i=$total_indicadores+1; $i <= 12; $i++) { 
+            $vacios_ind_log .= '<tr><td height="60px" align="center">'.$i.'</td><td></td></tr>';
+        }
+
+        
+        $content_one = '';  
+        $content_one .= '
+    
+        <table border="0" width="100%" cellspacing="0" cellpadding="3">
+        <tr>
+            <td width="34%" valign="top">
+                <table width=100% border="0.2" cellspacing="0" cellpadding="0.5">
+                    <tr>
+                        <td colspan="19" align="center">CONTROL DE ASISTENCIA</td>
+                    </tr>
+                    <tr>
+                       <td rowspan="2" width="5%" style="text-orientation: sideways;">No</td>
+                       <td colspan="16" width="85%" align="center"> FECHAS <br> Registra el dia y mes de la asistencia</td>
+                       <td rowspan="2" width="5%"><font size="8">Total Inasistencia</font></td>
+                       <td rowspan="2" width="5%"><font size="8">% Inasistencia</font></td>
+                    </tr>
+                    <tr>
+                        '.$fechas.'
+                    </tr>
+                    
+                        '.$cont_asis.$m_rest.'
+                    
+                </table>
+            </td>
+            <td width="33%" valign="top">
+                <table width=100% border="1" cellspacing="0" cellpadding="3">
+                    <tr>
+                        <td align="center" colspan="2">INDICADORES DE LOGRO</td>
+                    </tr>
+                    
+                    '.$capacid.$vacios_ind_log.'
+                </table>
+            </td>
+            <td width="33%" valign="top">
+                <table width=100% border="0">
+                    <tr >
+                        <td width="50%" colspan="2" height="40px"><img src="../img/logo_minedu.jpeg" alt="" height="30px"></td>
+                        <td width="50%" colspan="2" align="right"><img src="../img/logo.jpeg" alt="" height="30px"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="80%" colspan="2" style="border: black 3px solid;" align="center"><h1>REGISTRO DE EVALUACION Y NOTAS 2022-II</h1></td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="80%" colspan="2" align="center"><h3><b>PROGRAMA DE ESTUDIOS:</b></h3></td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%" ></td>
+                        <td width="80%" colspan="2" align="center"><h3>DISEÑO Y PROGRAMACION WEB</h3></td>
+                        <td width="10%" ></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="60%">MODULO FORMATIVO NRO</td>
+                        <td width="20%">: II</td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%" ></td>
+                        <td width="80%" colspan="2">MODULO FORMATIVO:</td>
+                        <td width="10%" ></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="80%"> GESTION DE APLICACIONES PARA INTERNET Y PRODUCCION MULTIMEDIA</td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td ></td>
+                        <td colspan="2" align="center"><font size="5">UNIDAD DIDACTICA:</font> </td>
+                        <td ></td>
+                    </tr>
+                    <tr>
+                        <td ></td>
+                        <td colspan="2" align="center">TALLER DE PROGRAMACION WEB</td>
+                        <td ></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="60%">PERIODO ACADEMICO</td>
+                        <td width="20%">: 2022-II</td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="60%">CREDITOS</td>
+                        <td width="20%">: 8</td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="60%">HORAS POR SEMANA</td>
+                        <td width="20%">: 10</td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="60%">DOCENTE</td>
+                        <td width="20%">: Tec. anibal yucra curo</td>
+                        <td width="10%"></td>
+                    </tr>
+                    <tr>
+                        <td ></td>
+                        <td >SECCION</td>
+                        <td >: UNICA</td>
+                        <td ></td>
+                    </tr>
+                    <tr>
+                        <td ></td>
+                        <td >TURNO</td>
+                        <td >: DIURNO</td>
+                        <td ></td>
+                    </tr>
+                    <tr>
+                        <td ></td>
+                        <td colspan="2" align="center"><br><br><br><br><br><br><br>.................................<br>Firma del docente</td>
+                        <td ></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+                
+          ';  
+             
+            $content_one .= '</table>';  
+            $pdf->writeHTML($content_one); 
+
+            $pdf->AddPage();
+
+
+    function generateRow(){
+        include ('../include/conexion.php');
+        include_once('include/busquedas.php');
+        $id_prog = $_POST['data'];
+        $contents_extra = '';
+        $content = '';
+        $b_prog = buscarProgramacionById($conexion, $id_prog);
+        $res_b_prog = mysqli_fetch_array($b_prog);
+        $b_capacidades =buscarCapacidadesByIdUd($conexion, $res_b_prog['id_unidad_didactica']);
+        $total_indicadores = 0;
+        while ($r_b_capacidades = mysqli_fetch_array($b_capacidades)) {
+            $b_indicador_capac = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_capacidades['id']);
+            $cont_indicadores = mysqli_num_rows($b_indicador_capac);
+            $total_indicadores = $total_indicadores+$cont_indicadores;
+        };
+
+        $b_det_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
+        $ord = 1;
+        while ($r_b_det_mat = mysqli_fetch_array($b_det_mat)) {
+            
+            $id_mat = $r_b_det_mat['id_matricula'];
+            $b_mat = buscarMatriculaById($conexion, $id_mat);
+            $r_b_mat = mysqli_fetch_array($b_mat);
+            $id_est = $r_b_mat['id_estudiante'];
+            $b_est = buscarEstudianteById($conexion,$id_est);
+            $r_b_est = mysqli_fetch_array($b_est);
+            $notass ='';
+            
+            $b_calif = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
+            $suma_calificacion = 0;
+            while ($r_b_calif = mysqli_fetch_array($b_calif)) {
+                
+                $b_eva = buscarEvaluacionByIdCalificacion($conexion, $r_b_calif['id']);
+                $suma_evaluacion = 0;
+                while ($r_b_eva = mysqli_fetch_array($b_eva )) {
+                    $b_crit_eva = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_eva['id']);
+                    $suma_criterios = 0;
+                    $cont_crit = 0;
+                    while ($r_b_crit = mysqli_fetch_array($b_crit_eva)) {
+                        if (is_numeric($r_b_crit['calificacion'])) {
+                            $suma_criterios += $r_b_crit['calificacion'];
+                            $cont_crit += 1;
+                        }
+                        
+                    }
+                    if ($cont_crit>0) {
+                        $suma_criterios = round($suma_criterios/$cont_crit);
+                    }else {
+                        $suma_criterios = round($suma_criterios);
+                    }
+                    $suma_evaluacion += ($r_b_eva['ponderado']/100)*$suma_criterios;
+                    
+                }
+                
+                $suma_calificacion += ($r_b_calif['ponderado']/100)*$suma_evaluacion;
+                if ($suma_evaluacion != 0) {
+                    $calificacion = round($suma_evaluacion);
+                }else {
+                    $calificacion = "";
+                }
+                if ($calificacion>12) {
+                    $notass .= '<td align="center" ><font color="blue" size="10">'.$calificacion.'</font></td>';
+                }else{
+                    $notass .= '<td align="center" ><font color="red" size="10">'.$calificacion.'</font></td>';
+                }
+
+            }
+            // columnas extra para indicadores
+            $n_conts = $total_indicadores+1;
+            for ($i=$n_conts; $i <= 12; $i++) { 
+                $notass .= '<td align="center"></td>';
+            }
+            
+
+            if ($suma_calificacion != 0) {
+                $calificacion = round($suma_calificacion);
+            }else {
+                $calificacion = "";
+            }
+            if ($r_b_det_mat['recuperacion']>12) {
+                $recuperacion = '<td align="center" ><font color="blue" size="10">'.$r_b_det_mat['recuperacion'].'</font></td>';
+              }else{
+                $recuperacion = '<td align="center" ><font color="red" size="10">'.$r_b_det_mat['recuperacion'].'</font></td>';
+              }
+
+            if ($calificacion>12) {
+                $promedio = '<td align="center" ><font color="blue" size="10">'.$calificacion.'</font></td>';
+            }else{
+                $promedio = '<td align="center" ><font color="red" size="10">'.$calificacion.'</font></td>';
+            }
+            if ($r_b_det_mat['recuperacion']!='') {
+                $calificacion_final = $r_b_det_mat['recuperacion'];
+            }else {
+                $calificacion_final = $calificacion;
+            }
+            if ($calificacion_final>12) {
+                $promedio_final = '<td align="center" ><font color="blue" size="10">'.$calificacion_final.'</font></td>';
+            }else{
+                $promedio_final = '<td align="center" ><font color="red" size="10">'.$calificacion_final.'</font></td>';
+            }
+            
+            
+            
+            $content .= '
+            <tr>
+                <td align="center" ><font size="10">'.$ord.'</font></td>
+                <td ><font size="10">'.$r_b_est['apellidos_nombres'].'</font></td>
+                '.$notass.$promedio.$recuperacion.$promedio_final.'
+            </tr>
+            ';
+            
+            $ord+=1;
+            
+        }
+        // campos extra debajo de la relacion
+        for ($i=$ord; $i <= 40; $i++) { 
+            $contents_extra .= '<tr><td align="center" height="5px"><font size="10">'.$i.'</font></td><td></td>';
+            for ($j=0; $j <=12 ; $j++) { 
+                $contents_extra .= '<td></td>';
+            }
+
+            $contents_extra .= '<td></td><td></td><td></td></tr>';
+        }
+        $content .= $contents_extra;
+        return $content;
     }
-    
-	
-    
-	$pdf->Cell(180,20,'',0,1,'C',0);
-	
+    $hho ='';
+    for ($i=1; $i <= $total_indicadores; $i++) { 
+        $hho .= '<td align="center">'.$i.'</td>';
+    };
+    $n_cont = $total_indicadores+1;
+    for ($i=$n_cont; $i <= 12; $i++) { 
+        $hho .= '<td align="center">'.$i.'</td>';
+    }
+    $n_cont = (12-$total_indicadores)+5;
+    $content = '';  
+    $content .= '
 
-    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-    //echo $diassemana[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-	$pdf->Cell(175,6,utf8_decode($r_b_datos_insti['distrito'].', '.date('d')." de ".$meses[date('n')-1]. " del ".date('Y')),0,1,'R',0);
+        <table border="0.2" cellspacing="0" cellpadding="0.5">  
+        <tr>
+        <th colspan="'.$n_cont.'" align="center">CALIFICACIONES DE LA UD'.$total_indicadores.'</th>
+        </tr>
+        <tr height="auto">
+            <td rowspan="2" align="center" width="4%"><small >Nro de Orden</small></td>
+            <td rowspan="2" align="center" width="23%">APELLIDOS Y NOMBRES</td>
+            <td colspan="12" align="center" width="47%">INDICADORES DE LOGRO</td>
+            <td rowspan="2" align="center" width="8%"><small >PROMEDIO</small></td>
+            <td rowspan="2" align="center" width="10%"><small >EVALUACION DE RECUPERACION</small></td>
+            <td rowspan="2" align="center" width="8%"><small >NOTA FINAL</small></td>
+        </tr>
+        <tr>
+            '.$hho.'
+        </tr>
+            
+      ';  
+        $content .= generateRow();  
+        $content .= '</table>';  
+        $pdf->writeHTML($content);
+        
+        
+        $footer = '
+
+        <table border="0" cellspacing="0" cellpadding="0.5">  
+        <tr>
+            <th width="75%"></th>
+            <th >Huanta, 27 de diciembre del 2022</th>
+        </tr>
+        </table>    
+      ';   
+        $pdf->writeHTML($footer);
 
 
-	$pdf->Output();
+
+
+        
+
+
+
+        $pdf->Output('califcaciones - '.$r_b_ud['descripcion'].'.pdf', 'I');
+
 }
-?>
+ 
+
+    ?>

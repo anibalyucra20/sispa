@@ -171,6 +171,10 @@ function buscarProgramacion($conexion){
 	$sql = "SELECT * FROM programacion_unidad_didactica";
 	return mysqli_query($conexion, $sql);
 }
+function buscarProgramacionEspecial($conexion, $extra){
+	$sql = "SELECT * FROM programacion_unidad_didactica ".$extra;
+	return mysqli_query($conexion, $sql);
+}
 function buscarProgramacionById($conexion, $id){
 	$sql = "SELECT * FROM programacion_unidad_didactica WHERE id='$id'";
 	return mysqli_query($conexion, $sql);

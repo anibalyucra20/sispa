@@ -1,11 +1,17 @@
 <?php
-include 'include/verificar_sesion_docente.php';
+include 'include/verificar_sesion_docente_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
 $id_prog = $_GET['id'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
+$cont_res = mysqli_num_rows($b_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
-if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
+if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
+  $mostrar_archivo = 1;
+}else{
+  $mostrar_archivo = 0;
+}
+if (!($mostrar_archivo)) {
   //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
   //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
   echo "<script>
@@ -68,17 +74,14 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
       <div class="main_container">
         <!--menu-->
         <?php
-        include("include/menu_docente.php");
-        $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
-        $r_b_ud = mysqli_fetch_array($b_ud);
-        //buscamos la cantidad de indicadores para definir la cantidad de calificaciones
-        $b_capacidades = buscarCapacidadesByIdUd($conexion, $res_b_prog['id_unidad_didactica']);
-        $total_indicadores = 0;
-        while ($r_b_capacidades = mysqli_fetch_array($b_capacidades)) {
-          $b_indicador_capac = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_capacidades['id']);
-          $cont_indicadores = mysqli_num_rows($b_indicador_capac);
-          $total_indicadores = $total_indicadores + $cont_indicadores;
-        };
+        if (isset($_SESSION['id_docente'])) {
+          include("include/menu_docente.php");
+        }elseif (isset($_SESSION['id_secretario'])) {
+          include ("include/menu_secretaria.php");
+        }else {
+          
+        }
+        
         ?>
 
         <!-- page content -->
@@ -89,9 +92,26 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                  <?php 
+                  if ($cont_res == 0) {
+                    echo "<h2>No Existen Registros</h2>";
+                  }else{
+                  
+                  $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
+                  $r_b_ud = mysqli_fetch_array($b_ud);
+                  //buscamos la cantidad de indicadores para definir la cantidad de calificaciones
+                  $b_capacidades = buscarCapacidadesByIdUd($conexion, $res_b_prog['id_unidad_didactica']);
+                  $total_indicadores = 0;
+                  while ($r_b_capacidades = mysqli_fetch_array($b_capacidades)) {
+                    $b_indicador_capac = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_capacidades['id']);
+                    $cont_indicadores = mysqli_num_rows($b_indicador_capac);
+                    $total_indicadores = $total_indicadores + $cont_indicadores;
+                  };
+                  
+                  ?>
                   <div class="">
                     <h2 align="center"><b>Calificaciones - <?php echo $r_b_ud['descripcion']; ?></b></h2>
-                    <form action="prueba_tcpdf.php" method="POST" target="_blank">
+                    <form action="imprimir_calificaciones.php" method="POST" target="_blank">
                       <input type="hidden" name="data" value="<?php echo $id_prog; ?>">
                       <button type="submit" class="btn btn-info">Imprimir</button>
                     </form>
@@ -265,7 +285,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                       <div align="center">
                         <br>
                         <br>
-                        <a href="unidades_didacticas.php" class="btn btn-danger">Regresar</a>
+                        <a href="calificaciones_unidades_didacticas.php" class="btn btn-danger">Regresar</a>
                         <button type="submit" class="btn btn-success">Guardar</button>
 
                       </div>
@@ -273,6 +293,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
 
 
                   </div>
+                  <?php } ?>
                 </div>
               </div>
             </div>
