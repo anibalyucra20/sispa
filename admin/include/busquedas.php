@@ -121,6 +121,10 @@ function buscarMatriculaById($conexion, $id){
 	$sql = "SELECT * FROM matricula WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarMatriculaByIdPeriodo($conexion, $id){
+	$sql = "SELECT * FROM matricula WHERE id_periodo_acad='$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarMatriculaByEstudiantePeriodo($conexion, $id_estudiante, $id_periodo_acad){
 	$sql = "SELECT * FROM matricula WHERE id_estudiante='$id_estudiante' AND id_periodo_acad = '$id_periodo_acad'";
 	return mysqli_query($conexion, $sql);

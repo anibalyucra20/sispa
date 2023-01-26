@@ -4,6 +4,9 @@
     <?php 
     $busc_user_sesion = buscarDocenteById($conexion, $_SESSION['id_docente']);
     $res_b_u_sesion = mysqli_fetch_array($busc_user_sesion);
+    $b_m_per_act = buscarPresentePeriodoAcad($conexion);
+    $r_b_m_per_act = mysqli_fetch_array($b_m_per_act);
+    $id_per_act_m = $r_b_m_per_act['id_periodo_acad'];
     ?>
     <div class="clearfix"></div>
 
@@ -71,7 +74,7 @@
                     $buscar_periodos = buscarPeriodoAcademicoInvert($conexion);
                     while ($res_busc_periodos = mysqli_fetch_array($buscar_periodos)) {
                       ?>
-                    <li><a href="operaciones/actualizar_sesion_periodo.php?dato=<?php echo $res_busc_periodos['id']; ?>"><?php echo $res_busc_periodos['nombre']; ?></a></li>
+                    <li><a href="operaciones/actualizar_sesion_periodo.php?dato=<?php echo $res_busc_periodos['id']; ?>"><?php if($res_busc_periodos['id']==$id_per_act_m){ echo "<b>";}?><?php echo $res_busc_periodos['nombre']; ?><?php if($res_busc_periodos['id']==$id_per_act_m){ echo "</b>";}?></a></li>
                       <?php
                     }
                     ?>

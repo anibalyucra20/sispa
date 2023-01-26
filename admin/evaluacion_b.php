@@ -15,6 +15,16 @@ if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION
   $mostrar_archivo = 0;
 }
 
+$b_periodo_acad = buscarPeriodoAcadById($conexion, $res_b_prog['id_periodo_acad']);
+$r_per_acad = mysqli_fetch_array($b_periodo_acad);
+$fecha_actual = strtotime(date("d-m-Y"));
+$fecha_fin_per = strtotime($r_per_acad['fecha_fin']);
+if ($fecha_actual <= $fecha_fin_per) {
+  $editar_doc = 1;
+} else {
+  $editar_doc = 0;
+}
+
 if (!($mostrar_archivo)) {
   //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
   //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
@@ -69,7 +79,7 @@ if (!($mostrar_archivo)) {
     </style>
   </head>
 
-  <body class="nav-sm">
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <!--menu-->
@@ -125,7 +135,7 @@ if (!($mostrar_archivo)) {
                             <input type="hidden" name="id_prog" id="id_prog" value="<?php echo $id_prog; ?>">
                             <input type="hidden" name="nro_calificacion" id="nro_calificacion" value="<?php echo $nro_calificacion; ?>">
                             <input type="hidden" name="cant_calif" value="<?php echo $total_indicadores; ?>">
-                            <table id="" class="table table-striped jambo_table bulk_action">
+                            <table id="" class="table table-striped table-bordered">
 
                               <tr class="headings">
                                 <th rowspan="3">
@@ -160,11 +170,16 @@ if (!($mostrar_archivo)) {
                                   <th colspan="<?php echo $c_b_critt + 1; ?>">
                                     <center><?php echo $r_b_evaluacion['detalle'] ?><br>Ponderado: <?php echo $r_b_evaluacion['ponderado']; ?>%
                                       <!--<input type="number" id="" name="" value="<?php echo $r_b_evaluacion['ponderado']; ?>" min="0" max="100" >-->
-                                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".edit_eva<?php echo $r_b_evaluacion['id']; ?>"><i class="fa fa-edit"></i></button>
+                                      <?php if ($editar_doc) { ?>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".edit_eva<?php echo $r_b_evaluacion['id']; ?>"><i class="fa fa-edit"></i></button>
+                                      <?php } ?>
+
                                     </center>
                                   </th>
                                 <?php
-                                  include('include/acciones_evaluacion.php');
+                                  if ($editar_doc) {
+                                    include('include/acciones_evaluacion.php');
+                                  }
                                   $count += 1;
                                 }
                                 ?>
@@ -184,7 +199,11 @@ if (!($mostrar_archivo)) {
                                 ?>
                                     <th height="auto" width="20px">
                                       <center>
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".edit_crit_<?php echo $r_b_critt_eva['id']; ?>"><i class="fa fa-edit"></i></button>
+                                        <?php
+                                        if ($editar_doc) { ?>
+                                          <button type="button" class="btn btn-default" data-toggle="modal" data-target=".edit_crit_<?php echo $r_b_critt_eva['id']; ?>"><i class="fa fa-edit"></i></button>
+                                        <?php } ?>
+
 
                                         <p class="verticalll" id=""><?php echo $r_b_critt_eva['detalle']; ?></p>
                                         <br>
@@ -193,7 +212,9 @@ if (!($mostrar_archivo)) {
                                     </th>
                                   <?php
                                     $count += 1;
-                                    include('include/acciones_criterio.php');
+                                    if ($editar_doc) {
+                                      include('include/acciones_criterio.php');
+                                    }
                                   }
                                   ?>
                                   <th height="auto" width="20px" bgcolor="#D5D2D2">
@@ -250,7 +271,13 @@ if (!($mostrar_archivo)) {
                                           } else {
                                             $colort = 'style="color:red; "';
                                           }
-                                          echo '<td width="20px"><input class="nota_input" type="number" ' . $colort . ' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
+                                          if ($editar_doc) {
+                                            echo '<td width="20px"><input class="nota_input" type="number" ' . $colort . ' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
+                                          }else {
+                                            echo '<td width="20px"><label '.$colort.'>' . $r_b_criterio_evaluacion['calificacion'] . '</label></td>';
+                                            //echo '<input class="nota_input" type="number" ' . $colort . ' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
+                                          }
+                                          
                                         }
 
                                         //$suma_evaluacion += ($r_b_evaluacion['ponderado']/100)*$suma_criterios;
@@ -295,9 +322,12 @@ if (!($mostrar_archivo)) {
                             </table>
                             <div align="center">
                               <br>
-                              <br>
+                              
                               <a href="calificaciones.php?id=<?php echo $id_prog; ?>" class="btn btn-danger">Regresar</a>
-                              <button type="submit" class="btn btn-success">Guardar</button>
+                              <?php if ($editar_doc) { ?>
+                                <button type="submit" class="btn btn-success">Guardar</button>
+                              <?php } ?>
+                              
 
                             </div>
                           </form>
