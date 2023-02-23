@@ -101,7 +101,7 @@ include 'include/busquedas.php';
                           $ejec_busc_modulo = buscarModuloFormativoById($conexion, $id_modulo);
                           $res_busc_modulo =mysqli_fetch_array($ejec_busc_modulo);
                           ?>
-                          <td><?php echo "M".$res_busc_modulo['nro_modulo']." - ".$res_busc_modulo['descripcion']; ?></td>
+                          <td><?php echo "M".$res_busc_modulo['nro_modulo']; ?></td>
                           <?php 
                           $id_semestre = $res_busc_ud['id_semestre'];
                           $ejec_busc_semestre= buscarSemestreById($conexion, $id_semestre);
@@ -206,7 +206,7 @@ include 'include/busquedas.php';
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Horas : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Horas (Semestral): </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="number" class="form-control" name="horas" required="required">
                           <br>

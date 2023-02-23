@@ -98,7 +98,7 @@ include 'include/busquedas.php';
                           <?php 
                           
                           ?>
-                          <td><?php echo "M".$res_busc_modulo['nro_modulo']." - ".$res_busc_modulo['descripcion']; ?></td>
+                          <td><?php echo "M".$res_busc_modulo['nro_modulo']; ?></td>
                           <td><?php echo $res_busc_comp['tipo_competencia']; ?></td>
                           <td><?php echo $res_busc_comp['codigo']; ?></td>
                           <td><?php echo $res_busc_comp['descripcion']; ?></td>

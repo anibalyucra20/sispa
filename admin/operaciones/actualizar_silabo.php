@@ -5,6 +5,7 @@ include '../include/busquedas.php';
 
 $id_programacion = $_POST['id_prog'];
 $id_silabo = $_POST['id_silabo'];
+$coordinador = $_POST['coordinador'];
 $horario = $_POST['horario'];
 $metodologia = $_POST['metodologia'];
 $recursos_didacticos = $_POST['recursos_didacticos'];
@@ -30,7 +31,7 @@ while ($r_b_act_silabo = mysqli_fetch_array($b_act_silabo)) {
     }
     $ejec_consulta = mysqli_query($conexion, $consulta);
 }
-$actualizar = "UPDATE silabo SET horario='$horario',metodologia='$metodologia',recursos_didacticos='$recursos_didacticos',sistema_evaluacion='$sistema_evaluacion',estrategia_evaluacion_indicadores='$indicadores_estrategias',estrategia_evaluacion_tecnica='$tecnicas_estrategias',recursos_bibliograficos_impresos='$recursos_bib_imp',recursos_bibliograficos_digitales='$recursos_bib_digi' WHERE  id='$id_silabo'";
+$actualizar = "UPDATE silabo SET id_coordinador='$coordinador',horario='$horario',metodologia='$metodologia',recursos_didacticos='$recursos_didacticos',sistema_evaluacion='$sistema_evaluacion',estrategia_evaluacion_indicadores='$indicadores_estrategias',estrategia_evaluacion_tecnica='$tecnicas_estrategias',recursos_bibliograficos_impresos='$recursos_bib_imp',recursos_bibliograficos_digitales='$recursos_bib_digi' WHERE  id='$id_silabo'";
 $ejecutar = mysqli_query($conexion, $actualizar);
 echo "<script>
 			

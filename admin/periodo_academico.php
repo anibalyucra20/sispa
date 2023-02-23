@@ -122,9 +122,26 @@ include 'include/busquedas.php';
                     <form role="form" action="operaciones/registrar_periodo_academico.php" class="form-horizontal form-label-left input_mask" method="POST" >
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Periodo Académico : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="per_acad" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                        <div class="row"> 
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                          <?php $anio = date("Y")-2; ?>
+                          <select class="form-control" name="anio" id="anio" required>
+                            <option value=""></option>
+                            <?php for ($i=0; $i <= 5; $i++) { ?>
+                              <option value="<?php echo $anio+$i; ?>"><?php echo $anio+$i; ?></option>
+                            <?php } ?>
+                          </select>
                           <br>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                          <?php $anio = date("Y")-2; ?>
+                          <select class="form-control" name="per" id="per" required>
+                            <option value=""></option>
+                            <option value="I">I</option>
+                            <option value="II">II</option>
+                          </select>
+                          <br>
+                        </div>
                         </div>
                       </div>
                       <div class="form-group">
@@ -143,7 +160,7 @@ include 'include/busquedas.php';
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Director : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="col-md-9 col-sm-9 col-xs-12" >
                           <select class="form-control" id="director" name="director" value="" required="required">
                             <option></option>
                           <?php
@@ -166,7 +183,23 @@ include 'include/busquedas.php';
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="date" class="form-control" name="fecha_actas" required="required">
                           <br>
-                          <br>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Unidades Didácticas a Programar :
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <?php 
+                            $b_pe = buscarCarreras($conexion);
+                            while ($r_b_pe = mysqli_fetch_array($b_pe)) {
+                          ?>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" class="flat" name="pe_<?php echo $r_b_pe['id']; ?>"> <?php echo $r_b_pe['nombre'];  ?>
+                            </label>
+                          </div>
+                          <?php } ?>
+                          <br><br>
                         </div>
                       </div>
                       <div align="center">

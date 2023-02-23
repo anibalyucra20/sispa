@@ -178,8 +178,13 @@ function NbLines($w,$txt)
         $b_docente = buscarDocenteById($conexion, $res_b_prog['id_docente']);
         $r_b_docente = mysqli_fetch_array($b_docente);
         //buscar datos de coordinador de area
-        $b_coordinador = buscarCoordinadorAreaByIdPe($conexion, $r_b_ud['id_programa_estudio']);
+        $b_coordinador = buscarDocenteById($conexion, $r_b_silabo['id_coordinador']);
         $r_b_coordinador = mysqli_fetch_array($b_coordinador);
+        if (mysqli_num_rows($b_coordinador)==0) {
+            $coordinador = "";
+        }else {
+            $coordinador = $r_b_coordinador['apellidos_nombres'];
+        }
         //buscar datos de director
         $b_director = buscarDocenteById($conexion, $r_b_perio['director']);
         $r_b_director = mysqli_fetch_array($b_director);
@@ -234,7 +239,7 @@ function NbLines($w,$txt)
     $pdf->Cell(70,6,utf8_decode('       Docente'),0,0,'',0);
     $pdf->Cell(100,6,utf8_decode(": ".$r_b_docente['apellidos_nombres']),0,1,'',0);
     $pdf->Cell(70,6,utf8_decode('       Coordinador de Área'),0,0,'',0);
-    $pdf->Cell(100,6,utf8_decode(": ".$r_b_coordinador['apellidos_nombres']),0,1,'',0);
+    $pdf->Cell(100,6,utf8_decode(": ".$coordinador),0,1,'',0);
     $pdf->Cell(70,6,utf8_decode('       Director General'),0,0,'',0);
     $pdf->Cell(100,6,utf8_decode(": ".$r_b_director['apellidos_nombres']),0,1,'',0);
     $pdf->Cell(180,3,'',0,1,'C',0);

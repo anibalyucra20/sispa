@@ -129,6 +129,20 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                               <td>: <?php echo $r_b_mod['descripcion']; ?></td>
                             </tr>
                             <tr>
+                              <td>Coordinador de Área</td>
+                              <td>: 
+                                <select name="coordinador" id="coordinador">
+                                  <option value=""></option>
+                                  <?php 
+                                    $b_coordinador = buscarCoordinadorAreaByIdPe($conexion, $r_b_pe['id']);
+                                    while ($r_b_coordinador = mysqli_fetch_array($b_coordinador )) {?>
+                                      <option value="<?php echo $r_b_coordinador['id']; ?>" <?php if($r_b_coordinador['id'] == $r_b_silabo['id_coordinador']){ echo "selected"; } ?>><?php echo $r_b_coordinador['apellidos_nombres']; ?></option>
+                                  <?php 
+                                    }
+                                  ?>
+                                </select>
+                            </tr>
+                            <tr>
                               <td>Unidad Didáctica</td>
                               <td>: <?php echo $r_b_ud['descripcion']; ?></td>
                             </tr>
