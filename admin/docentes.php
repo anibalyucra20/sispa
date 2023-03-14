@@ -133,7 +133,7 @@ include 'include/busquedas.php';
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" name="dni" required="required" maxlength="8">
+                          <input type="text" class="form-control" name="dni" required="required" maxlength="8">
                           <br>
                         </div>
                       </div>
