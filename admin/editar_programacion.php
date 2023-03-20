@@ -85,7 +85,8 @@ $res_busc_prog = mysqli_fetch_array($ejec_busc_prog);
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Unidad Didáctica : </label>
                           <div class="col-md-9 col-sm-9 col-xs-12">
                             <?php 
-                                $b_ud = buscarUdById($conexion, $res_busc_prog['id']);
+
+                                $b_ud = buscarUdById($conexion, $res_busc_prog['id_unidad_didactica']);
                                 $res_busc_ud = mysqli_fetch_array($b_ud);
                             ?>
                             <input type="number" class="form-control" readonly value="<?php echo $res_busc_ud['descripcion']; ?>">
