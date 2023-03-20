@@ -311,7 +311,7 @@ function NbLines($w,$txt)
     $b_act_silabo = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
     $cant_actividades = mysqli_num_rows($b_act_silabo);
     while ($r_b_act_silabo = mysqli_fetch_array($b_act_silabo)) {
-    $pdf->Row(array(utf8_decode($r_b_act_silabo['semana']/*."\r\n".$r_b_act_silabo['fecha']*/),utf8_decode($r_b_act_silabo['elemento_capacidad']),utf8_decode($r_b_act_silabo['actividades_aprendizaje']),utf8_decode($r_b_act_silabo['contenidos_basicos']),utf8_decode($r_b_act_silabo['tareas_previas'])));
+    $pdf->Row(array(utf8_decode("Semana ".$r_b_act_silabo['semana']/*."\r\n".$r_b_act_silabo['fecha']*/),utf8_decode($r_b_act_silabo['elemento_capacidad']),utf8_decode($r_b_act_silabo['actividades_aprendizaje']),utf8_decode($r_b_act_silabo['contenidos_basicos']),utf8_decode($r_b_act_silabo['tareas_previas'])));
     }
     //FIN DE CONTENIDO DE ACTIVIDADES Y CONTENIDOS BASICOS
 
