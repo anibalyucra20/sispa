@@ -98,7 +98,7 @@ $res_busc_prog = mysqli_fetch_array($ejec_busc_prog);
                               $ejec_busc_doc = buscarDocenteOrdesByApellidosNombres($conexion);
                               while ($res_busc_doc = mysqli_fetch_array($ejec_busc_doc)) {
                                 $id_doc = $res_busc_doc['id'];
-                                $doc = $res_busc_doc['genero'];
+                                $doc = $res_busc_doc['apellidos_nombres'];
                               ?>
                                 <option value="<?php echo $id_doc;
                                                 ?>" <?php if ($res_busc_prog['id_docente'] == $id_doc) {
