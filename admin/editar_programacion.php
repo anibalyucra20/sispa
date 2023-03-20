@@ -89,7 +89,7 @@ $res_busc_prog = mysqli_fetch_array($ejec_busc_prog);
                                 $b_ud = buscarUdById($conexion, $id_ud);
                                 $res_busc_ud = mysqli_fetch_array($b_ud);
                             ?>
-                            <input type="number" class="form-control" readonly value="<?php echo $res_busc_ud['descripcion']; ?>">
+                            <input type="text" class="form-control" value="<?php echo $res_busc_ud['descripcion']; ?>">
                             <br>
                           </div>
                         </div>
