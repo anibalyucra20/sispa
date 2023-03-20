@@ -208,7 +208,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                             ?>
                               <tr>
                                 <td>
-                                  <center><?php echo $r_b_act_silabo['semana'] . "<br>"; ?><input type="date" name="fecha_<?php echo $r_b_act_silabo['id']; ?>" value="<?php echo $r_b_act_silabo['fecha']; ?>"></center>
+                                  <center><?php echo $r_b_act_silabo['semana'] . "<br>"; ?><!--<input type="date" name="fecha_<?php echo $r_b_act_silabo['id']; ?>" value="<?php echo $r_b_act_silabo['fecha']; ?>">--></center>
                                 </td>
                                 <td><textarea name="elemento_<?php echo $r_b_act_silabo['id']; ?>" style="width:100%; resize: none; height:auto;" rows="3"><?php echo $r_b_act_silabo['elemento_capacidad']; ?></textarea></td>
                                 <td><textarea name="actividad_<?php echo $r_b_act_silabo['id']; ?>" style="width:100%; resize: none; height:auto;" rows="3"><?php echo $r_b_act_silabo['actividades_aprendizaje']; ?></textarea></td>
