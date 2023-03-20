@@ -3,9 +3,9 @@ include 'include/verificar_sesion_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
 
-$id_estudiante = $_GET['id'];
-$ejec_busc_est = buscarEstudianteById($conexion, $id_estudiante);
-$res_busc_est = mysqli_fetch_array($ejec_busc_est);
+$id_programacion = $_GET['id'];
+$ejec_busc_prog = buscarProgramacionById($conexion, $id_programacion);
+$res_busc_prog = mysqli_fetch_array($ejec_busc_prog);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -64,7 +64,7 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="">
-                  <h2 align="center">Editar Datos de Estudiante</h2>
+                  <h2 align="center">Editar Datos de Pogramacion de UD</h2>
 
 
                   <div class="clearfix"></div>
@@ -79,38 +79,31 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
 
                     <div class="x_content">
                       <br />
-                      <form role="form" action="operaciones/actualizar_estudiante.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $id_estudiante; ?>">
-                        <input type="hidden" name="dni_a" value="<?php echo $res_busc_est['dni']; ?>">
+                      <form role="form" action="operaciones/actualizar_programacion.php" class="form-horizontal form-label-left input_mask" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?php echo $id_programacion; ?>">
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Dni : </label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Unidad Didáctica : </label>
                           <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="number" class="form-control" name="dni" required="" maxlength="8" value="<?php echo $res_busc_est['dni']; ?>">
+                            <input type="number" class="form-control" readonly value="<?php echo $res_busc_prog['id']; ?>">
                             <br>
                           </div>
                         </div>
+                        
                         <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellidos y Nombres : </label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Docente : </label>
                           <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="ap_nom" required="" value="<?php echo $res_busc_est['apellidos_nombres']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Género : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control" id="genero" name="genero" value="<?php echo $res_busc_est['id_genero']; ?>" required="required">
-                              <option></option>
+                            <select class="form-control" id="docente" name="docente" value="<?php echo $res_busc_prog['id_docente']; ?>" required="required">
+                              <option>Seleccione</option>
                               <?php
-                              $ejec_busc_gen = buscarGenero($conexion);
-                              while ($res_busc_gen = mysqli_fetch_array($ejec_busc_gen)) {
-                                $id_gen = $res_busc_gen['id'];
-                                $gen = $res_busc_gen['genero'];
+                              $ejec_busc_doc = buscarDocenteOrdesByApellidosNombres($conexion);
+                              while ($res_busc_doc = mysqli_fetch_array($ejec_busc_doc)) {
+                                $id_doc = $res_busc_doc['id'];
+                                $doc = $res_busc_doc['genero'];
                               ?>
-                                <option value="<?php echo $id_gen;
-                                                ?>" <?php if ($res_busc_est['id_genero'] == $id_gen) {
+                                <option value="<?php echo $id_doc;
+                                                ?>" <?php if ($res_busc_prog['id_docente'] == $id_doc) {
                                     echo "selected";
-                                  } ?>><?php echo $gen; ?></option>
+                                  } ?>><?php echo $doc; ?></option>
                               <?php
                               }
                               ?>
@@ -118,119 +111,8 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
                             <br>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Nacimiento : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="date" class="form-control" name="fecha_nac" required="" value="<?php echo $res_busc_est['fecha_nac']; ?>">
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Dirección : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="direccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_est['direccion']; ?>">
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo Electrónico : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="email" class="form-control" name="email" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_est['correo']; ?>">
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Teléfono : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="number" class="form-control" name="telefono" required="" maxlength="15" value="<?php echo $res_busc_est['telefono']; ?>">
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Año de Ingreso : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="date" class="form-control" name="anio_ingreso" required="" value="<?php echo $res_busc_est['anio_ingreso']; ?>">
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Carrera Profesional : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control" id="carrera" name="carrera" value="<?php echo $res_busc_est['id_programa_estudios']; ?>" required="required">
-                              <option></option>
-                              <?php
-                              $ejec_busc_carr = buscarCarreras($conexion);
-                              while ($res__busc_carr = mysqli_fetch_array($ejec_busc_carr)) {
-                                $id_carr = $res__busc_carr['id'];
-                                $carr = $res__busc_carr['nombre'];
-                              ?>
-                                <option value="<?php echo $id_carr;
-                                                ?>" <?php if ($res_busc_est['id_programa_estudios'] == $id_carr) {
-                                    echo "selected";
-                                  } ?>><?php echo $carr; ?></option>
-                              <?php
-                              }
-                              ?>
-                            </select>
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control" id="semestre" name="semestre" value="<?php echo $res_busc_est['id_semestre']; ?>" required="required">
-                              <option></option>
-                              <?php
-                              $ejec_busc_sem = buscarSemestre($conexion);
-                              while ($res_busc_sem = mysqli_fetch_array($ejec_busc_sem)) {
-                                $id_sem = $res_busc_sem['id'];
-                                $sem = $res_busc_sem['descripcion'];
-                              ?>
-                                <option value="<?php echo $id_sem;
-                                                ?>" <?php if ($res_busc_est['id_semestre'] == $id_sem) {
-                                    echo "selected";
-                                  } ?>><?php echo $sem; ?></option>
-                              <?php
-                              }
-                              ?>
-                            </select>
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Sección : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="seccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="1" value="<?php echo $res_busc_est['seccion']; ?>">
-                            <br>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Turno : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="turno" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="20" value="<?php echo $res_busc_est['turno']; ?>">
-                            <br>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Discapacidad : </label>
-                          <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control" name="discapacidad" value="" required="required">
-                              <option></option>
-                              <option value="SI" <?php if ("SI" == $res_busc_est['discapacidad']) :
-                                                    echo 'selected';
-                                                  endif ?>>SI</option>
-                              <option value="NO" <?php if ("NO" == $res_busc_est['discapacidad']) :
-                                                    echo 'selected';
-                                                  endif ?>>NO</option>
-                            </select>
-                            <br>
-                          </div>
-                        </div>
-
-
                         <div align="center">
-                          <a class="btn btn-primary" href="estudiante.php"> Cancelar</a>
+                          <a class="btn btn-primary" href="programacion.php"> Cancelar</a>
                           <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                       </form>

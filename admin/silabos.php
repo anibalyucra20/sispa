@@ -183,7 +183,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                             </tr>
                             <tr>
                               <th>
-                                <center>Semana/Fecha</center>
+                                <center>Semana</center>
                               </th>
                               <th>
                                 <center>Elemento de Capacidad</center>
