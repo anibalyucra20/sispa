@@ -304,7 +304,7 @@ function NbLines($w,$txt)
 	$pdf->Cell(80,6,utf8_decode("V.            ORGANIZACIÓN DE ACTIVIDADES Y CONTENIDOS BÁSICOS"),0,1,'',0);
 
     $pdf->SetWidths(array(25,40,40,40,30));
-    $pdf->Row(array(utf8_decode('Semanas/Fechas'),utf8_decode("Elementos de capacidad"),utf8_decode("Actividades de aprendizaje"),utf8_decode("Contenidos Básicos"),utf8_decode("Tareas previas")));
+    $pdf->Row(array(utf8_decode('Semana'),utf8_decode("Elementos de capacidad"),utf8_decode("Actividades de aprendizaje"),utf8_decode("Contenidos Básicos"),utf8_decode("Tareas previas")));
 
     $pdf->SetFont('Arial','',10);
     //buscar programacion de actividades del silabo
