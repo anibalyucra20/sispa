@@ -90,7 +90,8 @@ if (!($mostrar_archivo)) {
                     <?php
                     $contar_ud_prog = 0;
                     while ($r_b_ud = mysqli_fetch_array($b_ud)) { 
-                        $b_prog_ud = buscarProgramacionByUd_Peridodo($conexion, $r_b_ud['id'] , $id_periodo_actual);
+                        $id_uds = $r_b_ud['id'];
+                        $b_prog_ud = buscarProgramacionByUd_Peridodo($conexion, $id_uds , $id_periodo_actual);
                         $r_b_prog_ud = mysqli_fetch_array($b_prog_ud);
                         $cont_b_prog_ud = mysqli_num_rows($b_prog_ud);
                         if ($cont_b_prog_ud>0) {
