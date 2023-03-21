@@ -4,7 +4,7 @@ include ("../include/busquedas.php");
 $id_persona = $_POST['id'];
 $pass = $_POST['new_password'];
 $pass_secure = password_hash($pass, PASSWORD_DEFAULT);
-$b_doc = buscarDocenteById($conexion, $id);
+$b_doc = buscarDocenteById($conexion, $id_persona);
 $r_b_doc = mysqli_fetch_array($b_doc);
 $validar = $r_b_doc['reset_password'];
 if ($validar==1) {

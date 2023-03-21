@@ -1,3 +1,18 @@
+<?php
+    include ("../../include/conexion.php");
+    include ("../include/busquedas.php");
+     $id_persona = $_GET['id'];
+     $b_doc = buscarDocenteById($conexion, $id_persona);
+     $r_b_doc = mysqli_fetch_array($b_doc);
+     $validar = $r_b_doc['reset_password'];
+     if ($validar==0) {
+      echo "<script>
+			alert('Error, Link Caducado o Ya utilizado');
+			window.location= '../login/';
+		</script>
+	";
+     }
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -25,9 +40,7 @@
 
   <body class="login">
     <div>
-     <?php
-     $id_persona = $_GET['id'];
-     ?>
+     
 
       <div class="login_wrapper">
         <div id="register" class="">
