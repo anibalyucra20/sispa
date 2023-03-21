@@ -38,57 +38,6 @@ include 'include/busquedas.php';
     <!-- Script obtenido desde CDN jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-    <script src="../excel_a_mysql/xlsx.js"></script>
-    <script src="../excel_a_mysql/jquery-1.9.1.js"></script>
-    <script language="JavaScript">
-        var oFileIn;
-        //Código JQuery
-        $(function() {
-            oFileIn = document.getElementById('my_file_input');
-            if (oFileIn.addEventListener) {
-                oFileIn.addEventListener('change', filePicked, false);
-            }
-        });
-
-        //Método que hace el proceso de importar excel a html
-        function filePicked(oEvent) {
-            // Obtener el archivo del input
-            var oFile = oEvent.target.files[0];
-            var sFilename = oFile.name;
-            // Crear un Archivo de Lectura HTML5
-            var reader = new FileReader();
-
-            // Leyendo los eventos cuando el archivo ha sido seleccionado
-            reader.onload = function(e) {
-                var data = e.target.result;
-                var cfb = XLS.CFB.read(data, {
-                    type: 'binary'
-                });
-                var wb = XLS.parse_xlscfb(cfb);
-                // Iterando sobre cada sheet
-                wb.SheetNames.forEach(function(sheetName) {
-                    // Obtener la fila actual como CSV
-                    var sCSV = XLS.utils.make_csv(wb.Sheets[sheetName]);
-                    var data = XLS.utils.sheet_to_json(wb.Sheets[sheetName], {
-                        header: 1
-                    });
-                    $.each(data, function(indexR, valueR) {
-                        var sRow = "<tr>";
-                        $.each(data[indexR], function(indexC, valueC) {
-                            sRow = sRow + "<td>" + valueC + "</td>";
-                        });
-                        sRow = sRow + "</tr>";
-                        $("#my_file_output").append(sRow);
-                    });
-                });
-                $("#imgImport").css("display", "none");
-            };
-
-
-            // Llamar al JS Para empezar a leer el archivo .. Se podría retrasar esto si se desea
-            reader.readAsBinaryString(oFile);
-        }
-    </script>
 
 </head>
 
@@ -111,20 +60,15 @@ include 'include/busquedas.php';
                                 </div>
                                 <div class="x_content">
                                     <br />
+                                        <form action="">
                                         <div class="form-group">
                                             <input type="file" id="my_file_input" class="form-control" />
-                                            <br>
-                                            <div class="table table-responsive">
-                                                <table id='my_file_output' border="" class="table table-bordered table-condensed table-striped"></table>
-                                            </div>
-                                            
                                         </div>
                                         <div align="center">
                                             <a href="matriculas.php"  class="btn btn-warning">Cancelar</a>
-                                            <button id="btn_lectura" class="btn btn-success">Guardar</button>
-                                            <p id="respuesta"></p>
-                                            <p id="contador"></p>
+                                            <button type="submit" id="btn_lectura" class="btn btn-success">Guardar</button>
                                         </div>
+                                        </form>
                                         <div class="ln_solid"></div>
                                 </div>
                             </div>
