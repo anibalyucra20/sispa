@@ -1,5 +1,6 @@
 <?php
 include ("../../include/conexion.php");
+include ("../include/busquedas.php");
 $id_persona = $_POST['id'];
 $pass = $_POST['new_password'];
 $pass_secure = password_hash($pass, PASSWORD_DEFAULT);
