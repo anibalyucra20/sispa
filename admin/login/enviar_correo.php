@@ -62,7 +62,7 @@ if ($cont_user > 0) {
                             </head>
                             <body>
                             <div style="width: 100%; font-family: Roboto; font-size: 0.8em; display: inline;">
-                                <div style="background-color:rgb(17,17,29); border-radius: 10px 10px 0px 0px; height: 60px; text-align: center;">
+                                <div style="background-color:rgb(17,17,29); border-radius: 10px 10px 0px 0px; height: 20px; text-align: center;">
                                     <img src="https://sispa.iestphuanta.edu.pe/img/logo.png" alt="www.iestphuanta.edu.pe" style="padding: 0.5em; text-align: center;">
                                 </div>
                                 <div style="background-color:rgb(17,17,29); border-radius: 0px 0px 0px 0px; height: 60px; margin-top: 0px; padding-top: 2px; padding-bottom: 10px;">
@@ -101,6 +101,8 @@ if ($cont_user > 0) {
 
             $mail->send();
             //echo 'Correo enviado';
+            $sql = "UPDATE docente SET reset_password=1 WHERE id=$id_persona";
+            $ejec_consulta = mysqli_query($conexion, $sql);
             echo "<script>
 			alert('Verifique su correo, sino encuentra en su bandeja de entrada. Verifique en Seccion de Spam');
 			window.location= '../login/'
