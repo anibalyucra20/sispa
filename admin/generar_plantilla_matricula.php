@@ -94,8 +94,6 @@ if (!($mostrar_archivo)) {
                         $id_uds = $r_b_ud['id'];
                         $b_prog_ud = buscarProgramacionByUd_Peridodo($conexion, $id_uds, $id_periodo_actual);
                         $r_b_prog_ud = mysqli_fetch_array($b_prog_ud);
-                        $cont_b_prog_ud = mysqli_num_rows($b_prog_ud);
-                         
                         ?>
                         <th>
                             <?php echo $r_b_ud['descripcion']; ?>
@@ -111,7 +109,7 @@ if (!($mostrar_archivo)) {
                     <td></td>
                     <td></td>
                     <td></td>
-                    <?php for ($j=0; $j < $contar_ud_prog ; $j++) { ?>
+                    <?php for ($j=0; $j < $count_ud ; $j++) { ?>
                         <td>
                         </td>
                     <?php } ?>
