@@ -89,10 +89,10 @@ if (!($mostrar_archivo)) {
                     <th>DISCAPACIDAD(SI/NO)</th>
                     <?php
                     $contar_ud_prog = 0;
-                    $b_ud = buscarUdByCarSem($conexion, $id_pe, $id_sem);
-                    while ($r_b_ud = mysqli_fetch_array($b_ud)) { 
+                    $b_udd = buscarUdByCarSem($conexion, $id_pe, $id_sem);
+                    while ($r_b_ud = mysqli_fetch_array($b_udd)) { 
                         $id_uds = $r_b_ud['id'];
-                        $b_prog_ud = buscarProgramacionByUd_Peridodo($conexion, $id_uds , $id_periodo_actual);
+                        $b_prog_ud = buscarProgramacionByUd_Peridodo($conexion, $id_uds, $id_periodo_actual);
                         $r_b_prog_ud = mysqli_fetch_array($b_prog_ud);
                         $cont_b_prog_ud = mysqli_num_rows($b_prog_ud);
                         if ($cont_b_prog_ud>0) {
