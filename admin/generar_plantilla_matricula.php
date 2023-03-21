@@ -99,7 +99,7 @@ if (!($mostrar_archivo)) {
                             $contar_ud_prog+=1; 
                         ?>
                         <th>
-                            <?php echo $r_b_ud['descripcion']; ?>
+                            <?php echo "aaaa"; ?>
                         </th>
                     <?php }} ?>
                 </tr>
