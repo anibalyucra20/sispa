@@ -35,9 +35,12 @@ if(($cont == 1)&&(password_verify($pass,$res_busc['password']))){
 		$_SESSION['periodo'] = $presente_periodo;
 		header("location: ../index.php");
 	}elseif($cargo_docente == 4){//jefe de area/coordinador
-			$_SESSION['id_jefe_area'] = $id_docente;
+		$_SESSION['id_docente'] = $id_docente;
 			$_SESSION['periodo'] = $presente_periodo;
 			header("location: ../index.php");
+			/*$_SESSION['id_jefe_area'] = $id_docente;
+			$_SESSION['periodo'] = $presente_periodo;
+			header("location: ../index.php");*/
 	}elseif($cargo_docente == 5){//docente
 			$_SESSION['id_docente'] = $id_docente;
 			$_SESSION['periodo'] = $presente_periodo;
