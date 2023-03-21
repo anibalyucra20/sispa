@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -11,16 +11,16 @@
     <!--icono en el titulo-->
     <link rel="shortcut icon" href="../img/favicon.ico">
     <!-- Bootstrap -->
-    <link href="../Gentella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../Gentella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../Gentella/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="../Gentella/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../../Gentella/vendors/animate.css/animate.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../Gentella/build/css/custom.min.css" rel="stylesheet">
+    <link href="../../Gentella/build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="login">
@@ -31,7 +31,7 @@
 
       <div class="login_wrapper">
         <div id="register" class="">
-          <center><img src="../img/logo.png" width="150px"></center>
+          <center><img src="../../img/logo.png" width="150px"></center>
           <section class="login_content">
             <form role="form" action="change_password.php" method="POST">
               <h1>Cambiar Contraseña</h1>
