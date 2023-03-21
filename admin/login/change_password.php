@@ -7,7 +7,7 @@ $pass_secure = password_hash($pass, PASSWORD_DEFAULT);
 $b_doc = buscarDocenteById($conexion, $id);
 $r_b_doc = mysqli_fetch_array($b_doc);
 $validar = $r_b_doc['reset_password'];
-if ($validar==0) {
+if ($validar==1) {
 	//procedemos a actualizar el password utilizando el id de usuario
 $update_pass = "UPDATE docente SET password='$pass_secure', reset_password='0' WHERE id='$id_persona'";
 $ejec_update_pass = mysqli_query($conexion, $update_pass);
