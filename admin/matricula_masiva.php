@@ -60,9 +60,9 @@ include 'include/busquedas.php';
                                 </div>
                                 <div class="x_content">
                                     <br />
-                                        <form action="">
+                                        <form action="matricular_masiva.php" enctype="multipart/form-data" method="POST">
                                         <div class="form-group">
-                                            <input type="file" id="my_file_input" class="form-control" />
+                                            <input type="file" name="my_file_input" id="my_file_input" class="form-control" />
                                         </div>
                                         <div align="center">
                                             <a href="matriculas.php"  class="btn btn-warning">Cancelar</a>
