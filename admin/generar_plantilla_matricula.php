@@ -98,7 +98,7 @@ if (!($mostrar_archivo)) {
                             $contar_ud_prog+=1; 
                         ?>
                         <th>
-                            <p class="verticalll"><?php echo $r_b_ud['descripcion']; ?></p>
+                            <?php echo $r_b_ud['descripcion']; ?>
                         </th>
                     <?php }} ?>
                 </tr>
