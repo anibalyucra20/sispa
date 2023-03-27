@@ -64,25 +64,28 @@
               <div class="count"><?php 
               $b_mat_per = buscarMatriculaByIdPeriodo($conexion, $r_b_per['id_periodo_acad']);
               $count_b_mat = mysqli_num_rows($b_mat_per);
-              
               echo $count_b_mat; ?></div>
               <span class="count_bottom"><a href="matricula.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-book"></i>Unidades Didácticas Programadas</span>
-              <div class="count"><?php echo ""; ?>32</div>
+              <div class="count"><?php 
+              $b_ud_prog = buscarProgramacionByIdPeriodo($conexion, $r_b_per['id_periodo_acad']);
+              $count_b_prog = mysqli_num_rows($b_ud_prog);
+              echo $count_b_prog; ?></div>
               <span class="count_bottom"><a href="programacion.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-pencil-square-o"></i> Evaluación</span>
-              <div class="count"><?php echo ""; ?>50</div>
+              <div class="count"><?php echo $count_b_prog; ?></div>
               <span class="count_bottom"><a href="evaluacion.php"><i class="green">Ver</i></a></span>
             </div>
+            <!--
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-line-chart"></i>Reportes</span>
               <div class="count"><?php echo ""; ?>2022-II</div>
               <span class="count_bottom"><a href="reportes.php"><i class="green">Ver </i></a></span>
-            </div>
+            </div>-->
             
             
           </div>
