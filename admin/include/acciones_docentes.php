@@ -29,7 +29,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellidos y Nombres : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="nom_ap" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_doc['apellidos_nombres']; ?>">
+                          <input type="text" class="form-control" name="nom_ap" required="required" value="<?php echo $res_busc_doc['apellidos_nombres']; ?>">
                           <br>
                         </div>
                       </div>
