@@ -78,7 +78,7 @@
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-pencil-square-o"></i> Evaluación</span>
               <div class="count"><?php echo $count_b_prog; ?></div>
-              <span class="count_bottom"><a href="evaluacion.php"><i class="green">Ver</i></a></span>
+              <span class="count_bottom"><a href="calificaciones_unidades_didacticas.php"><i class="green">Ver</i></a></span>
             </div>
             <!--
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
