@@ -56,14 +56,16 @@
               <div class="count"><?php 
               $b_est = buscarEstudiante($conexion);
               $count_est = mysqli_num_rows($b_est);
-              
-              
               echo $count_est; ?></div>
               <span class="count_bottom"><a href="estudiante.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-check-square-o"></i> Matrículas</span>
-              <div class="count"><?php echo ""; ?>100</div>
+              <div class="count"><?php 
+              $b_mat_per = buscarMatriculaByIdPeriodo($conexion, $r_b_per['id_periodo_acad']);
+              $count_b_mat = mysqli_num_rows($b_mat_per);
+              
+              echo $count_b_mat; ?></div>
               <span class="count_bottom"><a href="matricula.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
