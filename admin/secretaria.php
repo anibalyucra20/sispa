@@ -53,7 +53,12 @@
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-child"></i> Estudiantes</span>
-              <div class="count"><?php echo ""; ?>254</div>
+              <div class="count"><?php 
+              $b_est = buscarEstudiante($conexion);
+              $count_est = mysqli_num_rows($b_est);
+              
+              
+              echo $count_est; ?></div>
               <span class="count_bottom"><a href="estudiante.php"><i class="green">Ver</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
