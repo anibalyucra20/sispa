@@ -44,8 +44,11 @@
               <span class="count_top"><i class="fa fa-calendar"></i> Periodo Académico</span>
               <?php $b_per = buscarPresentePeriodoAcad($conexion); 
               $r_b_per = mysqli_fetch_array($b_per);
+
+              $b_p = buscarPeriodoAcadById($conexion, $r_b_per['id_periodo_acad']);
+              $r_b_p = mysqli_fetch_array($b_p);
               ?>
-              <div class="count"><?php echo $r_b_per['nombre']; ?></div>
+              <div class="count"><?php echo $r_b_p['nombre']; ?></div>
               <span class="count_bottom"><a href=""><i class="green">.</i></a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
