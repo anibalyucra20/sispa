@@ -58,7 +58,7 @@ function buscarCoordinadorAreaByIdPe($conexion, $id_pe){
 	return mysqli_query($conexion, $sql);
 }
 function buscarCoordinadorArea_All($conexion){
-	$sql = "SELECT * FROM docente WHERE cargo='JEFE DE AREA/COORDINADOR' AND activo='1'";
+	$sql = "SELECT * FROM docente WHERE id_cargo='4' AND activo='1'";
 	return mysqli_query($conexion, $sql);
 }
 
