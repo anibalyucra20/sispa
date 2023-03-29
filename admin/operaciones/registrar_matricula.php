@@ -36,8 +36,13 @@ foreach ($detalle_matricula as $valor) {
     $res_b_prog = mysqli_fetch_array($busc_prog);
     $id_ud = $res_b_prog['id_unidad_didactica'];
 
+    //buscamos la cantidad de matriculados para ingresar el orden correcto
+    $b_cant_mat_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $valor);
+    $cont_r_b_cant_mat_det_mat = mysqli_num_rows($b_cant_mat_detalle_mat);
+    $new_orden = $cont_r_b_cant_mat_det_mat += 1;
+
     //REGISTRAMOS EL DETALLE DE LA MATRICULA
-    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, id_programacion_ud, recuperacion) VALUES ('$id_matricula','$valor','')";
+    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, id_programacion_ud, recuperacion) VALUES ('$id_matricula','$new_orden','$valor','')";
     $ejecutar_reg_det_mat = mysqli_query($conexion, $reg_det_mat);
 
     //buscamos el ultimo registro de detalle matricula
