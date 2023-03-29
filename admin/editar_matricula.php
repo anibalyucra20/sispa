@@ -114,7 +114,6 @@ if ($fecha_fin_per >= $fecha_actual) {
 
                             $b_ud = buscarUdById($conexion, $r_b_prog['id_unidad_didactica']);
                             $r_b_ud = mysqli_fetch_array($b_ud);
-                        
                       ?>
                         <tr>
                           <td><?php echo $cont_table; ?></td>
@@ -136,19 +135,13 @@ if ($fecha_fin_per >= $fecha_actual) {
                             <a class="btn btn-success" href="editar_matricula.php?id=' . $res_busc_matricula['id'] . '"><i class="fa fa-pencil-square-o"></i> </a>
                           </td>';
                           } ?>
-
-
                         </tr>
                       <?php
                       };
                       };
                       ?>
-
                     </tbody>
                   </table>
-
-
-
                 </div>
               </div>
             </div>
