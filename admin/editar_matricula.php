@@ -2,7 +2,12 @@
 include 'include/verificar_sesion_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
-$id_est = $_GET['id'];
+
+$id_mat = $_GET['id'];
+
+$b_mat = buscarMatriculaById($conexion, $id_mat);
+$r_b_mat = mysqli_fetch_array($b_mat);
+$id_est = $r_b_mat['id_estudiante'];
 $id_periodo_select = $_SESSION['periodo'];
 
 $b_perido_act = buscarPeriodoAcadById($conexion, $id_periodo_select);
@@ -97,7 +102,7 @@ if ($fecha_fin_per >= $fecha_actual) {
                     <tbody>
                       <?php
                       $cont_table = 0;
-                      $ejec_busc_matricula = buscarMatriculaByEstudiantePeriodo($conexion, $id_est, $id_periodo_acad);
+                      $ejec_busc_matricula = buscarMatriculaById($conexion, $id_mat);
                       while ($res_busc_matricula = mysqli_fetch_array($ejec_busc_matricula)) {
                         
                         $b_detalle_matricula = buscarDetalleMatriculaByIdMatricula($conexion, $res_busc_matricula['id']);
