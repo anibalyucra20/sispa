@@ -119,8 +119,8 @@ if ($fecha_fin_per >= $fecha_actual) {
                         <tr>
                           <td><?php echo $cont_table; ?></td>
                           <?php
-                          $id_programa_estudio = $res_busc_matricula['id_programa_estudio'];
-                          $id_semestre = $res_busc_matricula['id_semestre'];
+                          $id_programa_estudio = $r_b_ud['id_programa_estudio'];
+                          $id_semestre = $r_b_ud['id_semestre'];
 
                           $busc_semestre = buscarSemestreById($conexion, $id_semestre);
                           $res_b_semestre = mysqli_fetch_array($busc_semestre);
