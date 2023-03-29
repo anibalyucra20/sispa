@@ -42,7 +42,7 @@ foreach ($detalle_matricula as $valor) {
     $new_orden = $cont_r_b_cant_mat_det_mat + 1;
 
     //REGISTRAMOS EL DETALLE DE LA MATRICULA
-    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, id_programacion_ud, recuperacion) VALUES ('$id_matricula','$new_orden','$valor','')";
+    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, orden, id_programacion_ud, recuperacion) VALUES ('$id_matricula','$new_orden','$valor','')";
     $ejecutar_reg_det_mat = mysqli_query($conexion, $reg_det_mat);
 
     //buscamos el ultimo registro de detalle matricula
