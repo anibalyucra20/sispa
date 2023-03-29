@@ -138,6 +138,10 @@ function buscarDetalleMatriculaById($conexion, $id){
 	$sql = "SELECT * FROM detalle_matricula_unidad_didactica WHERE id = '$id'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarDetalleMatriculaByIdMatricula($conexion, $id){
+	$sql = "SELECT * FROM detalle_matricula_unidad_didactica WHERE id_matricula = '$id'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog){
 	$sql = "SELECT * FROM detalle_matricula_unidad_didactica WHERE id_programacion_ud = '$id_prog' ORDER BY orden";
 	return mysqli_query($conexion, $sql);

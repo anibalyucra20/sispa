@@ -192,11 +192,6 @@ if (!($mostrar_archivo)) {
 
                                 <?php
 
-
-
-
-
-
                                 ?>
 
                               </tr>
