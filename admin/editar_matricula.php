@@ -102,7 +102,7 @@ if ($fecha_fin_per >= $fecha_actual) {
                     <tbody>
                       <?php
                       $cont_table = 0;
-                      $ejec_busc_matricula = buscarMatriculaById($conexion, $id_mat);
+                      $ejec_busc_matricula = buscarMatriculaByEstudiantePeriodo($conexion, $id_est, $id_periodo_acad);
                       while ($res_busc_matricula = mysqli_fetch_array($ejec_busc_matricula)) {
                         
                         $b_detalle_matricula = buscarDetalleMatriculaByIdMatricula($conexion, $res_busc_matricula['id']);
