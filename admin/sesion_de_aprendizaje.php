@@ -337,7 +337,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                         <input type="text" name="recursos_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['recursos'];?>">
                                     </td>
                                     <td rowspan="2">
-                                        <input type="number" name="tiempo_<?php echo $r_b_momentos_sesion['id']; ?>" max="50" min="0" class="form-control" value="<?php echo $r_b_momentos_sesion['tiempo'];?>" placeholder="Tiempo en Minutos">
+                                        <input type="number" name="tiempo_<?php echo $r_b_momentos_sesion['id']; ?>" max="500" min="0" class="form-control" value="<?php echo $r_b_momentos_sesion['tiempo'];?>" placeholder="Tiempo en Minutos">
                                     </td>
                                 </tr>
                                 <tr>
@@ -384,7 +384,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                         </center>
                                     </td>
                                     <td><center>
-                                        <input type="number" name="peso_eva_<?php echo $r_b_actividades_eval['id']; ?>" max="50" min="0" class="form-control" value="<?php echo $r_b_actividades_eval['peso'];?>" placeholder="Tiempo en Minutos">
+                                        <input type="number" name="peso_eva_<?php echo $r_b_actividades_eval['id']; ?>" max="100" min="0" class="form-control" value="<?php echo $r_b_actividades_eval['peso'];?>" placeholder="Tiempo en Minutos">
                                         </center>
                                     </td>
                                     <td><center>
