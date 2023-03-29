@@ -139,7 +139,9 @@ if (!($mostrar_archivo)) {
                           <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                               <tr>
-
+                                <th rowspan="2">
+                                  <center>Nro Orden</center>
+                                </th>
                                 <th rowspan="2">
                                   <center>DNI</center>
                                 </th>
@@ -202,16 +204,16 @@ if (!($mostrar_archivo)) {
                             <tbody>
                               <?php
                               $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
-                              $orden = 0;
+                              
                               while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
-                                $orden++;
+                                
                                 $b_matricula = buscarMatriculaById($conexion, $r_b_det_mat['id_matricula']);
                                 $r_b_mat = mysqli_fetch_array($b_matricula);
                                 $b_estudiante = buscarEstudianteById($conexion, $r_b_mat['id_estudiante']);
                                 $r_b_est = mysqli_fetch_array($b_estudiante);
                               ?>
                                 <tr>
-
+                                  <td><?php echo $r_b_det_mat['orden']; ?></td>
                                   <td><?php echo $r_b_est['dni']; ?></td>
                                   <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
                                   <?php
