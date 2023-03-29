@@ -213,7 +213,7 @@ if (!($mostrar_archivo)) {
                                 $r_b_est = mysqli_fetch_array($b_estudiante);
                               ?>
                                 <tr>
-                                  <td><input type="number" class="nota_input" name="ord_<?php echo $r_b_est['dni']; ?>" value="<?php echo $r_b_det_mat['orden']; ?>" min="0" max="50"></td>
+                                  <td><input type="number" class="nota_input" name="ord_<?php echo $r_b_det_mat['id']; ?>" value="<?php echo $r_b_det_mat['orden']; ?>" min="0" max="50"></td>
                                   <td><?php echo $r_b_est['dni']; ?></td>
                                   <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
                                   <?php
