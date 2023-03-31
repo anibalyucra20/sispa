@@ -277,7 +277,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                                 <center>INDICADORES</center>
                               </th>
                               <th width="50%">
-                                <center>TÉCNICAS (Instrimentos)</center>
+                                <center>TÉCNICAS (Instrumentos)</center>
                               </th>
                             </tr>
                           </thead>
