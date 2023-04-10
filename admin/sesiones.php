@@ -150,7 +150,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                               <a title="Imprimir" class="btn btn-info" target="_blank" href="imprimir_sesion.php?data=<?php echo $r_b_sesion['id']; ?>"><i class="fa fa-print"></i></a>
                               <a title="Duplicar Sesión de Aprendizaje" class="btn btn-warning" href="operaciones/duplicar_sesion.php?data=<?php echo $r_b_sesion['id']; ?>&data2=<?php echo $id_prog; ?>" onclick="return confirmard();"><i class="fa fa-plus-square"></i></a>
                               <?php if ($contar>1) { ?>
-                                <a title="Eliminar Sesión de Aprendizaje" class="btn btn-danger" href="" onclick="return confirmardelete();"><i class="fa fa-plus-square"></i></a>
+                                <a title="Eliminar Sesión de Aprendizaje" class="btn btn-danger" href="operaciones/eliminar_sesion.php?data=<?php echo $r_b_sesion['id']; ?>&data2=<?php echo $id_prog; ?>" onclick="return confirmardelete();"><i class="fa fa-plus-square"></i></a>
                               <?php } ?>
                               
                             </td>
