@@ -136,11 +136,11 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                               <div class="x_content">
                                 <br />
                                 <form role="form" action="operaciones/copiar_informacion_sesion.php" method="POST" class="form-horizontal form-label-left input_mask">
-                                  <input type="hidden" value="">
+                                  <input type="hidden" name="myidactual" value="<?php echo $id_sesion; ?>">
                                 <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sesión de Aprendizaje </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sesión de Aprendizaje (a copiar)</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" id="sesion" name="sesion" value="" required="required">
+                          <select class="form-control" id="sesion_copi" name="sesion_copi" value="" required="required">
                             <option></option>
                             <?php 
                               $b_prog_act_b = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
@@ -157,7 +157,6 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 }
                               }
                             ?>
-                            <!-- datos a traer segun los datos del estudiante -->
                           </select>
                           <br>
                         </div>
