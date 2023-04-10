@@ -114,6 +114,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                     <form action="imprimir_sesion.php" method="GET" target="_blank"><input type="hidden" name="data" value="<?php echo $id_sesion; ?>" >
                     <button type="submit" class="btn btn-info">Imprimir</button>
                     </form>
+                    <button type="button" class="btn btn-success">Copiar Información</button>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
