@@ -1,5 +1,5 @@
 <?php
-include '../include/verificar_sesion_secretaria_operaciones.php';
+include '../include/verificar_sesion_docente_operaciones.php';
 include "../../include/conexion.php";
 
 $id_actual = $_POST['myidactual'];
