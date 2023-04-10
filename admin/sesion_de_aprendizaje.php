@@ -152,7 +152,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                                 while ($res_b_sesion = mysqli_fetch_array($b_sesion_b)) {
                                   $contar += 1;
                                   ?>
-                                  <option value="<?php echo $res_b_sesion['id']; ?>"><?php echo "Semana ".$res_b_prog_act['semana']." - ".$contar; ?></option>
+                                  <option value="<?php echo $res_b_sesion['id']; ?>"><?php echo "Semana ".$res_b_prog_act['semana']." - Sesión ".$contar; ?></option>
                                   <?php
                                 }
                               }
