@@ -161,6 +161,11 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                           <br>
                         </div>
                       </div>
+                      <div align="center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                          
+                          <button type="submit" class="btn btn-primary">Guardar</button>
+                      </div>
                                 </form>
                                 
 
