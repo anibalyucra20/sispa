@@ -114,7 +114,48 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                     <form action="imprimir_sesion.php" method="GET" target="_blank"><input type="hidden" name="data" value="<?php echo $id_sesion; ?>" >
                     <button type="submit" class="btn btn-info">Imprimir</button>
                     </form>
-                    <button type="button" class="btn btn-success">Copiar Información</button>
+                    <button class="btn btn-success" data-toggle="modal" data-target=".copiar"><i class="fa fa-plus-square"></i> Copiar Información</button>
+                    <!--MODAL COPIAR INFFORMACION-->
+                    <div class="modal fade copiar" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel" align="center">Registrar Matrícula</h4>
+                          </div>
+                          <div class="modal-body">
+                            <!--INICIO CONTENIDO DE MODAL-->
+                            <div class="x_panel">
+
+                              <div class="" align="center">
+                                <h2></h2>
+                                <div class="clearfix"></div>
+                              </div>
+                              <div class="x_content">
+                                <br />
+
+                                <div class="form-group">
+                                  <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <center>
+                                      <a href="matricula.php" class="btn btn-primary"><i class="fa fa-user"></i> Matrícula Individual</a>
+                                      <a href="matricula_masiva.php" class="btn btn-success"><i class="fa fa-users"></i> Matrícula Masiva</a>
+                                    </center>
+
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <!--FIN DE CONTENIDO DE MODAL-->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- FIN MODAL COPIAR INFORMACION-->
+
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
