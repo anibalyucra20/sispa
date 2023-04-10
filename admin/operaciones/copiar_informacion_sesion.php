@@ -37,7 +37,7 @@ while ($r_b_momentos= mysqli_fetch_array($b_momentos)) {
     $tiempo = $r_b_momentos['tiempo'];
 
     //---------- COPIAR  MOMENTOS DE SESION ----------------
-    $reg_momentos_sesion = "UPDATE momentos_sesion_aprendizaje SET estrategia='$estrategia', actividad='$actividad', recursos='$recursos',tiempo='$tiempo' WHERE  id='$id_actual' AND momento='$momento'";
+    $reg_momentos_sesion = "UPDATE momentos_sesion_aprendizaje SET estrategia='$estrategia', actividad='$actividad', recursos='$recursos',tiempo='$tiempo' WHERE  id_sesion_aprendizaje='$id_actual' AND momento='$momento'";
     $ejec_reg_momentos_sesion = mysqli_query($conexion, $reg_momentos_sesion);
 }
 
@@ -51,7 +51,7 @@ while ($r_b_act_eva_sesion = mysqli_fetch_array($b_act_eva_sesion)) {
     $momento_act = $r_b_act_eva_sesion['momento'];
 
     //---------- COPIAR ACTIVIDADES EVALUACION SESION ----------------
-    $reg_act_eva = "UPDATE actividad_evaluacion_sesion_aprendizaje SET indicador_logro_sesion='$indicador_logro_sesion', tecnica='$tecnica', instrumentos='$instrumentos', peso='$peso' WHERE  id='$id_actual' AND momento='$momento_act'";
+    $reg_act_eva = "UPDATE actividad_evaluacion_sesion_aprendizaje SET indicador_logro_sesion='$indicador_logro_sesion', tecnica='$tecnica', instrumentos='$instrumentos', peso='$peso' WHERE  id_sesion_aprendizaje='$id_actual' AND momento='$momento_act'";
     $ejec_reg_act_eva = mysqli_query($conexion, $reg_act_eva);
 }
 
