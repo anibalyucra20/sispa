@@ -114,7 +114,7 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                     <form action="imprimir_sesion.php" method="GET" target="_blank"><input type="hidden" name="data" value="<?php echo $id_sesion; ?>" >
                     <button type="submit" class="btn btn-info">Imprimir</button>
                     </form>
-                    <button class="btn btn-success" data-toggle="modal" data-target=".copiar"><i class="fa fa-plus-square"></i> Copiar Información</button>
+                    <button class="btn btn-success" data-toggle="modal" data-target=".copiar">Copiar Información</button>
                     <!--MODAL COPIAR INFFORMACION-->
                     <div class="modal fade copiar" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
@@ -135,16 +135,19 @@ if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
                               </div>
                               <div class="x_content">
                                 <br />
-
+                                <form role="form" action="operaciones/copiar_informacion_sesion.php" method="POST" class="form-horizontal form-label-left input_mask">
                                 <div class="form-group">
-                                  <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <center>
-                                      <a href="matricula.php" class="btn btn-primary"><i class="fa fa-user"></i> Matrícula Individual</a>
-                                      <a href="matricula_masiva.php" class="btn btn-success"><i class="fa fa-users"></i> Matrícula Masiva</a>
-                                    </center>
-
-                                  </div>
-                                </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sesión de Aprendizaje </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" id="sesion" name="sesion" value="" required="required">
+                            <option></option>
+                            <!-- datos a traer segun los datos del estudiante -->
+                          </select>
+                          <br>
+                        </div>
+                      </div>
+                                </form>
+                                
 
                               </div>
                             </div>
