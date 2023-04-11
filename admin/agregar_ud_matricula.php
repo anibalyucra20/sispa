@@ -83,7 +83,7 @@ $id_mat = $_GET['data'];
                     <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI estudiante: </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input class="form-control" type="text" name="dni_est" id="dni_est" value="<?php echo $r_b_est['dni']; ?>" readonly>
+                                <input class="form-control" type="text" name="dni_est" id="dni_est" value="<?php echo $r_b_est['dni']; ?>">
                             </div>
                         </div>
                         
