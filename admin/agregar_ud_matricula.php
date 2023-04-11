@@ -54,10 +54,7 @@ $id_mat = $_GET['data'];
         <div class="right_col" role="main">
           <div class="">
             <?php
-                $b_det_mat = buscarDetalleMatriculaById($conexion, $id_mat);
-                $r_b_det_mat = mysqli_fetch_array($b_det_mat);
-
-                $b_mat = buscarMatriculaById($conexion, $r_b_det_mat['id_matricula']);
+                $b_mat = buscarMatriculaById($conexion, $id_mat);
                 $r_b_mat = mysqli_fetch_array($b_mat);
 
                 $b_est = buscarEstudianteById($conexion,$r_b_mat['id_estudiante']);
