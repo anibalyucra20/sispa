@@ -89,7 +89,7 @@ if ($fecha_fin_per >= $fecha_actual) {
                     ?>
                   <h2 align="center">Detalle de Matrícula - <?php echo $r_b_est['apellidos_nombres']; ?></h2>
                   <?php if ($agregar) { ?>
-                    <a title="Agregar Unidad Didáctica" class="btn btn-info" href="operaciones/agregar_ud_matricula.php?data=<?php echo $id_mat; ?>">Agregar Unidad Didáctica</a>
+                    <a title="Agregar Unidad Didáctica" class="btn btn-info" href="agregar_ud_matricula.php?data=<?php echo $id_mat; ?>">Agregar Unidad Didáctica</a>
                     
                   <?php
                   } ?>
