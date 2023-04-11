@@ -1,6 +1,6 @@
 <?php
-$conexion = mysqli_connect("localhost","yhkfkumh_sispa","sispa@admin","yhkfkumh_sispa");
-//$conexion = mysqli_connect("localhost","root","","sispa");
+//$conexion = mysqli_connect("localhost","yhkfkumh_sispa","sispa@admin","yhkfkumh_sispa");
+$conexion = mysqli_connect("localhost","root","root","sispa");
 
 if ($conexion) {
 	
