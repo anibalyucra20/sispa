@@ -142,7 +142,7 @@ if ($fecha_fin_per >= $fecha_actual) {
                           <td><?php echo $res_b_semestre['descripcion']; ?></td>
                           <td><?php echo $r_b_ud['descripcion']; ?></td>
                           <?php if ($agregar) { ?>
-                            <a title="Eliminar" class="btn btn-info" href="operaciones/eliminar_ud_mat.php?data=<?php echo $r_b_det_mat['id']; ?>" onclick="return confirmarEliminar();">Eliminar</a>
+                            <td><a title="Eliminar" class="btn btn-danger" href="operaciones/eliminar_ud_mat.php?data=<?php echo $r_b_det_mat['id']; ?>" onclick="return confirmarEliminar();">Eliminar</a></td>
                           <?php } ?>
                         </tr>
                       <?php
