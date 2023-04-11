@@ -88,8 +88,9 @@ if ($fecha_fin_per >= $fecha_actual) {
                         $r_b_est = mysqli_fetch_array($b_est);
                     ?>
                   <h2 align="center">Detalle de Matrícula - <?php echo $r_b_est['apellidos_nombres']; ?></h2>
+                  <a href="matriculas.php" class="btn btn-danger">Regresar</a>
                   <?php if ($agregar) { ?>
-                    <a title="Agregar Unidad Didáctica" class="btn btn-info" href="agregar_ud_matricula.php?data=<?php echo $id_mat; ?>">Agregar Unidad Didáctica</a>
+                    <a title="Agregar Unidad Didáctica" class="btn btn-success" href="agregar_ud_matricula.php?data=<?php echo $id_mat; ?>">Agregar Unidad Didáctica</a>
                     
                   <?php
                   } ?>
