@@ -49,7 +49,16 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <!-- script para tags -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet" />
-
+    <script>
+      function confirmaragregar() {
+        var r = confirm("Estas Seguro de Agregar Nueva Semana al silabo?");
+        if (r == true) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
 
   </head>
 
@@ -208,7 +217,11 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                             ?>
                               <tr>
                                 <td>
-                                  <center><?php echo $r_b_act_silabo['semana'] . "<br>"; ?><!--<input type="date" name="fecha_<?php echo $r_b_act_silabo['id']; ?>" value="<?php echo $r_b_act_silabo['fecha']; ?>">--></center>
+                                  <center><?php echo $r_b_act_silabo['semana'] . "<br>"; ?><!--<input type="date" name="fecha_<?php echo $r_b_act_silabo['id']; ?>" value="<?php echo $r_b_act_silabo['fecha']; ?>">-->
+                                    <?php if ($r_b_act_silabo['semana']>16) { ?>
+                                      <!--<button type="button" class="btn btn-danger">Eliminar</button>-->
+                                    <?php } ?>
+                                  </center>
                                 </td>
                                 <td><textarea name="elemento_<?php echo $r_b_act_silabo['id']; ?>" style="width:100%; resize: none; height:auto;" rows="3"><?php echo $r_b_act_silabo['elemento_capacidad']; ?></textarea></td>
                                 <td><textarea name="actividad_<?php echo $r_b_act_silabo['id']; ?>" style="width:100%; resize: none; height:auto;" rows="3"><?php echo $r_b_act_silabo['actividades_aprendizaje']; ?></textarea></td>
@@ -218,6 +231,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
                             <?php
                             }
                             ?>
+                            <!--<a title="Agregar Semana" class="btn btn-info" href="operaciones/agregar_semana.php?data=<?php echo $id_prog; ?>" onclick="return confirmaragregar();">Agregar Semana</a>-->
                             <input type="hidden" name="cant_actividades" value="<?php echo $cant_actividades; ?>">
                           </tbody>
 

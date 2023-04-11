@@ -54,6 +54,17 @@ if ($fecha_fin_per >= $fecha_actual) {
   <!-- Script obtenido desde CDN jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+  <script>
+      function confirmarEliminar() {
+        var r = confirm("Estas Seguro Eliminar Registro?");
+        if (r == true) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+
 </head>
 
 <body class="nav-md">
@@ -78,7 +89,7 @@ if ($fecha_fin_per >= $fecha_actual) {
                     ?>
                   <h2 align="center">Detalle de Matrícula - <?php echo $r_b_est['apellidos_nombres']; ?></h2>
                   <?php if ($agregar) { ?>
-                    <button class="btn btn-success" data-toggle="modal" data-target=".registrar"><i class="fa fa-plus-square"></i> Nuevo</button>
+                    <a title="Agregar Unidad Didáctica" class="btn btn-info" href="operaciones/agregar_ud_matricula.php?data=<?php echo $id_mat; ?>">Agregar Unidad Didáctica</a>
                     
                   <?php
                   } ?>
@@ -130,11 +141,9 @@ if ($fecha_fin_per >= $fecha_actual) {
                           <td><?php echo $res_busc_carrera['nombre']; ?></td>
                           <td><?php echo $res_b_semestre['descripcion']; ?></td>
                           <td><?php echo $r_b_ud['descripcion']; ?></td>
-                          <?php if ($agregar) {
-                            echo '<td>
-                            <a class="btn btn-success" href="editar_matricula.php?id=' . $res_busc_matricula['id'] . '"><i class="fa fa-pencil-square-o"></i> </a>
-                          </td>';
-                          } ?>
+                          <?php if ($agregar) { ?>
+                            <a title="Eliminar" class="btn btn-info" href="operaciones/eliminar_ud_mat.php?data=<?php echo $r_b_det_mat['id']; ?>" onclick="return confirmarEliminar();">Eliminar</a>
+                          <?php } ?>
                         </tr>
                       <?php
                       };
