@@ -214,7 +214,7 @@ function NbLines($w,$txt)
     $pdf->SetFont('Arial','B',10);
 	$pdf->Cell(80,6,utf8_decode("I.            INFORMACIÓN GENERAL"),0,1,'',0);
 	$pdf->Cell(70,6,utf8_decode('       Programa de Estudios'),0,0,'',0);
-    $pdf->Cell(0,6,utf8_decode(": ".$r_b_pe['nombre']),0,1,'',0);
+    $pdf->Cell(100,6,utf8_decode(": ".$r_b_pe['nombre']),1,1,'',0);
 	$pdf->Cell(70,6,utf8_decode('       Módulo'),0,0,'',0);
     $pdf->Cell(100,6,utf8_decode(": ".$r_b_mod['descripcion']),0,1,'',0);
     $pdf->Cell(70,6,utf8_decode('       Unidad Didáctica'),0,0,'',0);
