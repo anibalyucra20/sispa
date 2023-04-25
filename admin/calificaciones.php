@@ -29,6 +29,39 @@ if (!($mostrar_archivo)) {
 		</script>
 	";
 } else {
+//ORDENAMIENTO DE ESTUDIANTES
+$array_in = [];
+$b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);                    
+while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
+    $b_matricula = buscarMatriculaById($conexion, $r_b_det_mat['id_matricula']);
+    $r_b_mat = mysqli_fetch_array($b_matricula);
+    $b_estudiante = buscarEstudianteById($conexion, $r_b_mat['id_estudiante']);
+    $r_b_est = mysqli_fetch_array($b_estudiante);
+    //echo $r_b_det_mat['orden']." - ".$r_b_est['apellidos_nombres']."<br>";
+    $array_in[] = $r_b_est['apellidos_nombres'];
+}
+
+//echo "<br><br><br><br>LISTA ORDENADA <br>";
+$collator = collator_create("es");
+$collator->sort($array_in);
+
+/*foreach($array_in as $key => $val){
+    $key+=1;
+    echo $key." = $val"."<br>";
+}*/
+$b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);                    
+while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
+    $id_det_mat = $r_b_det_mat['id'];
+    $b_matricula = buscarMatriculaById($conexion, $r_b_det_mat['id_matricula']);
+    $r_b_mat = mysqli_fetch_array($b_matricula);
+    $b_estudiante = buscarEstudianteById($conexion, $r_b_mat['id_estudiante']);
+    $r_b_est = mysqli_fetch_array($b_estudiante);
+    $indice = array_search($r_b_est['apellidos_nombres'], $array_in)+1;
+    //echo $indice." - ".$r_b_est['apellidos_nombres']."<br>";
+    $consulta = "UPDATE detalle_matricula_unidad_didactica SET orden='$indice' WHERE id='$id_det_mat'";
+    mysqli_query($conexion, $consulta);
+}
+
 ?>
   <!DOCTYPE html>
   <html lang="es">
@@ -128,7 +161,7 @@ if (!($mostrar_archivo)) {
                         <input type="hidden" name="data" value="<?php echo $id_prog; ?>">
                         <button type="submit" class="btn btn-warning">Reporte Registra</button>
                       </form>
-
+                      
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -140,6 +173,7 @@ if (!($mostrar_archivo)) {
                             <thead>
                               <tr>
                                 <th rowspan="2">
+                                
                                   <center>Nro Orden</center>
                                 </th>
                                 <th rowspan="2">
@@ -208,7 +242,7 @@ if (!($mostrar_archivo)) {
                                 $r_b_est = mysqli_fetch_array($b_estudiante);
                               ?>
                                 <tr>
-                                  <td><input type="number" class="nota_input" name="ord_<?php echo $r_b_det_mat['id']; ?>" value="<?php echo $r_b_det_mat['orden']; ?>" min="0" max="50"></td>
+                                  <td><center><?php echo $r_b_det_mat['orden']; ?></font></center></td>
                                   <td><?php echo $r_b_est['dni']; ?></td>
                                   <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
                                   <?php
