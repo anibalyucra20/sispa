@@ -1,12 +1,12 @@
 <?php
-include 'include/verificar_sesion_docente_secretaria.php';
+include 'include/verificar_sesion_docente_coordinador_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
 
 $id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
-if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
+if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente']) || ($res_b_prog['id_docente'] == $_SESSION['id_jefe_area'])) {
     $mostrar_archivo = 1;
 } else {
     $mostrar_archivo = 0;

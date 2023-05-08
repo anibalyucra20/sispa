@@ -1,5 +1,5 @@
 <?php
-include '../include/verificar_sesion_docente_secretaria_operaciones.php';
+include '../include/verificar_sesion_docente_coordinador_secretaria_operaciones.php';
 include "../../include/conexion.php";
 include '../include/busquedas.php';
 

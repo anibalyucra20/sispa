@@ -1,7 +1,7 @@
 <?php
-include '../include/verificar_sesion_docente_operaciones.php';
-include "../../include/conexion.php";
-include '../include/busquedas.php';
+require_once '../include/verificar_sesion_docente_coordinador_operaciones.php';
+require_once "../../include/conexion.php";
+require_once '../include/busquedas.php';
 
 $id_sesion = $_GET['data'];
 $id_prog = $_GET['data2'];

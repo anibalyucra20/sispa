@@ -1,12 +1,12 @@
 <?php
-include 'include/verificar_sesion_docente_secretaria.php';
+include 'include/verificar_sesion_docente_coordinador_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
 $id_prog = $_GET['id'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $cont_res = mysqli_num_rows($b_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
-if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente'])) {
+if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente']) || ($res_b_prog['id_docente'] == $_SESSION['id_jefe_area'])) {
   $mostrar_archivo = 1;
 } else {
   $mostrar_archivo = 0;
@@ -121,7 +121,8 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
           include("include/menu_docente.php");
         } elseif (isset($_SESSION['id_secretario'])) {
           include("include/menu_secretaria.php");
-        } else {
+        } elseif(isset($_SESSION['id_jefe_area'])) {
+          include("include/menu_coordinador.php");
         }
 
         ?>

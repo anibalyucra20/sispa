@@ -1,12 +1,12 @@
 <?php
-include 'include/verificar_sesion_docente.php';
+include 'include/verificar_sesion_docente_coordinador.php';
 include "../include/conexion.php";
 include 'include/busquedas.php';
 
 $id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
-if (!($res_b_prog['id_docente']==$_SESSION['id_docente'])) {
+if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id_docente'] == $_SESSION['id_jefe_area'])) {
     //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
     //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
     echo "<script>

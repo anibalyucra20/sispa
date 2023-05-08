@@ -14,7 +14,7 @@ include 'include/busquedas.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
-    <title>unidades didácticas<?php include ("../include/header_title.php"); ?></title>
+    <title>unidades didácticas PE<?php include ("../include/header_title.php"); ?></title>
    <!--icono en el titulo-->
    <link rel="shortcut icon" href="../img/favicon.ico">
     <!-- Bootstrap -->
@@ -47,30 +47,22 @@ include 'include/busquedas.php';
         <!--menu-->
           <?php
           
+
           $per_select = $_SESSION['periodo'];
-          if(isset($_SESSION['id_docente'])){
-            $m_silabos = 1;
-            $m_sesiones = 1;
-            $m_calificaciones = 1;
-            $m_asistencia = 1;
-            $id_docente = $_SESSION['id_docente'];
-            include ("include/menu_docente.php");
-            $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
-          }elseif(isset($_SESSION['id_secretario'])) {
+          if(isset($_SESSION['id_jefe_area'])) {
+
+            // buscar docente 
+            $id_docc = $_SESSION['id_jefe_area'];
+            $buscar_doc_pe = buscarDocenteById($conexion, $id_docc);
+            $r_b_docc = mysqli_fetch_array($buscar_doc_pe);
+            $id_pee = $r_b_docc['id_programa_estudio'];
             $m_silabos = 0;
             $m_sesiones = 0;
-            $m_calificaciones = 1;
+            $m_calificaciones = 0;
             $m_asistencia = 0;
-            include ("include/menu_secretaria.php");
-            $var_consulta = "WHERE id_periodo_acad=".$per_select;
-          }elseif(isset($_SESSION['id_jefe_area'])) {
-            $m_silabos = 1;
-            $m_sesiones = 1;
-            $m_calificaciones = 1;
-            $m_asistencia = 1;
             $id_docente = $_SESSION['id_jefe_area'];
             include ("include/menu_coordinador.php");
-            $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
+            $var_consulta = "WHERE id_periodo_acad=".$per_select;
           }else {
             $m_silabos = 0;
             $m_sesiones = 0;
@@ -89,7 +81,7 @@ include 'include/busquedas.php';
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="">
-                    <h2 align="center">Unidades Didácticas</h2>
+                    <h2 align="center">Unidades Didácticas por Programa de Estudios</h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -112,10 +104,16 @@ include 'include/busquedas.php';
                           $ejec_busc_prog = buscarProgramacionEspecial($conexion, $var_consulta);
                           $contador = 0; 
                           while ($res_busc_prog=mysqli_fetch_array($ejec_busc_prog)){
-                            $contador++;
+                            
                             $id_ud = $res_busc_prog['id_unidad_didactica'];
                             $b_ud = buscarUdById($conexion, $id_ud);
                             $res_b_ud = mysqli_fetch_array($b_ud);
+                            $id_pe_udd = $res_b_ud['id_programa_estudio'];
+                            if ($id_pe_udd != $id_pee) {
+                                
+                            }else {
+                              $contador++;
+                            
                         ?>
                         <tr>
                           <td><?php echo $contador; ?></td>
@@ -161,6 +159,7 @@ include 'include/busquedas.php';
                           </td>
                         </tr>  
                         <?php
+                          }
                           };
                         ?>
 
