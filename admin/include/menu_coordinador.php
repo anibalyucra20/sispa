@@ -37,11 +37,11 @@
                       <li class="sub_menu"><a href="pe_calificaciones_unidades_didacticas.php">Todas las Unidades Didácticas</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-pencil-square-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
+                  <li><a href="reportes_coordinador.php"><i class="fa fa-bar-chart"></i> Reportes</a>
+                    <!--<ul class="nav child_menu">
                       <li class="sub_menu"><a href="pe_calificaciones_unidades_didacticas.php">Reporte General de Avance</a></li>
                       <li class="sub_menu"><a href="pe_calificaciones_unidades_didacticas.php">Reporte Individual Calificación - Asistencia</a></li>
-                    </ul>
+                    </ul>-->
                   </li>
                 </ul>
               </div>
