@@ -37,6 +37,11 @@ function buscarEstudianteByDni($conexion,$dni){
 	$sql = "SELECT * FROM estudiante WHERE dni='$dni'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarEstudianteByApellidosNombres($conexion,$dato){
+	$sql = "SELECT * FROM estudiante WHERE apellidos_nombres='$dato'";
+	return mysqli_query($conexion, $sql);
+}
+
 function buscarDocente($conexion){
 	$sql = "SELECT * FROM docente";
 	return mysqli_query($conexion, $sql);
@@ -90,10 +95,7 @@ function buscarUdByModSem($conexion, $idModulo, $idSemestre){
 	$sql = "SELECT * FROM unidad_didactica WHERE id_modulo = '$idModulo' AND id_semestre= '$idSemestre' ORDER BY id";
 	return mysqli_query($conexion, $sql);
 }
-function buscarUdByCarSemInCursosDocente($conexion, $idCarrera, $idSemestre){
-	$sql = "SELECT * FROM cursos_docentes WHERE id_carrera = '$idCarrera' AND id_semestre= '$idSemestre' ORDER BY id";
-	return mysqli_query($conexion, $sql);
-}
+
 function buscarUnidadDidactica($conexion){
 	$sql = "SELECT * FROM unidad_didactica";
 	return mysqli_query($conexion, $sql);
