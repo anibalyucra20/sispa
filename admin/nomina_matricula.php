@@ -157,84 +157,9 @@
                               $id_mat_est = $r_b_mat_est['id'];
                               //buscar detalle de matricula
                               $b_det_mat_est = buscarDetalleMatriculaByIdMatriculaProgramacion($conexion, $id_mat_est, $id_prog);
-                              $r_b_det_mat_est = mysqli_fetch_array($b_det_mat_est);
                               $cont_r_b_det_mat = mysqli_num_rows($b_det_mat_est);
                               if ($cont_r_b_det_mat > 0) {
-                                //echo "<td>SI</td>";
-
-
-
-                                //buscar las calificaciones
-                                $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat_est['id']);
-                                $suma_calificacion = 0;
-                                while ($r_b_calificacion = mysqli_fetch_array($b_calificaciones)) {
-
-                                  $id_calificacion = $r_b_calificacion['id'];
-                                  //buscamos las evaluaciones
-                                  $suma_evaluacion = 0;
-                                  $b_evaluacion = buscarEvaluacionByIdCalificacion($conexion, $id_calificacion);
-
-                                  while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
-                                    $id_evaluacion = $r_b_evaluacion['id'];
-                                    //buscamos los criterios de evaluacion
-                                    $b_criterio_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $id_evaluacion);
-                                    $suma_criterios = 0;
-                                    $cont_crit = 0;
-                                    while ($r_b_criterio_evaluacion = mysqli_fetch_array($b_criterio_evaluacion)) {
-                                      if (is_numeric($r_b_criterio_evaluacion['calificacion'])) {
-                                        $suma_criterios += $r_b_criterio_evaluacion['calificacion'];
-                                        $cont_crit += 1;
-                                        //$suma_criterios += (($r_b_criterio_evaluacion['ponderado']/100)*$r_b_criterio_evaluacion['calificacion']);
-                                      }
-                                    }
-                                    if ($cont_crit > 0) {
-                                      $suma_criterios = round($suma_criterios / $cont_crit);
-                                    } else {
-                                      $suma_criterios = round($suma_criterios);
-                                    }
-
-                                    $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
-                                  }
-                                  $suma_calificacion += ($r_b_calificacion['ponderado'] / 100) * $suma_evaluacion;
-                                  
-                                }
-
-
-                                if ($suma_calificacion != 0) {
-                                  $calificacion_final = round($suma_calificacion);
-                                } else {
-                                  $calificacion_final = "";
-                                }
-                                
-                                if ($r_b_det_mat['recuperacion'] != '') {
-                                  $calificacion_final = $r_b_det_mat['recuperacion'];
-                                }
-                                if ($calificacion_final > 12) {
-                                  echo '<th><center><font color="blue">'.$calificacion_final.'</font></center></th>';
-                                  //echo '<th><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion_final . '" min="0" max="20" disabled></center></th>';
-                                } else {
-
-                                  echo '<th><center><font color="red">'.$calificacion_final.'</font></center></th>';
-                                  //echo 
-                                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                echo "<td>SI</td>";
                               }else {
                                 echo "<td>NO</td>";
                               }
