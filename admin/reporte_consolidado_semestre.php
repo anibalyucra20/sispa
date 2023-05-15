@@ -119,8 +119,19 @@
                             //BUSCAR UD
                             $b_uddd = buscarUdById($conexion, $id_udd);
                             $r_b_udd = mysqli_fetch_array($b_uddd);
+                            //buscar capacidad
+                            $cont_ind_logro_cap_ud = 0;
+                            $b_cap_ud = buscarCapacidadesByIdUd($conexion, $id_udd);
+                            while ($r_b_cap_ud = mysqli_fetch_array($b_cap_ud)) {
+                              $id_cap_ud = $r_b_cap_ud['id'];
+                              // buscar indicadores de capacidad
+                              $b_ind_l_cap_ud = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id_cap_ud);
+                              $cant_id_cap_ud = mysqli_num_rows($b_ind_l_cap_ud);
+                              $cont_ind_logro_cap_ud += $cant_id_cap_ud;
+                            }
+                            
                             ?>
-                            <th>
+                            <th colspan="<?php echo $cont_ind_logro_cap_ud; ?>">
                               <p class="verticalll"><?php echo $r_b_udd['descripcion']; ?></p>
                             </th>
                             <?php
@@ -195,6 +206,22 @@
 
                                     $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
                                   }
+
+                                  if ($suma_evaluacion != 0) {
+                                    $suma_evaluacion = round($suma_evaluacion);
+                                  } else {
+                                    $suma_evaluacion = "";
+                                  }
+                                  if ($suma_evaluacion > 12) {
+                                    echo '<th><center><font color="blue">'.$suma_evaluacion.'</font></center></th>';
+                                    //echo '<th><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion_final . '" min="0" max="20" disabled></center></th>';
+                                  } else {
+  
+                                    echo '<th><center><font color="red">'.$suma_evaluacion.'</font></center></th>';
+                                    //echo 
+                                  }
+
+
                                   $suma_calificacion += ($r_b_calificacion['ponderado'] / 100) * $suma_evaluacion;
                                   
                                 }
@@ -209,14 +236,14 @@
                                 if ($r_b_det_mat['recuperacion'] != '') {
                                   $calificacion_final = $r_b_det_mat['recuperacion'];
                                 }
-                                if ($calificacion_final > 12) {
+                                /*if ($calificacion_final > 12) {
                                   echo '<th><center><font color="blue">'.$calificacion_final.'</font></center></th>';
                                   //echo '<th><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion_final . '" min="0" max="20" disabled></center></th>';
                                 } else {
 
                                   echo '<th><center><font color="red">'.$calificacion_final.'</font></center></th>';
                                   //echo 
-                                }
+                                }*/
 
 
 
