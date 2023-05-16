@@ -76,6 +76,7 @@
 
         writing-mode: vertical-lr;
         transform: rotate(180deg);
+        
       }
 
       .nota_input {
@@ -170,13 +171,13 @@
                               $b_det_mat_est = buscarDetalleMatriculaByIdMatriculaProgramacion($conexion, $id_mat_est, $id_prog);
                               $r_b_det_mat_est = mysqli_fetch_array($b_det_mat_est);
                               $cont_r_b_det_mat = mysqli_num_rows($b_det_mat_est);
+                              $id_det_mat = $r_b_det_mat_est['id'];
                               if ($cont_r_b_det_mat > 0) {
                                 //echo "<td>SI</td>";
 
-
-
                                 //buscar las calificaciones
-                                $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat_est['id']);
+                                $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $id_det_mat);
+                                
                                 $suma_calificacion = 0;
                                 while ($r_b_calificacion = mysqli_fetch_array($b_calificaciones)) {
 
@@ -247,23 +248,19 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                               }else {
-                                echo "<td>NO</td>";
+                                //buscar los indicadores
+                                $total_ind = 0;
+                                $b_capacidad = buscarCapacidadesByIdUd($conexion, $id_udd);
+                                while ($r_b_cap = mysqli_fetch_array($b_capacidad)) {
+                                  $b_ind_log_cap = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_cap['id']);
+                                  $cont_ind = mysqli_num_rows($b_ind_log_cap);
+                                  $total_ind += $cont_ind;
+                                }
+                                  
+                                  
+
+                                echo '<td colspan="'.$total_ind.'"></td>';
                               }
                               
                             }
