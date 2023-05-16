@@ -111,6 +111,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                     <form action="imprimir_silabo.php" method="POST" target="_blank"><input type="hidden" name="data" value="<?php echo $id_prog; ?>">
                       <button type="submit" class="btn btn-info">Imprimir</button>
                     </form>
+                    <a href="calificaciones_unidades_didacticas.php" class="btn btn-danger">Regresar</a>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">

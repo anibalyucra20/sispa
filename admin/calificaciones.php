@@ -162,7 +162,7 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                         <input type="hidden" name="data" value="<?php echo $id_prog; ?>">
                         <button type="submit" class="btn btn-warning">Reporte Registra</button>
                       </form>
-                      
+                      <a href="calificaciones_unidades_didacticas.php" class="btn btn-danger">Regresar</a>
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

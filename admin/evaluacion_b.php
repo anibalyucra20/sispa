@@ -125,7 +125,7 @@ if (!($mostrar_archivo)) {
                   ?>
                       <div class="">
                         <h2 align="center"><b>Evaluación - <?php echo "Indicador de Logro " . $nro_calificacion . " - " . $r_b_ud['descripcion']; ?></b></h2>
-
+                        <a href="calificaciones.php?id=<?php echo $id_prog; ?>" class="btn btn-danger">Regresar</a>
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content">

@@ -118,7 +118,9 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                     <form action="imprimir_sesion.php" method="GET" target="_blank"><input type="hidden" name="data" value="<?php echo $id_sesion; ?>" >
                     <button type="submit" class="btn btn-info">Imprimir</button>
                     </form>
+
                     <button class="btn btn-success" data-toggle="modal" data-target=".copiar">Copiar Información</button>
+                    <a href="sesiones.php?id=<?php echo $id_prog; ?>" class="btn btn-danger">Regresar</a>
                     <!--MODAL COPIAR INFFORMACION-->
                     <div class="modal fade copiar" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-lg">

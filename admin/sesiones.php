@@ -109,7 +109,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
               <div class="x_panel">
                 <div class="">
                   <h2 align="center">Sesiones de Aprendizaje - <?php echo $r_b_ud['descripcion']; ?></h2>
-
+                  <a href="calificaciones_unidades_didacticas.php" class="btn btn-danger">Regresar</a>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
