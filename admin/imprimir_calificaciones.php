@@ -472,7 +472,7 @@ if (!($mostrar_archivo)) {
 
         <table border="0.2" cellspacing="0" cellpadding="0.5">  
         <tr>
-        <th colspan="' . $n_cont . '" align="center">CALIFICACIONES DE LA UD' .$r_b_ud['descripcion']. '</th>
+        <th colspan="' . $n_cont . '" align="center">CALIFICACIONES DE ' .$r_b_ud['descripcion']. '</th>
         </tr>
         <tr height="auto">
             <td rowspan="2" align="center" width="4%"><small >Nro de Orden</small></td>
