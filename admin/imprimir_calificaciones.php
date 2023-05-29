@@ -497,7 +497,7 @@ if (!($mostrar_archivo)) {
         <table border="0" cellspacing="0" cellpadding="0.5">  
         <tr>
             <th width="75%"></th>
-            <th >Huanta, 27 de diciembre del 2022</th>
+            <th >Huanta, '.strftime("%d de %B del %Y").'</th>
         </tr>
         </table>    
       ';

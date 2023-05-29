@@ -37,8 +37,16 @@ function buscarEstudianteByDni($conexion,$dni){
 	$sql = "SELECT * FROM estudiante WHERE dni='$dni'";
 	return mysqli_query($conexion, $sql);
 }
+function buscarEstudianteByDniPe($conexion,$pe,$dni){
+	$sql = "SELECT * FROM estudiante WHERE dni='$dni' AND id_programa_estudios='$pe'";
+	return mysqli_query($conexion, $sql);
+}
 function buscarEstudianteByApellidosNombres($conexion,$dato){
 	$sql = "SELECT * FROM estudiante WHERE apellidos_nombres='$dato'";
+	return mysqli_query($conexion, $sql);
+}
+function buscarEstudianteByApellidosNombres_like($conexion,$pe,$dato){
+	$sql = "SELECT * FROM estudiante WHERE apellidos_nombres LIKE '%$dato%' AND id_programa_estudios='$pe'";
 	return mysqli_query($conexion, $sql);
 }
 

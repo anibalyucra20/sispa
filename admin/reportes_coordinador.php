@@ -2,8 +2,6 @@
   include ("include/verificar_sesion_coordinador.php");
   include ("../include/conexion.php");
   include ("include/busquedas.php");
-
-  
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,8 +43,18 @@
           <!-- top tiles -->
           <div class="row tile_count">
             <div class="row top_tiles">
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="" data-toggle="modal" data-target=".rep_nomina">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
+                        <div class="count">Reporte</div>
+                        <h3>Nómina de Matrícula</h3>
+                        <p>Reporte de Nómina de Matrícula</p>
+                    </div>
+                </a>
+              </div>
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="" data-toggle="modal" data-target=".registrar">
+                <a href="" data-toggle="modal" data-target=".rep_consolidado">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-anchor"></i></div>
                         <div class="count"> Reporte</div>
@@ -56,7 +64,7 @@
                 </a>
               </div>
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="">
+                <a href="" data-toggle="modal" data-target=".rep_individual">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-comments-o"></i></div>
                         <div class="count">Reporte</div>
@@ -65,16 +73,7 @@
                     </div>
                 </a>
               </div>
-              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="">
-                    <div class="tile-stats">
-                        <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                        <div class="count">Reporte</div>
-                        <h3>Asistencia</h3>
-                        <p>Reporte de Asistena por Estudiante</p>
-                    </div>
-                </a>
-              </div>
+              
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <a href="">
                     <div class="tile-stats">
@@ -88,7 +87,7 @@
             </div>
         </div>
         <!--MODAL REPORTE CONSOLIDADO-->
-        <div class="modal fade registrar" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade rep_consolidado" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -142,7 +141,137 @@
             </div>
         </div>
 
-        <!-- FIN MODAL NUEVO-->
+        <!-- FIN MODAL CONSOLIDADO-->
+
+
+
+        <!--MODAL REPORTE NOMINA-->
+        <div class="modal fade rep_nomina" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel" align="center">Reporte - Nómina de Matrícula</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--INICIO CONTENIDO DE MODAL-->
+                        <div class="x_panel">
+                            <div class="" align="center">
+                                <h2></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br />
+                                <form role="form" action="reporte_nomina_semestre.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="hidden" name="car_consolidado" value="<?php echo $id_pe; ?>">
+                                            <select class="form-control" name="sem_consolidado" id="sem_consolidado" required>
+                                                <option value=""></option>
+                                                <?php 
+                                                $b_sem_consolidado = buscarSemestre($conexion);
+                                            
+                                                while ($r_b_sem_conso = mysqli_fetch_array($b_sem_consolidado)) {
+                                            
+                                                ?>
+                                                <option value="<?php echo $r_b_sem_conso['id']; ?>"><?php echo $r_b_sem_conso['descripcion']; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            
+                                            </select>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <center>
+                                                <button type="submit" class="btn btn-success">Generar Reporte</button>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--FIN DE CONTENIDO DE MODAL-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIN MODAL NOMINA-->
+
+
+        <!--MODAL REPORTE INDIVIDUAL-->
+        <div class="modal fade rep_individual" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel" align="center">Reporte Individual Calificaciones y Asistencia</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--INICIO CONTENIDO DE MODAL-->
+                        <div class="x_panel">
+                            <div class="" align="center">
+                                <h2></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br />
+                                <form role="form" action="reporte_nomina_semestre.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                                  <input type="hidden" id="car_est" value="<?php echo $id_pe; ?>">
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI : </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" name="dni_estt" id="dni_estt">
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombres y  Apellidos : </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" name="na_estt" id="na_estt">
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <center>
+                                              
+                                                <button type="button" class="btn btn-info " onclick="listar_est();"><i class="fa fa-search"></i> Buscar</button>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div id="contenido_mm" class="table-responsive">
+                                  <table  class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                      <tr>
+                                        <th>Nro</th>
+                                        <th>DNI</th>
+                                        <th>Apellidos y Nombres</th>
+                                        <th>Semestre</th>
+                                        <th>Acciones</th>
+                                        
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                  </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--FIN DE CONTENIDO DE MODAL-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIN MODAL INDIVIDUAL-->
    
         Aún en desarrollo
           
@@ -200,5 +329,22 @@
     <!-- Custom Theme Scripts -->
     <script src="../Gentella/build/js/custom.min.js"></script>
 	 
+
+
+    <script type="text/javascript">
+     function listar_est(){
+      var dni_e = $('#dni_estt').val();
+      var na_e = $('#na_estt').val();
+      var pe_e = $('#car_est').val();
+      $.ajax({
+        type:"POST",
+        url:"operaciones/listar_est_rep.php",
+        data: {dni_es: dni_e, na_es: na_e, pe_es: pe_e},
+          success:function(r){
+            $('#contenido_mm').html(r);
+          }
+      });
+    }
+    </script>
   </body>
 </html>
