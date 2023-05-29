@@ -491,13 +491,15 @@ if (!($mostrar_archivo)) {
     $content .= '</table>';
     $pdf->writeHTML($content);
 
-
+    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+     
+    $fechaaa = date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
     $footer = '
 
         <table border="0" cellspacing="0" cellpadding="0.5">  
         <tr>
             <th width="75%"></th>
-            <th >Huanta, '.strftime("%d de %B del %Y").'</th>
+            <th >Huanta, '.$fechaaa.'</th>
         </tr>
         </table>    
       ';
