@@ -19,7 +19,7 @@
         while ($r_b_capp = mysqli_fetch_array($b_capp)) {
           $id_capp = $r_b_capp['id'];
           //buscar indicadores de logro de capacidad
-          $b_ind_l_capp = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id);
+          $b_ind_l_capp = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id_capp);
           $cont_ind_capp += mysqli_num_rows($b_ind_l_capp);
         }
       
