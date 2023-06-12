@@ -25,23 +25,23 @@ if(($cont == 1)&&(password_verify($pass,$res_busc['password']))){
 	if($cargo_docente == 1){//director
 		$_SESSION['id_director'] = $id_docente;
 		$_SESSION['periodo'] = $presente_periodo;
-		header("location: ../index.php");
+		echo "<script> window.location.replace('../index.php'); </script>";
 	}elseif($cargo_docente == 2){//secretario academico
 		$_SESSION['id_secretario'] = $id_docente;
 		$_SESSION['periodo'] = $presente_periodo;
-		header("location: ../index.php");
+		echo "<script> window.location.replace('../index.php'); </script>";
 	}elseif($cargo_docente == 3){//jefe de unidad academica
 		$_SESSION['id_coordinador_academico'] = $id_docente;
 		$_SESSION['periodo'] = $presente_periodo;
-		header("location: ../index.php");
+		echo "<script> window.location.replace('../index.php'); </script>";
 	}elseif($cargo_docente == 4){//jefe de area/coordinador
 			$_SESSION['id_jefe_area'] = $id_docente;
 			$_SESSION['periodo'] = $presente_periodo;
-			header("location: ../index.php");
+			echo "<script> window.location.replace('../index.php'); </script>";
 	}elseif($cargo_docente == 5){//docente
 			$_SESSION['id_docente'] = $id_docente;
 			$_SESSION['periodo'] = $presente_periodo;
-			header("location: ../index.php");
+			echo "<script> window.location.replace('../index.php'); </script>";
 	}else{//cargo invalido
 		echo "<script>
                 alert('Error en cargo, contacte administrador');
