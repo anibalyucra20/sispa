@@ -339,7 +339,7 @@ if (!($mostrar_archivo)) {
     $this->StopTransform();
     $this->Cell(0, 10,'sadhasd', 0, 1);
     }
-    $pdf->writeHTML(contetnt());
+    $pdf->contetnt();
     $pdf->AddPage();
 
 
