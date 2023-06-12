@@ -101,7 +101,7 @@
     <div class="container body">
       <div class="main_container">
           <?php 
-          include ("include/menu_coordinador.php"); ?>
+          //include ("include/menu_coordinador.php"); ?>
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="row">
@@ -283,7 +283,7 @@
         
          <!-- footer content -->
          <?php
-        include ("../include/footer.php"); 
+        //include ("../include/footer.php"); 
         ?>
         <!-- /footer content -->
       </div>
