@@ -234,8 +234,8 @@
                                   $calificacion_final = "";
                                 }
                                 
-                                if ($r_b_det_mat['recuperacion'] != '') {
-                                  $calificacion_final = $r_b_det_mat['recuperacion'];
+                                if ($r_b_det_mat_est['recuperacion'] != '') {
+                                  $calificacion_final = $r_b_det_mat_est['recuperacion'];
                                 }
                                 /*if ($calificacion_final > 12) {
                                   echo '<th><center><font color="blue">'.$calificacion_final.'</font></center></th>';
