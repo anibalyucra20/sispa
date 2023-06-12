@@ -10,8 +10,21 @@
   // armar la nomina de estudiantes para poder mostrar todos los estudiantes del semestre
     $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
     $cont_ud_sem = mysqli_num_rows($b_ud_pe_sem);
+    $cont_ind_capp = 0;
     while ($r_b_ud = mysqli_fetch_array($b_ud_pe_sem)) {
       $id_ud = $r_b_ud['id'];
+
+      //buscar capacidades
+        $b_capp = buscarCapacidadesByIdUd($conexion, $id_ud);
+        while ($r_b_capp = mysqli_fetch_array($b_capp)) {
+          $id_capp = $r_b_capp['id'];
+          //buscar indicadores de logro de capacidad
+          $b_ind_l_capp = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id);
+          $cont_ind_capp += mysqli_num_rows($b_ind_l_capp);
+        }
+      
+
+
       //buscar si la unidad didactica esta programado en el presente periodo
       $b_ud_prog = buscarProgramacionByUd_Peridodo($conexion, $id_ud, $per_select);
       $r_b_ud_prog = mysqli_fetch_array($b_ud_prog);
@@ -108,7 +121,7 @@
                           <th rowspan="2">
                             <center>APELLIDOS Y NOMBRES</center>
                           </th>
-                          <th colspan="<?php echo $cont_ud_sem; ?>">
+                          <th colspan="<?php echo $cont_ind_capp; ?>">
                             <center>UNIDADES DIDÁCTICAS</center>
                           </th>
                         </tr>
@@ -223,7 +236,7 @@
                                     $suma_evaluacion = "";
                                     echo '<th></th>';
                                   }
-                                  
+
                                 }
 
 
