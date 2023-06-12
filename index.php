@@ -1,5 +1,6 @@
 <?php
-header("location: admin/");
+//header("location: admin/");
+echo "<script> window.location.replace('admin/'); </script>";
 
 /*
 
