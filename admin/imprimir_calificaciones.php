@@ -332,12 +332,13 @@ if (!($mostrar_archivo)) {
     $content_one .= '</table>';
     $pdf->writeHTML($content_one);
 
-
+    function contetnt(){
     $this->StarTransform();
-    $this->Rotate(-90);
+    $this->Rotate(90);
     $this->Text(10, 50, 'texto en vertical');
     $this->StopTransform();
-
+    }
+    $pdf->writeHTML(contetnt());
     $pdf->AddPage();
 
 
