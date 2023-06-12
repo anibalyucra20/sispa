@@ -337,6 +337,7 @@ if (!($mostrar_archivo)) {
     $this->Rotate(90);
     $this->Text(10, 50, 'texto en vertical');
     $this->StopTransform();
+    $this->Cell(0, 10,'sadhasd', 0, 1);
     }
     $pdf->writeHTML(contetnt());
     $pdf->AddPage();
