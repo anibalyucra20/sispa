@@ -17,7 +17,7 @@ if(($cont == 1)&&(password_verify($pass,$res_busc['password']))){
 	if ($res_busc['activo']!=1) {
 		echo "<script>
                 alert('Error, Usted no se encuentra activo en el sistema, Por Favor Contacte con el Administrador');
-                window.location= '../login/'
+                window.location.replace('../login/');
     		</script>";
 	}else{
 	session_start();
@@ -45,7 +45,7 @@ if(($cont == 1)&&(password_verify($pass,$res_busc['password']))){
 	}else{//cargo invalido
 		echo "<script>
                 alert('Error en cargo, contacte administrador');
-                window.location= '../login/'
+				window.location.replace('../login/');
     		</script>";
 	}
 
@@ -55,7 +55,7 @@ if(($cont == 1)&&(password_verify($pass,$res_busc['password']))){
 }else{
 	echo "<script>
                 alert('Usuario o Contraseña incorrecto');
-                window.location= '../login/'
+				window.location.replace('../login/');
     		</script>";
 }
 mysqli_close($conexion);
