@@ -215,7 +215,7 @@ if (!($mostrar_archivo)) {
                     <tr>
                        <td rowspan="2" width="5%" style="text-orientation: sideways;">No</td>
                        <td colspan="16" width="85%" align="center"> FECHAS <br> Registra el dia y mes de la asistencia</td>
-                       <td rowspan="2" width="5%"><font size="8">Total Inasistencia</font></td>
+                       <td rowspan="2" width="5%"><font size="8"><span style="{{Transformar-rotar|-90}}">Total Inasistencia</span></font></td>
                        <td rowspan="2" width="5%"><font size="8">% Inasistencia</font></td>
                     </tr>
                     <tr>
