@@ -224,30 +224,7 @@
                                     echo '<th></th>';
                                   }
                                   
-
-
-                                  $suma_calificacion += ($r_b_calificacion['ponderado'] / 100) * $suma_evaluacion;
-                                  
                                 }
-
-
-                                if ($suma_calificacion != 0) {
-                                  $calificacion_final = round($suma_calificacion);
-                                } else {
-                                  $calificacion_final = "";
-                                }
-                                
-                                if ($r_b_det_mat_est['recuperacion'] != '') {
-                                  $calificacion_final = $r_b_det_mat_est['recuperacion'];
-                                }
-                                /*if ($calificacion_final > 12) {
-                                  echo '<th><center><font color="blue">'.$calificacion_final.'</font></center></th>';
-                                  //echo '<th><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion_final . '" min="0" max="20" disabled></center></th>';
-                                } else {
-
-                                  echo '<th><center><font color="red">'.$calificacion_final.'</font></center></th>';
-                                  //echo 
-                                }*/
 
 
 
