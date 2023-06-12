@@ -22,10 +22,10 @@ class PDF extends TCPDF {
     // Colocar texto verticalmente
     $this->StartTransform();
     $this->Rotate(90); // Girar el contenido 90 grados en sentido horario
-    $this->Text(50, 50, 'Texto vertical');
+    $this->Text(-50, 50, 'Texto vertical');
     $this->StopTransform();
 
-    $this->Cell(0, 60, '¡Hola, mundo!', 0, 1);
+    $this->Cell(0, 10, '¡Hola, mundo!', 0, 1);
   }
 }
 
