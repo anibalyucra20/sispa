@@ -103,7 +103,7 @@
                             </div>
                             <div class="x_content">
                                 <br />
-                                <form role="form" action="reporte_consolidado_semestre.php" class="form-horizontal form-label-left input_mask" method="POST" >
+                                <form role="form" action="prueba.php" class="form-horizontal form-label-left input_mask" method="POST" target="_blank">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -328,9 +328,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../Gentella/build/js/custom.min.js"></script>
-	 
-
-
     <script type="text/javascript">
      function listar_est(){
       var dni_e = $('#dni_estt').val();
@@ -346,5 +343,6 @@
       });
     }
     </script>
+    
   </body>
 </html>
