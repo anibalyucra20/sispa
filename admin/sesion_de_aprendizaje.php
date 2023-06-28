@@ -144,7 +144,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                                 <form role="form" action="operaciones/copiar_informacion_sesion.php" method="POST" class="form-horizontal form-label-left input_mask">
                                   <input type="hidden" name="myidactual" value="<?php echo $id_sesion; ?>">
                                 <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sesión de Aprendizaje (a copiar)</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Copiar Sesión de : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <select class="form-control" id="sesion_copi" name="sesion_copi" value="" required="required">
                             <option></option>
