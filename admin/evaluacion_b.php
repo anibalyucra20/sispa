@@ -297,7 +297,10 @@ if (!($mostrar_archivo)) {
                                         } else {
                                           echo '<th><center><font color="red">' . $mostrar . '</font></center></th>';
                                         }
-                                        $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $calificacion;
+                                        if (is_numeric($r_b_evaluacion['ponderado'])) {
+                                          $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $calificacion;
+                                        }
+                                        
                                       }
                                       if ($suma_evaluacion != 0) {
                                         $calificacion_e = round($suma_evaluacion);
