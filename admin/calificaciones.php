@@ -275,10 +275,15 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                                       } else {
                                         $suma_criterios = round($suma_criterios);
                                       }
-
-                                      $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
+                                      
+                                      if (is_numeric($r_b_evaluacion['ponderado'])) {
+                                        $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
+                                      }
                                     }
-                                    $suma_calificacion += ($r_b_calificacion['ponderado'] / 100) * $suma_evaluacion;
+                                    if (is_numeric($r_b_calificacion['ponderado'])) {
+                                      $suma_calificacion += ($r_b_calificacion['ponderado'] / 100) * $suma_evaluacion;
+                                    }
+                                    
 
                                     if ($suma_evaluacion != 0) {
                                       $calificacion = round($suma_evaluacion);
