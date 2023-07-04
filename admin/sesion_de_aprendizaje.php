@@ -369,7 +369,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                                 <tr>
                                   <td>Logro de Sesión</td>
                                   <td>
-                                    <textarea style="min-width: 100%" name="logro_sesion" id="" cols="100" rows="2"><?php echo $r_b_sesion['logro_sesion']; ?></textarea>
+                                    <textarea style="min-width: 100%" name="logro_sesion" id="" cols="100" rows="2" class="form-control"><?php echo $r_b_sesion['logro_sesion']; ?></textarea>
                                     <!--<input type="text" name="logro_sesion" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['logro_sesion']; ?>">-->
                                   </td>
                                 </tr>
@@ -403,7 +403,8 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                                     </td>
                                     <td width="45%">
                                         <label for="">Estrategias:</label><br>
-                                        <input type="text" name="estrategia_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['estrategia'];?>">
+                                        <textarea name="estrategia_<?php echo $r_b_momentos_sesion['id']; ?>" class="form-control" id="" cols="50" rows="4"><?php echo $r_b_momentos_sesion['estrategia'];?></textarea>
+                                        <!--<input type="text" name="estrategia_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['estrategia'];?>">-->
                                     </td>
                                     <td rowspan="2" width="20%">
                                         <input type="text" name="recursos_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['recursos'];?>">
