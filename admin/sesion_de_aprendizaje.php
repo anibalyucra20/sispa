@@ -369,7 +369,8 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                                 <tr>
                                   <td>Logro de Sesión</td>
                                   <td>
-                                    <input type="text" name="logro_sesion" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['logro_sesion']; ?>">
+                                    <textarea name="logro_sesion" id="" cols="80" rows="10"><?php echo $r_b_sesion['logro_sesion']; ?></textarea>
+                                    <!--<input type="text" name="logro_sesion" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['logro_sesion']; ?>">-->
                                   </td>
                                 </tr>
                           </tbody>
