@@ -322,45 +322,30 @@ function NbLines($w,$txt)
     $pdf->SetFont('Arial','',10);
     $pdf->SetWidths(array(88,87));
         $bib_doc_obl = "";
-        $b_d_o = explode(",", $r_b_sesion['bibliografia_obligatoria_docente']);
-        $cont_b_d_o = count($b_d_o);
-        for ($i=0; $i < $cont_b_d_o; $i++) { 
-        $bib_doc_obl = $bib_doc_obl.$b_d_o[$i]."\r\n";
-        }
+        $bib_doc_obl = $r_b_sesion['bibliografia_obligatoria_docente']."\r\n";
+
         $bib_est_obl = "";
-        $b_e_o = explode(",", $r_b_sesion['bibliografia_obligatoria_estudiantes']);
-        $cont_b_e_o = count($b_e_o);
-        for ($i=0; $i < $cont_b_e_o; $i++) { 
-        $bib_est_obl = $bib_est_obl.$b_e_o[$i]."\r\n";
-        }
+        $bib_est_obl = $r_b_sesion['bibliografia_obligatoria_estudiantes']."\r\n";
+
     $pdf->Row(array(utf8_decode($bib_doc_obl),utf8_decode($bib_est_obl)));
     $pdf->SetFont('Arial','B',10);
     $pdf->Cell(88,6,utf8_decode("Opcional"),1,0,'C',1);
 	$pdf->Cell(87,6,utf8_decode("Opcional"),1,1,'C',1);
     $pdf->SetFont('Arial','',10);
         $bib_doc_opc = "";
-        $b_d_op = explode(",", $r_b_sesion['bibliografia_opcional_docente']);
-        $cont_b_d_op = count($b_d_op);
-        for ($i=0; $i < $cont_b_d_op; $i++) { 
-        $bib_doc_opc = $bib_doc_opc.$b_d_op[$i]."\r\n";
-        }
+        $bib_doc_opc = $r_b_sesion['bibliografia_opcional_docente']."\r\n";
+
         $bib_est_opc = "";
-        $b_e_opc = explode(",", $r_b_sesion['bibliografia_opcional_estudiante']);
-        $cont_b_e_opc = count($b_e_opc);
-        for ($i=0; $i < $cont_b_e_opc; $i++) { 
-        $bib_est_opc = $bib_est_opc.$b_e_opc[$i]."\r\n";
-        }
+        $bib_est_opc = $r_b_sesion['bibliografia_opcional_estudiante']."\r\n";
+
     $pdf->Row(array(utf8_decode($bib_doc_opc),utf8_decode($bib_est_opc)));
     
     $pdf->Cell(180,3,'',0,1,'C',0);
     $pdf->SetFont('Arial','B',10);
 	$pdf->Cell(175,6,utf8_decode("I. ANEXOS"),1,1,'C',1);
         $anexos = "";
-        $ann = explode(",", $r_b_sesion['anexos']);
-        $cont_ann = count($ann);
-        for ($i=0; $i < $cont_ann; $i++) { 
-        $anexos = $anexos.$ann[$i]."\r\n";
-        }
+        $anexos = $r_b_sesion['anexos']."\r\n";
+
 	$pdf->MultiCell(175,6,utf8_decode($anexos),1,'J',0);
 
 

@@ -540,21 +540,25 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                             <tr>
                               <td>
                                 <label for="">Obligatoria :</label><br>
-                                <input type="text" name="bib_doc_oblig" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_obligatoria_docente']; ?>">
+                                <textarea name="bib_doc_oblig" id="" cols="30" rows="4" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_sesion['bibliografia_obligatoria_docente']; ?></textarea>
+                                <!--<input type="text" name="bib_doc_oblig" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_obligatoria_docente']; ?>">-->
                               </td>
                               <td>
                                 <label for="">Obligatoria :</label><br>
-                                <input type="text" name="bib_est_oblig" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_obligatoria_estudiantes']; ?>">
+                                <textarea name="bib_est_oblig" id="" cols="30" rows="4" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_sesion['bibliografia_obligatoria_estudiantes']; ?></textarea>
+                                <!--<input type="text" name="bib_est_oblig" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_obligatoria_estudiantes']; ?>">-->
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <label for="">Opcional :</label><br>
-                                <input type="text" name="bib_doc_opci" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_opcional_docente']; ?>">
+                                <textarea name="bib_doc_opci" id="" cols="30" rows="4" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_sesion['bibliografia_opcional_docente']; ?></textarea>
+                                <!--<input type="text" name="bib_doc_opci" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_opcional_estudiante']; ?>">-->
                               </td>
                               <td>
                                 <label for="">Opcional :</label><br>
-                                <input type="text" name="bib_est_opci" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_opcional_estudiante']; ?>">
+                                <textarea name="bib_est_opci" id="" cols="30" rows="4" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_sesion['bibliografia_opcional_docente']; ?></textarea>
+                                <!--<input type="text" name="bib_est_opci" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['bibliografia_opcional_estudiante']; ?>">-->
                               </td>
                             </tr>
                             <thead>
@@ -566,7 +570,9 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                             </thead>
                             <tr>
                               <td colspan="2">
-                                <input type="text" name="anexos" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['anexos']; ?>">
+                              <textarea name="anexos" cols="30" rows="4" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_sesion['anexos']; ?></textarea>
+                                
+                                <!--<input type="text" name="anexos" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_sesion['anexos']; ?>">-->
                               </td>
                             </tr>
                           </tbody>
