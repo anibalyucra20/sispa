@@ -18,9 +18,9 @@ function calc_criterios($conexion, $id_evaluacion)
         }
     }
     if ($cont_crit > 0) {
-        $suma_criterios = round($suma_criterios / $cont_crit);
+        $suma_criterios = round($suma_criterios / $cont_crit, 0);
     } else {
-        $suma_criterios = round($suma_criterios);
+        $suma_criterios = round($suma_criterios, 0);
     }
     return $suma_criterios;
 }

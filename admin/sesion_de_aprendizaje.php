@@ -502,7 +502,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                                 </td>
                                 <td>
                                   <center>
-                                    <input type="number" name="peso_eva_<?php echo $r_b_actividades_eval['id']; ?>" max="100" min="0" class="form-control" value="<?php echo $r_b_actividades_eval['peso']; ?>" placeholder="Tiempo en Minutos">
+                                    <input type="number" name="peso_eva_<?php echo $r_b_actividades_eval['id']; ?>" max="100" min="0" class="form-control" value="<?php echo $r_b_actividades_eval['peso']; ?>" >
                                   </center>
                                 </td>
                                 <td>
