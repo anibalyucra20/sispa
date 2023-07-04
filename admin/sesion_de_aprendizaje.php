@@ -403,7 +403,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                                     </td>
                                     <td width="45%">
                                         <label for="">Estrategias:</label><br>
-                                        <textarea name="estrategia_<?php echo $r_b_momentos_sesion['id']; ?>" class="form-control" id="" cols="50" rows="4"><?php echo $r_b_momentos_sesion['estrategia'];?></textarea>
+                                        <textarea name="estrategia_<?php echo $r_b_momentos_sesion['id']; ?>" style="width:100%; resize: none; height:auto;" class="form-control" id="" cols="50" rows="5"><?php echo $r_b_momentos_sesion['estrategia'];?></textarea>
                                         <!--<input type="text" name="estrategia_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['estrategia'];?>">-->
                                     </td>
                                     <td rowspan="2" width="20%">
