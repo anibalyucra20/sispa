@@ -1,5 +1,9 @@
 <?php
-// funciones para calificaciones
+
+include '../include/conexion.php';
+include 'include/busquedas.php';
+
+// funciones para calificaciones --------------------------------------------------------
 
 //funcion para calcular promedio de los criterios de evaluacion
 function calc_criterios($conexion, $id_evaluacion)
@@ -75,3 +79,5 @@ function calc_calificacion($conexion, $id_det_mat)
       
     return $suma_calificacion;
 }
+
+/// FIN DE FUNCIONES DE CALIFICACIONES ------------------------------------------------------------
