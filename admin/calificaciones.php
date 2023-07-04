@@ -286,10 +286,6 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                                       $cont_calif +=1;
                                     }
                                     
-
-                                    /*if (is_numeric($r_b_calificacion['ponderado'])) {
-                                      $suma_calificacion += ($r_b_calificacion['ponderado'] / 100) * $suma_evaluacion;
-                                    }*/
                                     
 
                                     if ($suma_evaluacion != 0) {
