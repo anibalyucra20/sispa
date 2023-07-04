@@ -254,8 +254,46 @@ if (!($mostrar_archivo)) {
                                   //buscar las calificaciones
                                   $id_det_mat = $r_b_det_mat['id'];
                                   //tamaño de texto para mostrar las calificaciones
-                                  $tamanio = 2;
-                                  $calificacion_final = calc_calificacion($conexion, $id_det_mat, $tamanio);
+                                  $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $id_det_mat);
+                                  $suma_calificacion = 0;
+                                  $cont_calif = 0;
+                                  
+    while ($r_b_calificacion = mysqli_fetch_array($b_calificaciones)) {
+        $id_calificacion = $r_b_calificacion['id'];
+        //buscamos las evaluaciones
+        $suma_evaluacion = calc_evaluacion($conexion, $id_calificacion);
+        
+        $suma_calificacion += $suma_evaluacion;
+        if ($suma_evaluacion > 0) {
+          $cont_calif += 1;
+        }
+
+
+
+        if ($suma_evaluacion != 0) {
+          $calificacion = round($suma_evaluacion);
+        } else {
+          $calificacion = "";
+        }
+        if ($calificacion > 12) {
+          echo '<td align="center"><font color="blue" size="'.$tamanio.'">' . $calificacion . '</font></td>';
+          //echo '<td><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion . '" min="0" max="20" disabled></center></td>';
+        } else {
+          echo '<td align="center"><font color="red" size="'.$tamanio.'">' . $calificacion . '</font></td>';
+          //echo '<td><center><input type="number" class="nota_input" style="color:red;" value="' . $calificacion . '" min="0" max="20" disabled></center></td>';
+        }
+      }
+
+      if ($cont_calif > 0) {
+        $suma_calificacion = round($suma_calificacion / $cont_calif);
+      } else {
+        $suma_calificacion = round($suma_calificacion);
+      }
+      if ($suma_calificacion != 0) {
+        $calificacion_final = round($suma_calificacion);
+      } else {
+        $calificacion_final = "";
+      }
 
 
                                   if ($calificacion_final <= 12 && $calificacion_final >= 10) {
