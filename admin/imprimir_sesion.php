@@ -255,12 +255,12 @@ function NbLines($w,$txt)
     $r_b_ind_cap = mysqli_fetch_array($b_ind_cap);
     $pdf->Row(array(utf8_decode('Indicador(es) de logro de capacidad vinculados a la sesión.'),utf8_decode(": ".$r_b_ind_cap['descripcion'])));
 
-    $log_ses = explode(",", $r_b_sesion['logro_sesion']);
+    /*$log_ses = explode(",", $r_b_sesion['logro_sesion']);
     $cont_log_ses = count($log_ses);
     $logro_sesion = "";
     for ($i=0; $i < $cont_log_ses; $i++) { 
         $logro_sesion = $logro_sesion.$log_ses[$i]."\r\n";
-    }
+    }*/
     $pdf->Row(array(utf8_decode('Logro de la sesión'),utf8_decode(": ".$r_b_sesion['logro_sesion'])));
 
 
@@ -276,25 +276,19 @@ function NbLines($w,$txt)
     $pdf->SetWidths(array(25,99,36,15));
     $b_momentos_sesion = buscarMomentosSesionByIdSesion($conexion, $id_sesion);
     while ($r_b_momentos_sesion = mysqli_fetch_array($b_momentos_sesion)) {
-        $estrategia_actividad = "Estrategía: \r\n";
-        $est_act = explode(",", $r_b_momentos_sesion['estrategia']);
-        $cont_est_act = count($est_act);
-        for ($i=0; $i < $cont_est_act; $i++) { 
-        $estrategia_actividad = $estrategia_actividad."* ".$est_act[$i]."\r\n";
-        }
-        $estrategia_actividad = $estrategia_actividad."Actividades: \r\n";
-        $act_est = explode(",", $r_b_momentos_sesion['actividad']);
-        $cont_act_est = count($act_est);
-        for ($i=0; $i < $cont_act_est; $i++) { 
-        $estrategia_actividad = $estrategia_actividad."* ".$act_est[$i]."\r\n";
-        }
+        $estrategia_actividad = "* Estrategía: \r\n";
+
+        $estrategia_actividad = $estrategia_actividad."* Actividades: \r\n";
+        
 
         $recursos_didacticos = "";
-        $recu = explode(",", $r_b_momentos_sesion['recursos']);
-        $cont_recu = count($recu);
-        for ($i=0; $i < $cont_recu; $i++) { 
-        $recursos_didacticos = $recursos_didacticos."* ".$recu[$i]."\r\n";
-        }
+        
+
+        $estrategia_actividad = $estrategia_actividad."".$r_b_momentos_sesion['actividad']."\r\n";
+        $estrategia_actividad = $estrategia_actividad."".$r_b_momentos_sesion['estrategia']."\r\n";
+        $recursos_didacticos = $recursos_didacticos."".$r_b_momentos_sesion['recursos']."\r\n";
+
+
         
     $pdf->Row(array(utf8_decode("\r\n \r\n \r\n  ".$r_b_momentos_sesion['momento']),utf8_decode($estrategia_actividad),utf8_decode($recursos_didacticos),utf8_decode("\r\n \r\n \r\n      ".$r_b_momentos_sesion['tiempo'])));
     }
