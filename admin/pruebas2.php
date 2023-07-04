@@ -253,6 +253,7 @@ if (!($mostrar_archivo)) {
                                   <?php
                                   //buscar las calificaciones
                                   $id_det_matt = $r_b_det_mat['id'];
+
                                   $suma_calificacion = calc_calificacion($conexion, $id_det_mat);
                                   
                                   
@@ -260,11 +261,7 @@ if (!($mostrar_archivo)) {
 
 
                                   <?php
-                                  if ($cont_calif > 0) {
-                                    $suma_calificacion = round($suma_calificacion / $cont_calif);
-                                  } else {
-                                    $suma_calificacion = round($suma_calificacion);
-                                  }
+                                  
                                   if ($suma_calificacion != 0) {
                                     $calificacion_final = round($suma_calificacion);
                                   } else {
