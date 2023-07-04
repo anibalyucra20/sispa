@@ -277,15 +277,12 @@ function NbLines($w,$txt)
     $b_momentos_sesion = buscarMomentosSesionByIdSesion($conexion, $id_sesion);
     while ($r_b_momentos_sesion = mysqli_fetch_array($b_momentos_sesion)) {
         $estrategia_actividad = "* Estrategía: \r\n";
+        $estrategia_actividad = $estrategia_actividad."".$r_b_momentos_sesion['estrategia']."\r\n";
 
         $estrategia_actividad = $estrategia_actividad."* Actividades: \r\n";
-        
+        $estrategia_actividad = $estrategia_actividad."".$r_b_momentos_sesion['actividad']."\r\n";
 
         $recursos_didacticos = "";
-        
-
-        $estrategia_actividad = $estrategia_actividad."".$r_b_momentos_sesion['actividad']."\r\n";
-        $estrategia_actividad = $estrategia_actividad."".$r_b_momentos_sesion['estrategia']."\r\n";
         $recursos_didacticos = $recursos_didacticos."".$r_b_momentos_sesion['recursos']."\r\n";
 
 
