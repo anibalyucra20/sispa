@@ -2,6 +2,7 @@
 include 'include/verificar_sesion_docente_coordinador_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
+include 'include/funciones.php';
 $id_prog = $_GET['id'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $cont_res = mysqli_num_rows($b_prog);
