@@ -3,7 +3,7 @@ include_once('include/verificar_sesion_docente_coordinador_secretaria.php');
 require_once('../tcpdf/tcpdf.php');
 include_once('../include/conexion.php');
 include_once('include/busquedas.php');
-setlocale(LC_ALL,"es_ES");
+setlocale(LC_ALL, "es_ES");
 $id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
@@ -259,7 +259,7 @@ if (!($mostrar_archivo)) {
                     <tr>
                         <td width="10%"></td>
                         <td width="60%"><b>MODULO FORMATIVO NRO</b></td>
-                        <td width="20%">: ' .$n_modulo. '<br></td>
+                        <td width="20%">: ' . $n_modulo . '<br></td>
                         <td width="10%"></td>
                     </tr>
                     <tr>
@@ -269,7 +269,7 @@ if (!($mostrar_archivo)) {
                     </tr>
                     <tr>
                         <td width="10%"></td>
-                        <td width="80%" align="center">'.$r_b_mod['descripcion'].'<br></td>
+                        <td width="80%" align="center">' . $r_b_mod['descripcion'] . '<br></td>
                         <td width="10%"></td>
                     </tr>
                     <tr>
@@ -279,7 +279,7 @@ if (!($mostrar_archivo)) {
                     </tr>
                     <tr>
                         <td ></td>
-                        <td colspan="2" align="center">'.$r_b_ud['descripcion'].'<br><br></td>
+                        <td colspan="2" align="center">' . $r_b_ud['descripcion'] . '<br><br></td>
                         <td ></td>
                     </tr>
                     <tr>
@@ -290,19 +290,19 @@ if (!($mostrar_archivo)) {
                     </tr>
                     <tr>
                         <td width="10%"></td>
-                        <td width="60%"><b>CREDITOS</b> : '.$r_b_ud['creditos'].'<br></td>
+                        <td width="60%"><b>CREDITOS</b> : ' . $r_b_ud['creditos'] . '<br></td>
                         <td width="20%"></td>
                         <td width="10%"></td>
                     </tr>
                     <tr>
                         <td width="10%"></td>
-                        <td width="60%"><b>HORAS POR SEMANA </b>: '.($r_b_ud['horas']/16).'<br></td>
+                        <td width="60%"><b>HORAS POR SEMANA </b>: ' . ($r_b_ud['horas'] / 16) . '<br></td>
                         <td width="20%"></td>
                         <td width="10%"></td>
                     </tr>
                     <tr>
                         <td width="10%"></td>
-                        <td width="60%"><b>DOCENTE </b>: '.$r_b_docente['apellidos_nombres'].'<br></td>
+                        <td width="60%"><b>DOCENTE </b>: ' . $r_b_docente['apellidos_nombres'] . '<br></td>
                         <td width="20%"></td>
                         <td width="10%"></td>
                     </tr>
@@ -332,7 +332,7 @@ if (!($mostrar_archivo)) {
     $content_one .= '</table>';
     $pdf->writeHTML($content_one);
 
-   
+
     $pdf->AddPage();
 
 
@@ -365,58 +365,10 @@ if (!($mostrar_archivo)) {
             $r_b_est = mysqli_fetch_array($b_est);
             $notass = '';
 
-            $b_calif = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
-            $suma_calificacion = 0;
-            $cont_calif = 0;
-            while ($r_b_calif = mysqli_fetch_array($b_calif)) {
+            $id_det_mat = $r_b_det_mat['id'];
 
-                $b_eva = buscarEvaluacionByIdCalificacion($conexion, $r_b_calif['id']);
-                $suma_evaluacion = 0;
-                while ($r_b_eva = mysqli_fetch_array($b_eva)) {
-                    $b_crit_eva = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_eva['id']);
-                    $suma_criterios = 0;
-                    $cont_crit = 0;
-                    while ($r_b_crit = mysqli_fetch_array($b_crit_eva)) {
-                        if (is_numeric($r_b_crit['calificacion'])) {
-                            $suma_criterios += $r_b_crit['calificacion'];
-                            $cont_crit += 1;
-                        }
-                    }
-                    if ($cont_crit > 0) {
-                        $suma_criterios = round($suma_criterios / $cont_crit);
-                    } else {
-                        $suma_criterios = round($suma_criterios);
-                    }
-                    if (is_numeric($r_b_eva['ponderado'])) {
-                        $suma_evaluacion += ($r_b_eva['ponderado'] / 100) * $suma_criterios;
-                    }
-                    
-                }
-
-                $suma_calificacion += $suma_evaluacion;
-                if ($suma_evaluacion > 0) {
-                    $cont_calif +=1;
-                }
-                /*if (is_numeric($r_b_calif['ponderado'])) {
-                    $suma_calificacion += ($r_b_calif['ponderado'] / 100) * $suma_evaluacion;
-                }*/
-                
-                if ($suma_evaluacion != 0) {
-                    $calificacion = round($suma_evaluacion);
-                } else {
-                    $calificacion = "";
-                }
-                if ($calificacion > 12) {
-                    $notass .= '<td align="center" ><font color="blue" size="10">' . $calificacion . '</font></td>';
-                } else {
-                    $notass .= '<td align="center" ><font color="red" size="10">' . $calificacion . '</font></td>';
-                }
-            }
-            if ($cont_calif>0) {
-                $suma_calificacion = round($suma_calificacion/$cont_calif);
-              }else{
-                $suma_calificacion = round($suma_calificacion);
-              }
+            $tamanio = 2;
+            $calificacion_final = calc_calificacion($conexion, $id_det_mat, $tamanio);
             // columnas extra para indicadores
             $n_conts = $total_indicadores + 1;
             for ($i = $n_conts; $i <= 12; $i++) {
@@ -424,11 +376,7 @@ if (!($mostrar_archivo)) {
             }
 
 
-            if ($suma_calificacion != 0) {
-                $calificacion = round($suma_calificacion);
-            } else {
-                $calificacion = "";
-            }
+
             if ($r_b_det_mat['recuperacion'] > 12) {
                 $recuperacion = '<td align="center" ><font color="blue" size="10">' . $r_b_det_mat['recuperacion'] . '</font></td>';
             } else {
@@ -489,7 +437,7 @@ if (!($mostrar_archivo)) {
 
         <table border="0.2" cellspacing="0" cellpadding="0.5">  
         <tr>
-        <th colspan="' . $n_cont . '" align="center">CALIFICACIONES DE ' .$r_b_ud['descripcion']. '</th>
+        <th colspan="' . $n_cont . '" align="center">CALIFICACIONES DE ' . $r_b_ud['descripcion'] . '</th>
         </tr>
         <tr height="auto">
             <td rowspan="2" align="center" width="4%"><small >Nro de Orden</small></td>
@@ -508,15 +456,15 @@ if (!($mostrar_archivo)) {
     $content .= '</table>';
     $pdf->writeHTML($content);
 
-    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-     
-    $fechaaa = date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+    $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
+    $fechaaa = date('d') . " de " . $meses[date('n') - 1] . " del " . date('Y');
     $footer = '
 
         <table border="0" cellspacing="0" cellpadding="0.5">  
         <tr>
             <th width="75%"></th>
-            <th >Huanta, '.$fechaaa.'</th>
+            <th >Huanta, ' . $fechaaa . '</th>
         </tr>
         </table>    
       ';

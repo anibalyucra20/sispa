@@ -254,7 +254,7 @@ if (!($mostrar_archivo)) {
                                   //buscar las calificaciones
                                   $id_det_mat = $r_b_det_mat['id'];
                                   //tamaño de texto para mostrar las calificaciones
-                                  $$tamanio = 2;
+                                  $tamanio = 2;
                                   $calificacion_final = calc_calificacion($conexion, $id_det_mat, $tamanio);
 
 
