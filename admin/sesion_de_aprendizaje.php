@@ -441,7 +441,8 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                               <tr>
                                 <td>
                                   <label for="">Actividades:</label><br>
-                                  <input type="text" name="actividades_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['actividad']; ?>">
+                                  <textarea name="actividades_<?php echo $r_b_momentos_sesion['id']; ?>" style="width:100%; resize: none; height:auto;" class="form-control" id="" cols="50" rows="5"><?php echo $r_b_momentos_sesion['actividad']; ?></textarea>
+                                  <!--<input type="text" name="actividades_<?php echo $r_b_momentos_sesion['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_momentos_sesion['actividad']; ?>">-->
                                 </td>
                               </tr>
                             <?php } ?>
