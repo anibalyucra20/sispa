@@ -47,7 +47,6 @@ function calc_calificacion($conexion, $id_det_mat)
     $suma_calificacion = 0;
     $cont_calif = 0;
     while ($r_b_calificacion = mysqli_fetch_array($b_calificaciones)) {
-
         $id_calificacion = $r_b_calificacion['id'];
         //buscamos las evaluaciones
         $suma_evaluacion = calc_evaluacion($conexion, $id_calificacion);
@@ -55,9 +54,6 @@ function calc_calificacion($conexion, $id_det_mat)
         if ($suma_evaluacion > 0) {
             $cont_calif += 1;
         }
-
-
-
         if ($suma_evaluacion != 0) {
             $calificacion = round($suma_evaluacion);
         } else {
@@ -76,5 +72,6 @@ function calc_calificacion($conexion, $id_det_mat)
       } else {
         $suma_calificacion = round($suma_calificacion);
       }
+      
     return $suma_calificacion;
 }
