@@ -254,10 +254,7 @@ if (!($mostrar_archivo)) {
                                   //buscar las calificaciones
                                   $id_det_matt = $r_b_det_mat['id'];
                                   $calificacion_final = calc_calificacion($conexion, $id_det_matt);
-                                  ?>
 
-
-                                  <?php
                                   
                                   if ($calificacion_final <= 12 && $calificacion_final >= 10) {
                                     if ($r_b_det_mat['recuperacion'] > 12) {
