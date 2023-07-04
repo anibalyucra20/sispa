@@ -270,7 +270,7 @@ if (!($mostrar_archivo)) {
 
 
                                     if ($suma_evaluacion != 0) {
-                                      $calificacion = round($suma_evaluacion);
+                                      $calificacion = round($suma_evaluacion , 0, PHP_ROUND_HALF_UP);
                                     } else {
                                       $calificacion = "";
                                     }
@@ -287,12 +287,12 @@ if (!($mostrar_archivo)) {
 
                                   <?php
                                   if ($cont_calif > 0) {
-                                    $suma_calificacion = round($suma_calificacion / $cont_calif);
+                                    $suma_calificacion = round($suma_calificacion / $cont_calif, 0, PHP_ROUND_HALF_UP);
                                   } else {
-                                    $suma_calificacion = round($suma_calificacion);
+                                    $suma_calificacion = round($suma_calificacion, 0, PHP_ROUND_HALF_UP);
                                   }
                                   if ($suma_calificacion != 0) {
-                                    $calificacion_final = round($suma_calificacion);
+                                    $calificacion_final = round($suma_calificacion, 0, PHP_ROUND_HALF_UP);
                                   } else {
                                     $calificacion_final = "";
                                   }
