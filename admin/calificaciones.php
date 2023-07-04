@@ -250,12 +250,12 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                                   //buscar las calificaciones
                                   $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
                                   $suma_calificacion = 0;
+                                  $cont_calif = 0;
                                   while ($r_b_calificacion = mysqli_fetch_array($b_calificaciones)) {
 
                                     $id_calificacion = $r_b_calificacion['id'];
                                     //buscamos las evaluaciones
                                     $suma_evaluacion = 0;
-                                    $cont_calif = 0;
                                     $b_evaluacion = buscarEvaluacionByIdCalificacion($conexion, $id_calificacion);
 
                                     while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
