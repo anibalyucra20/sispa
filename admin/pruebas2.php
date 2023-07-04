@@ -252,10 +252,10 @@ if (!($mostrar_archivo)) {
                                   <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
                                   <?php
                                   //buscar las calificaciones
-                                  $id_det_matt = $r_b_det_mat['id'];
-                                  $calificacion_final = calc_calificacion($conexion, $id_det_matt);
+                                  $id_det_mat = $r_b_det_mat['id'];
+                                  $calificacion_final = calc_calificacion($conexion, $id_det_mat);
 
-                                  
+
                                   if ($calificacion_final <= 12 && $calificacion_final >= 10) {
                                     if ($r_b_det_mat['recuperacion'] > 12) {
                                       if ($editar_doc) {
