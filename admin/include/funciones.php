@@ -45,7 +45,7 @@ function calc_evaluacion($conexion, $id_calificacion)
 
 //funcion para calcular el promedio final
 
-function calc_calificacion($conexion, $id_det_mat)
+function calc_calificacion($conexion, $id_det_mat, $tamanio)
 {
     $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $id_det_mat);
                                   $suma_calificacion = 0;
@@ -69,10 +69,10 @@ function calc_calificacion($conexion, $id_det_mat)
           $calificacion = "";
         }
         if ($calificacion > 12) {
-          echo '<td align="center"><font color="blue" size="2">' . $calificacion . '</font></td>';
+          echo '<td align="center"><font color="blue" size="'.$tamanio.'">' . $calificacion . '</font></td>';
           //echo '<td><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion . '" min="0" max="20" disabled></center></td>';
         } else {
-          echo '<td align="center"><font color="red" size="2">' . $calificacion . '</font></td>';
+          echo '<td align="center"><font color="red" size="'.$tamanio.'">' . $calificacion . '</font></td>';
           //echo '<td><center><input type="number" class="nota_input" style="color:red;" value="' . $calificacion . '" min="0" max="20" disabled></center></td>';
         }
       }

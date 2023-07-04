@@ -253,7 +253,9 @@ if (!($mostrar_archivo)) {
                                   <?php
                                   //buscar las calificaciones
                                   $id_det_mat = $r_b_det_mat['id'];
-                                  $calificacion_final = calc_calificacion($conexion, $id_det_mat);
+                                  //tamaño de texto para mostrar las calificaciones
+                                  $$tamanio = 2;
+                                  $calificacion_final = calc_calificacion($conexion, $id_det_mat, $tamanio);
 
 
                                   if ($calificacion_final <= 12 && $calificacion_final >= 10) {
