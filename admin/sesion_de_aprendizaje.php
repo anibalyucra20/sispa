@@ -484,17 +484,20 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                               <tr>
                                 <td>
                                   <center>
-                                    <input type="text" name="indicador_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['indicador_logro_sesion']; ?>">
+                                    <textarea name="indicador_eva_<?php echo $r_b_actividades_eval['id']; ?>" id="" cols="30" rows="3" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_actividades_eval['indicador_logro_sesion']; ?></textarea>
+                                    <!--<input type="text" name="indicador_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['indicador_logro_sesion']; ?>">-->
                                   </center>
                                 </td>
                                 <td>
                                   <center>
-                                    <input type="text" name="tecnicas_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['tecnica']; ?>">
+                                  <textarea name="tecnicas_eva_<?php echo $r_b_actividades_eval['id']; ?>" id="" cols="30" rows="3" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_actividades_eval['tecnica']; ?></textarea>
+                                    <!--<input type="text" name="tecnicas_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['tecnica']; ?>">-->
                                   </center>
                                 </td>
                                 <td>
                                   <center>
-                                    <input type="text" name="instrumentos_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['instrumentos']; ?>">
+                                  <textarea name="instrumentos_eva_<?php echo $r_b_actividades_eval['id']; ?>" id="" cols="30" rows="3" class="form-control" style="width:100%; resize: none; height:auto;"><?php echo $r_b_actividades_eval['instrumentos']; ?></textarea>
+                                    <!--<input type="text" name="instrumentos_eva_<?php echo $r_b_actividades_eval['id']; ?>" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_actividades_eval['instrumentos']; ?>">-->
                                   </center>
                                 </td>
                                 <td>
