@@ -210,14 +210,14 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                                 ?>
                                   <th>
                                     <center>Indicador - <?php echo $cont_ind; ?>
-                                      <!--<?php if ($editar_doc) { ?>
+                                      <?php if ($editar_doc) { ?>
                                         <a class="btn btn-primary" href="evaluacion_b.php?data=<?php echo $id_prog; ?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-edit"></i> Evaluar</a>
-                                        <br>Ponderado:
-                                        <input type="number" class="nota_input" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100">%
+                                        <!--<br>Ponderado:
+                                        <input type="number" class="nota_input" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100">%-->
                                       <?php } else { ?>
                                         <a class="btn btn-primary" href="evaluacion_b.php?data=<?php echo $id_prog; ?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-eye"></i> Ver</a>
-                                        <br>Ponderado: <?php echo $r_b_calificacion['ponderado']."%"; ?>
-                                      <?php } ?>-->
+                                        <!--<br>Ponderado: <?php echo $r_b_calificacion['ponderado']."%"; ?>-->
+                                      <?php } ?>
                                     </center>
                                   </th>
                                 <?php
