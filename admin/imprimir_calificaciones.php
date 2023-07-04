@@ -386,10 +386,15 @@ if (!($mostrar_archivo)) {
                     } else {
                         $suma_criterios = round($suma_criterios);
                     }
-                    $suma_evaluacion += ($r_b_eva['ponderado'] / 100) * $suma_criterios;
+                    if (is_numeric($r_b_eva['ponderado'])) {
+                        $suma_evaluacion += ($r_b_eva['ponderado'] / 100) * $suma_criterios;
+                    }
+                    
                 }
-
-                $suma_calificacion += ($r_b_calif['ponderado'] / 100) * $suma_evaluacion;
+                if (is_numeric($r_b_calif['ponderado'])) {
+                    $suma_calificacion += ($r_b_calif['ponderado'] / 100) * $suma_evaluacion;
+                }
+                
                 if ($suma_evaluacion != 0) {
                     $calificacion = round($suma_evaluacion);
                 } else {

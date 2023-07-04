@@ -210,14 +210,14 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                                 ?>
                                   <th>
                                     <center>Indicador - <?php echo $cont_ind; ?>
-                                      <?php if ($editar_doc) { ?>
+                                      <!--<?php if ($editar_doc) { ?>
                                         <a class="btn btn-primary" href="evaluacion_b.php?data=<?php echo $id_prog; ?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-edit"></i> Evaluar</a>
                                         <br>Ponderado:
                                         <input type="number" class="nota_input" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100">%
                                       <?php } else { ?>
                                         <a class="btn btn-primary" href="evaluacion_b.php?data=<?php echo $id_prog; ?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-eye"></i> Ver</a>
                                         <br>Ponderado: <?php echo $r_b_calificacion['ponderado']."%"; ?>
-                                      <?php } ?>
+                                      <?php } ?>-->
                                     </center>
                                   </th>
                                 <?php
@@ -255,6 +255,7 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                                     $id_calificacion = $r_b_calificacion['id'];
                                     //buscamos las evaluaciones
                                     $suma_evaluacion = 0;
+                                    $cont_calif = 0;
                                     $b_evaluacion = buscarEvaluacionByIdCalificacion($conexion, $id_calificacion);
 
                                     while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
@@ -280,9 +281,12 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
                                         $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
                                       }
                                     }
-                                    if (is_numeric($r_b_calificacion['ponderado'])) {
+                                    $suma_calificacion += $suma_evaluacion;
+                                    $cont_calif +=1;
+
+                                    /*if (is_numeric($r_b_calificacion['ponderado'])) {
                                       $suma_calificacion += ($r_b_calificacion['ponderado'] / 100) * $suma_evaluacion;
-                                    }
+                                    }*/
                                     
 
                                     if ($suma_evaluacion != 0) {
@@ -302,6 +306,11 @@ while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
 
 
                                   <?php
+                                  if ($cont_calif>0) {
+                                    $suma_calificacion = round($suma_calificacion/$cont_calif);
+                                  }else{
+                                    $suma_calificacion = round($suma_calificacion);
+                                  }
                                   if ($suma_calificacion != 0) {
                                     $calificacion_final = round($suma_calificacion);
                                   } else {

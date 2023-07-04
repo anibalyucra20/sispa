@@ -217,8 +217,10 @@
                                     } else {
                                       $suma_criterios = round($suma_criterios);
                                     }
-
-                                    $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
+                                    if (is_numeric($r_b_evaluacion['ponderado'])) {
+                                      $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
+                                    }
+                                    
                                   }
 
                                   if ($suma_evaluacion != 0) {
