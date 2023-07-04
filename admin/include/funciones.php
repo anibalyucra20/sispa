@@ -69,10 +69,10 @@ function calc_calificacion($conexion, $id_det_mat)
           $calificacion = "";
         }
         if ($calificacion > 12) {
-          echo '<td><center><font color="blue">' . $calificacion . '</font></center></td>';
+          echo '<td align="center"><font color="blue" size="10">' . $calificacion . '</font></td>';
           //echo '<td><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion . '" min="0" max="20" disabled></center></td>';
         } else {
-          echo '<td><center><font color="red">' . $calificacion . '</font></center></td>';
+          echo '<td align="center"><font color="red" size="10">' . $calificacion . '</font></td>';
           //echo '<td><center><input type="number" class="nota_input" style="color:red;" value="' . $calificacion . '" min="0" max="20" disabled></center></td>';
         }
       }
