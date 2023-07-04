@@ -261,7 +261,7 @@ function NbLines($w,$txt)
     for ($i=0; $i < $cont_log_ses; $i++) { 
         $logro_sesion = $logro_sesion.$log_ses[$i]."\r\n";
     }
-    $pdf->Row(array(utf8_decode('Logro de la sesión'),utf8_decode(": ".$logro_sesion)));
+    $pdf->Row(array(utf8_decode('Logro de la sesión'),utf8_decode(": ".$r_b_sesion['logro_sesion'])));
 
 
     $pdf->Cell(180,3,'',0,1,'C',0);
