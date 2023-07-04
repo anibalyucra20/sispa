@@ -305,23 +305,11 @@ function NbLines($w,$txt)
     $b_actividades_eval = buscarActividadesEvaluacionByIdSesion($conexion, $id_sesion);
     while ($r_b_actividades_eval = mysqli_fetch_array($b_actividades_eval)) {
         $indicador_log = "";
-        $ind_log = explode(",", $r_b_actividades_eval['indicador_logro_sesion']);
-        $cont_ind_log = count($ind_log);
-        for ($i=0; $i < $cont_ind_log; $i++) { 
-        $indicador_log = $indicador_log.$ind_log[$i]."\r\n";
-        }
+        $indicador_log = $indicador_log.$r_b_actividades_eval['indicador_logro_sesion']."\r\n";
         $tecnicas = "";
-        $tecs = explode(",", $r_b_actividades_eval['tecnica']);
-        $cont_tecs = count($tecs);
-        for ($i=0; $i < $cont_tecs; $i++) { 
-        $tecnicas = $tecnicas.$tecs[$i]."\r\n";
-        }
+        $tecnicas = $r_b_actividades_eval['tecnica']."\r\n";
         $instrumentos = "";
-        $instr = explode(",", $r_b_actividades_eval['instrumentos']);
-        $cont_instr = count($instr);
-        for ($i=0; $i < $cont_instr; $i++) { 
-        $instrumentos = $instrumentos.$instr[$i]."\r\n";
-        }
+        $instrumentos = $r_b_actividades_eval['instrumentos']."\r\n";
     $pdf->Row(array(utf8_decode($indicador_log),utf8_decode($tecnicas),utf8_decode($instrumentos),utf8_decode("                ".$r_b_actividades_eval['peso']),utf8_decode($r_b_actividades_eval['momento'])));
     }
     $pdf->Cell(180,3,'',0,1,'C',0);
