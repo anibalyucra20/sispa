@@ -365,10 +365,65 @@ if (!($mostrar_archivo)) {
             $r_b_est = mysqli_fetch_array($b_est);
             $notass = '';
 
-            $id_det_mat = $r_b_det_mat['id'];
+     
 
-            $tamanio = 2;
-            $calificacion_final = calc_calificacion($conexion, $id_det_mat, $tamanio);
+            
+            $b_calif = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
+            $suma_calificacion = 0;
+            $cont_calif = 0;
+            while ($r_b_calif = mysqli_fetch_array($b_calif)) {
+
+                $b_eva = buscarEvaluacionByIdCalificacion($conexion, $r_b_calif['id']);
+                $suma_evaluacion = 0;
+                while ($r_b_eva = mysqli_fetch_array($b_eva)) {
+                    $b_crit_eva = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_eva['id']);
+                    $suma_criterios = 0;
+                    $cont_crit = 0;
+                    while ($r_b_crit = mysqli_fetch_array($b_crit_eva)) {
+                        if (is_numeric($r_b_crit['calificacion'])) {
+                            $suma_criterios += $r_b_crit['calificacion'];
+                            $cont_crit += 1;
+                        }
+                    }
+                    if ($cont_crit > 0) {
+                        $suma_criterios = round($suma_criterios / $cont_crit);
+                    } else {
+                        $suma_criterios = round($suma_criterios);
+                    }
+                    if (is_numeric($r_b_eva['ponderado'])) {
+                        $suma_evaluacion += ($r_b_eva['ponderado'] / 100) * $suma_criterios;
+                    }
+                }
+
+                $suma_calificacion += $suma_evaluacion;
+                if ($suma_evaluacion > 0) {
+                    $cont_calif += 1;
+                }
+                /*if (is_numeric($r_b_calif['ponderado'])) {
+                    $suma_calificacion += ($r_b_calif['ponderado'] / 100) * $suma_evaluacion;
+                }*/
+
+                if ($suma_evaluacion != 0) {
+                    $calificacion = round($suma_evaluacion);
+                } else {
+                    $calificacion = "";
+                }
+                if ($calificacion > 12) {
+                    $notass .= '<td align="center" ><font color="blue" size="10">' . $calificacion . '</font></td>';
+                } else {
+                    $notass .= '<td align="center" ><font color="red" size="10">' . $calificacion . '</font></td>';
+                }
+            }
+            if ($cont_calif > 0) {
+                $suma_calificacion = round($suma_calificacion / $cont_calif);
+            } else {
+                $suma_calificacion = round($suma_calificacion);
+            }
+            if ($suma_calificacion != 0) {
+                $calificacion = round($suma_calificacion);
+            } else {
+                $calificacion = "";
+            }
             // columnas extra para indicadores
             $n_conts = $total_indicadores + 1;
             for ($i = $n_conts; $i <= 12; $i++) {
