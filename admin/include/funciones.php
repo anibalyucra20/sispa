@@ -18,9 +18,9 @@ function calc_criterios($conexion, $id_evaluacion)
         }
     }
     if ($cont_crit > 0) {
-        $suma_criterios = round($suma_criterios / $cont_crit, 0, PHP_ROUND_HALF_UP);
+        $suma_criterios = round($suma_criterios / $cont_crit);
     } else {
-        $suma_criterios = round($suma_criterios, 0, PHP_ROUND_HALF_UP);
+        $suma_criterios = round($suma_criterios);
     }
     return $suma_criterios;
 }
@@ -40,7 +40,7 @@ function calc_evaluacion($conexion, $id_calificacion)
             $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
         }
     }
-    return $suma_evaluacion;
+    return round($suma_evaluacion);
 }
 
 //funcion para calcular el promedio final
