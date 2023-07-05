@@ -374,15 +374,9 @@ if (!($mostrar_archivo)) {
             $cont_calif = 0;
             while ($r_b_calif = mysqli_fetch_array($b_calif)) {
 
-                $b_eva = buscarEvaluacionByIdCalificacion($conexion, $r_b_calif['id']);
-                $suma_evaluacion = 0;
-                while ($r_b_eva = mysqli_fetch_array($b_eva)) {
-                    
-                    $suma_criterios = calc_criterios($conexion, $r_b_eva['id']);
-                    if (is_numeric($r_b_eva['ponderado'])) {
-                        $suma_evaluacion += ($r_b_eva['ponderado'] / 100) * $suma_criterios;
-                    }
-                }
+                
+                $suma_evaluacion = calc_evaluacion($conexion, $r_b_calif['id']);
+                
 
                 $suma_calificacion += $suma_evaluacion;
                 if ($suma_evaluacion > 0) {
