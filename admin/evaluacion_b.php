@@ -169,7 +169,6 @@ if (!($mostrar_archivo)) {
                                 ?>
                                   <th colspan="<?php echo $c_b_critt + 1; ?>">
                                     <center><?php echo $r_b_evaluacion['detalle'] ?><br>Ponderado: <?php echo $r_b_evaluacion['ponderado']; ?>%
-                                      <!--<input type="number" id="" name="" value="<?php echo $r_b_evaluacion['ponderado']; ?>" min="0" max="100" >-->
                                       <?php if ($editar_doc) { ?>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".edit_eva<?php echo $r_b_evaluacion['id']; ?>"><i class="fa fa-edit"></i></button>
                                       <?php } ?>
@@ -207,7 +206,7 @@ if (!($mostrar_archivo)) {
 
                                         <p class="verticalll" id=""><?php echo $r_b_critt_eva['detalle']; ?></p>
                                         <br>
-                                        <!--Peso: <?php echo $r_b_critt_eva['ponderado']; ?>%-->
+                                        
                                       </center>
                                     </th>
                                   <?php
@@ -264,7 +263,6 @@ if (!($mostrar_archivo)) {
                                           if (is_numeric($r_b_criterio_evaluacion['calificacion'])) {
                                             $suma_criterios += $r_b_criterio_evaluacion['calificacion'];
                                             $cont_c += 1;
-                                            //$suma_criterios += (($r_b_criterio_evaluacion['ponderado']/100)*$r_b_criterio_evaluacion['calificacion']);
                                           }
                                           if ($r_b_criterio_evaluacion['calificacion'] > 12 && $r_b_criterio_evaluacion['calificacion'] <= 20) {
                                             $colort = 'style="color:blue; "';
@@ -275,18 +273,14 @@ if (!($mostrar_archivo)) {
                                             echo '<td width="20px"><input class="nota_input" type="number" ' . $colort . ' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
                                           }else {
                                             echo '<td width="20px"><label '.$colort.'>' . $r_b_criterio_evaluacion['calificacion'] . '</label></td>';
-                                            //echo '<input class="nota_input" type="number" ' . $colort . ' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
                                           }
-                                          
                                         }
 
-                                        //$suma_evaluacion += ($r_b_evaluacion['ponderado']/100)*$suma_criterios;
                                         if ($cont_c > 0) {
                                           $calificacion = round($suma_criterios / $cont_c);
                                         } else {
                                           $calificacion = round($suma_criterios);
                                         }
-                                        //$calificacion = $suma_criterios/$cont_c;
                                         if ($calificacion == 0) {
                                           $mostrar = "";
                                         } else {
@@ -308,10 +302,8 @@ if (!($mostrar_archivo)) {
                                         $calificacion_e = "";
                                       }
                                       if ($calificacion_e > 12) {
-                                        //echo '<td><center><font color="blue">'.$calificacion.'</font></center></td>';
                                         echo '<th><center><font color="blue">' . $calificacion_e . '</font></center></th>';
                                       } else {
-                                        //echo '<td><center><font color="red">'.$calificacion.'</font></center></td>';
                                         echo '<th><center><font color="red">' . $calificacion_e . '</font></center></th>';
                                       }
                                     }
