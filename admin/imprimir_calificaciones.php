@@ -377,8 +377,8 @@ if (!($mostrar_archivo)) {
                 $b_eva = buscarEvaluacionByIdCalificacion($conexion, $r_b_calif['id']);
                 $suma_evaluacion = 0;
                 while ($r_b_eva = mysqli_fetch_array($b_eva)) {
-                    $b_crit_eva = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_eva['id']);
-                    $suma_criterios = calc_criterios($conexion, $b_crit_eva['id']);
+                    
+                    $suma_criterios = calc_criterios($conexion, $r_b_eva['id']);
                     if (is_numeric($r_b_eva['ponderado'])) {
                         $suma_evaluacion += ($r_b_eva['ponderado'] / 100) * $suma_criterios;
                     }
