@@ -3,6 +3,7 @@ include_once('include/verificar_sesion_docente_coordinador_secretaria.php');
 require_once('../tcpdf/tcpdf.php');
 include_once('../include/conexion.php');
 include_once('include/busquedas.php');
+include_once('include/funciones.php');
 setlocale(LC_ALL, "es_ES");
 $id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
