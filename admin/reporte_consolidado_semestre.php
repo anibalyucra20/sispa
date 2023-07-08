@@ -2,6 +2,7 @@
   include ("include/verificar_sesion_coordinador.php");
   include ("../include/conexion.php");
   include ("include/busquedas.php");
+  include ("include/funciones.php");
   $id_pe = $_POST['car_consolidado'];
   $id_sem = $_POST['sem_consolidado'];
 

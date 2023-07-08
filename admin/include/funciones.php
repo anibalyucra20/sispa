@@ -43,12 +43,6 @@ function calc_evaluacion($conexion, $id_calificacion)
     return round($suma_evaluacion);
 }
 
-//funcion para calcular el promedio final
 
-function calc_calificacion($conexion, $id_det_mat, $tamanio)
-{
-    
-
-}
 
 /// FIN DE FUNCIONES DE CALIFICACIONES ------------------------------------------------------------

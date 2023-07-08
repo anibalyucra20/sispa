@@ -75,11 +75,17 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
       <div class="main_container">
         <!--menu-->
         <?php
-        if(isset($_SESSION['id_docente'])){
-          include ("include/menu_docente.php");
-        }elseif(isset($_SESSION['id_jefe_area'])) {
-          include ("include/menu_coordinador.php");
+        $per_select = $_SESSION['periodo'];
+        if (isset($_SESSION['id_docente'])) {
+          include("include/menu_docente.php");
+          $id_docente = $_SESSION['id_docente'];
+          $var_consulta = "WHERE id_docente=" . $id_docente . " AND id_periodo_acad=" . $per_select;
+        } elseif (isset($_SESSION['id_jefe_area'])) {
+          include("include/menu_coordinador.php");
+          $id_docente = $_SESSION['id_jefe_area'];
+          $var_consulta = "WHERE id_docente=" . $id_docente . " AND id_periodo_acad=" . $per_select;
         }
+        
 
         $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
         $r_b_ud = mysqli_fetch_array($b_ud);
@@ -110,7 +116,77 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                 <div class="">
                   <h2 align="center">Sesiones de Aprendizaje - <?php echo $r_b_ud['descripcion']; ?></h2>
                   <a href="calificaciones_unidades_didacticas.php" class="btn btn-danger">Regresar</a>
+                  <button class="btn btn-success" data-toggle="modal" data-target=".copiar">Copiar Sesiones</button>
                   <div class="clearfix"></div>
+                  <!--MODAL COPIAR INFFORMACION-->
+                  <div class="modal fade copiar" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel" align="center">Copiar Información de Sesiones de Apredizaje</h4>
+                        </div>
+                        <div class="modal-body">
+                          <!--INICIO CONTENIDO DE MODAL-->
+                          <div class="x_panel">
+
+                            <div class="" align="center">
+                              <h2></h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <br />
+                              <form role="form" action="operaciones/copiar_informacion_sesiones.php" method="POST" class="form-horizontal form-label-left input_mask">
+                                <input type="hidden" name="myidactual" value="<?php echo $id_prog; ?>">
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Copiar Sesiones de : </label>
+                                  <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <select class="form-control" id="sesion_copi" name="sesion_copi" value="" required="required">
+                                      <option></option>
+                                      <?php
+                                      $ejec_busc_prog = buscarProgramacionEspecial($conexion, $var_consulta);
+                                      while ($res_busc_prog = mysqli_fetch_array($ejec_busc_prog)) {
+                                        $id_prog_b = $res_busc_prog['id'];
+                                        $id_ud = $res_busc_prog['id_unidad_didactica'];
+                                        $b_ud = buscarUdById($conexion, $id_ud);
+                                        $res_b_ud = mysqli_fetch_array($b_ud);
+
+                                        $id_carrera = $res_b_ud['id_programa_estudio'];
+                                        $ejec_busc_carrera = buscarCarrerasById($conexion, $id_carrera);
+                                        $res_busc_carrera = mysqli_fetch_array($ejec_busc_carrera);
+
+                                        $id_semestre = $res_b_ud['id_semestre'];
+                                        $ejec_busc_semestre = buscarSemestreById($conexion, $id_semestre);
+                                        $res_busc_semestre = mysqli_fetch_array($ejec_busc_semestre);
+                                      ?>
+                                        <option value="<?php echo $id_prog_b; ?>"><?php echo $res_b_ud['descripcion']." - "; ?><?php echo $res_busc_carrera['nombre']." - "; ?><?php echo $res_busc_semestre['descripcion']; ?></option>
+                                      <?php
+                                      };
+                                      ?>
+
+                                    </select>
+                                    <br>
+                                  </div>
+                                </div>
+                                <div align="center">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                              </form>
+
+
+                            </div>
+                          </div>
+                          <!--FIN DE CONTENIDO DE MODAL-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- FIN MODAL COPIAR INFORMACION-->
                 </div>
                 <div class="x_content">
                   <br />
@@ -153,10 +229,10 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                               <a title="Ver / Editar" class="btn btn-success" href="sesion_de_aprendizaje.php?id=<?php echo $r_b_sesion['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
                               <a title="Imprimir" class="btn btn-info" target="_blank" href="imprimir_sesion.php?data=<?php echo $r_b_sesion['id']; ?>"><i class="fa fa-print"></i></a>
                               <a title="Duplicar Sesión de Aprendizaje" class="btn btn-warning" href="operaciones/duplicar_sesion.php?data=<?php echo $r_b_sesion['id']; ?>&data2=<?php echo $id_prog; ?>" onclick="return confirmard();"><i class="fa fa-plus-square"></i></a>
-                              <?php if ($contar>1) { ?>
+                              <?php if ($contar > 1) { ?>
                                 <a title="Eliminar Sesión de Aprendizaje" class="btn btn-danger" href="operaciones/eliminar_sesion.php?data=<?php echo $r_b_sesion['id']; ?>&data2=<?php echo $id_prog; ?>" onclick="return confirmardelete();"><i class="fa fa-remove"></i></a>
                               <?php } ?>
-                              
+
                             </td>
                           </tr>
                       <?php

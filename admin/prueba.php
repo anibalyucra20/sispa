@@ -237,12 +237,12 @@
                         
     </tbody>
   </table>
-  <?php echo "<script>
+  <!--<?php echo "<script>
 			window.print();
       setTimeout(function(){ 
         window.close();
     }, 3000);
 		</script>
-	";?>
+	";?>-->
 </body>
 </html>

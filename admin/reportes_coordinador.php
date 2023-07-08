@@ -31,7 +31,7 @@
     <!-- Custom Theme Style -->
     <link href="../Gentella/build/css/custom.min.css" rel="stylesheet">
   </head>
-  <body class="nav-md">
+  <body class="nav-md" onload="listar_est();">
     <div class="container body">
       <div class="main_container">
           <?php 
@@ -60,6 +60,16 @@
                         <div class="count"> Reporte</div>
                         <h3>Consolidado por Semestre</h3>
                         <p>Reporte Consolidado por Semestre</p>
+                    </div>
+                </a>
+              </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="" data-toggle="modal" data-target=".rep_consolidado">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-anchor"></i></div>
+                        <div class="count"> Reporte</div>
+                        <h3>Consolidado Detallado</h3>
+                        <p>Reporte Consolidado por Semestre Detallado</p>
                     </div>
                 </a>
               </div>
@@ -103,7 +113,7 @@
                             </div>
                             <div class="x_content">
                                 <br />
-                                <form role="form" action="prueba.php" class="form-horizontal form-label-left input_mask" method="POST" target="_blank">
+                                <form role="form" action="reporte_consolidado_semestre.php" class="form-horizontal form-label-left input_mask" method="POST" target="_blank">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
