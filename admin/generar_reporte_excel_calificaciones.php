@@ -2,6 +2,7 @@
 include 'include/verificar_sesion_docente_coordinador_secretaria.php';
 include '../include/conexion.php';
 include 'include/busquedas.php';
+include 'include/funciones.php';
 
 $id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
@@ -73,43 +74,39 @@ if (!($mostrar_archivo)) {
 
                     $b_calif = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
                     $suma_calificacion = 0;
+                    $cont_calif = 0;
                     while ($r_b_calif = mysqli_fetch_array($b_calif)) {
 
-                        $b_eva = buscarEvaluacionByIdCalificacion($conexion, $r_b_calif['id']);
-                        $suma_evaluacion = 0;
-                        while ($r_b_eva = mysqli_fetch_array($b_eva)) {
-                            $b_crit_eva = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_eva['id']);
-                            $suma_criterios = 0;
-                            $cont_crit = 0;
-                            while ($r_b_crit = mysqli_fetch_array($b_crit_eva)) {
-                                if (is_numeric($r_b_crit['calificacion'])) {
-                                    $suma_criterios += $r_b_crit['calificacion'];
-                                    $cont_crit += 1;
-                                }
-                            }
-                            if ($cont_crit > 0) {
-                                $suma_criterios = round($suma_criterios / $cont_crit);
-                            } else {
-                                $suma_criterios = round($suma_criterios);
-                            }
-                            $suma_evaluacion += ($r_b_eva['ponderado'] / 100) * $suma_criterios;
-                        }
-                        $suma_calificacion += ($r_b_calif['ponderado'] / 100) * $suma_evaluacion;
+                        $id_calificacion = $r_b_calif['id'];
+                                    //buscamos las evaluaciones
+                                    $suma_evaluacion = calc_evaluacion($conexion, $id_calificacion);
+                                    $suma_calificacion += $suma_evaluacion;
+                                    if ($suma_evaluacion > 0) {
+                                      $cont_calif += 1;
+                                    }
+                                    
+                                    
                     }
-                    if ($suma_calificacion != 0) {
-                        $calificacion = round($suma_calificacion);
-                    } else {
-                        $calificacion = "";
-                    }
+
+                    if ($cont_calif > 0) {
+                        $suma_calificacion = round($suma_calificacion / $cont_calif);
+                      } else {
+                        $suma_calificacion = round($suma_calificacion);
+                      }
+                      if ($suma_calificacion != 0) {
+                        $calificacion_final = round($suma_calificacion);
+                      } else {
+                        $calificacion_final = "";
+                      }
                     if ($r_b_det_mat['recuperacion'] != '') {
-                        $calificacion = $r_b_det_mat['recuperacion'];
+                        $calificacion_final = $r_b_det_mat['recuperacion'];
                       }
                 ?>
                     <tr>
                         <td><?php echo $ord; ?></td>
                         <td><?php echo $r_b_est['dni']; ?></td>
                         <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
-                        <td><?php echo $calificacion; ?></td>
+                        <td><?php echo $calificacion_final; ?></td>
                     </tr>
                 <?php
                     $ord += 1;
