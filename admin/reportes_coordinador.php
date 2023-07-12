@@ -113,7 +113,7 @@
                             </div>
                             <div class="x_content">
                                 <br />
-                                <form role="form" action="reporte_consolidado_semestre.php" class="form-horizontal form-label-left input_mask" method="POST" target="_blank">
+                                <form role="form" action="reporte_consolidado_semestre.php" class="form-horizontal form-label-left input_mask" method="POST">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -171,7 +171,7 @@
                             </div>
                             <div class="x_content">
                                 <br />
-                                <form role="form" action="reporte_consolidado_detallado.php" class="form-horizontal form-label-left input_mask" method="POST" target="_blank">
+                                <form role="form" action="reporte_consolidado_detallado.php" class="form-horizontal form-label-left input_mask" method="POST">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
