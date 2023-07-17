@@ -13,6 +13,9 @@ $b_sem = buscarSemestreById($conexion, $id_sem);
 $r_b_sem = mysqli_fetch_array($b_sem);
 
 $per_select = $_SESSION['periodo'];
+
+$b_per = buscarPeriodoAcadById($conexion, $per_select);
+$r_b_per = mysqli_fetch_array($b_per);
 $array_estudiantes = [];
 // armar la nomina de estudiantes para poder mostrar todos los estudiantes del semestre
 $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
@@ -95,7 +98,7 @@ $collator->sort($n_array_estudiantes);
     p.verticalll {
       /* idéntico a rotateZ(45deg); */
 
-      writing-mode: vertical-lr;
+      writing-mode: vertical-rl;
       transform: rotate(180deg);
 
     }
@@ -120,7 +123,7 @@ $collator->sort($n_array_estudiantes);
               <input type="hidden" name="sem_consolidado" value="<?php echo $id_sem; ?>">
               <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Imprimir Reporte</button>
               </form>
-            <h2 align="center"><b>REPORTE CONSOLIDADO - <?php echo $r_b_pe['nombre'] . " - SEMESTRE " . $r_b_sem['descripcion']; ?></b></h2>
+            <h2 align="center"><b>REPORTE CONSOLIDADO - <?php echo $r_b_pe['nombre'] . " - SEMESTRE " . $r_b_sem['descripcion']." ".$r_b_per['nombre']; ?></b></h2>
             <form role="form" action="" class="form-horizontal form-label-left input_mask" method="POST">
               <div class="table-responsive">
                 <table id="" class="table table-striped table-bordered" style="width:100%">
@@ -138,6 +141,15 @@ $collator->sort($n_array_estudiantes);
                       <th colspan="<?php echo $cont_ud_sem; ?>">
                         <center>UNIDADES DIDÁCTICAS</center>
                       </th>
+                      <th rowspan="2">
+                        <p class="verticalll">PUNTAJE TOTAL</p>
+                      </th>
+                      <th rowspan="2">
+                        <p class="verticalll">PUNTAJE CRÉDITO</p>
+                      </th>
+                      <th rowspan="2">
+                        <p>CONDICIÓN</p>
+                      </th>
                     </tr>
                     <tr>
                       <?php
@@ -150,8 +162,8 @@ $collator->sort($n_array_estudiantes);
                         
 
                       ?>
-                        <th colspan="<?php echo $cont_ind_logro_cap_ud; ?>">
-                          <p class="verticalll"><?php echo $r_b_udd['descripcion']; ?></p>
+                        <th colspan="<?php echo $cont_ind_logro_cap_ud; ?>" style="height: 100px; text-align:center;">
+                          <p class="verticalll"><?php echo $r_b_udd['descripcion']."<br>".$r_bb_ud['creditos']." Créditos"; ?></p>
                         </th>
                       <?php
                       }
@@ -167,6 +179,9 @@ $collator->sort($n_array_estudiantes);
                       $b_est = buscarEstudianteByApellidosNombres($conexion, $val);
                       $r_b_est = mysqli_fetch_array($b_est);
                       $id_est = $r_b_est['id'];
+
+                      
+                      
                     ?>
                       <tr>
                         <td><?php echo $key; ?></td>
@@ -175,8 +190,14 @@ $collator->sort($n_array_estudiantes);
                         <?php
                         //buscar si estudiante esta matriculado en una unidad didactica
                         $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
+                        $min_ud_desaprobar = round(mysqli_num_rows($b_ud_pe_sem)/2, 0, PHP_ROUND_HALF_DOWN);
+
+                        $suma_califss = 0;
+                        $suma_ptj_creditos = 0;
+                        $cont_ud_desaprobadas = 0;
                         while ($r_bb_ud = mysqli_fetch_array($b_ud_pe_sem)) {
                           $id_udd = $r_bb_ud['id'];
+                          
                           $b_prog_ud = buscarProgramacionByUd_Peridodo($conexion, $id_udd, $per_select);
                           $r_b_prog_ud = mysqli_fetch_array($b_prog_ud);
                           $id_prog = $r_b_prog_ud['id'];
@@ -210,26 +231,46 @@ $collator->sort($n_array_estudiantes);
                               }
                             }
                             if ($cont_calif > 0) {
-                              $suma_calificacion = round($suma_calificacion / $cont_calif);
+                              $calificacion = round($suma_calificacion / $cont_calif);
                             } else {
-                              $suma_calificacion = round($suma_calificacion);
-                            }
-                            if ($suma_calificacion != 0) {
                               $calificacion = round($suma_calificacion);
+                            }
+                            if ($calificacion != 0) {
+                              $calificacion = round($calificacion);
                             } else {
                               $calificacion = "";
                             }
-
+                            //buscamos si tiene recuperacion
+                            if ($r_b_det_mat_est['recuperacion'] != '') {
+                              $calificacion = $r_b_det_mat_est['recuperacion'];
+                            }
+                            
                             if ($calificacion > 12) {
                               echo '<td align="center" ><font color="blue">' . $calificacion . '</font></td>';
                             } else {
                               echo '<td align="center" ><font color="red">' . $calificacion . '</font></td>';
+                              $cont_ud_desaprobadas +=1;
                             }
+                            
                           } else {
                             echo '<td></td>';
                           }
+                          
+                          $suma_califss += $calificacion;
+                          $suma_ptj_creditos += $calificacion*$r_bb_ud['creditos'];
+                        }
+                        echo '<td align="center" ><font color="black">' . $suma_califss . '</font></td>';
+                        echo '<td align="center" ><font color="black">' . $suma_ptj_creditos . '</font></td>';
+                        if ($cont_ud_desaprobadas==0) {
+                          echo '<td align="center" ><font color="black">Promovido</font></td>';
+                        }elseif($cont_ud_desaprobadas<=$min_ud_desaprobar){
+                          echo '<td align="center" ><font color="black">Repite U.D. del Módulo Profesional</font></td>';
+                        }else {
+                          echo '<td align="center" ><font color="black">Repite el Módulo Profesional</font></td>';
+                          
                         }
                         ?>
+                        
                       </tr>
                     <?php
                     }

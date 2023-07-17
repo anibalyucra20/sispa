@@ -84,11 +84,14 @@
       .nota_input {
         width: 3em;
       }
+      .text_s{
+        font-size: 10px;
+      }
     </style>
 </head>
 <body>
   <h2 align="center"><b>REPORTE CONSOLIDADO DETALLADO - <?php echo $r_b_pe['nombre']." - SEMESTRE ".$r_b_sem['descripcion']; ?></b></h2>
-  <table BORDER="1" CELLPADDING="3" CELLSPACING="0" style="width:100%">
+  <table BORDER="1" CELLPADDING="3" CELLSPACING="0" style="width:100%" class="text_s">
     <thead>
     <tr>
                           <th rowspan="2">  
