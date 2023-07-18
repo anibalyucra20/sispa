@@ -258,6 +258,8 @@ $collator->sort($n_array_estudiantes);
                           if (is_numeric($calificacion)) {
                             $suma_califss += $calificacion;
                             $suma_ptj_creditos += $calificacion*$r_bb_ud['creditos'];
+                          }else {
+                            $suma_ptj_creditos += 0*$r_bb_ud['creditos'];
                           }
                           
                         }
