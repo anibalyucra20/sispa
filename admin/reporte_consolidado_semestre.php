@@ -148,7 +148,7 @@ $collator->sort($n_array_estudiantes);
                         <p class="verticalll">PUNTAJE CRÉDITO</p>
                       </th>
                       <th rowspan="2">
-                        <p>CONDICIÓN</p>
+                      <center>CONDICIÓN</center>
                       </th>
                     </tr>
                     <tr>
@@ -255,9 +255,11 @@ $collator->sort($n_array_estudiantes);
                           } else {
                             echo '<td></td>';
                           }
+                          if (is_numeric($calificacion)) {
+                            $suma_califss += $calificacion;
+                            $suma_ptj_creditos += $calificacion*$r_bb_ud['creditos'];
+                          }
                           
-                          $suma_califss += $calificacion;
-                          $suma_ptj_creditos += $calificacion*$r_bb_ud['creditos'];
                         }
                         echo '<td align="center" ><font color="black">' . $suma_califss . '</font></td>';
                         echo '<td align="center" ><font color="black">' . $suma_ptj_creditos . '</font></td>';

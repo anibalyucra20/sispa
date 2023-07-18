@@ -115,7 +115,7 @@ $collator->sort($n_array_estudiantes);
           <p class="verticalll">PUNTAJE CRÉDITO</p>
         </th>
         <th rowspan="2">
-          <p>CONDICIÓN</p>
+        <center>CONDICIÓN</center>
         </th>
       </tr>
 
