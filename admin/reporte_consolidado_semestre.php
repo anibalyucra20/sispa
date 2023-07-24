@@ -123,6 +123,12 @@ $collator->sort($n_array_estudiantes);
               <input type="hidden" name="sem_consolidado" value="<?php echo $id_sem; ?>">
               <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Imprimir Reporte</button>
               </form>
+              <form role="form" action="reporte_primeros_puestos.php" class="form-horizontal form-label-left input_mask" method="POST" target="_blank">
+              <input type="hidden" name="car_consolidado" value="<?php echo $id_pe; ?>">
+              <input type="hidden" name="sem_consolidado" value="<?php echo $id_sem; ?>">
+              
+              <button type="submit" class="btn btn-success"><i class="fa fa-eye"></i> Primeros Puestos</button>
+              </form>
             <h2 align="center"><b>REPORTE CONSOLIDADO - <?php echo $r_b_pe['nombre'] . " - SEMESTRE " . $r_b_sem['descripcion']." ".$r_b_per['nombre']; ?></b></h2>
             <form role="form" action="" class="form-horizontal form-label-left input_mask" method="POST">
               <div class="table-responsive">
@@ -211,9 +217,10 @@ $collator->sort($n_array_estudiantes);
                           $r_b_det_mat_est = mysqli_fetch_array($b_det_mat_est);
                           $cont_r_b_det_mat = mysqli_num_rows($b_det_mat_est);
                           $id_det_mat = $r_b_det_mat_est['id'];
+
+
                           if ($cont_r_b_det_mat > 0) {
                             //echo "<td>SI</td>";
-
                             //buscar las calificaciones
                             $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $id_det_mat);
 
@@ -253,6 +260,7 @@ $collator->sort($n_array_estudiantes);
                             }
                             
                           } else {
+                            $calificacion = 0;
                             echo '<td></td>';
                           }
                           if (is_numeric($calificacion)) {

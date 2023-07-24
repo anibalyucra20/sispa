@@ -85,7 +85,7 @@
               </div>
               
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <a href="">
+                <a href="" data-toggle="modal" data-target=".rep_primeros_puestos">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-check-square-o"></i></div>
                         <div class="count">Reporte</div>
@@ -340,6 +340,63 @@
         </div>
 
         <!-- FIN MODAL INDIVIDUAL-->
+
+        <!--MODAL REPORTE CONSOLIDADO-->
+        <div class="modal fade rep_primeros_puestos" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="myModalLabel" align="center">Reporte de Primeros Puestos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--INICIO CONTENIDO DE MODAL-->
+                        <div class="x_panel">
+                            <div class="" align="center">
+                                <h2></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br />
+                                <form role="form" action="reporte_primeros_puestos.php" class="form-horizontal form-label-left input_mask" method="POST">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semestre : </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="hidden" name="car_consolidado" value="<?php echo $id_pe; ?>">
+                                            <select class="form-control" name="sem_consolidado" id="sem_consolidado" required>
+                                                <option value=""></option>
+                                                <?php 
+                                                $b_sem_consolidado = buscarSemestre($conexion);
+                                            
+                                                while ($r_b_sem_conso = mysqli_fetch_array($b_sem_consolidado)) {
+                                            
+                                                ?>
+                                                <option value="<?php echo $r_b_sem_conso['id']; ?>"><?php echo $r_b_sem_conso['descripcion']; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            
+                                            </select>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <center>
+                                                <button type="submit" class="btn btn-success">Generar Reporte</button>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--FIN DE CONTENIDO DE MODAL-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIN MODAL CONSOLIDADO-->
    
         Aún en desarrollo
           
