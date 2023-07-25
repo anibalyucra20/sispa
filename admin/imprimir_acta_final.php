@@ -320,6 +320,9 @@ if (!($mostrar_archivo)) {
         <tr>
             <td colspan="3" align="center"><font size="' . $text_size . '"><b>DIRECCIÓN GENERAL DE EDUCACIÓN SUPERIOR TÉCNICO PROFESIONAL</b></font></td>
         </tr>
+        <tr>
+            <td colspan="3" align="center"><b>ACTA DE EVALUACIÓN FINAL DE LA UNIDAD DIDÁCTICA</b></td>
+        </tr>
         
         <tr>
             <td width="30%"><font size="' . $text_size . '"><b>INSTITUCIÓN EDUCATIVA</b></font></td>
