@@ -1,248 +1,143 @@
 <?php
-  include ("include/verificar_sesion_coordinador.php");
-  include ("../include/conexion.php");
-  include ("include/busquedas.php");
-  $id_pe = $_POST['car_consolidado'];
-  $id_sem = $_POST['sem_consolidado'];
+include 'include/verificar_sesion_docente_coordinador_secretaria.php';
+include '../include/conexion.php';
+include 'include/busquedas.php';
+include 'include/funciones.php';
 
-  $per_select = $_SESSION['periodo'];
-  $array_estudiantes = [];
-  // armar la nomina de estudiantes para poder mostrar todos los estudiantes del semestre
-    $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
-    $cont_ud_sem = mysqli_num_rows($b_ud_pe_sem);
-    $cont_ind_capp = 0;
-    while ($r_b_ud = mysqli_fetch_array($b_ud_pe_sem)) {
-      $id_ud = $r_b_ud['id'];
-
-      //buscar capacidades
-        $b_capp = buscarCapacidadesByIdUd($conexion, $id_ud);
-        while ($r_b_capp = mysqli_fetch_array($b_capp)) {
-          $id_capp = $r_b_capp['id'];
-          //buscar indicadores de logro de capacidad
-          $b_ind_l_capp = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id_capp);
-          $cont_ind_capp += mysqli_num_rows($b_ind_l_capp);
-        }
-      
+$id_prog = $_POST['data'];
+$b_prog = buscarProgramacionById($conexion, $id_prog);
+$res_b_prog = mysqli_fetch_array($b_prog);
+if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente']) || ($res_b_prog['id_docente'] == $_SESSION['id_jefe_area'])) {
+    $mostrar_archivo = 1;
+} else {
+    $mostrar_archivo = 0;
+}
 
 
-      //buscar si la unidad didactica esta programado en el presente periodo
-      $b_ud_prog = buscarProgramacionByUd_Peridodo($conexion, $id_ud, $per_select);
-      $r_b_ud_prog = mysqli_fetch_array($b_ud_prog);
-      $cont_res = mysqli_num_rows($b_ud_prog);
-      if ($cont_res > 0) {
-        $id_prog_ud = $r_b_ud_prog['id'];
-        //buscar detalle de matricula matriculas a la programacion de la unidad didactica
-        $b_det_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog_ud);
-        while ($r_b_det_mat = mysqli_fetch_array($b_det_mat)) {
-          // buscar matricula para obtener datos del estudiante
-          $id_mat = $r_b_det_mat['id_matricula'];
-          $b_mat = buscarMatriculaById($conexion, $id_mat);
-          $r_b_mat = mysqli_fetch_array($b_mat);
-          $id_estudiante = $r_b_mat['id_estudiante'];
-          // buscar estudiante
-          $b_estudiante = buscarEstudianteById($conexion,$id_estudiante);
-          $r_b_estudiante = mysqli_fetch_array($b_estudiante);
-          $array_estudiantes[] = $r_b_estudiante['apellidos_nombres'];
-        }
-        $aa = "SI";
-      }else{
-        $aa = "NO";
-      }
-      //echo $r_b_ud['descripcion']." - ".$aa."<br>";
-    }
-    $n_array_estudiantes = array_unique($array_estudiantes);
-    $collator = collator_create("es");
-    $collator->sort($n_array_estudiantes);
-  
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reportes<?php include ("../include/header_title.php"); ?></title>
-  <!--icono en el titulo-->
-  <link rel="shortcut icon" href="../img/favicon.ico">
-
-  <style>
-      p.verticalll {
-        /* idéntico a rotateZ(45deg); */
-
-        writing-mode: vertical-lr;
-        transform: rotate(180deg);
-        
-      }
-
-      .nota_input {
-        width: 3em;
-      }
-    </style>
-</head>
-<body>
-  <span Style="color:red;">REPORTE DE NOTAS</span>
-  <table BORDER="1" CELLPADDING="3" CELLSPACING="0" style="width:100%">
-    <thead>
-    <tr>
-                          <th rowspan="2">  
-                            <center>Nro Orden</center>
-                          </th>
-                          <th rowspan="2">
-                            <center>DNI</center>
-                          </th>
-                          <th rowspan="2">
-                            <center>APELLIDOS Y NOMBRES</center>
-                          </th>
-                          <th colspan="<?php echo $cont_ind_capp; ?>">
-                            <center>UNIDADES DIDÁCTICAS</center>
-                          </th>
-                        </tr>
-                        
-                        <tr>
-                          <?php
-                          $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
-                          while ($r_bb_ud = mysqli_fetch_array($b_ud_pe_sem)) {
-                            $id_udd = $r_bb_ud['id'];
-                            //BUSCAR UD
-                            $b_uddd = buscarUdById($conexion, $id_udd);
-                            $r_b_udd = mysqli_fetch_array($b_uddd);
-                            //buscar capacidad
-                            $cont_ind_logro_cap_ud = 0;
-                            $b_cap_ud = buscarCapacidadesByIdUd($conexion, $id_udd);
-                            while ($r_b_cap_ud = mysqli_fetch_array($b_cap_ud)) {
-                              $id_cap_ud = $r_b_cap_ud['id'];
-                              // buscar indicadores de capacidad
-                              $b_ind_l_cap_ud = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $id_cap_ud);
-                              $cant_id_cap_ud = mysqli_num_rows($b_ind_l_cap_ud);
-                              $cont_ind_logro_cap_ud += $cant_id_cap_ud;
-                            }
-                            
-                            ?>
-                            <th colspan="<?php echo $cont_ind_logro_cap_ud; ?>">
-                              <p class="verticalll"><?php echo $r_b_udd['descripcion']; ?></p>
-                            </th>
-                            <?php
-                          }
-                          ?>
-
-                        </tr>
-    </thead>
-    <tbody>
-    <?php
-                        foreach($n_array_estudiantes as $key => $val){
-                          $key+=1;
-                          //buscar estudiante para su id
-                          $b_est = buscarEstudianteByApellidosNombres($conexion,$val);
-                          $r_b_est = mysqli_fetch_array($b_est);
-                          $id_est = $r_b_est['id'];
-                          ?>
-                          <tr>
-                            <td><?php echo $key; ?></td>
-                            <td><?php echo $r_b_est['dni']; ?></td>
-                            <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
-                            <?php
-                            //buscar si estudiante esta matriculado en una unidad didactica
-                            $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
-                            while ($r_bb_ud = mysqli_fetch_array($b_ud_pe_sem)) {
-                              $id_udd = $r_bb_ud['id'];
-                              $b_prog_ud = buscarProgramacionByUd_Peridodo($conexion, $id_udd, $per_select);
-                              $r_b_prog_ud = mysqli_fetch_array($b_prog_ud);
-                              $id_prog = $r_b_prog_ud['id'];
-
-                              //buscar matricula de estudiante
-                              $b_mat_est = buscarMatriculaByEstudiantePeriodo($conexion, $id_est, $per_select);
-                              $r_b_mat_est = mysqli_fetch_array($b_mat_est);
-                              $id_mat_est = $r_b_mat_est['id'];
-                              //buscar detalle de matricula
-                              $b_det_mat_est = buscarDetalleMatriculaByIdMatriculaProgramacion($conexion, $id_mat_est, $id_prog);
-                              $r_b_det_mat_est = mysqli_fetch_array($b_det_mat_est);
-                              $cont_r_b_det_mat = mysqli_num_rows($b_det_mat_est);
-                              $id_det_mat = $r_b_det_mat_est['id'];
-                              if ($cont_r_b_det_mat > 0) {
-                                //echo "<td>SI</td>";
-
-                                //buscar las calificaciones
-                                $b_calificaciones = buscarCalificacionByIdDetalleMatricula($conexion, $id_det_mat);
-                                
-                                $suma_calificacion = 0;
-                                while ($r_b_calificacion = mysqli_fetch_array($b_calificaciones)) {
-
-                                  $id_calificacion = $r_b_calificacion['id'];
-                                  //buscamos las evaluaciones
-                                  $suma_evaluacion = 0;
-                                  $b_evaluacion = buscarEvaluacionByIdCalificacion($conexion, $id_calificacion);
-
-                                  while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
-                                    $id_evaluacion = $r_b_evaluacion['id'];
-                                    //buscamos los criterios de evaluacion
-                                    $b_criterio_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $id_evaluacion);
-                                    $suma_criterios = 0;
-                                    $cont_crit = 0;
-                                    while ($r_b_criterio_evaluacion = mysqli_fetch_array($b_criterio_evaluacion)) {
-                                      if (is_numeric($r_b_criterio_evaluacion['calificacion'])) {
-                                        $suma_criterios += $r_b_criterio_evaluacion['calificacion'];
-                                        $cont_crit += 1;
-                                        //$suma_criterios += (($r_b_criterio_evaluacion['ponderado']/100)*$r_b_criterio_evaluacion['calificacion']);
-                                      }
-                                    }
-                                    if ($cont_crit > 0) {
-                                      $suma_criterios = round($suma_criterios / $cont_crit);
-                                    } else {
-                                      $suma_criterios = round($suma_criterios);
-                                    }
-
-                                    $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $suma_criterios;
-                                  }
-
-                                  if ($suma_evaluacion != 0) {
-                                    $suma_evaluacion = round($suma_evaluacion);
-
-                                    if ($suma_evaluacion > 12) {
-                                      echo '<th><center><font color="blue">'.$suma_evaluacion.'</font></center></th>';
-                                      //echo '<th><center><input type="number" class="nota_input" style="color:blue;" value="' . $calificacion_final . '" min="0" max="20" disabled></center></th>';
-                                    } else {
-                                      echo '<th><center><font color="red">'.$suma_evaluacion.'</font></center></th>';
-                                      //echo 
-                                    }
-
-                                  } else {
-                                    $suma_evaluacion = "";
-                                    echo '<th></th>';
-                                  }
-
-                                }
-
-
-
-                              }else {
-                                //buscar los indicadores
-                                $total_ind = 0;
-                                $b_capacidad = buscarCapacidadesByIdUd($conexion, $id_udd);
-                                while ($r_b_cap = mysqli_fetch_array($b_capacidad)) {
-                                  $b_ind_log_cap = buscarIndicadorLogroCapacidadByIdCapacidad($conexion, $r_b_cap['id']);
-                                  $cont_ind = mysqli_num_rows($b_ind_log_cap);
-                                  $total_ind += $cont_ind;
-                                }
-                                  
-                                  
-
-                                echo '<td colspan="'.$total_ind.'"></td>';
-                              }
-                              
-                            }
-                            ?>
-                          </tr>
-                        <?php
-                        }
-                        ?>
-                        
-    </tbody>
-  </table>
-  <?php echo "<script>
-			window.print();
-      setTimeout(function(){ 
-        window.close();
-    }, 3000);
+if (!($mostrar_archivo)) {
+    //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
+    //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
+    echo "<script>
+			alert('Error Usted no cuenta con los permisos para acceder a la Página Solicitada');
+			window.close();
 		</script>
-	";?>
-</body>
-</html>
+	";
+} else {
+    /*header ("Content-Type: application/vnd.ms-excel; charset=iso-8859-1");
+    header ("Content-Disposition: attachment; filename=plantilla.xls");*/
+
+    $b_ud = buscarUdById($conexion, $res_b_prog['id_unidad_didactica']);
+    $r_b_ud = mysqli_fetch_array($b_ud);
+    $titulo_archivo = "Reporte_".$r_b_ud['descripcion']."_".date("d")."_".date("m")."_".date("Y");
+    
+?>
+
+    <!DOCTYPE html>
+    <html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <!--<script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+        <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+        <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>-->
+        <script src="../include/excel_generador/xlsx.full.min.js"></script>
+        <script src="../include/excel_generador/FileSaver.min.js"></script>
+        <script src="../include/excel_generador/tableexport.min.js"></script>
+    </head>
+
+    <body>
+        <?php echo $titulo_archivo; ?>
+        <input type="hidden" id="nombre_archivo" value="<?php echo $titulo_archivo; ?>">
+        <table border="1" id="tabla">
+            <thead>
+                <tr>
+                    <th>NRO</th>
+                    <th>CÓDIGO ALUMNO</th>
+                    <th>ALUMNO</th>
+                    <th>NOTA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $b_det_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
+                $ord = 1;
+                while ($r_b_det_mat = mysqli_fetch_array($b_det_mat)) {
+                    $id_mat = $r_b_det_mat['id_matricula'];
+                    $b_mat = buscarMatriculaById($conexion, $id_mat);
+                    $r_b_mat = mysqli_fetch_array($b_mat);
+                    $id_est = $r_b_mat['id_estudiante'];
+                    $b_est = buscarEstudianteById($conexion, $id_est);
+                    $r_b_est = mysqli_fetch_array($b_est);
+
+                    $b_calif = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
+                    $suma_calificacion = 0;
+                    $cont_calif = 0;
+                    while ($r_b_calif = mysqli_fetch_array($b_calif)) {
+
+                        $id_calificacion = $r_b_calif['id'];
+                                    //buscamos las evaluaciones
+                                    $suma_evaluacion = calc_evaluacion($conexion, $id_calificacion);
+                                    $suma_calificacion += $suma_evaluacion;
+                                    if ($suma_evaluacion > 0) {
+                                      $cont_calif += 1;
+                                    }
+                                    
+                                    
+                    }
+
+                    if ($cont_calif > 0) {
+                        $suma_calificacion = round($suma_calificacion / $cont_calif);
+                      } else {
+                        $suma_calificacion = round($suma_calificacion);
+                      }
+                      if ($suma_calificacion != 0) {
+                        $calificacion_final = round($suma_calificacion);
+                      } else {
+                        $calificacion_final = "";
+                      }
+                    if ($r_b_det_mat['recuperacion'] != '') {
+                        $calificacion_final = $r_b_det_mat['recuperacion'];
+                      }
+                ?>
+                    <tr>
+                        <td><?php echo $ord; ?></td>
+                        <td><?php echo $r_b_est['dni']; ?></td>
+                        <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
+                        <td><?php echo $calificacion_final; ?></td>
+                    </tr>
+                <?php
+                    $ord += 1;
+                }
+
+                ?>
+            </tbody>
+        </table>
+    </body>
+    <!-- script para exportar a excel -->
+    <script>
+        let nombre = document.getElementById("nombre_archivo");
+        const $tabla = document.querySelector("#tabla");
+            window.addEventListener("load", function() {
+            let tableExport = new TableExport($tabla, {
+                exportButtons: false, // No queremos botones
+                filename: nombre.value, //Nombre del archivo de Excel
+                sheetname: "Plantilla", //Título de la hoja
+            });
+            let datos = tableExport.getExportData();
+            let preferenciasDocumento = datos.tabla.xlsx;
+            tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+            window.close()
+        });
+    </script>
+    
+
+    </html>
+
+
+
+<?php
+}
+?>
