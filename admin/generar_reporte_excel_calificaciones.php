@@ -1,4 +1,6 @@
 <?php
+// link de github de libreria utilizada
+// https://github.com/mk-j/PHP_XLSXWriter
 include_once("../PHP_XLSXWriter/xlsxwriter.class.php");
 
 include 'include/verificar_sesion_docente_coordinador_secretaria.php';
@@ -32,6 +34,16 @@ if (!($mostrar_archivo)) {
     $titulo_archivo = "Reporte_" . $r_b_ud['descripcion'] . "_" . date("d") . "_" . date("m") . "_" . date("Y");
 
     //generamos excel
+    ini_set('display_errors', 0);
+    ini_set('log_errors', 1);
+    error_reporting(E_ALL & ~E_NOTICE);
+
+    $filename = $titulo_archivo.".xlsx";
+    header('Content-disposition: attachment; filename="' . XLSXWriter::sanitize_filename($filename) . '"');
+    header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    header('Content-Transfer-Encoding: binary');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
     $writer = new XLSXWriter();
 
     $styles1 = array('font' => 'Calibri', 'font-size' => 11, 'font-style' => 'bold', 'fill' => '#eee', 'halign' => 'center', 'border' => 'left,right,top,bottom');
@@ -87,11 +99,12 @@ if (!($mostrar_archivo)) {
         }
 
         //imprime contenido
-        $writer->writeSheetRow('Plantilla', $rowdata = array($ord,$r_b_est['dni'],$r_b_est['apellidos_nombres'],$calificacion_final), $styles9 );
+        $writer->writeSheetRow('Plantilla', $rowdata = array($ord, $r_b_est['dni'], $r_b_est['apellidos_nombres'], $calificacion_final), $styles9);
 
         $ord += 1;
     }
 
-    $writer->writeToFile($titulo_archivo.'.xlsx');
+    $writer->writeToStdOut();
+
+exit(0);
 }
-?>

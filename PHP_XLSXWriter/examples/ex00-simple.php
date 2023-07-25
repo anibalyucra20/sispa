@@ -30,6 +30,6 @@ foreach($rows as $row)
 //$writer->writeSheet($rows,'Sheet1', $header);//or write the whole sheet in 1 call
 
 $writer->writeToFile('xlsx-simple.xlsx');
-$writer->writeToStdOut();
-echo $writer->writeToString();
+//$writer->writeToStdOut();
+//echo $writer->writeToString();
 
