@@ -118,7 +118,11 @@ $collator->sort($n_array_estudiantes);
             <div class="right_col" role="main">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        
+                        <form role="form" action="imprimir_reporte_primer_puesto.php" class="form-horizontal form-label-left input_mask" method="POST" target="_blank">
+                            <input type="hidden" name="car_consolidado" value="<?php echo $id_pe; ?>">
+                            <input type="hidden" name="sem_consolidado" value="<?php echo $id_sem; ?>">
+                            <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Imprimir Reporte</button>
+                        </form>
                         <h2 align="center"><b>REPORTE PRIMEROS PUESTOS - <?php echo $r_b_pe['nombre'] . " - SEMESTRE " . $r_b_sem['descripcion'] . " " . $r_b_per['nombre']; ?></b></h2>
                         <form role="form" action="" class="form-horizontal form-label-left input_mask" method="POST">
                             <div class="table-responsive">
@@ -229,15 +233,15 @@ $collator->sort($n_array_estudiantes);
                                         arsort($primeros_puestos);
                                         $cont = 0;
                                         foreach ($primeros_puestos as $key => $value) {
-                                            $cont +=1;
-                                            $b_estt = buscarEstudianteById($conexion,$key);
+                                            $cont += 1;
+                                            $b_estt = buscarEstudianteById($conexion, $key);
                                             $r_b_estt = mysqli_fetch_array($b_estt);
-                                        
+
                                             //var_dump($primeros_puestos);
 
                                         ?>
                                             <tr>
-                                                <td><?php echo $cont.'º Puesto'; ?></td>
+                                                <td><?php echo $cont . 'º Puesto'; ?></td>
                                                 <td><?php echo $r_b_estt['dni'] ?></td>
                                                 <td><?php echo $r_b_estt['apellidos_nombres']; ?></td>
                                                 <td><?php echo $value; ?></td>

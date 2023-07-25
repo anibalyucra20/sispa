@@ -53,6 +53,7 @@ include 'include/busquedas.php';
             $m_sesiones = 1;
             $m_calificaciones = 1;
             $m_asistencia = 1;
+            $m_imprimir = 1;
             $id_docente = $_SESSION['id_docente'];
             include ("include/menu_docente.php");
             $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
@@ -61,6 +62,7 @@ include 'include/busquedas.php';
             $m_sesiones = 0;
             $m_calificaciones = 1;
             $m_asistencia = 0;
+            $m_imprimir = 1;
             include ("include/menu_secretaria.php");
             $var_consulta = "WHERE id_periodo_acad=".$per_select;
           }elseif(isset($_SESSION['id_jefe_area'])) {
@@ -68,6 +70,7 @@ include 'include/busquedas.php';
             $m_sesiones = 1;
             $m_calificaciones = 1;
             $m_asistencia = 1;
+            $m_imprimir = 1;
             $id_docente = $_SESSION['id_jefe_area'];
             include ("include/menu_coordinador.php");
             $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
@@ -76,6 +79,7 @@ include 'include/busquedas.php';
             $m_sesiones = 0;
             $m_calificaciones = 0;
             $m_asistencia = 0;
+            $m_imprimir = 0;
             $var_consulta = "";
           }
            ?>
@@ -156,6 +160,11 @@ include 'include/busquedas.php';
                             <?php if ($m_asistencia) {
                               ?>
                               <a title="Asistencia" class="btn btn-success" href="asistencias.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-group"></i></a>
+                              <?php
+                            } ?>
+                            <?php if ($m_imprimir) {
+                              ?>
+                              <a title="Informe Final" class="btn btn-danger" href="imprimir_informe_final.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-bar-chart"></i></a>
                               <?php
                             } ?>
                           </td>
