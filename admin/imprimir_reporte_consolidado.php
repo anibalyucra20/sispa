@@ -68,7 +68,7 @@ $collator->sort($n_array_estudiantes);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reportes<?php include("../include/header_title.php"); ?></title>
+  <title>Reportes semestre <?php echo $r_b_sem['descripcion']; ?><?php include("../include/header_title.php"); ?></title>
   <!--icono en el titulo-->
   <link rel="shortcut icon" href="../img/favicon.ico">
 
