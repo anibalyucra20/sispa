@@ -157,7 +157,15 @@ if (!($mostrar_archivo)) {
                       <h2 align="center"><b>Calificaciones - <?php echo $r_b_ud['descripcion']; ?></b></h2>
                       <form action="imprimir_calificaciones.php" method="POST" target="_blank">
                         <input type="hidden" name="data" value="<?php echo $id_prog; ?>">
-                        <button type="submit" class="btn btn-info">Imprimir</button>
+                        <button type="submit" class="btn btn-info">Imprimir Registro Oficial</button>
+                      </form>
+                      <form action="imprimir_acta_final.php" method="POST" target="_blank">
+                        <input type="hidden" name="data" value="<?php echo $id_prog; ?>">
+                        <button type="submit" class="btn btn-success">Imprimir Acta Final</button>
+                      </form>
+                      <form action="imprimir_acta_recuperacion.php" method="POST" target="_blank">
+                        <input type="hidden" name="data" value="<?php echo $id_prog; ?>">
+                        <button type="submit" class="btn btn-primary">Imprimir Acta Recuperacion</button>
                       </form>
                       <form action="generar_reporte_excel_calificaciones.php" method="POST" target="_blank">
                         <input type="hidden" name="data" value="<?php echo $id_prog; ?>">
