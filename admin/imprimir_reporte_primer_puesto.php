@@ -267,7 +267,7 @@ if (!($mostrar_archivo)) {
             <td width="10%" align="center" border="0.2"><b>ORDEN DE MÉRITO</b></td>
             <td width="12%" align="center" border="0.2"><b>DNI</b></td>
             <td width="50%" align="center" border="0.2"><b>APELLIDOS Y NOMBRES</b></td>
-            <td width="15%" align="center" border="0.2"><b>PUNTAJE TOTAL</b></td>
+            <td width="15%" align="center" border="0.2"><b>PUNTAJE TOTAL CRÉDITOS</b></td>
             <td width="13%" align="center" border="0.2"><b>PROMEDIO PONDERADO</b></td>
         </tr>
                 

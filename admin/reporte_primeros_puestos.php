@@ -144,7 +144,7 @@ $collator->sort($n_array_estudiantes);
                                             </th>
 
                                             <th rowspan="2">
-                                                <center>PUNTAJE TOTAL</center>
+                                                <center>PUNTAJE TOTAL CRÉDITOS</center>
                                             </th>
                                             <th rowspan="2">
                                                 <center>PROMEDIO PONDERADO</center>
