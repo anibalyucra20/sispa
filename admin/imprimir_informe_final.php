@@ -78,9 +78,31 @@ if (!($mostrar_archivo)) {
     $r_b_director = mysqli_fetch_array($b_director);
 
 
-    //calcular porcentaje de avance curricular segun el desarrollo de sesiones, ULTIMA SESION DESARROLLADO Y TEMAS DESARROLLADAS
-    $b_sesiones = '';
+    //calcular porcentaje de avance curricular segun el desarrollo de sesiones Y TEMAS DESARROLLADAS
+    $ultima_sesion = 0;
+    $b_programacion_silabo = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
+    while ($r_b_prog_silabo = mysqli_fetch_array($b_programacion_silabo)) {
+        $id_prog_silabo = $r_b_prog_silabo['id'];
+        $b_sesion = buscarSesionByIdProgramacionActividades($conexion, $id_prog_silabo);
+        $r_b_sesion = mysqli_fetch_array($b_sesion);
+        if ($r_b_sesion['logro_sesion'] != ' ') {
+            $ultima_sesion = $r_b_prog_silabo['semana'];
+        }
+    }
+    $porcentaje_avance = ($ultima_sesion/16)*100;
 
+    // calcular la ultima sesion desarrollada
+    $b_ult_programacion_silabo = buscarProgActividadesSilaboByIdSilaboAndSemana($conexion, $id_silabo, $ultima_sesion);
+    $r_b_ult_programacion_silabo = mysqli_fetch_array($b_ult_programacion_silabo);
+
+    // calcular sesiones no desarrolladas
+    $temas_no_desarrolladas = '';
+    $ult_sesion_no_desarrollada = $ultima_sesion +1;
+    for ($i=$ult_sesion_no_desarrollada; $i <= 16; $i++) { 
+        $b_prog_silabos = buscarProgActividadesSilaboByIdSilaboAndSemana($conexion, $id_silabo, $i);
+        $r_b_prog_silabos = mysqli_fetch_array($b_prog_silabos);
+        $temas_no_desarrolladas .= '        '.$r_b_prog_silabos['contenidos_basicos'].'<br>';
+    }
 
     //funcion para cambia numeros a romanos
     function a_romano($integer, $upcase = true)
@@ -183,19 +205,19 @@ if (!($mostrar_archivo)) {
         </tr>
         <tr>
             <td width="50%"><font size="' . $text_size . '"><b>       7. PORCENTAJE TOTAL DE AVANCE CURRICULAR:</b></font></td>
-            <td width="50%"><font size="' . $text_size . '">100%</font></td>
+            <td width="50%"><font size="' . $text_size . '">'.$porcentaje_avance.'%</font></td>
         </tr>
         <tr>
             <td colspan="3"><font size="' . $text_size . '"><b>       8. U.F. Y TEMA DE LA ULTIMA CLASE DESARROLLADA:</b></font></td>
         </tr>
         <tr>
-            <td colspan="3"><font size="' . $text_size . '">      Ultimo Tema Desarrollada</font></td>
+            <td colspan="3"><font size="' . $text_size . '">      semana '.$ultima_sesion.' - '.$r_b_ult_programacion_silabo['contenidos_basicos'].'</font></td>
         </tr>
         <tr>
             <td colspan="3"><font size="' . $text_size . '"><b>       9. TITULO(S) Y Nro DE LA(S) SESIÓN(ES) NO DESARROLLADAS:</b></font></td>
         </tr>
         <tr>
-            <td colspan="3"><font size="' . $text_size . '">      sesiones no desarrolladas</font></td>
+            <td colspan="3"><font size="' . $text_size . '">      '.$temas_no_desarrolladas.'</font></td>
         </tr>
         <tr>
             <td colspan="3"><font size="' . $text_size . '"><b>       10. RESUMEN ESTADÍSTICO:</b></font></td>

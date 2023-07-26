@@ -60,9 +60,10 @@ if (!($mostrar_archivo)) {
     $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
     $cont_ud_sem = mysqli_num_rows($b_ud_pe_sem);
     $cont_ind_capp = 0;
+    $suma_creditos = 0;
     while ($r_b_ud = mysqli_fetch_array($b_ud_pe_sem)) {
         $id_ud = $r_b_ud['id'];
-
+        $suma_creditos += $r_b_ud['creditos'];
         //buscar capacidades
         $b_capp = buscarCapacidadesByIdUd($conexion, $id_ud);
         while ($r_b_capp = mysqli_fetch_array($b_capp)) {
@@ -246,6 +247,7 @@ if (!($mostrar_archivo)) {
             <td border="0.2" align="center">' . $r_b_estt['dni'] . '</td>
             <td border="0.2">' . $r_b_estt['apellidos_nombres'] . '</td>
             <td border="0.2" align="center">' . $value . '</td>
+            <td border="0.2" align="center">' . round($value/$suma_creditos, 2) . '</td>
         </tr>
         ';
     }
@@ -262,10 +264,11 @@ if (!($mostrar_archivo)) {
             <td colspan="4" align="center"><b>REPORTE PRIMEROS PUESTOS - ' . $r_b_pe['nombre'] . ' - SEMESTRE ' . $r_b_sem['descripcion'] . ' ' . $r_b_per['nombre'] . '</b></td>
         </tr>
         <tr bgcolor="#CCCCCC">
-            <td width="15%" align="center" border="0.2"><b>ORDEN DE MÉRITO</b></td>
-            <td width="15%" align="center" border="0.2"><b>DNI</b></td>
+            <td width="10%" align="center" border="0.2"><b>ORDEN DE MÉRITO</b></td>
+            <td width="12%" align="center" border="0.2"><b>DNI</b></td>
             <td width="50%" align="center" border="0.2"><b>APELLIDOS Y NOMBRES</b></td>
-            <td width="20%" align="center" border="0.2"><b>PUNTAJE TOTAL</b></td>
+            <td width="15%" align="center" border="0.2"><b>PUNTAJE TOTAL</b></td>
+            <td width="13%" align="center" border="0.2"><b>PROMEDIO PONDERADO</b></td>
         </tr>
                 
           ';
@@ -282,10 +285,10 @@ if (!($mostrar_archivo)) {
             
         </tr>
         <tr>
-            <td >- Los estudiantes que tienen 1 o más unidades didácticas desaprobadas no participan el en ranking de los primeros puestos, Aún teniendo el más alto puntaje</td>
+            <td >- Los estudiantes que tienen 1 o más unidades didácticas desaprobadas no participan el en ranking de los primeros puestos, Aún teniendo el más alto puntaje.</td>
         </tr>
         <tr>
-            <td >- Los estudiantes matriculados en unidades didácticas de repitencia no participan el en ranking de los primeros puestos</td>
+            <td >- Los estudiantes matriculados en unidades didácticas de repitencia no participan el en ranking de los primeros puestos.</td>
         </tr>
         </table>
 

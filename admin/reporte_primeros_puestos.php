@@ -21,8 +21,12 @@ $array_estudiantes = [];
 $b_ud_pe_sem = buscarUdByCarSem($conexion, $id_pe, $id_sem);
 $cont_ud_sem = mysqli_num_rows($b_ud_pe_sem);
 $cont_ind_capp = 0;
+
+$suma_creditos = 0;
+
 while ($r_b_ud = mysqli_fetch_array($b_ud_pe_sem)) {
     $id_ud = $r_b_ud['id'];
+    $suma_creditos += $r_b_ud['creditos'];
 
     //buscar capacidades
     $b_capp = buscarCapacidadesByIdUd($conexion, $id_ud);
@@ -141,6 +145,9 @@ $collator->sort($n_array_estudiantes);
 
                                             <th rowspan="2">
                                                 <center>PUNTAJE TOTAL</center>
+                                            </th>
+                                            <th rowspan="2">
+                                                <center>PROMEDIO PONDERADO</center>
                                             </th>
                                             
                                         </tr>
@@ -271,7 +278,7 @@ $collator->sort($n_array_estudiantes);
                                                 <td><?php echo $r_b_estt['dni'] ?></td>
                                                 <td><?php echo $r_b_estt['apellidos_nombres']; ?></td>
                                                 <td><?php echo $value; ?></td>
-                                                
+                                                <td><?php echo round($value/$suma_creditos, 2); ?></td>
                                             </tr>
                                         <?php
                                         }
