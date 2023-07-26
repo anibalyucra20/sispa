@@ -212,6 +212,29 @@ if (!($mostrar_archivo)) {
         $primeros_puestos[$id_est] = $suma_ptj_creditos;
     }
     arsort($primeros_puestos);
+
+    //los estudiantes que desaprobaron alguna UD se pasan al final de la lista
+    foreach ($primeros_puestos as $key => $value) {
+        $cant_ud_desaprobado = calc_ud_desaprobado($conexion, $key, $per_select, $id_pe, $id_sem);
+       if ($cant_ud_desaprobado>0) {
+            $id_est_des = $key;
+            $ptj_est_des = $value;
+            unset($primeros_puestos[$key]);
+            $primeros_puestos[$id_est_des] = $ptj_est_des;
+       }
+       
+    }
+    // los estudiantes de repitencia pasan al ultimo del ranking
+    foreach ($primeros_puestos as $key => $value) {
+        $mat_todos = calcular_mat_ud($conexion, $key, $per_select, $id_pe, $id_sem);
+        if ($mat_todos == 0) {
+            $id_est_des = $key;
+            $ptj_est_des = $value;
+            unset($primeros_puestos[$key]);
+            $primeros_puestos[$id_est_des] = $ptj_est_des;
+        }
+    }
+    
     $cont = 0;
     foreach ($primeros_puestos as $key => $value) {
         $cont += 1;

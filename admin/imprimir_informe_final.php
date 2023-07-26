@@ -5,7 +5,7 @@ include_once('../include/conexion.php');
 include_once('include/busquedas.php');
 include_once('include/funciones.php');
 setlocale(LC_ALL, "es_ES");
-$id_prog = $_GET['id'];
+$id_prog = $_POST['data'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
 if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente']) || ($res_b_prog['id_docente'] == $_SESSION['id_jefe_area'])) {
@@ -76,6 +76,10 @@ if (!($mostrar_archivo)) {
     //buscar datos de director
     $b_director = buscarDocenteById($conexion, $r_b_perio['director']);
     $r_b_director = mysqli_fetch_array($b_director);
+
+
+    //calcular porcentaje de avance curricular segun el desarrollo de sesiones, ULTIMA SESION DESARROLLADO Y TEMAS DESARROLLADAS
+    $b_sesiones = '';
 
 
     //funcion para cambia numeros a romanos
@@ -337,7 +341,7 @@ if (!($mostrar_archivo)) {
         <tr>
             <td colspan="3"><b>III.        DIFICULTADES:</b></td>
         </tr>
-        <br>
+        
         <br>
         <tr>
             <td colspan="3"><b>III.        SUGERENCIAS:</b></td>
@@ -367,7 +371,7 @@ if (!($mostrar_archivo)) {
             <th align="right">Huanta, ' . $fechaaa . '</th>
         </tr>
         <tr>
-            <td colspan="2" align="center"><br><br><br><br><br><br><br><br>...............................................<br>Docente</td>
+            <td colspan="2" align="center"><br><br><br><br><br>...............................................<br>Docente</td>
         </tr>
         </table>
 
