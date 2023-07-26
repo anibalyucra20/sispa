@@ -104,6 +104,145 @@ if (!($mostrar_archivo)) {
         $temas_no_desarrolladas .= '        '.$r_b_prog_silabos['contenidos_basicos'].'<br>';
     }
 
+    //contar matriculados hommbres y mujeres
+    $cont_mat_hombres = 0;
+    $cont_mat_mujeres = 0;
+    $cont_hombres_aprobados = 0;
+    $cont_hombres_desaprobados = 0;
+    $cont_mujeres_aprobados = 0;
+    $cont_mujeres_desaprobados = 0;
+    $cont_hombres_retirados = 0;
+    $cont_mujeres_retirados = 0;
+
+    $b_matriculados = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
+    while ($r_b_matriculados = mysqli_fetch_array($b_matriculados)) {
+        $b_matricula = buscarMatriculaById($conexion, $r_b_matriculados['id_matricula']);
+        $r_b_matricula = mysqli_fetch_array($b_matricula);
+        $b_estudiante = buscarEstudianteById($conexion,$r_b_matricula['id_estudiante']);
+        $r_b_estudiante = mysqli_fetch_array($b_estudiante);
+        if ($r_b_estudiante['id_genero']==1) { $cont_mat_hombres +=1;}
+        if ($r_b_estudiante['id_genero']==2) { $cont_mat_mujeres +=1;}
+
+        //calificaciones
+        $b_calif = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_matriculados['id']);
+        $suma_calificacion = 0;
+        $cont_calif = 0;
+        while ($r_b_calif = mysqli_fetch_array($b_calif)) {
+
+            $id_calificacion = $r_b_calif['id'];
+            //buscamos las evaluaciones
+            $suma_evaluacion = calc_evaluacion($conexion, $id_calificacion);
+            $suma_calificacion += $suma_evaluacion;
+            if ($suma_evaluacion > 0) {
+                $cont_calif += 1;
+            }
+        }
+
+        if ($cont_calif > 0) {
+            $suma_calificacion = round($suma_calificacion / $cont_calif);
+        } else {
+            $suma_calificacion = round($suma_calificacion);
+        }
+        if ($suma_calificacion != 0) {
+            $calificacion_final = round($suma_calificacion);
+        } else {
+            $calificacion_final = "";
+        }
+        if ($r_b_det_mat['recuperacion'] != '') {
+            $calificacion_final = $r_b_det_mat['recuperacion'];
+        }
+       
+        //asistencia
+
+        $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
+        $cont_inasistencia = 0;
+        while ($r_prog_act_sil = mysqli_fetch_array($b_prog_act_sil)) {
+            $id_prog_act_s = $r_prog_act_sil['id'];
+            $b_sesion_aprendizaje = buscarSesionByIdProgramacionActividades($conexion, $id_prog_act_s);
+            $r_b_sesion_apr = mysqli_fetch_array($b_sesion_aprendizaje);
+            $id_sesion_apr = $r_b_sesion_apr['id'];
+            $b_asistencia = buscarAsistenciaBySesionAndEstudiante($conexion, $id_sesion_apr, $r_b_estudiante['id']);
+            $r_b_asistencia = mysqli_fetch_array($b_asistencia);
+            $dataaa = $r_b_sesion_apr['fecha_desarrollo'];
+            $asistencia = $r_b_asistencia['asistencia'];
+            if ($r_b_asistencia['asistencia'] == "F") {
+                $cont_inasistencia += 1;
+            }
+        }
+        if ($cont_inasistencia > 0) {
+            $porcent_ina = round($cont_inasistencia * 100 / 16);
+        } else {
+            $porcent_ina = 0;
+        }
+
+
+        if ($calificacion_final >12 && $r_b_estudiante['id_genero']==1 && $porcent_ina < 30) {$cont_hombres_aprobados+=1;}
+        if ($calificacion_final >12 && $r_b_estudiante['id_genero']==2 && $porcent_ina < 30) {$cont_mujeres_aprobados+=1;} 
+        if ($calificacion_final <=12 && $r_b_estudiante['id_genero']==1 && $porcent_ina < 30) {$cont_hombres_desaprobados+=1;}
+        if ($calificacion_final <=12 && $r_b_estudiante['id_genero']==2 && $porcent_ina < 30) {$cont_mujeres_desaprobados+=1;}
+
+
+        if ($porcent_ina > 30 && $r_b_estudiante['id_genero']==1) {$cont_hombres_retirados+=1;}
+        if ($porcent_ina > 30 && $r_b_estudiante['id_genero']==2) {$cont_mujeres_retirados+=1;}
+    }
+
+    $total_matriculados = $cont_mat_mujeres+$cont_mat_hombres;
+    $porcentaje_mat_hombres = round(($cont_mat_hombres/$total_matriculados)*100, 2);
+    $porcentaje_mat_mujeres = round(($cont_mat_mujeres/$total_matriculados)*100, 2);
+
+    $porcentaje_hombres_aprobados = round(($cont_hombres_aprobados/$total_matriculados)*100, 2);
+    $porcentaje_mujeres_aprobados = round(($cont_mujeres_aprobados/$total_matriculados)*100, 2);
+    $total_aprobados = $cont_hombres_aprobados+$cont_mujeres_aprobados;
+    $porcentaje_aprobados =round(($total_aprobados/$total_matriculados)*100, 2);
+    
+    $porcentaje_hombres_desaprobados = round(($cont_hombres_desaprobados/$total_matriculados)*100, 2);
+    $porcentaje_mujeres_desaprobados = round(($cont_mujeres_desaprobados/$total_matriculados)*100, 2);
+    $total_desaprobados = $cont_hombres_desaprobados+$cont_mujeres_desaprobados;
+    $porcentaje_desaprobados =round(($total_desaprobados/$total_matriculados)*100, 2);
+
+    $porcentaje_hombres_retirados = round(($cont_hombres_retirados/$total_matriculados)*100, 2);
+    $porcentaje_mujeres_retirados = round(($cont_mujeres_retirados/$total_matriculados)*100, 2);
+    $total_retirados = $cont_hombres_retirados+$cont_mujeres_retirados;
+    $porcentaje_retirados = round(($total_retirados/$total_matriculados)*100, 2);
+
+    $supervisado_si = '';
+    $supervisado_no = '';
+    $reg_evaluacion_si = '';
+    $reg_evaluacion_no = '';
+    $reg_auxiliar_si = '';
+    $reg_auxiliar_no = '';
+    $prog_curricular_si = '';
+    $prog_curricular_no = '';
+    $otros_si = '';
+    $otros_no = '';
+    
+    if ($res_b_prog['supervisado']) {
+        $supervisado_si .= 'X';
+    }else {
+        $supervisado_no .= 'X';
+    }
+    if ($res_b_prog['reg_evaluacion']) {
+        $reg_evaluacion_si .= 'X';
+    }else {
+        $reg_evaluacion_no .= 'X';
+    }
+    if ($res_b_prog['reg_auxiliar']) {
+        $reg_auxiliar_si .= 'X';
+    }else {
+        $reg_auxiliar_no .= 'X';
+    }
+    if ($res_b_prog['prog_curricular']) {
+        $prog_curricular_si .= 'X';
+    }else {
+        $prog_curricular_no .= 'X';
+    }
+    if ($res_b_prog['otros']) {
+        $otros_si .= 'X';
+    }else {
+        $otros_no .= 'X';
+    }
+
+
     //funcion para cambia numeros a romanos
     function a_romano($integer, $upcase = true)
     {
@@ -155,9 +294,9 @@ if (!($mostrar_archivo)) {
     
         <table border="0" width="100%" cellspacing="0" cellpadding="0.1">
         <tr>
-            <td width="40%"><img src="../img/logo_minedu.jpeg" alt="" height="40px"></td>
+            <td width="40%"><img src="../img/logo_minedu.jpeg" alt="" height="30px"></td>
             <td width="10%"></td>
-            <td width="50%" align="right"><img src="../img/logo.jpeg" alt="" height="40px"></td>
+            <td width="50%" align="right"><img src="../img/logo.jpeg" alt="" height="30px"></td>
         </tr>
         <tr>
             <td colspan="3" align="center" ><font size="' . $text_size . '"><b>AÑO DE LA UNIDAD, LA PAZ Y EL DESARROLLO</b></font></td>
@@ -235,39 +374,39 @@ if (!($mostrar_archivo)) {
                 </tr>
                 <tr>
                     <td width="40%" align="center"><font size="' . $text_size . '"><b>TOTAL MATRICULADOS</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_mat_hombres.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_mat_hombres.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_mat_mujeres.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_mat_mujeres.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$total_matriculados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>100%</b></font></td>
                 </tr>
                 <tr>
                     <td width="40%" align="center"><font size="' . $text_size . '"><b>RETIRADOS(LICENCIA)</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_hombres_retirados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_hombres_retirados.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_mujeres_retirados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_mujeres_retirados.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$total_retirados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_retirados.'%</b></font></td>
                 </tr>
                 <tr>
                     <td width="40%" align="center"><font size="' . $text_size . '"><b>APROBADOS</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_hombres_aprobados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_hombres_aprobados.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_mujeres_aprobados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_mujeres_aprobados.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$total_aprobados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_aprobados.'%</b></font></td>
                 </tr>
                 <tr>
                     <td width="40%" align="center"><font size="' . $text_size . '"><b>DESAPROBADOS</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
-                    <td width="10%" align="center"><font size="' . $text_size . '"><b></b></font></td>
-                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_hombres_desaprobados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_hombres_desaprobados.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$cont_mujeres_desaprobados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_mujeres_desaprobados.'%</b></font></td>
+                    <td width="10%" align="center"><font size="' . $text_size . '"><b>'.$total_desaprobados.'</b></font></td>
+                    <td width="10%"  align="center"><font size="' . $text_size . '"><b>'.$porcentaje_desaprobados.'%</b></font></td>
                 </tr>
             </table>
         </tr>
@@ -278,10 +417,10 @@ if (!($mostrar_archivo)) {
                     <td width="60%"><font size="' . $text_size . '"><b>11. FUE SUPERVISADO:</b></font></td>
                     <td width="5%">:</td>
                     <td width="5%"><font size="' . $text_size . '">SI</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$supervisado_si.'</font></td>
                     <td width="5%"></td>
                     <td width="5%"><font size="' . $text_size . '">NO</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$supervisado_no.'</font></td>
                     <td width="10%"></td>
                 </tr>
             </table>
@@ -301,10 +440,10 @@ if (!($mostrar_archivo)) {
                     <td width="58%"><font size="' . $text_size . '">Registro de Evaluación</font></td>
                     <td width="5%">:</td>
                     <td width="5%"><font size="' . $text_size . '">SI</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$reg_evaluacion_si.'</font></td>
                     <td width="5%"></td>
                     <td width="5%"><font size="' . $text_size . '">NO</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$reg_evaluacion_no.'</font></td>
                     <td width="10%"></td>
                 </tr>
             </table>
@@ -316,10 +455,10 @@ if (!($mostrar_archivo)) {
                     <td width="58%"><font size="' . $text_size . '">Registro Auxiliar</font></td>
                     <td width="5%">:</td>
                     <td width="5%"><font size="' . $text_size . '">SI</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$reg_auxiliar_si.'</font></td>
                     <td width="5%"></td>
                     <td width="5%"><font size="' . $text_size . '">NO</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$reg_auxiliar_no.'</font></td>
                     <td width="10%"></td>
                 </tr>
             </table>
@@ -331,10 +470,10 @@ if (!($mostrar_archivo)) {
                     <td width="58%"><font size="' . $text_size . '">Programación Curricular</font></td>
                     <td width="5%">:</td>
                     <td width="5%"><font size="' . $text_size . '">SI</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$prog_curricular_si.'</font></td>
                     <td width="5%"></td>
                     <td width="5%"><font size="' . $text_size . '">NO</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$prog_curricular_no.'</font></td>
                     <td width="10%"></td>
                 </tr>
             </table>
@@ -346,29 +485,38 @@ if (!($mostrar_archivo)) {
                     <td width="58%"><font size="' . $text_size . '">Otros</font></td>
                     <td width="5%">:</td>
                     <td width="5%"><font size="' . $text_size . '">SI</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$otros_si.'</font></td>
                     <td width="5%"></td>
                     <td width="5%"><font size="' . $text_size . '">NO</font></td>
-                    <td width="5%" border="0.2"><font size="' . $text_size . '"></font></td>
+                    <td width="5%" border="0.2" align="center"><font size="' . $text_size . '">'.$otros_no.'</font></td>
                     <td width="10%"></td>
                 </tr>
             </table>
         </tr>
-        <br>
+        
         <tr>
             <td colspan="3"><b>III.        LOGROS OBTENIDOS:</b></td>
         </tr>
+        <tr>
+            <td width="100%"><font size="' . $text_size . '">        '.$res_b_prog['logros_obtenidos'].'</font></td>
+        </tr>
         
-        <br>
+
         <tr>
             <td colspan="3"><b>III.        DIFICULTADES:</b></td>
         </tr>
+        <tr>
+            <td width="100%"><font size="' . $text_size . '">        '.$res_b_prog['dificultades'].'</font></td>
+        </tr>
         
-        <br>
+
         <tr>
             <td colspan="3"><b>III.        SUGERENCIAS:</b></td>
         </tr>
-        <br>
+        <tr>
+            <td width="100%"><font size="' . $text_size . '">        '.$res_b_prog['sugerencias'].'</font></td>
+        </tr>
+
 
 
 
