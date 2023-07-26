@@ -274,27 +274,25 @@ if (!($mostrar_archivo)) {
     $content_one .= '</table>';
     $pdf->writeHTML($content_one);
 
-
-    /*
-    $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-
-    $fechaaa = date('d') . " de " . $meses[date('n') - 1] . " del " . date('Y');
     $footer = '
 
         <table border="0" cellspacing="0" cellpadding="0.5">  
         <tr>
-            <th width="50%"></th>
-            <th align="right">Huanta, ' . $fechaaa . '</th>
+            <th><b>NOTA:</b></th>
+            
         </tr>
         <tr>
-            <td colspan="2" align="center"><br><br><br><br><br><br><br><br>...............................................<br>Docente</td>
+            <td >- Los estudiantes que tienen 1 o más unidades didácticas desaprobadas no participan el en ranking de los primeros puestos, Aún teniendo el más alto puntaje</td>
+        </tr>
+        <tr>
+            <td >- Los estudiantes matriculados en unidades didácticas de repitencia no participan el en ranking de los primeros puestos</td>
         </tr>
         </table>
 
       ';
     $pdf->writeHTML($footer);
 
-*/
+
 
 
 
