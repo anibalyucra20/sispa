@@ -49,6 +49,7 @@ include 'include/busquedas.php';
           
           $per_select = $_SESSION['periodo'];
           if(isset($_SESSION['id_docente'])){
+            $m_caratula = 1;
             $m_silabos = 1;
             $m_sesiones = 1;
             $m_calificaciones = 1;
@@ -58,14 +59,16 @@ include 'include/busquedas.php';
             include ("include/menu_docente.php");
             $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
           }elseif(isset($_SESSION['id_secretario'])) {
+            $m_caratula = 0;
             $m_silabos = 0;
             $m_sesiones = 0;
             $m_calificaciones = 1;
             $m_asistencia = 0;
-            $m_imprimir = 1;
+            $m_imprimir = 0;
             include ("include/menu_secretaria.php");
             $var_consulta = "WHERE id_periodo_acad=".$per_select;
           }elseif(isset($_SESSION['id_jefe_area'])) {
+            $m_caratula = 1;
             $m_silabos = 1;
             $m_sesiones = 1;
             $m_calificaciones = 1;
@@ -75,6 +78,7 @@ include 'include/busquedas.php';
             include ("include/menu_coordinador.php");
             $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
           }else {
+            $m_caratula = 0;
             $m_silabos = 0;
             $m_sesiones = 0;
             $m_calificaciones = 0;
@@ -142,6 +146,7 @@ include 'include/busquedas.php';
                           ?>
                           <td><?php echo $res_busc_docente['apellidos_nombres']; ?></td>
                           <td>
+                          
                             <?php if ($m_silabos) {
                               ?>
                               <a title="Sílabos" class="btn btn-warning" href="silabos.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-book"></i></a>
@@ -160,6 +165,11 @@ include 'include/busquedas.php';
                             <?php if ($m_asistencia) {
                               ?>
                               <a title="Asistencia" class="btn btn-success" href="asistencias.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-group"></i></a>
+                              <?php
+                            } ?>
+                            <?php if ($m_caratula) {
+                              ?>
+                              <a title="Caratula" class="btn btn-default" href="imprimir_caratula.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-file-pdf-o"></i></a>
                               <?php
                             } ?>
                             <?php if ($m_imprimir) {
