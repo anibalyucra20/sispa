@@ -169,7 +169,7 @@ include 'include/busquedas.php';
                             } ?>
                             <?php if ($m_caratula) {
                               ?>
-                              <a title="Caratula" class="btn btn-default" href="imprimir_caratula.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-file-pdf-o"></i></a>
+                              <a title="Caratula" class="btn btn-default" target="_blank" href="imprimir_caratula.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-file-pdf-o"></i></a>
                               <?php
                             } ?>
                             <?php if ($m_imprimir) {
