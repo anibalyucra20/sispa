@@ -115,7 +115,7 @@ if (!($mostrar_archivo)) {
 
     $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
     $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetTitle("Acta de Evaluacion de Recuperacion - " . $r_b_ud['descripcion']);
+    $pdf->SetTitle("Caratula Portafolio - " . $r_b_ud['descripcion']);
     $pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);
     $pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
     $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
@@ -246,5 +246,5 @@ if (!($mostrar_archivo)) {
 
 
 
-    $pdf->Output('Acta Ev. Recuperacion - ' . $r_b_ud['descripcion'] . '.pdf', 'I');
+    $pdf->Output('Caratula - ' . $r_b_ud['descripcion'] . '.pdf', 'I');
 }
