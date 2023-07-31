@@ -33,18 +33,26 @@ if($cont_t > 0) {
     while ($r_b_est = mysqli_fetch_array($b_estby_dni)) {
         $sem = b_semestre($conexion,$r_b_est['id_semestre']);
         $cont += 1;
-        $cadena = $cadena.'<tr><td>'.$cont.'</td><td>'.$r_b_est['dni'].'</td><td>'.$r_b_est['apellidos_nombres'].'</td><td>'.$sem.'</td><td><a href="listar_est_rep.php?id='.$r_b_est['id'].'" class="btn btn-success">Ver Reporte</a></td></tr>';
+        $cadena = $cadena.'<tr><td>'.$cont.'</td><td>'.$r_b_est['dni'].'</td><td>'.$r_b_est['apellidos_nombres'].'</td><td>'.$sem.'</td><td>
+        <form role="form" action="reporte_individual.php" method="POST">
+        <input type="hidden" name="id" value="'.$r_b_est['id'].'">
+        <button type="submit" class="btn btn-success">Ver Reporte</button>
+        </form>
+        </td></tr>';
     }
 }else{
     $b_est_by_nom_ap = buscarEstudianteByApellidosNombres_like($conexion,$pe_es,$na_es);
     while ($r_b_est = mysqli_fetch_array($b_est_by_nom_ap)) {
         $sem = b_semestre($conexion,$r_b_est['id_semestre']);
         $cont += 1;
-        $cadena = $cadena.'<tr><td>'.$cont.'</td><td>'.$r_b_est['dni'].'</td><td>'.$r_b_est['apellidos_nombres'].'</td><td>'.$sem.'</td><td><a href="listar_est_rep.php?id='.$r_b_est['id'].'" class="btn btn-success">Ver Reporte</a></td></tr>';
+        $cadena = $cadena.'<tr><td>'.$cont.'</td><td>'.$r_b_est['dni'].'</td><td>'.$r_b_est['apellidos_nombres'].'</td><td>'.$sem.'</td><td>
+        <form role="form" action="reporte_individual.php" method="POST">
+        <input type="hidden" name="id" value="'.$r_b_est['id'].'">
+        <button type="submit" class="btn btn-success">Ver Reporte</button>
+        </form>
+        </td></tr>';
     }
 }
 
     $cadena = $cadena.'</tbody></table>';
 		echo $cadena;
-
-?>

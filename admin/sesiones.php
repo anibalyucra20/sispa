@@ -191,7 +191,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                 <div class="x_content">
                   <br />
 
-                  <table id="example" class="table table-striped table-bordered" style="width:100%">
+                  <table id="example" class="table table-striped  table-bordered" style="width:100%">
                     <thead>
                       <tr>
                         <th>Semana</th>

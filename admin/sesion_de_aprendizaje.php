@@ -191,7 +191,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                     <form role="form" action="operaciones/actualizar_sesion.php" class="form-horizontal form-label-left input_mask" method="POST">
                       <input type="hidden" name="id_sesion" value="<?php echo $id_sesion; ?>">
                       <div class="table-responsive">
-                        <table class="table table-striped jambo_table bulk_action">
+                        <table class="table table-striped table-bordered jambo_table bulk_action">
                           <thead>
                             <tr>
 
@@ -322,7 +322,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                         </table>
                       </div>
                       <div class="table-responsive">
-                        <table class="table table-striped jambo_table bulk_action">
+                        <table class="table table-striped table-bordered jambo_table bulk_action">
                           <thead>
                             <tr>
                               <th colspan="2">
@@ -391,7 +391,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                         </table>
                       </div>
                       <div class="table-responsive">
-                        <table class="table table-striped jambo_table bulk_action">
+                        <table class="table table-striped table-bordered jambo_table bulk_action">
                           <thead>
                             <tr>
                               <th colspan="4">
@@ -450,7 +450,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                         </table>
                       </div>
                       <div class="table-responsive">
-                        <table class="table table-striped jambo_table bulk_action">
+                        <table class="table table-striped table-bordered jambo_table bulk_action">
                           <thead>
                             <tr>
                               <th colspan="5">
@@ -520,7 +520,7 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
                         </table>
                       </div>
                       <div class="table-responsive">
-                        <table class="table table-striped jambo_table bulk_action">
+                        <table class="table table-striped table-bordered jambo_table bulk_action">
                           <thead>
                             <tr>
                               <th colspan="2">

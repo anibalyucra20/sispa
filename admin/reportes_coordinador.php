@@ -308,7 +308,6 @@
                                     <div class="form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <center>
-                                              
                                                 <button type="button" class="btn btn-info " onclick="listar_est();"><i class="fa fa-search"></i> Buscar</button>
                                             </center>
                                         </div>
