@@ -230,9 +230,9 @@ $total_columnas = $cont_ind_capp + 2;
                         $cont_asis += mysqli_num_rows($b_asistencia);
 
                         if ($r_b_asistencia['asistencia'] == "P") {
-                            echo "<td><font color='blue'>" . $r_b_asistencia['asistencia'] . "</font></td>";
+                            echo "<td><center><font color='blue'>" . $r_b_asistencia['asistencia'] . "</font></center></td>";
                         } elseif ($r_b_asistencia['asistencia'] == "F") {
-                            echo "<td><font color='red'>" . $r_b_asistencia['asistencia'] . "</font></td>";
+                            echo "<td><center><font color='red'>" . $r_b_asistencia['asistencia'] . "</font></center></td>";
                             $cont_inasistencia += 1;
                         } else {
                             echo "<td></td>";
@@ -245,9 +245,9 @@ $total_columnas = $cont_ind_capp + 2;
                     $porcent_ina = 0;
                 }
                 if (round($porcent_ina) > 29) {
-                    echo "<td><font color='red'>" . round($porcent_ina) . "%</font></td>";
+                    echo "<td><center><font color='red'>" . round($porcent_ina) . "%</font></center></td>";
                 } else {
-                    echo "<td><font color='blue'>" . round($porcent_ina) . "%</font></td>";
+                    echo "<td><center><font color='blue'>" . round($porcent_ina) . "%</font></center></td>";
                 }
 
                 echo "</tr>";

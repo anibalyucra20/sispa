@@ -88,7 +88,7 @@ if (!($mostrar_archivo)) {
           include("include/menu_docente.php");
         } elseif (isset($_SESSION['id_secretario'])) {
           include("include/menu_secretaria.php");
-        } elseif(isset($_SESSION['id_jefe_area'])) {
+        } elseif (isset($_SESSION['id_jefe_area'])) {
           include("include/menu_coordinador.php");
         }
 
@@ -206,7 +206,7 @@ if (!($mostrar_archivo)) {
 
                                         <p class="verticalll" id=""><?php echo $r_b_critt_eva['detalle']; ?></p>
                                         <br>
-                                        
+
                                       </center>
                                     </th>
                                   <?php
@@ -271,8 +271,8 @@ if (!($mostrar_archivo)) {
                                           }
                                           if ($editar_doc) {
                                             echo '<td width="20px"><input class="nota_input" type="number" ' . $colort . ' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
-                                          }else {
-                                            echo '<td width="20px"><label '.$colort.'>' . $r_b_criterio_evaluacion['calificacion'] . '</label></td>';
+                                          } else {
+                                            echo '<td width="20px"><label ' . $colort . '>' . $r_b_criterio_evaluacion['calificacion'] . '</label></td>';
                                           }
                                         }
 
@@ -294,7 +294,6 @@ if (!($mostrar_archivo)) {
                                         if (is_numeric($r_b_evaluacion['ponderado'])) {
                                           $suma_evaluacion += ($r_b_evaluacion['ponderado'] / 100) * $calificacion;
                                         }
-                                        
                                       }
                                       if ($suma_evaluacion != 0) {
                                         $calificacion_e = round($suma_evaluacion);
@@ -317,12 +316,12 @@ if (!($mostrar_archivo)) {
                             </table>
                             <div align="center">
                               <br>
-                              
+
                               <a href="calificaciones.php?id=<?php echo $id_prog; ?>" class="btn btn-danger">Regresar</a>
                               <?php if ($editar_doc) { ?>
                                 <button type="submit" class="btn btn-success">Guardar</button>
                               <?php } ?>
-                              
+
 
                             </div>
                           </form>
@@ -357,35 +356,7 @@ if (!($mostrar_archivo)) {
 
     <!-- Custom Theme Scripts -->
     <script src="../Gentella/build/js/custom.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $('#example').DataTable({
-          "order": [
-            [1, "asc"]
-          ],
-          "language": {
-            "processing": "Procesando...",
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron resultados",
-            "emptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "search": "Buscar:",
-            "infoThousands": ",",
-            "loadingRecords": "Cargando...",
-            "paginate": {
-              "first": "Primero",
-              "last": "Último",
-              "next": "Siguiente",
-              "previous": "Anterior"
-            },
-
-          }
-        });
-
-      });
-    </script>
+    
     <script type="text/javascript">
       function lansarForm(data) {
         let detalle_eva = document.getElementById("detalle_eva_" + data).value

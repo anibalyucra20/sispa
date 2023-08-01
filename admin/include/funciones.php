@@ -161,4 +161,15 @@ function calcular_mat_ud($conexion, $id_est, $per_select, $id_pe, $id_sem)
 }
 
 
+function url_host(){
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+      $url = "https://"; 
+    }else{
+      $url = "http://"; 
+    }
+    //echo $url . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI'];
+    return($url . $_SERVER['HTTP_HOST']."/");
+   }
+
+
 /// FIN DE FUNCIONES DE CALIFICACIONES ------------------------------------------------------------
