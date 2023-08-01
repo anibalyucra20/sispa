@@ -169,6 +169,7 @@ function url_host(){
     }
     //echo $url . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI'];
     return($url . $_SERVER['HTTP_HOST']."/");
+    //return($url . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI']);
    }
 
 
