@@ -284,7 +284,7 @@ if (!($mostrar_archivo)) {
         if (is_numeric($calificacion_final)) {
             $puntaje = $calificacion_final * $r_b_ud['creditos'];
         }else {
-            $puntaje = "";
+            $puntaje = 0 * $r_b_ud['creditos'];
         }
         
         $contenido .= '
