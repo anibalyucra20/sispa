@@ -1,5 +1,5 @@
 <?php
-$nombre_fichero = "sistema.php";
+$nombre_fichero = "include/conexion.php";
 
 if (file_exists($nombre_fichero)) {
 	echo "<script> window.location.replace('admin/'); </script>";
@@ -13,13 +13,23 @@ if (file_exists($nombre_fichero)) {
 	if ($host != '' && $db != '') {
 		$conexion = mysqli_connect($host,$usuario,$password,$db);
 		if ($conexion) {
-			$fh = fopen("sistema.php", 'w') or die("Se produjo un error al crear el archivo");
+			$fh = fopen("include/conexion.php", 'w') or die("Se produjo un error al crear el archivo");
 			$texto = '<?php';
 			$texto .= '
 $host = "'.$host.'";
 $db = "'.$db.'";
 $user_db = "'.$usuario.'";
 $pass_db = "'.$password.'";
+
+$conexion = mysqli_connect($host,$user_db,$pass_db,$db);
+
+if ($conexion) {
+	
+}else{
+	echo "error de conexion a la base de datos";
+	
+}
+$conexion->set_charset("utf8");
 ';
 		$texto .= '?>';
 		fwrite($fh, $texto) or die("No se pudo escribir en el archivo");

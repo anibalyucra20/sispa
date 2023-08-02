@@ -1,6 +1,8 @@
 <?php
-
-include("../sistema.php");
+$host = "localhost";
+$db = "sispa";
+$user_db = "root";
+$pass_db = "root";
 
 $conexion = mysqli_connect($host,$user_db,$pass_db,$db);
 
