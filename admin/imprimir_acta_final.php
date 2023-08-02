@@ -281,7 +281,12 @@ if (!($mostrar_archivo)) {
 
 
         $letras = num_letra($calificacion_final);
-        $puntaje = $calificacion_final * $r_b_ud['creditos'];
+        if (is_numeric($calificacion_final)) {
+            $puntaje = $calificacion_final * $r_b_ud['creditos'];
+        }else {
+            $puntaje = "";
+        }
+        
         $contenido .= '
                 <tr>
                     <td height="5px" align="center" ><font size="' . $text_size . '">' . $ord . '</font></td>

@@ -33,6 +33,8 @@
           <section class="login_content">
             <form role="form" action="iniciar_sesion.php" method="POST">
               <h1>Inicio de Sesión</h1>
+              
+              <h1>DOCENTES</h1>
               <div>
                 <input type="text" class="form-control" placeholder="usuario" required="" name="usuario" />
               </div>
@@ -58,7 +60,7 @@
 
                 <div>
                   <h1>I.E.S.T.P. "HUANTA"</h1>
-                  <p>Bienvenido a la plataforma de Portafolio Docente, Inicie Sesion para acceder en modo Administrador</p>
+                  <p>Bienvenido a la plataforma de Portafolio Docente, Inicie Sesion para acceder</p>
                 </div>
               </div>
             </form>
