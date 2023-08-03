@@ -43,6 +43,7 @@
                   <li><a><i class="fa fa-check-square-o"></i> Matrículas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li class="sub_menu"><a href="matriculas.php">Registro de Matrícula</a></li>
+                      <li class="sub_menu"><a href="licencias.php">Licencias</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-users"></i> Docentes <span class="fa fa-chevron-down"></span></a>

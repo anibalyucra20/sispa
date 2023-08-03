@@ -23,7 +23,7 @@ if ($cont_b_matricula>0) {
 }else{
 
 //REGISTRAMOS LA MATRICULA
-$reg_matricula = "INSERT INTO matricula (id_periodo_acad, id_programa_estudio, id_semestre, id_estudiante, fecha_reg) VALUES ('$id_periodo_acad','$carrera','$semestre','$id_est','$hoy')";
+$reg_matricula = "INSERT INTO matricula (id_periodo_acad, id_programa_estudio, id_semestre, id_estudiante,licencia, fecha_reg) VALUES ('$id_periodo_acad','$carrera','$semestre','$id_est','','$hoy')";
 $ejecutar_reg_matricula = mysqli_query($conexion, $reg_matricula);
 
 //buscamos el ultimo registro de la matricula

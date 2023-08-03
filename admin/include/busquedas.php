@@ -132,6 +132,8 @@ function buscarModuloFormativoByIdCarrera($conexion, $id){
 	$sql = "SELECT * FROM modulo_profesional WHERE id_programa_estudio = '$id' ORDER BY id";
 	return mysqli_query($conexion, $sql);
 }
+
+
 function buscarMatricula($conexion){
 	$sql = "SELECT * FROM matricula";
 	return mysqli_query($conexion, $sql);
@@ -164,6 +166,20 @@ function buscarDetalleMatriculaByIdMatriculaProgramacion($conexion, $id_mat, $id
 	$sql = "SELECT * FROM detalle_matricula_unidad_didactica WHERE id_matricula = '$id_mat' AND id_programacion_ud='$id_prog'";
 	return mysqli_query($conexion, $sql);
 }
+
+
+
+function buscarMatriculaByIdPeriodoSinLicencia($conexion, $id){
+	$sql = "SELECT * FROM matricula WHERE id_periodo_acad='$id' AND licencia =''";
+	return mysqli_query($conexion, $sql);
+}
+function buscarLicenciaPeriodo($conexion, $id_periodo_acad){
+	$sql = "SELECT * FROM matricula WHERE id_periodo_acad = '$id_periodo_acad' AND licencia !=''";
+	return mysqli_query($conexion, $sql);
+}
+
+
+
 function buscarCalificacionById($conexion, $id){
 	$sql = "SELECT * FROM calificaciones WHERE id='$id'";
 	return mysqli_query($conexion, $sql);
