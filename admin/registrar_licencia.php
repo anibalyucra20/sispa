@@ -66,7 +66,7 @@ if ($fecha_fin_per >= $fecha_actual) {
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="">
-                                    
+
                                     <h2 align="center">Registrar Licencias</h2>
                                     <a href="licencias.php" class="btn btn-danger">Regresar</a>
                                     <div class="clearfix"></div>
@@ -121,57 +121,58 @@ if ($fecha_fin_per >= $fecha_actual) {
                                                         echo '<td>
                             <a class="btn btn-success"  data-toggle="modal" data-target=".modal_' . $res_busc_matricula['id'] . '">Registrar</a>
                           </td>';
-                                                    } 
+
                                                     ?>
-                                                    <!--MODAL NUEVA LICENCIA-->
-                                                    <div class="modal fade modal_<?php echo $res_busc_matricula['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-                                                                    <h4 class="modal-title" id="myModalLabel" align="center">Registrar Licencia para <?php echo $res_b_estudiante['apellidos_nombres']; ?></h4>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!--INICIO CONTENIDO DE MODAL-->
-                                                                    <div class="x_panel">
-                                                                        <div class="" align="center">
-                                                                            <h2></h2>
-                                                                            <div class="clearfix"></div>
-                                                                        </div>
-                                                                        <div class="x_content">
-                                                                            <br />
-                                                                            <form role="form" action="operaciones/registrar_licencia_estudios.php" class="form-horizontal form-label-left input_mask" method="GET">
-                                                                                <input type="hidden" name="id_mat" value="<?php echo $res_busc_matricula['id']; ?>">
-
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Nro de Resolución : </label>
-                                                                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                                                                        <input type="text" class="form-control" name="res_licencia" required>
-                                                                                        <br>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                        <center>
-                                                                                            <button type="submit" class="btn btn-success ">Registrar</button>
-                                                                                        </center>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-
-
-                                                                        </div>
+                                                        <!--MODAL NUEVA LICENCIA-->
+                                                        <div class="modal fade modal_<?php echo $res_busc_matricula['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                                                                        <h4 class="modal-title" id="myModalLabel" align="center">Registrar Licencia para <?php echo $res_b_estudiante['apellidos_nombres']; ?></h4>
                                                                     </div>
-                                                                    <!--FIN DE CONTENIDO DE MODAL-->
+                                                                    <div class="modal-body">
+                                                                        <!--INICIO CONTENIDO DE MODAL-->
+                                                                        <div class="x_panel">
+                                                                            <div class="" align="center">
+                                                                                <h2></h2>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                            <div class="x_content">
+                                                                                <br />
+                                                                                <form role="form" action="operaciones/registrar_licencia_estudios.php" class="form-horizontal form-label-left input_mask" method="GET">
+                                                                                    <input type="hidden" name="id_mat" value="<?php echo $res_busc_matricula['id']; ?>">
+
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nro de Resolución : </label>
+                                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                            <input type="text" class="form-control" name="res_licencia" required>
+                                                                                            <br>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                                            <center>
+                                                                                                <button type="submit" class="btn btn-success ">Registrar</button>
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--FIN DE CONTENIDO DE MODAL-->
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <!-- FIN MODAL NUEVA LICENCIA-->
-
+                                                        <!-- FIN MODAL NUEVA LICENCIA-->
+                                                    <?php } ?>
                                                 </tr>
                                             <?php
+
                                             };
                                             ?>
 

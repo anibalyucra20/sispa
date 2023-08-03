@@ -50,14 +50,14 @@ if ($fecha_fin_per >= $fecha_actual) {
 
 
     <script>
-      function confirmardelete() {
-        var r = confirm("Estas Seguro de Eliminar la Licencia de Estudios?");
-        if (r == true) {
-          return true;
-        } else {
-          return false;
+        function confirmardelete() {
+            var r = confirm("Estas Seguro de Eliminar la Licencia de Estudios?");
+            if (r == true) {
+                return true;
+            } else {
+                return false;
+            }
         }
-      }
     </script>
 
 </head>
@@ -137,59 +137,59 @@ if ($fecha_fin_per >= $fecha_actual) {
                                                     <?php if ($agregar) {
                                                         echo '<td>
                                                         <a class="btn btn-success"  data-toggle="modal" data-target=".modal_edit_' . $res_busc_licencia['id'] . '"><i class="fa fa-pencil-square-o"></i></a>
-                                                        <a href="operaciones/registrar_licencia_estudios.php?id_mat='.$res_busc_licencia['id'].'&res_licencia=" class="btn btn-danger" onclick="return confirmardelete();"><i class="fa fa-trash"></i></a>   
+                                                        <a href="operaciones/registrar_licencia_estudios.php?id_mat=' . $res_busc_licencia['id'] . '&res_licencia=" class="btn btn-danger" onclick="return confirmardelete();"><i class="fa fa-trash"></i></a>   
                             
                           </td>';
-                                                    } ?>
+                                                    ?>
 
-                                                    <!--MODAL EDITAR LICENCIA-->
-                                                    <div class="modal fade modal_edit_<?php echo $res_busc_licencia['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
-                                                                    <h4 class="modal-title" id="myModalLabel" align="center">Modificar Datos de Licencia para <?php echo $res_b_estudiante['apellidos_nombres']; ?></h4>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!--INICIO CONTENIDO DE MODAL-->
-                                                                    <div class="x_panel">
-                                                                        <div class="" align="center">
-                                                                            <h2></h2>
-                                                                            <div class="clearfix"></div>
-                                                                        </div>
-                                                                        <div class="x_content">
-                                                                            <br />
-                                                                            <form role="form" action="operaciones/registrar_licencia_estudios.php" class="form-horizontal form-label-left input_mask" method="GET">
-                                                                                <input type="hidden" name="id_mat" value="<?php echo $res_busc_licencia['id']; ?>">
-
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Nro de Resolución : </label>
-                                                                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                                                                        <input type="text" class="form-control" name="res_licencia" value="<?php echo $res_busc_licencia['licencia']; ?>" required>
-                                                                                        <br>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                                        <center>
-                                                                                            <button type="submit" class="btn btn-success ">Registrar</button>
-                                                                                        </center>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-
-
-                                                                        </div>
+                                                        <!--MODAL EDITAR LICENCIA-->
+                                                        <div class="modal fade modal_edit_<?php echo $res_busc_licencia['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                                                                        <h4 class="modal-title" id="myModalLabel" align="center">Modificar Datos de Licencia para <?php echo $res_b_estudiante['apellidos_nombres']; ?></h4>
                                                                     </div>
-                                                                    <!--FIN DE CONTENIDO DE MODAL-->
+                                                                    <div class="modal-body">
+                                                                        <!--INICIO CONTENIDO DE MODAL-->
+                                                                        <div class="x_panel">
+                                                                            <div class="" align="center">
+                                                                                <h2></h2>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                            <div class="x_content">
+                                                                                <br />
+                                                                                <form role="form" action="operaciones/registrar_licencia_estudios.php" class="form-horizontal form-label-left input_mask" method="GET">
+                                                                                    <input type="hidden" name="id_mat" value="<?php echo $res_busc_licencia['id']; ?>">
+
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nro de Resolución : </label>
+                                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                            <input type="text" class="form-control" name="res_licencia" value="<?php echo $res_busc_licencia['licencia']; ?>" required>
+                                                                                            <br>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                                            <center>
+                                                                                                <button type="submit" class="btn btn-success ">Registrar</button>
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--FIN DE CONTENIDO DE MODAL-->
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <!-- FIN MODAL EDITAR LICENCIA-->
+                                                        <!-- FIN MODAL EDITAR LICENCIA-->
 
-
+                                                    <?php } ?>
                                                 </tr>
                                             <?php
                                             };
