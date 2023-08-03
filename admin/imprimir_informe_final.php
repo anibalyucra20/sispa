@@ -498,7 +498,7 @@ if (!($mostrar_archivo)) {
             <td colspan="3"><b>III.        LOGROS OBTENIDOS:</b></td>
         </tr>
         <tr>
-            <td width="100%"><font size="' . $text_size . '">        '.$res_b_prog['logros_obtenidos'].'</font></td>
+            <td width="100%"><font size="' . $text_size . '">'.nl2br($res_b_prog['logros_obtenidos']).'</font></td>
         </tr>
         
 
@@ -506,7 +506,7 @@ if (!($mostrar_archivo)) {
             <td colspan="3"><b>III.        DIFICULTADES:</b></td>
         </tr>
         <tr>
-            <td width="100%"><font size="' . $text_size . '">        '.$res_b_prog['dificultades'].'</font></td>
+            <td width="100%"><font size="' . $text_size . '">'.nl2br($res_b_prog['dificultades']).'</font></td>
         </tr>
         
 
@@ -514,7 +514,7 @@ if (!($mostrar_archivo)) {
             <td colspan="3"><b>III.        SUGERENCIAS:</b></td>
         </tr>
         <tr>
-            <td width="100%"><font size="' . $text_size . '">        '.$res_b_prog['sugerencias'].'</font></td>
+            <td width="100%"><font size="' . $text_size . '">'.nl2br($res_b_prog['sugerencias']).'</font></td>
         </tr>
 
 

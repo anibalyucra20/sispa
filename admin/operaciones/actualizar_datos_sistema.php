@@ -1,0 +1,38 @@
+<?php
+include '../include/verificar_sesion_secretaria_operaciones.php';
+include "../../include/conexion.php";
+
+$id = 1;
+$pagina = $_POST['pagina'];
+$dominio_sistema = $_POST['dominio_sistema'];
+$favicon = $_POST['favicon'];
+$logo = $_POST['logo'];
+$titulo = $_POST['titulo'];
+$pie_pagina = $_POST['pie_pagina'];
+$host_email = $_POST['host_email'];
+$email_email = $_POST['email_email'];
+$password_email = $_POST['password_email'];
+$puerto_email = $_POST['puerto_email'];
+$color_correo = $_POST['color_correo'];
+
+$consulta = "UPDATE sistema SET pagina='$pagina', dominio_sistema='$dominio_sistema', favicon='$favicon', logo='$logo', titulo='$titulo', pie_pagina='$pie_pagina', host_email='$host_email', email_email='$email_email', password_email='$password_email', puerto_email='$puerto_email', color_correo='$color_correo' WHERE id=$id";
+$ejec_consulta = mysqli_query($conexion, $consulta);
+	if ($ejec_consulta) {
+			echo "<script>
+					alert('Datos actualizados de manera Correcta');
+					window.location= '../sistema.php';
+				</script>
+			";
+	}else {
+			echo "<script>
+					alert('Error al Actualizar Registro, por favor contacte con el administrador');
+					window.history.back();
+				</script>
+			";
+	}
+
+mysqli_close($conexion);
+
+
+?>
+

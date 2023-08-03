@@ -89,76 +89,68 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Favicon : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="favicon" id="favicon" required="" value="<?php echo $res['favicon']; ?>"  placeholder="sispa.ejemplo.edu.pe">
+                          <input type="text" class="form-control" name="favicon" id="favicon" required="" value="<?php echo $res['favicon']; ?>" >
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ruc : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Logo : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="number" class="form-control" name="ruc" id="ruc" required="" value="<?php echo $res['ruc']; ?>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <input type="text" class="form-control" name="logo" id="logo" required="" value="<?php echo $res['logo']; ?>">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre de Institución : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Titulo Abreviado : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="nombre" id="nombre" required="" value="<?php echo $res['nombre_institucion']; ?>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                          
+                          <input type="text" class="form-control" name="titulo" id="titulo" required="" value="<?php echo $res['titulo']; ?>" placeholder="IEST EJEMPLO">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Departamento : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Pie de pagina : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="dep" id="dep" required="" value="<?php echo $res['departamento']; ?>"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                          
+                          <input type="text" class="form-control" name="pie_pagina" id="pie_pagina" required="" value="<?php echo $res['pie_pagina']; ?>" placeholder="IEST EJEMPLO">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Provincia : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Host para Email : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="provincia" id="provincia" required="" value="<?php echo $res['provincia']; ?>">
+                          <input type="text" class="form-control" name="host_email" id="host_email" required="" value="<?php echo $res['host_email']; ?>" placeholder="sispa.ejemplo.edu.pe">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Distrito : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Dirección Email : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="distrito" id="distrito" required="" value="<?php echo $res['distrito']; ?>">
+                          <input type="text" class="form-control" name="email_email" id="email_email" required="" value="<?php echo $res['email_email']; ?>" placeholder="admin@sispa.ejemplo.edu.pe">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Dirección : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Password Email : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="direccion" id="direccion" required="" value="<?php echo $res['direccion']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                          <input type="text" class="form-control" name="password_email" id="password_email" required="" value="<?php echo $res['password_email'];?>">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Teléfono : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Puerto Email : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" name="telefono" id="telefono" required="" value="<?php echo $res['telefono']; ?>" >
+                          <input type="text" class="form-control" name="puerto_email" id="puerto_email" required="" value="<?php echo $res['puerto_email'];?>">
                           <br>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo : </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Color Email : </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="email" id="email" required="" value="<?php echo $res['correo']; ?>">
+                          <input type="color" class="form-control" name="color_correo" id="color_correo" required="" value="<?php echo $res['color_correo'];?>">
                           <br>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Resulución : </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="resolucion" id="resolucion" required="" value="<?php echo $res['nro_resolucion']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                          <br>
-                          <br>
-                        </div>
-                      </div>
+                      
+                      
                       <div align="center">
                         <button type="submit" class="btn btn-primary" id="btn_guardar">Guardar</button> 
                         <button type="button" class="btn btn-warning" id="btn_cancelar" onclick="desactivar_controles(); cancelar();">Cancelar</button>
@@ -221,31 +213,35 @@
     <script src="../Gentella/build/js/custom.min.js"></script>
     <script type="text/javascript">
         function desactivar_controles(){
-            document.getElementById('url_sistema').disabled = true
-            document.getElementById('url_pagina').disabled = true
-            document.getElementById('nombre').disabled = true
-            document.getElementById('dep').disabled = true
-            document.getElementById('provincia').disabled = true
-            document.getElementById('distrito').disabled = true
-            document.getElementById('direccion').disabled = true
-            document.getElementById('telefono').disabled = true
-            document.getElementById('email').disabled = true
-            document.getElementById('resolucion').disabled = true
+            document.getElementById('pagina').disabled = true
+            document.getElementById('dominio_sistema').disabled = true
+            document.getElementById('favicon').disabled = true
+            document.getElementById('logo').disabled = true
+            document.getElementById('titulo').disabled = true
+            document.getElementById('pie_pagina').disabled = true
+            document.getElementById('host_email').disabled = true
+            document.getElementById('email_email').disabled = true
+            document.getElementById('password_email').disabled = true
+            document.getElementById('puerto_email').disabled = true
+            document.getElementById('color_correo').disabled = true
+            
             document.getElementById('btn_cancelar').style.display = 'none'
             document.getElementById('btn_guardar').style.display = 'none'
             document.getElementById('btn_editar').style.display = ''
         };
         function activar_controles(){
-            document.getElementById('url_sistema').disabled = false
-            document.getElementById('url_pagina').disabled = false
-            document.getElementById('nombre').disabled = false
-            document.getElementById('dep').disabled = false
-            document.getElementById('provincia').disabled = false
-            document.getElementById('distrito').disabled = false
-            document.getElementById('direccion').disabled = false
-            document.getElementById('telefono').disabled = false
-            document.getElementById('email').disabled = false
-            document.getElementById('resolucion').disabled = false
+            document.getElementById('pagina').disabled = false
+            document.getElementById('dominio_sistema').disabled = false
+            document.getElementById('favicon').disabled = false
+            document.getElementById('logo').disabled = false
+            document.getElementById('titulo').disabled = false
+            document.getElementById('pie_pagina').disabled = false
+            document.getElementById('host_email').disabled = false
+            document.getElementById('email_email').disabled = false
+            document.getElementById('password_email').disabled = false
+            document.getElementById('puerto_email').disabled = false
+            document.getElementById('color_correo').disabled = false
+            
             document.getElementById('btn_cancelar').removeAttribute('style')
             document.getElementById('btn_guardar').removeAttribute('style')
             document.getElementById('btn_editar').style.display = 'none'

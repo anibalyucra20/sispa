@@ -164,7 +164,7 @@ include 'include/busquedas.php';
                           <select class="form-control" id="director" name="director" value="" required="required">
                             <option></option>
                           <?php
-                            $busc_dir = buscarDocente($conexion);
+                            $busc_dir = buscarDirector_All($conexion);
                             while ($res_busc_dir = mysqli_fetch_array($busc_dir)) {
                               $id_doc = $res_busc_dir['id'];
                               $doc = $res_busc_dir['apellidos_nombres'];

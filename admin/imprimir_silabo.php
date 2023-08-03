@@ -204,6 +204,10 @@ function NbLines($w,$txt)
 
     $pdf = new PDF();
 	$pdf->AliasNbPages();
+
+    $titulo = utf8_decode("SÍLABO DE ".$r_b_ud['descripcion'].".pdf");
+    $pdf->SetTitle($titulo);
+    
 	$pdf->AddPage();
 	$pdf->SetLeftMargin(20);
 	//$pdf->SetAutoPageBreak(1 , 15);
@@ -423,7 +427,7 @@ function NbLines($w,$txt)
 	$pdf->Cell(175,6,utf8_decode($r_b_datos_insti['distrito'].', '.date('d')." de ".$meses[date('n')-1]. " del ".date('Y')),0,1,'R',0);
 
 
-	$pdf->Output();
+	$pdf->Output($titulo, 'I');
 
 }
 ?>

@@ -216,6 +216,10 @@ function NbLines($w,$txt)
 
     $pdf = new PDF();
 	$pdf->AliasNbPages();
+
+    $titulo = utf8_decode("Sesión ".$r_b_prog_act['semana']." - ".$r_b_ud['descripcion'].".pdf");
+    $pdf->SetTitle($titulo);
+
 	$pdf->AddPage();
 	$pdf->SetLeftMargin(20);
 	//$pdf->SetAutoPageBreak(1 , 15);
@@ -349,7 +353,7 @@ function NbLines($w,$txt)
 	$pdf->MultiCell(175,6,utf8_decode($anexos),1,'J',0);
 
 
-	$pdf->Output();
+	$pdf->Output($titulo, 'I');
 
 }
 ?>
