@@ -216,7 +216,7 @@ if (!($mostrar_archivo)) {
 
     //los estudiantes que desaprobaron alguna UD se pasan al final de la lista
     foreach ($primeros_puestos as $key => $value) {
-        $cant_ud_desaprobado = calc_ud_desaprobado($conexion, $key, $per_select, $id_pe, $id_sem);
+        $cant_ud_desaprobado = calc_ud_desaprobado_sin_recuperacion($conexion, $key, $per_select, $id_pe, $id_sem);
        if ($cant_ud_desaprobado>0) {
             $id_est_des = $key;
             $ptj_est_des = $value;
