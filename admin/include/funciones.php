@@ -46,7 +46,7 @@ function calc_evaluacion($conexion, $id_calificacion)
 
 //funcion para calcular la cantidad de ud desaprobadas de esrudiantes
 
-function calc_ud_desaprobado($conexion, $id_est, $per_select, $id_pe, $id_sem)
+function calc_ud_desaprobado_sin_recuperacion($conexion, $id_est, $per_select, $id_pe, $id_sem)
 {
 
     //buscar si estudiante esta matriculado en una unidad didactica
@@ -99,9 +99,9 @@ function calc_ud_desaprobado($conexion, $id_est, $per_select, $id_pe, $id_sem)
                 $calificacion = "";
             }
             //buscamos si tiene recuperacion
-            if ($r_b_det_mat_est['recuperacion'] != '') {
+            /*if ($r_b_det_mat_est['recuperacion'] != '') {
                 $calificacion = $r_b_det_mat_est['recuperacion'];
-            }
+            }*/
 
             if ($calificacion > 12) {
                 //echo '<td align="center" ><font color="blue">' . $calificacion . '</font></td>';
