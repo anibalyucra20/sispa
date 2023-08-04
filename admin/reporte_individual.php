@@ -98,6 +98,7 @@ $total_columnas = $cont_ind_capp + 2;
                             <input type="hidden" name="id_est" value="<?php echo $id_est; ?>">
                             <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Imprimir Reporte</button>
                         </form>
+                        <a href="reportes_coordinador.php" class="btn btn-danger">Regresar</a>
                         <h2 align="center"><b>REPORTE INDIVIDUAL - <?php echo $r_b_estudiante['apellidos_nombres']; ?></b></h2>
                         <form role="form" action="" class="form-horizontal form-label-left input_mask" method="POST">
                             <div class="table-responsive">
@@ -278,7 +279,7 @@ $total_columnas = $cont_ind_capp + 2;
                                         ?>
                                     </tbody>
                                 </table>
-
+                                    <center><a href="reportes_coordinador.php" class="btn btn-danger">Regresar</a></center>
                             </div>
 
 

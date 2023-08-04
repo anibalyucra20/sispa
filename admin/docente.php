@@ -36,11 +36,10 @@
       <div class="main_container">
           <?php 
           include ("include/menu_docente.php"); 
-          $b_periodo_act = buscarPresentePeriodoAcad($conexion);
-          $r_b_periodo_act = mysqli_fetch_array($b_periodo_act);
-          $b_perido = buscarPeriodoAcadById($conexion, $r_b_periodo_act['id_periodo_acad']);
+          
+          $b_perido = buscarPeriodoAcadById($conexion, $_SESSION['periodo']);
           $r_b_per = mysqli_fetch_array($b_perido);
-          $b_progs = buscarProgramacionByIdDocentePeriodo($conexion, $_SESSION['id_docente'], $r_b_periodo_act['id_periodo_acad']);
+          $b_progs = buscarProgramacionByIdDocentePeriodo($conexion, $_SESSION['id_docente'], $_SESSION['periodo']);
           $cont_prog = mysqli_num_rows($b_progs);
           
           ?>

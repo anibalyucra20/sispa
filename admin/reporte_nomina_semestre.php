@@ -94,7 +94,8 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
             <h2 align="center"><b>Nómina de Matrícula  <?php echo $r_b_ud['descripcion']; ?></b></h2>
-                <form role="form" action="" class="form-horizontal form-label-left input_mask" method="POST">
+            <a href="reportes_coordinador.php" class="btn btn-danger">Regresar</a>
+                
                   <div class="table-responsive">
                     <table id="" class="table table-striped table-bordered" style="width:100%">
                       <thead>
@@ -195,14 +196,10 @@
               </table>
 
             </div>
+                      <center><a href="reportes_coordinador.php" class="btn btn-danger">Regresar</a></center>
 
-
-          </form>
-          <?php 
           
           
-
-          ?>
             </div>
           </div>
         </div>

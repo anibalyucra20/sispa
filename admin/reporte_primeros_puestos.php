@@ -127,8 +127,8 @@ $collator->sort($n_array_estudiantes);
                             <input type="hidden" name="sem_consolidado" value="<?php echo $id_sem; ?>">
                             <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Imprimir Reporte</button>
                         </form>
+                        <a href="reportes_coordinador.php" class="btn btn-danger">Regresar</a>
                         <h2 align="center"><b>REPORTE PRIMEROS PUESTOS - <?php echo $r_b_pe['nombre'] . " - SEMESTRE " . $r_b_sem['descripcion'] . " " . $r_b_per['nombre']; ?></b></h2>
-                        <form role="form" action="" class="form-horizontal form-label-left input_mask" method="POST">
                             <div class="table-responsive">
                                 <table id="" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
@@ -290,12 +290,7 @@ $collator->sort($n_array_estudiantes);
                             </div>
 
 
-                        </form>
-                        <?php
-
-
-
-                        ?>
+                        <center><a href="reportes_coordinador.php" class="btn btn-danger">Regresar</a></center>
                     </div>
                 </div>
             </div>
