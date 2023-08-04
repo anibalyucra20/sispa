@@ -138,6 +138,9 @@ if (!($mostrar_archivo)) {
                             <table id="" class="table table-striped table-bordered">
 
                               <tr class="headings">
+                              <th rowspan="3">
+                                  <center><p class="verticalll">ORDEN</p></center>
+                                </th>
                                 <th rowspan="3">
                                   <center>DNI</center>
                                 </th>
@@ -237,11 +240,28 @@ if (!($mostrar_archivo)) {
                                   $r_b_mat = mysqli_fetch_array($b_matricula);
                                   $b_estudiante = buscarEstudianteById($conexion, $r_b_mat['id_estudiante']);
                                   $r_b_est = mysqli_fetch_array($b_estudiante);
-                                ?>
-                                  <tr>
 
-                                    <td><?php echo $r_b_est['dni']; ?></td>
-                                    <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
+                                  if ($r_b_mat['licencia'] != "") {
+                                    $si_licencia = " readonly";
+                                    $nom_ap = '<font color="red">'.$r_b_est['apellidos_nombres'].' (Licencia)</font>';
+                                    $dni = '<font color="red">'.$r_b_est['dni'].'</font>';
+                                    $fila = ' bgcolor="pink"';
+                                  }else {
+                                    $si_licencia = "";
+                                    $nom_ap = $r_b_est['apellidos_nombres'];
+                                    $dni = $r_b_est['dni'];
+                                    $fila = '';
+
+                                  }
+                                  
+
+                                ?>
+                                  <tr <?php echo  $fila; ?>>
+
+                                    <td><?php echo $orden; ?></td>
+                                    <td><?php echo $dni; ?></td>
+                                    <td><?php echo $nom_ap; ?></td>
+                                    
                                     <?php
                                     $suma_notas = 0;
                                     $cont_notas = 0;
@@ -269,8 +289,9 @@ if (!($mostrar_archivo)) {
                                           } else {
                                             $colort = 'style="color:red; "';
                                           }
+                                          
                                           if ($editar_doc) {
-                                            echo '<td width="20px"><input class="nota_input" type="number" ' . $colort . ' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
+                                            echo '<td width="20px"><input class="nota_input" type="number" ' . $colort . $si_licencia.' id="" name="' . $r_b_est['dni'] . '_' . $r_b_criterio_evaluacion['id'] . '" value="' . $r_b_criterio_evaluacion['calificacion'] . '" min="0" max="20" size="1" maxlength="1"></td>';
                                           } else {
                                             echo '<td width="20px"><label ' . $colort . '>' . $r_b_criterio_evaluacion['calificacion'] . '</label></td>';
                                           }

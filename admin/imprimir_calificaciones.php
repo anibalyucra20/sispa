@@ -137,7 +137,11 @@ if (!($mostrar_archivo)) {
         $r_b_matricula = mysqli_fetch_array($b_matricula);
         $b_estudiante = buscarEstudianteById($conexion, $r_b_matricula['id_estudiante']);
         $r_b_estudiante = mysqli_fetch_array($b_estudiante);
-
+        if ($r_b_matricula['licencia'] != "") {
+            $licencia = 1;
+          }else {
+            $licencia = 0;
+          }
         $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
         $asis = '';
         $cont_inasistencia = 0;
@@ -152,11 +156,16 @@ if (!($mostrar_archivo)) {
             $asistencia = $r_b_asistencia['asistencia'];
 
             $fechas .= '<td ><font size="10">' . $dataaa . '</font></td>';
-            if ($asistencia == "F") {
-                $asis .= '<td align="center"><font size="10" color="red">' . $asistencia . '</font></td>';
-            } else {
-                $asis .= '<td align="center"><font size="10" color="blue">' . $asistencia . '</font></td>';
+            if ($licencia) {
+                
+            }else {
+                if ($asistencia == "F") {
+                    $asis .= '<td align="center"><font size="10" color="red">' . $asistencia . '</font></td>';
+                } else {
+                    $asis .= '<td align="center"><font size="10" color="blue">' . $asistencia . '</font></td>';
+                }
             }
+            
 
             if ($r_b_asistencia['asistencia'] == "F") {
                 $cont_inasistencia += 1;
@@ -167,11 +176,16 @@ if (!($mostrar_archivo)) {
         } else {
             $porcent_ina = 0;
         }
-        if ($porcent_ina > 30) {
-            $cont_asis .= '<td align="center" height="5px"><font size="10">' . $cont . '</font></td>' . $asis . '<td align="center"><font size="10" color="red">' . $cont_inasistencia . '</font></td><td align="center"><font size="10" color="red">' . $porcent_ina . '</font></td>';
-        } else {
-            $cont_asis .= '<td align="center" height="5px"><font size="10">' . $cont . '</font></td>' . $asis . '<td align="center"><font size="10" color="blue">' . $cont_inasistencia . '</font></td><td align="center"><font size="10" color="blue">' . $porcent_ina . '</font></td>';
+        if ($licencia) {
+            $cont_asis .= '<td align="center" height="5px"><font size="10">' . $cont . '</font></td><td colspan="18" align="center" height="5px"><font size="10">Licencia</font></td>';
+        }else {
+            if ($porcent_ina > 30) {
+                $cont_asis .= '<td align="center" height="5px"><font size="10">' . $cont . '</font></td>' . $asis . '<td align="center"><font size="10" color="red">' . $cont_inasistencia . '</font></td><td align="center"><font size="10" color="red">' . $porcent_ina . '</font></td>';
+            } else {
+                $cont_asis .= '<td align="center" height="5px"><font size="10">' . $cont . '</font></td>' . $asis . '<td align="center"><font size="10" color="blue">' . $cont_inasistencia . '</font></td><td align="center"><font size="10" color="blue">' . $porcent_ina . '</font></td>';
+            }
         }
+        
 
         $cont += 1;
         $cont_asis .= '</tr>';
@@ -365,7 +379,11 @@ if (!($mostrar_archivo)) {
             $b_est = buscarEstudianteById($conexion, $id_est);
             $r_b_est = mysqli_fetch_array($b_est);
             $notass = '';
-
+            if ($r_b_mat['licencia'] != "") {
+                $licencia = 1;
+              }else {
+                $licencia = 0;
+              }
      
 
             
@@ -391,11 +409,14 @@ if (!($mostrar_archivo)) {
                 } else {
                     $calificacion = "";
                 }
-                if ($calificacion > 12) {
-                    $notass .= '<td align="center" ><font color="blue" size="10">' . $calificacion . '</font></td>';
-                } else {
-                    $notass .= '<td align="center" ><font color="red" size="10">' . $calificacion . '</font></td>';
-                }
+                
+                    if ($calificacion > 12) {
+                        $notass .= '<td align="center" ><font color="blue" size="10">' . $calificacion . '</font></td>';
+                    } else {
+                        $notass .= '<td align="center" ><font color="red" size="10">' . $calificacion . '</font></td>';
+                    }
+                
+                
             }
             if ($cont_calif > 0) {
                 $suma_calificacion = round($suma_calificacion / $cont_calif);
@@ -414,28 +435,35 @@ if (!($mostrar_archivo)) {
             }
 
 
+            if ($licencia) {
+                $recuperacion = '<td align="center" ></td>';
+                $promedio = '<td align="center" size="10">Licencia</td>';
+                $promedio_final = '<td align="center" size="10">Licencia</td>';
+            }else {
+                if ($r_b_det_mat['recuperacion'] > 12) {
+                    $recuperacion = '<td align="center" ><font color="blue" size="10">' . $r_b_det_mat['recuperacion'] . '</font></td>';
+                } else {
+                    $recuperacion = '<td align="center" ><font color="red" size="10">' . $r_b_det_mat['recuperacion'] . '</font></td>';
+                }
+                if ($calificacion > 12) {
+                    $promedio = '<td align="center" ><font color="blue" size="10">' . $calificacion . '</font></td>';
+                } else {
+                    $promedio = '<td align="center" ><font color="red" size="10">' . $calificacion . '</font></td>';
+                }
+                if ($r_b_det_mat['recuperacion'] != '') {
+                    $calificacion_final = $r_b_det_mat['recuperacion'];
+                } else {
+                    $calificacion_final = $calificacion;
+                }
+                if ($calificacion_final > 12) {
+                    $promedio_final = '<td align="center" ><font color="blue" size="10">' . $calificacion_final . '</font></td>';
+                } else {
+                    $promedio_final = '<td align="center" ><font color="red" size="10">' . $calificacion_final . '</font></td>';
+                }
+            }
+            
 
-            if ($r_b_det_mat['recuperacion'] > 12) {
-                $recuperacion = '<td align="center" ><font color="blue" size="10">' . $r_b_det_mat['recuperacion'] . '</font></td>';
-            } else {
-                $recuperacion = '<td align="center" ><font color="red" size="10">' . $r_b_det_mat['recuperacion'] . '</font></td>';
-            }
-
-            if ($calificacion > 12) {
-                $promedio = '<td align="center" ><font color="blue" size="10">' . $calificacion . '</font></td>';
-            } else {
-                $promedio = '<td align="center" ><font color="red" size="10">' . $calificacion . '</font></td>';
-            }
-            if ($r_b_det_mat['recuperacion'] != '') {
-                $calificacion_final = $r_b_det_mat['recuperacion'];
-            } else {
-                $calificacion_final = $calificacion;
-            }
-            if ($calificacion_final > 12) {
-                $promedio_final = '<td align="center" ><font color="blue" size="10">' . $calificacion_final . '</font></td>';
-            } else {
-                $promedio_final = '<td align="center" ><font color="red" size="10">' . $calificacion_final . '</font></td>';
-            }
+            
 
 
 

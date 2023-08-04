@@ -148,8 +148,8 @@ if (!($mostrar_archivo)) {
         } else {
             $calificacion_final = "";
         }
-        if ($r_b_det_mat['recuperacion'] != '') {
-            $calificacion_final = $r_b_det_mat['recuperacion'];
+        if ($r_b_matricula['recuperacion'] != '') {
+            $calificacion_final = $r_b_matricula['recuperacion'];
         }
        
         //asistencia

@@ -97,6 +97,9 @@ if (!($mostrar_archivo)) {
         if ($r_b_det_mat['recuperacion'] != '') {
             $calificacion_final = $r_b_det_mat['recuperacion'];
         }
+        if ($r_b_mat['licencia']!= "") {
+            $calificacion_final = "Licencia";
+        }
 
         //imprime contenido
         $writer->writeSheetRow('Plantilla', $rowdata = array($ord, $r_b_est['dni'], $r_b_est['apellidos_nombres'], $calificacion_final), $styles9);

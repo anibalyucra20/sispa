@@ -231,6 +231,11 @@ if (!($mostrar_archivo)) {
         $r_b_est = mysqli_fetch_array($b_est);
         $notass = '';
 
+        if ($r_b_mat['licencia'] != "") {
+            $licencia = 1;
+          }else {
+            $licencia = 0;
+          }
 
 
 
@@ -263,7 +268,7 @@ if (!($mostrar_archivo)) {
         } else {
             $calificacion = "";
         }
-
+        
         if ($r_b_det_mat['recuperacion'] != '') {
             $calificacion_final = $r_b_det_mat['recuperacion'];
             if ($r_b_det_mat['recuperacion'] > 12) {
@@ -277,6 +282,9 @@ if (!($mostrar_archivo)) {
         } else {
             $promedio_final = '<td align="center" height="5px"><font color="red" size="' . $text_size . '">' . $calificacion_final . '</font></td>';
             $obs = "Repite Unidad Didáctica";
+        }
+        if ($licencia) {
+            $obs = "Licencia";
         }
 
 

@@ -248,16 +248,32 @@ if (!($mostrar_archivo)) {
 
                                 $b_matricula = buscarMatriculaById($conexion, $r_b_det_mat['id_matricula']);
                                 $r_b_mat = mysqli_fetch_array($b_matricula);
+
                                 $b_estudiante = buscarEstudianteById($conexion, $r_b_mat['id_estudiante']);
                                 $r_b_est = mysqli_fetch_array($b_estudiante);
+
+                                if ($r_b_mat['licencia'] != "") {
+                                  $licencia = 1;
+                                  $fila_si_licencia = " bgcolor='pink'";
+                                  $si_licencia = " readonly";
+                                  $nom_ap = '<font color="red">'.$r_b_est['apellidos_nombres'].' (Licencia)</font>';
+                                  $dni = '<font color="red">'.$r_b_est['dni'].'</font>';
+                                } else {
+                                  $licencia = 0;
+                                  $fila_si_licencia = "";
+                                  $si_licencia = "";
+                                  $nom_ap = $r_b_est['apellidos_nombres'];
+                                  $dni = $r_b_est['dni'];
+                                }
+
                               ?>
-                                <tr>
+                                <tr <?php echo $fila_si_licencia; ?>>
                                   <td>
                                     <center><?php echo $r_b_det_mat['orden']; ?></font>
                                     </center>
                                   </td>
-                                  <td><?php echo $r_b_est['dni']; ?></td>
-                                  <td><?php echo $r_b_est['apellidos_nombres']; ?></td>
+                                  <td><?php echo $dni; ?></td>
+                                  <td><?php echo $nom_ap; ?></td>
                                   <?php
                                   //buscar las calificaciones
                                   $id_det_mat = $r_b_det_mat['id'];
@@ -279,6 +295,7 @@ if (!($mostrar_archivo)) {
                                     } else {
                                       $calificacion = "";
                                     }
+
                                     if ($calificacion > 12) {
                                       echo '<td align="center"><font color="blue" >' . $calificacion . '</font></td>';
                                     } else {
@@ -301,13 +318,13 @@ if (!($mostrar_archivo)) {
                                   if ($calificacion_final <= 12 && $calificacion_final >= 10) {
                                     if ($r_b_det_mat['recuperacion'] > 12) {
                                       if ($editar_doc) {
-                                        echo '<td><input type="number" style="color:blue;" class="nota_input" name="recuperacion_' . $r_b_det_mat['id'] . '" value="' . $r_b_det_mat['recuperacion'] . '" min="0" max="20" ></td>';
+                                        echo '<td><input '.$si_licencia.' type="number" style="color:blue;" class="nota_input" name="recuperacion_' . $r_b_det_mat['id'] . '" value="' . $r_b_det_mat['recuperacion'] . '" min="0" max="20" ></td>';
                                       } else {
                                         echo '<td><center><font color="blue">' . $r_b_det_mat['recuperacion'] . '</font></center></td>';
                                       }
                                     } else {
                                       if ($editar_doc) {
-                                        echo '<td><input type="number" style="color:red;" class="nota_input" name="recuperacion_' . $r_b_det_mat['id'] . '" value="' . $r_b_det_mat['recuperacion'] . '" min="0" max="20" ></td>';
+                                        echo '<td><input '.$si_licencia.' type="number" style="color:red;" class="nota_input" name="recuperacion_' . $r_b_det_mat['id'] . '" value="' . $r_b_det_mat['recuperacion'] . '" min="0" max="20" ></td>';
                                       } else {
                                         echo '<td><center><font color="red">' . $r_b_det_mat['recuperacion'] . '</font></center></td>';
                                       }
@@ -315,6 +332,10 @@ if (!($mostrar_archivo)) {
                                   } else {
                                     echo '<td></td>';
                                   }
+
+
+
+
                                   if ($r_b_det_mat['recuperacion'] != '') {
                                     $calificacion_final = $r_b_det_mat['recuperacion'];
                                   }
@@ -323,6 +344,8 @@ if (!($mostrar_archivo)) {
                                   } else {
                                     echo '<th><center><font color="red">' . $calificacion_final . '</font></center></th>';
                                   }
+
+
                                   ?>
 
 
