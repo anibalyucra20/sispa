@@ -286,9 +286,13 @@ $collator->sort($n_array_estudiantes);
 
                                     </tbody>
                                 </table>
-
+                                <b>NOTA:</b><BR>
+                                <P>- Los estudiantes que tienen 1 o más unidades didácticas desaprobadas no participan el en ranking de los primeros puestos, Aún teniendo el más alto puntaje.</P>
+                                <p>- Los estudiantes matriculados en unidades didácticas de repitencia no participan el en ranking de los primeros puestos.</p>
+                                <br>
+                                <br>
                             </div>
-
+                        
 
                         <center><a href="reportes_coordinador.php" class="btn btn-danger">Regresar</a></center>
                     </div>
