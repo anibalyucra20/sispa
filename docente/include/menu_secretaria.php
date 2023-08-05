@@ -31,7 +31,7 @@
               <div class="menu_section">
                 <h3>Menu de Navegación</h3>
                 <ul class="nav side-menu">
-                  <li><a href="../admin/"><i class="fa fa-home"></i>Inicio</a>
+                  <li><a href="../docente/"><i class="fa fa-home"></i>Inicio</a>
                   </li>
                   <li><a><i class="fa fa-calendar"></i> Planificacion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
