@@ -64,7 +64,7 @@ if ($mostrar) {
 
             <div>
               <input type="password" class="form-control" placeholder="Ingrese Nueva Contraseña" required="" name="new_password" maxlength="80" />
-              <input type="hidden" name="id" value="<?php echo $id_persona; ?>">
+              <input type="hidden" name="id" value="<?php echo $id_docente; ?>">
               <input type="hidden" name="token" value="<?php echo $token; ?>">
             </div>
             <div>

@@ -7,17 +7,13 @@ $id_docente = $_POST['id'];
 $token = $_POST['token'];
 $pass = $_POST['new_password'];
 
-echo $id_docente."<br>";
-echo $token."<br>";
-echo $pass."<br>";
-
 $pass_secure = password_hash($pass, PASSWORD_DEFAULT);
 
 $b_doc = buscarDocenteById($conexion, $id_docente);
 $r_b_doc = mysqli_fetch_array($b_doc);
 $validar = $r_b_doc['reset_password'];
 $llave = $r_b_doc['token_password'];
-/*
+
 if ($validar==1 && password_verify($llave, $token)) {
 	//procedemos a actualizar el password utilizando el id de usuario
 $update_pass = "UPDATE docente SET password='$pass_secure', reset_password=0, token_password=' ' WHERE id='$id_docente'";
@@ -43,4 +39,4 @@ if ($ejec_update_pass) {
 	";
 }
 
-?>*/
+?>
