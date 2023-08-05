@@ -117,7 +117,7 @@ $res_busc_prog = mysqli_fetch_array($ejec_busc_prog);
                           </div>
                         </div>
                         <div align="center">
-                          <a class="btn btn-primary" href="programacion.php"> Cancelar</a>
+                          <a class="btn btn-danger" href="programacion.php"> Cancelar</a>
                           <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                       </form>

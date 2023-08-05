@@ -1,7 +1,19 @@
 <?php
-  include ("include/verificar_sesion_docente.php");
-  include ("../include/conexion.php");
-  include ("include/busquedas.php");
+  include("../include/conexion.php");
+  include("include/busquedas.php");
+  include("include/funciones.php");
+  include 'include/verificar_sesion_docente.php';
+  if (!verificar_sesion($conexion)) {
+    echo "<script>
+                  alert('Error Usted no cuenta con permiso para acceder a esta página');
+                  window.location.replace('index.php');
+          </script>";
+  }else {
+    
+    $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+    $b_docente = buscarDocenteById($conexion, $id_docente_sesion);
+    $r_b_docente = mysqli_fetch_array($b_docente);
+  
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,7 +51,7 @@
           
           $b_perido = buscarPeriodoAcadById($conexion, $_SESSION['periodo']);
           $r_b_per = mysqli_fetch_array($b_perido);
-          $b_progs = buscarProgramacionByIdDocentePeriodo($conexion, $_SESSION['id_docente'], $_SESSION['periodo']);
+          $b_progs = buscarProgramacionByIdDocentePeriodo($conexion, $_SESSION['id_sesion'], $_SESSION['periodo']);
           $cont_prog = mysqli_num_rows($b_progs);
           
           ?>
@@ -120,3 +132,4 @@
 	 
   </body>
 </html>
+<?php }

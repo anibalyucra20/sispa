@@ -1,7 +1,20 @@
 <?php
-include 'include/verificar_sesion_docente_coordinador_secretaria.php';
-include '../include/conexion.php';
-include 'include/busquedas.php';
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
+
+include("include/verificar_sesion_docente_coordinador_secretaria.php");
+
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+  $b_docente = buscarDocenteById($conexion, $id_docente_sesion);
+  $r_b_docente = mysqli_fetch_array($b_docente);
 
 ?>
 <!DOCTYPE html>
@@ -48,17 +61,17 @@ include 'include/busquedas.php';
           <?php
           
           $per_select = $_SESSION['periodo'];
-          if(isset($_SESSION['id_docente'])){
+          if($r_b_docente['id_cargo']==5){//si es docente
             $m_caratula = 1;
             $m_silabos = 1;
             $m_sesiones = 1;
             $m_calificaciones = 1;
             $m_asistencia = 1;
             $m_imprimir = 1;
-            $id_docente = $_SESSION['id_docente'];
+            $id_docente = $id_docente_sesion;
             include ("include/menu_docente.php");
             $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
-          }elseif(isset($_SESSION['id_secretario'])) {
+          }elseif($r_b_docente['id_cargo']==2) { // si es secretario
             $m_caratula = 0;
             $m_silabos = 0;
             $m_sesiones = 0;
@@ -67,14 +80,14 @@ include 'include/busquedas.php';
             $m_imprimir = 0;
             include ("include/menu_secretaria.php");
             $var_consulta = "WHERE id_periodo_acad=".$per_select;
-          }elseif(isset($_SESSION['id_jefe_area'])) {
+          }elseif($r_b_docente['id_cargo']==4) { // si es coordinador de area
             $m_caratula = 1;
             $m_silabos = 1;
             $m_sesiones = 1;
             $m_calificaciones = 1;
             $m_asistencia = 1;
             $m_imprimir = 1;
-            $id_docente = $_SESSION['id_jefe_area'];
+            $id_docente = $id_docente_sesion;
             include ("include/menu_coordinador.php");
             $var_consulta = "WHERE id_docente=".$id_docente." AND id_periodo_acad=".$per_select;
           }else {
@@ -262,3 +275,4 @@ include 'include/busquedas.php';
      <?php mysqli_close($conexion); ?>
   </body>
 </html>
+<?php }

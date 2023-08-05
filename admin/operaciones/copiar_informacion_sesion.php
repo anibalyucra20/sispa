@@ -1,7 +1,15 @@
 <?php
-include '../include/verificar_sesion_docente_coordinador_operaciones.php';
 include "../../include/conexion.php";
 include "../include/busquedas.php";
+include "../include/funciones.php";
+include("../include/verificar_sesion_docente_coordinador.php");
+if (!verificar_sesion($conexion)) {
+	echo "<script>
+				  alert('Error Usted no cuenta con permiso para acceder a esta página');
+				  window.location.replace('login/');
+			  </script>";
+  }else {
+
 
 $id_actual = $_POST['myidactual'];
 $id_a_copiar = $_POST['sesion_copi'];
@@ -64,5 +72,5 @@ echo "<script>
 mysqli_close($conexion);
 
 
-?>
+  }
 

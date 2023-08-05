@@ -1,6 +1,17 @@
 <?php
-include '../include/verificar_sesion_secretaria_operaciones.php';
 include "../../include/conexion.php";
+include "../include/busquedas.php";
+include "../include/funciones.php";
+include("../include/verificar_sesion_secretaria.php");
+if (!verificar_sesion($conexion)) {
+	echo "<script>
+				  alert('Error Usted no cuenta con permiso para acceder a esta página');
+				  window.location.replace('login/');
+			  </script>";
+  }else {
+
+
+  
 
 $id = $_POST['id'];
 $cargo = $_POST['cargo'];
@@ -26,6 +37,4 @@ if ($ejec_consulta) {
 
 mysqli_close($conexion);
 
-
-?>
-
+}

@@ -2,7 +2,7 @@
   <div class="left_col scroll-view">
    
     <?php 
-    $busc_user_sesion = buscarDocenteById($conexion, $_SESSION['id_docente']);
+    $busc_user_sesion = buscarDocenteById($conexion, $id_docente_sesion);
     $res_b_u_sesion = mysqli_fetch_array($busc_user_sesion);
     $b_m_per_act = buscarPresentePeriodoAcad($conexion);
     $r_b_m_per_act = mysqli_fetch_array($b_m_per_act);

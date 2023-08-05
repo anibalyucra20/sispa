@@ -1,8 +1,15 @@
 <?php
-include '../include/verificar_sesion_docente_coordinador_secretaria_operaciones.php';
 include "../../include/conexion.php";
-include '../include/busquedas.php';
+include "../include/busquedas.php";
+include "../include/funciones.php";
+include("../include/verificar_sesion_docente_coordinador_secretaria.php");
 
+if (!verificar_sesion($conexion)) {
+    echo "<script>
+                  alert('Error Usted no cuenta con permiso para acceder a esta página');
+                  window.location.replace('index.php');
+              </script>";
+  }else {
 
 $id_evav= $_GET['id'];
 $id_prog = $_GET['id_prog'];
@@ -37,5 +44,4 @@ echo "<script>
 			window.location= '../evaluacion_b.php?data=".$id_prog."&data2=".$nro_calificacion."';
 		</script>
 	"; 
-
-?>
+}

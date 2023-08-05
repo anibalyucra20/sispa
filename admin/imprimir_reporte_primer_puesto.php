@@ -1,9 +1,21 @@
 <?php
-include_once('include/verificar_sesion_docente_coordinador_secretaria.php');
+
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
+include 'include/verificar_sesion_coordinador.php';
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+  $b_docente = buscarDocenteById($conexion, $id_docente_sesion);
+  $r_b_docente = mysqli_fetch_array($b_docente);
+
 require_once('../tcpdf/tcpdf.php');
-include_once('../include/conexion.php');
-include_once('include/busquedas.php');
-include_once('include/funciones.php');
 setlocale(LC_ALL, "es_ES");
 
 $id_pe = $_POST['car_consolidado'];
@@ -11,7 +23,7 @@ $id_sem = $_POST['sem_consolidado'];
 
 $per_select = $_SESSION['periodo'];
 
-if (isset($_SESSION['id_docente']) || isset($_SESSION['id_jefe_area'])) {
+if ($_SESSION['id_sesion']) {
     $mostrar_archivo = 1;
 } else {
     $mostrar_archivo = 0;
@@ -303,4 +315,5 @@ if (!($mostrar_archivo)) {
 
 
     $pdf->Output('Reporte Primeros Puestos - ' . $r_b_pe['nombre'] . ' '.$r_b_sem['descripcion'].'.pdf', 'I');
+}
 }

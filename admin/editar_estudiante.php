@@ -1,7 +1,18 @@
 <?php
-include 'include/verificar_sesion_secretaria.php';
-include '../include/conexion.php';
-include 'include/busquedas.php';
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
+
+include("include/verificar_sesion_secretaria.php");
+
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
 
 $id_estudiante = $_GET['id'];
 $ejec_busc_est = buscarEstudianteById($conexion, $id_estudiante);
@@ -92,7 +103,7 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellidos y Nombres : </label>
                           <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="ap_nom" required="" value="<?php echo $res_busc_est['apellidos_nombres']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                            <input type="text" class="form-control" name="ap_nom" required="" value="<?php echo $res_busc_est['apellidos_nombres']; ?>">
                             <br>
                           </div>
                         </div>
@@ -128,14 +139,14 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Dirección : </label>
                           <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control" name="direccion" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_est['direccion']; ?>">
+                            <input type="text" class="form-control" name="direccion" required="required"  value="<?php echo $res_busc_est['direccion']; ?>">
                             <br>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo Electrónico : </label>
                           <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="email" class="form-control" name="email" required="required" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $res_busc_est['correo']; ?>">
+                            <input type="email" class="form-control" name="email" required="required" value="<?php echo $res_busc_est['correo']; ?>">
                             <br>
                           </div>
                         </div>
@@ -149,7 +160,20 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Año de Ingreso : </label>
                           <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="date" class="form-control" name="anio_ingreso" required="" value="<?php echo $res_busc_est['anio_ingreso']; ?>">
+                            <select name="anio_ingreso" id="" class="form-control" value="<?php echo $res_busc_est['anio_ingreso']; ?>">
+                            <?php
+                            $anio = date('Y');
+                            $aanio = $anio - 5;
+                            $tanio = $anio +5;
+                            for ($i=$aanio; $i <= $tanio; $i++) { 
+                              ?>
+                                <option value="<?php echo $i; ?>"<?php if($res_busc_est['anio_ingreso'] == $i){ echo " selected";} ?>><?php echo $i; ?></option>
+                              <?php
+                            }
+                            ?>
+                            </select>
+                            
+                            
                             <br>
                           </div>
                         </div>
@@ -230,8 +254,8 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
 
 
                         <div align="center">
-                          <a class="btn btn-primary" href="estudiante.php"> Cancelar</a>
-                          <button type="submit" class="btn btn-primary">Guardar</button>
+                          <a class="btn btn-danger" href="estudiante.php"> Cancelar</a>
+                          <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
                       </form>
                     </div>
@@ -348,3 +372,5 @@ $res_busc_est = mysqli_fetch_array($ejec_busc_est);
 </body>
 
 </html>
+<?php
+}

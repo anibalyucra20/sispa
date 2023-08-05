@@ -1,5 +1,65 @@
 <?php
+function generar_llave()
+{
+    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    function generate_string($input, $strength=20)
+    {
+        $input_length = strlen($input);
+        $random_string = '';
+        for ($i = 0; $i < $strength; $i++) {
+            $random_character = $input[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+        return $random_string;
+    }
+    $llave = generate_string($permitted_chars, 20);
+    return $llave;
+}
+//funcion para registrar sesion de ingreso
 
+function reg_sesion($conexion, $id_docente, $token)
+{
+    $fecha_hora_inicio = date("Y-m-d h:i:s");
+    $fecha_hora_fin = strtotime('+1 hour', strtotime($fecha_hora_inicio));
+    $fecha_hora_fin = date("Y-m-d h:i:s", $fecha_hora_fin);
+
+    $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_fin','$token')";
+    $ejecutar_insertar = mysqli_query($conexion, $insertar);
+    if ($ejecutar_insertar) {
+        //ultimo registro de sesion
+        $id_sesion = mysqli_insert_id($conexion);
+        return $id_sesion;
+    }else {
+        return 0;
+    }
+    
+}
+
+function actualizar_sesion($conexion, $id_sesion, $token)
+{
+}
+
+
+function buscar_docente_sesion($conexion, $id_sesion, $token)
+{
+    $b_sesion = buscarSesionLoginById($conexion, $id_sesion);
+    $r_b_sesion = mysqli_fetch_array($b_sesion);
+    if (password_verify($r_b_sesion['token'], $token)) {
+        return $r_b_sesion['id_docente'];
+    }
+    return 0;
+}
+function buscar_rol_sesion($conexion, $id_sesion, $token)
+{
+    $b_sesion = buscarSesionLoginById($conexion, $id_sesion);
+    $r_b_sesion = mysqli_fetch_array($b_sesion);
+    if (password_verify($r_b_sesion['token'], $token)) {
+        $b_docente = buscarDocenteById($conexion, $r_b_sesion['id_docente']);
+        $r_b_docente = mysqli_fetch_array($b_docente);
+        return $r_b_docente['id_cargo'];
+    }
+    return 0;
+}
 
 
 // funciones para calificaciones --------------------------------------------------------
@@ -183,7 +243,7 @@ function realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $d
     $ejecutar_insertar = mysqli_query($conexion, $consulta);
     //buscamos el id de la programacion hecha
     $id_programacion = mysqli_insert_id($conexion);
-    
+
     //crear silabo de la programacion hecha
     $metodologia = "Deductivo,Analítico,Aprendizaje basado en competencias";
     $recursos_didacticos = "Libros digitales,Foros,Chats,Video Tutoriales,Wikis,Videos explicativos";
@@ -207,8 +267,8 @@ function realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $d
 
     //buscamos el id del silabo registrado mediante el id de la programacion
     $id_silabo = mysqli_insert_id($conexion);
-    
-    
+
+
     //buscamos los indicadores de logro de la unidad didactica para evitar hacer 16 busquedas lo hacemos antes del loop for
     $busc_logro_capacidad = buscarCapacidadesByIdUd($conexion, $unidad_didactica);
     $res_b_logro_capacidad = mysqli_fetch_array($busc_logro_capacidad);
@@ -224,7 +284,7 @@ function realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $d
     //crear la programacion del silabo por 17 semanas de clase - 17 sesiones
     //echo $id_silabo."<br>";
     for ($i = 1; $i <= 17; $i++) {
-        
+
         $reg_prog_act_silabo = "INSERT INTO programacion_actividades_silabo (id_silabo, semana, fecha, elemento_capacidad, actividades_aprendizaje, contenidos_basicos, tareas_previas) VALUES ('$id_silabo', '$i', '$hoy',' ',' ',' ',' ')";
         $ejec_reg_prog_act_silabo = mysqli_query($conexion, $reg_prog_act_silabo);
 
@@ -232,7 +292,7 @@ function realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $d
         $id_prog_act_silabo = mysqli_insert_id($conexion);
 
 
-        
+
         //procedemos a registrar la tabla sesion_aprendizaje-- 1 para cada tabla anterior
         $reg_sesion_aprendizaje = "INSERT INTO sesion_aprendizaje (id_programacion_actividad_silabo, tipo_actividad, tipo_sesion, fecha_desarrollo, id_ind_logro_competencia_vinculado, id_ind_logro_capacidad_vinculado, logro_sesion, bibliografia_obligatoria_docente, bibliografia_opcional_docente, bibliografia_obligatoria_estudiantes, bibliografia_opcional_estudiante, anexos) VALUES ('$id_prog_act_silabo',' ',' ','$hoy', '$id_ind_logro_competencia', '$id_ind_logro_capacidad',' ',' ',' ',' ',' ',' ')";
         $ejec_reg_sesion = mysqli_query($conexion, $reg_sesion_aprendizaje);

@@ -1,8 +1,18 @@
 <?php
-include("include/verificar_sesion_coordinador.php");
 include("../include/conexion.php");
 include("include/busquedas.php");
 include("include/funciones.php");
+include 'include/verificar_sesion_coordinador.php';
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+  $b_docente = buscarDocenteById($conexion, $id_docente_sesion);
+  $r_b_docente = mysqli_fetch_array($b_docente);
 
 $id_est = $_POST['id_est'];
 $per_select = $_SESSION['periodo'];
@@ -268,3 +278,4 @@ $total_columnas = $cont_ind_capp + 2;
 </body>
 
 </html>
+<?php }

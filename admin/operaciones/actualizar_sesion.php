@@ -1,7 +1,14 @@
 <?php
-include '../include/verificar_sesion_docente_coordinador_operaciones.php';
 include "../../include/conexion.php";
-include '../include/busquedas.php';
+include "../include/busquedas.php";
+include "../include/funciones.php";
+include("../include/verificar_sesion_docente_coordinador.php");
+if (!verificar_sesion($conexion)) {
+	echo "<script>
+				  alert('Error Usted no cuenta con permiso para acceder a esta página');
+				  window.location.replace('login/');
+			  </script>";
+  }else {
 
 $id_sesion = $_POST['id_sesion'];
 
@@ -52,4 +59,4 @@ echo "<script>
 			window.location= '../sesion_de_aprendizaje.php?id=".$id_sesion."';
 		</script>
 	";
-?>
+  }

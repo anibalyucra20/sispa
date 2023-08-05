@@ -1,7 +1,19 @@
 <?php
-include 'include/verificar_sesion_docente_coordinador_secretaria.php';
-include '../include/conexion.php';
-include 'include/busquedas.php';
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
+include 'include/verificar_sesion_coordinador.php';
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+  $b_docente = buscarDocenteById($conexion, $id_docente_sesion);
+  $r_b_docente = mysqli_fetch_array($b_docente);
+
 
 ?>
 <!DOCTYPE html>
@@ -49,10 +61,9 @@ include 'include/busquedas.php';
           
 
           $per_select = $_SESSION['periodo'];
-          if(isset($_SESSION['id_jefe_area'])) {
-
+          if($r_b_docente['id_cargo']==4) {
             // buscar docente 
-            $id_docc = $_SESSION['id_jefe_area'];
+            $id_docc = $id_docente_sesion;
             $buscar_doc_pe = buscarDocenteById($conexion, $id_docc);
             $r_b_docc = mysqli_fetch_array($buscar_doc_pe);
             $id_pee = $r_b_docc['id_programa_estudio'];
@@ -60,7 +71,7 @@ include 'include/busquedas.php';
             $m_sesiones = 0;
             $m_calificaciones = 0;
             $m_asistencia = 0;
-            $id_docente = $_SESSION['id_jefe_area'];
+            $id_docente = $id_docente_sesion;
             include ("include/menu_coordinador.php");
             $var_consulta = "WHERE id_periodo_acad=".$per_select;
           }else {
@@ -242,3 +253,4 @@ include 'include/busquedas.php';
      <?php mysqli_close($conexion); ?>
   </body>
 </html>
+<?php }

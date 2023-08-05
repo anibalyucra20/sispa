@@ -1,8 +1,18 @@
 <?php
-include 'include/verificar_sesion_secretaria.php';
-include '../include/conexion.php';
-include 'include/busquedas.php';
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
 
+include("include/verificar_sesion_secretaria.php");
+
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
 $id_competencia = $_GET['id'];
 $ejec_busc_comp = buscarCompetenciasById($conexion, $id_competencia);
 $res_busc_comp = mysqli_fetch_array($ejec_busc_comp);
@@ -162,7 +172,7 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
 
                         <div align="center">
 
-                          <a href="javascript:history.back(-1);" class="btn btn-primary">Cancelar</a>
+                          <a href="javascript:history.back(-1);" class="btn btn-danger">Cancelar</a>
                           <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                       </form>
@@ -280,3 +290,4 @@ $id_p_e = $res_b_modulo['id_programa_estudio'];
 </body>
 
 </html>
+<?php }

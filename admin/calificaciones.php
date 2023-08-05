@@ -1,13 +1,25 @@
 <?php
-include 'include/verificar_sesion_docente_coordinador_secretaria.php';
-include '../include/conexion.php';
-include 'include/busquedas.php';
-include 'include/funciones.php';
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
+include("include/verificar_sesion_docente_coordinador_secretaria.php");
+
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+  $b_docente = buscarDocenteById($conexion, $id_docente_sesion);
+  $r_b_docente = mysqli_fetch_array($b_docente);
+
 $id_prog = $_GET['id'];
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $cont_res = mysqli_num_rows($b_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
-if (isset($_SESSION['id_secretario']) || ($res_b_prog['id_docente'] == $_SESSION['id_docente']) || ($res_b_prog['id_docente'] == $_SESSION['id_jefe_area'])) {
+if ($r_b_docente['id_cargo']==2 || ($res_b_prog['id_docente'] == $id_docente_sesion)) {
   $mostrar_archivo = 1;
 } else {
   $mostrar_archivo = 0;
@@ -118,11 +130,11 @@ if (!($mostrar_archivo)) {
       <div class="main_container">
         <!--menu-->
         <?php
-        if (isset($_SESSION['id_docente'])) {
+        if ($r_b_docente['id_cargo']==5) {
           include("include/menu_docente.php");
-        } elseif (isset($_SESSION['id_secretario'])) {
+        } elseif ($r_b_docente['id_cargo']==2) {
           include("include/menu_secretaria.php");
-        } elseif (isset($_SESSION['id_jefe_area'])) {
+        } elseif ($r_b_docente['id_cargo']==4) {
           include("include/menu_coordinador.php");
         }
 
@@ -451,4 +463,4 @@ if (!($mostrar_archivo)) {
   </html>
 <?php
 }
-?>
+}

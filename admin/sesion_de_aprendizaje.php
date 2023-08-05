@@ -1,7 +1,20 @@
 <?php
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
 include 'include/verificar_sesion_docente_coordinador.php';
-include '../include/conexion.php';
-include 'include/busquedas.php';
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+  $b_docente = buscarDocenteById($conexion, $id_docente_sesion);
+  $r_b_docente = mysqli_fetch_array($b_docente);
+
+
 $id_sesion = $_GET['id'];
 $b_sesion = buscarSesionById($conexion, $id_sesion);
 $r_b_sesion = mysqli_fetch_array($b_sesion);
@@ -17,7 +30,7 @@ $id_prog = $r_b_silabo['id_programacion_unidad_didactica'];
 //buscamos datos de la programacion de unidad didactica
 $b_prog = buscarProgramacionById($conexion, $id_prog);
 $res_b_prog = mysqli_fetch_array($b_prog);
-if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id_docente'] == $_SESSION['id_jefe_area'])) {
+if (!($res_b_prog['id_docente'] == $id_docente_sesion)) {
   //echo "<h1 align='center'>No tiene acceso a la evaluacion de la Unidad Didáctica</h1>";
   //echo "<br><h2><center><a href='javascript:history.back(-1);'>Regresar</a></center></h2>";
   echo "<script>
@@ -70,10 +83,10 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
       <div class="main_container">
         <!--menu-->
         <?php
-        if (isset($_SESSION['id_docente'])) {
-          include("include/menu_docente.php");
-        } elseif (isset($_SESSION['id_jefe_area'])) {
-          include("include/menu_coordinador.php");
+        if($r_b_docente['id_cargo']==5){
+          include ("include/menu_docente.php");
+        }elseif($r_b_docente['id_cargo']==4) {
+          include ("include/menu_coordinador.php");
         }
         //buscar datos del periodo
         $b_periodo = buscarPeriodoAcadById($conexion, $res_b_prog['id_periodo_acad']);
@@ -684,4 +697,4 @@ if (!($res_b_prog['id_docente'] == $_SESSION['id_docente']) && !($res_b_prog['id
   </html>
 <?php
 }
-?>
+}

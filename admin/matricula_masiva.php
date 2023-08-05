@@ -1,8 +1,18 @@
 <?php
-include 'include/verificar_sesion_secretaria.php';
-include '../include/conexion.php';
-include 'include/busquedas.php';
+include("../include/conexion.php");
+include("include/busquedas.php");
+include("include/funciones.php");
 
+include("include/verificar_sesion_secretaria.php");
+
+if (!verificar_sesion($conexion)) {
+  echo "<script>
+                alert('Error Usted no cuenta con permiso para acceder a esta página');
+                window.location.replace('index.php');
+    		</script>";
+}else {
+  
+  $id_docente_sesion = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -210,3 +220,5 @@ include 'include/busquedas.php';
 </body>
 
 </html>
+<?php
+}

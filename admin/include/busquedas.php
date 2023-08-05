@@ -359,6 +359,14 @@ function buscarAsistenciaByIdSesion($conexion, $id){
 
 
 
+/// buscar sesion
+
+function buscarSesionLoginById($conexion, $id){
+	$sql = "SELECT * FROM sesion WHERE id='$id'";
+	return mysqli_query($conexion, $sql);
+}
+
+
 // -------------------------- FUNCIONES ACTUALIZAR --------------------------
 
 

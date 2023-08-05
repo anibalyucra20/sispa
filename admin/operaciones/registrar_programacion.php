@@ -1,8 +1,17 @@
 <?php
-include '../include/verificar_sesion_secretaria_operaciones.php';
+
 include "../../include/conexion.php";
-include '../include/busquedas.php';
-include '../include/funciones.php';
+include "../include/busquedas.php";
+include "../include/funciones.php";
+include("../include/verificar_sesion_secretaria.php");
+if (!verificar_sesion($conexion)) {
+	echo "<script>
+				  alert('Error Usted no cuenta con permiso para acceder a esta página');
+				  window.location.replace('login/');
+			  </script>";
+  }else {
+
+
 
 $unidad_didactica = $_POST['unidad_didactica'];
 $docente = $_POST['docente'];
@@ -14,7 +23,7 @@ $res_b_per_actual = mysqli_fetch_array($busc_per_actual);
 $periodo_actual = $res_b_per_actual['id_periodo_acad'];
 
 //verificar que el docente no este programado en la unidad didactica
-$busc_programacion_existe = buscarProgramacionByUdDocentePeriodo($conexion, $unidad_didactica, $docente, $periodo_actual);
+$busc_programacion_existe = buscarProgramacionByUd_Peridodo($conexion, $unidad_didactica, $periodo_actual);
 $conteo_b_programacion_existe = mysqli_num_rows($busc_programacion_existe);
 
 if($conteo_b_programacion_existe < 1){
@@ -37,7 +46,7 @@ if($conteo_b_programacion_existe < 1){
     
 }else{
     echo "<script>
-			alert('Error, El Docente ya está Programado en la Unidad Didactica');
+			alert('Error, Esta Unidad Didáctica ya está programado para este periodo Académico');
 			window.history.back();
 		</script>
 		";
@@ -48,4 +57,4 @@ if($conteo_b_programacion_existe < 1){
 
 mysqli_close($conexion);
 
-?>
+  }
