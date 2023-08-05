@@ -15,11 +15,11 @@ if ($validar == 1 && password_verify($llave, $token)) {
   $mostrar = 1;
   
 } else {
-  /*echo "<script>
+  echo "<script>
 			alert('Error, Link Caducado o Ya utilizado');
 			window.location= '../login/';
 		</script>
-	";*/
+	";
 }
 if ($mostrar) {
   
