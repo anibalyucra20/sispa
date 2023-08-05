@@ -1,6 +1,4 @@
 <?php
-
-
 function verificar_sesion($conexion){
 	session_start();
 	if (isset($_SESSION['id_sesion'])) {
@@ -8,6 +6,14 @@ function verificar_sesion($conexion){
 		$b_docente = buscarDocenteById($conexion, $id_docente);
 		$r_b_docente = mysqli_fetch_array($b_docente);
 		$id_cargo = $r_b_docente['id_cargo'];
+		$sesion_activa = sesion_si_activa($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
+		if (!$sesion_activa) {
+			echo "<script>
+                alert('La Sesion Caducó, Inicie Sesión');
+                window.location.replace('../../include/cerrar_sesion.php');
+    		</script>";
+		}
+		
 		if ($id_cargo == 4) {
 			return 1;
 		}else {
@@ -17,12 +23,5 @@ function verificar_sesion($conexion){
 		return 0;
 	}
 }
-/*session_start();
-if(!isset($_SESSION['id_jefe_area'])){
-    echo "<script>
-			alert('Error, Acceso Denegado y/o Sesion Caducada');
-			window.location= 'index.php';
-		</script>
-	";
-}*/
+
 ?>

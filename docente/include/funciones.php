@@ -20,10 +20,9 @@ function generar_llave()
 function reg_sesion($conexion, $id_docente, $token)
 {
     $fecha_hora_inicio = date("Y-m-d h:i:s");
-    $fecha_hora_fin = strtotime('+1 hour', strtotime($fecha_hora_inicio));
-    $fecha_hora_fin = date("Y-m-d h:i:s", $fecha_hora_fin);
+    
 
-    $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_fin','$token')";
+    $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_inicio','$token')";
     $ejecutar_insertar = mysqli_query($conexion, $insertar);
     if ($ejecutar_insertar) {
         //ultimo registro de sesion
@@ -35,8 +34,33 @@ function reg_sesion($conexion, $id_docente, $token)
     
 }
 
-function actualizar_sesion($conexion, $id_sesion, $token)
+function sesion_si_activa($conexion, $id_sesion, $token)
 {
+    $hora_actual = date("Y-m-d h:i:s");
+    
+    $b_sesion = buscarSesionLoginById($conexion, $id_sesion);
+    $r_b_sesion = mysqli_fetch_array($b_sesion);
+    $fecha_hora_fin_sesion = $r_b_sesion['fecha_hora_fin'];
+    $fecha_hora_fin = strtotime('+1 hour', strtotime($fecha_hora_fin_sesion));
+    $fecha_hora_fin = date("Y-m-d h:i:s", $fecha_hora_fin);
+    if ((password_verify($r_b_sesion['token'], $token))&& $fecha_hora_fin>=$hora_actual) {
+        actualizar_sesion($conexion, $id_sesion);
+        return 1;
+    }else {
+        return 0;
+    }
+
+}
+
+function actualizar_sesion($conexion, $id_sesion)
+{
+    $b_sesion = buscarSesionLoginById($conexion, $id_sesion);
+    $r_b_sesion = mysqli_fetch_array($b_sesion);
+
+    $nueva_fecha_hora_fin = date("Y-m-d h:i:s");
+    
+    $actualizar = "UPDATE sesion SET fecha_hora_fin='$nueva_fecha_hora_fin' WHERE id=$id_sesion";
+    mysqli_query($conexion, $actualizar);
 }
 
 
