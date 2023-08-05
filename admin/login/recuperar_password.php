@@ -11,14 +11,15 @@ $b_doc = buscarDocenteById($conexion, $id_docente);
 $r_b_doc = mysqli_fetch_array($b_doc);
 $validar = $r_b_doc['reset_password'];
 $llave = $r_b_doc['token_password'];
-if ($validar == 1 && password_verify($llave, $token)) {
+if ($validar == 1 && password_verify($token, $llave)) {
   $mostrar = 1;
+  
 } else {
-  echo "<script>
+  /*echo "<script>
 			alert('Error, Link Caducado o Ya utilizado');
 			window.location= '../login/';
 		</script>
-	";
+	";*/
 }
 if ($mostrar) {
   

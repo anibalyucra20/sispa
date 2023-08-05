@@ -109,7 +109,7 @@ if ($enviar) {
                             <h3 style="text-align:center; color: #3c4858;">CAMBIO DE CONTRASEÑA</h3>
                             <p style="font-size:1.0rem; color: #2A2C2B; margin-top: 2em; margin-bottom: 2em; margin-left: 1.5em;">
                     
-                                Hola ' . $r_b_docente['apellidos_nombres'] . ', para poder recuperar tu contraseña, Haz click <a href="'.$r_b_datos_sistema['dominio_sistema'].'/admin/login/recuperar_password.php?id=' . $id_docente . '&token='.$token.'">Aquí</a>.<br>
+                                Hola ' . $r_b_docente['apellidos_nombres'] . ', para poder recuperar tu contraseña, Haz click <a href="'.$r_b_datos_sistema['dominio_sistema'].'/admin/login/recuperar_password.php?id=' . $b_docente['id'] . '&token='.$token.'">Aquí</a>.<br>
                                 
                                 
                                 <br>
