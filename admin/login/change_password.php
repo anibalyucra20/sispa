@@ -21,7 +21,7 @@ $ejec_update_pass = mysqli_query($conexion, $update_pass);
 if ($ejec_update_pass) {
 	echo "<script>
 			alert('Contraseña actualizado correctamente, Por favor Inicie Sesión');
-			window.location= '../login/';
+			window.location= '../../include/cerrar_sesion.php';
 		</script>
 	";
 }else{
