@@ -137,7 +137,7 @@ if ($enviar) {
 
         $mail->send();
         //echo 'Correo enviado';
-        $sql = "UPDATE docente SET reset_password=1, token_password='$token' WHERE id=$id_docente";
+        $sql = "UPDATE docente SET reset_password=1, token_password='$llave' WHERE id=$id_docente";
         $ejec_consulta = mysqli_query($conexion, $sql);
         echo "<script>
     alert('Verifique su correo, sino encuentra en su bandeja de entrada. Verifique en Seccion de Spam');
