@@ -11,7 +11,7 @@ $b_doc = buscarDocenteById($conexion, $id_docente);
 $r_b_doc = mysqli_fetch_array($b_doc);
 $validar = $r_b_doc['reset_password'];
 $llave = $r_b_doc['token_password'];
-if ($validar == 1 && password_verify($token, $llave)) {
+if ($validar == 1 && password_verify($llave, $token)) {
   $mostrar = 1;
   
 } else {
