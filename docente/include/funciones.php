@@ -37,6 +37,7 @@ function reg_sesion($conexion, $id_docente, $token)
 
 function sesion_si_activa($conexion, $id_sesion, $token)
 {
+    date_default_timezone_set("America/Lima"); 
     $hora_actuals = date("Y-m-d h:i:s");
     $hora_actual = strtotime('-1 minute', strtotime($hora_actuals));
     $hora_actual = date("Y-m-d h:i:s", $hora_actual);
