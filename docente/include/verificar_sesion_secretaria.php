@@ -14,24 +14,16 @@ function verificar_sesion($conexion){
                 alert('La Sesion Caducó, Inicie Sesión');
                 window.location.replace('../../include/cerrar_sesion.php');
     		</script>";
-		}
-		if ($id_cargo == 2) {
-			return 1;
 		}else {
-			return 0;
+			if ($id_cargo == 2) {
+				return 1;
+			}else {
+				return 0;
+			}
 		}
+		
 	}else {
 		return 0;
 	}
 }
-
-
-/*
-if(!isset($_SESSION['id_secretario'])){
-    echo "<script>
-			alert('Error, Acceso Denegado y/o Sesion Caducada');
-			window.location= 'index.php';
-		</script>
-	";
-}*/
 ?>

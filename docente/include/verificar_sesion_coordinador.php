@@ -12,13 +12,15 @@ function verificar_sesion($conexion){
                 alert('La Sesion Caducó, Inicie Sesión');
                 window.location.replace('../../include/cerrar_sesion.php');
     		</script>";
+		}else {
+			if ($id_cargo == 4) {
+				return 1;
+			}else {
+				return 0;
+			}
 		}
 		
-		if ($id_cargo == 4) {
-			return 1;
-		}else {
-			return 0;
-		}
+		
 	}else {
 		return 0;
 	}
