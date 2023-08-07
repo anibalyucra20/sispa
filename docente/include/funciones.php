@@ -2,7 +2,7 @@
 function generar_llave()
 {
     $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    function generate_string($input, $strength=20)
+    function generate_string($input, $strength)
     {
         $input_length = strlen($input);
         $random_string = '';
@@ -22,6 +22,7 @@ function reg_sesion($conexion, $id_docente, $token)
     $fecha_hora_inicio = date("Y-m-d h:i:s");
     $fecha_hora_fin = strtotime('+1 minute', strtotime($fecha_hora_inicio));
     $fecha_hora_fin = date("Y-m-d h:i:s", $fecha_hora_fin);
+
     $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_fin','$token')";
     $ejecutar_insertar = mysqli_query($conexion, $insertar);
     if ($ejecutar_insertar) {
@@ -58,7 +59,9 @@ function sesion_si_activa($conexion, $id_sesion, $token)
 
 function actualizar_sesion($conexion, $id_sesion)
 {
-    $nueva_fecha_hora_fin = date("Y-m-d h:i:s");
+    $hora_actual = date("Y-m-d h:i:s");
+    $nueva_fecha_hora_fin = strtotime('+1 minute', strtotime($hora_actual));
+    $nueva_fecha_hora_fin = date("Y-m-d h:i:s", $nueva_fecha_hora_fin);
     
     $actualizar = "UPDATE sesion SET fecha_hora_fin='$nueva_fecha_hora_fin' WHERE id=$id_sesion";
     mysqli_query($conexion, $actualizar);
