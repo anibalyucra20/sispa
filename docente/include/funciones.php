@@ -20,7 +20,9 @@ function generar_llave()
 function reg_sesion($conexion, $id_docente, $token)
 {
     $fecha_hora_inicio = date("Y-m-d h:i:s");
-    $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_inicio','$token')";
+    $fecha_hora_fin = strtotime('+1 minute', strtotime($fecha_hora_inicio));
+    $fecha_hora_fin = date("Y-m-d h:i:s", $fecha_hora_fin);
+    $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_fin','$token')";
     $ejecutar_insertar = mysqli_query($conexion, $insertar);
     if ($ejecutar_insertar) {
         //ultimo registro de sesion
