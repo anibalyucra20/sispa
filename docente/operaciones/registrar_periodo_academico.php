@@ -34,10 +34,7 @@ $insertar = "INSERT INTO periodo_academico (nombre, fecha_inicio, fecha_fin, dir
 $ejecutar_insetar = mysqli_query($conexion, $insertar);
 if ($ejecutar_insetar) {
 	//buscaremos el id del ultimo periodo creado para asignar al ultimo periodo y las fechas para impresión de nominas
-	$busc_ult_periodo = "SELECT * FROM periodo_academico WHERE nombre='$periodo'";
-	$ejec_busc_ult_per = mysqli_query($conexion, $busc_ult_periodo);
-	$res_busc_ult_per = mysqli_fetch_array($ejec_busc_ult_per);
-	$id_ult_periodo = $res_busc_ult_per['id'];
+	$id_ult_periodo = mysqli_insert_id($conexion);
 
 	$update_per_act = "UPDATE presente_periodo_acad SET id_periodo_acad='$id_ult_periodo' WHERE id='1'";
 	$ejec_upd_per_act = mysqli_query($conexion, $update_per_act);
