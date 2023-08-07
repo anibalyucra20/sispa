@@ -50,9 +50,9 @@ function sesion_si_activa($conexion, $id_sesion, $token)
 
     if ((password_verify($r_b_sesion['token'], $token))&&($hora_actual<=$fecha_hora_fin)) {
         actualizar_sesion($conexion, $id_sesion);
-        return 1;
+        return true;
     }else {
-        return 0;
+        return false;
     }
 
 }
