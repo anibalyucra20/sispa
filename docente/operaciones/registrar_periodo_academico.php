@@ -24,7 +24,7 @@ $fecha_inicio = $_POST['fecha_inicio'];
 $fecha_fin = $_POST['fecha_fin'];
 $director = $_POST['director'];
 $fecha_actas = $_POST['fecha_actas'];
-$docente = $_SESSION['id_secretario'];
+$docente = buscar_docente_sesion($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
 
 
 
