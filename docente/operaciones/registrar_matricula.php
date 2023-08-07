@@ -52,7 +52,7 @@ foreach ($detalle_matricula as $valor) {
     $new_orden = $cont_r_b_cant_mat_det_mat + 1;
 
     //REGISTRAMOS EL DETALLE DE LA MATRICULA
-    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, orden, id_programacion_ud, recuperacion) VALUES ('$id_matricula','$new_orden','$valor','')";
+    $reg_det_mat =  "INSERT INTO detalle_matricula_unidad_didactica (id_matricula, orden, id_programacion_ud, recuperacion, mostrar_calificacion) VALUES ('$id_matricula','$new_orden','$valor','',0)";
     $ejecutar_reg_det_mat = mysqli_query($conexion, $reg_det_mat);
 
     //buscamos el ultimo registro de detalle matricula
@@ -82,7 +82,7 @@ foreach ($detalle_matricula as $valor) {
         while ($res_b_capacidad = mysqli_fetch_array($b_indicador)) {
             $ponderado_calificaciones = round(100/$cont_ind);
             //REGISTRAMOS LAS CALIFICACION SEGUN LA CANTIDAD DE INDICADORES DE LOGRO
-            $reg_calificacion = "INSERT INTO calificaciones (id_detalle_matricula, nro_calificacion, ponderado) VALUES ('$id_detalle_matricula','$orden','$ponderado_calificaciones')";
+            $reg_calificacion = "INSERT INTO calificaciones (id_detalle_matricula, nro_calificacion, ponderado, mostrar_calificacion) VALUES ('$id_detalle_matricula','$orden','$ponderado_calificaciones',0)";
             $ejecutar_reg_calificacion = mysqli_query($conexion, $reg_calificacion);
             $orden = $orden+1;
             

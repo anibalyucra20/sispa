@@ -65,6 +65,7 @@ if (!($mostrar_archivo)) {
   $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
   while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
     $id_det_mat = $r_b_det_mat['id'];
+    $mostrar_calif_final = $r_b_det_mat['mostrar_calificacion'];
     $b_matricula = buscarMatriculaById($conexion, $r_b_det_mat['id_matricula']);
     $r_b_mat = mysqli_fetch_array($b_matricula);
     $b_estudiante = buscarEstudianteById($conexion, $r_b_mat['id_estudiante']);
@@ -215,6 +216,8 @@ if (!($mostrar_archivo)) {
                                 <th rowspan="2">
                                   <center>
                                     <p class="verticalll">PROMEDIO FINAL</p>
+                                    mostrar:
+                                    <input type="checkbox" name="mostrar_calif_final" <?php if($mostrar_calif_final==1){ echo "checked";}?>>
                                   </center>
                                 </th>
                               </tr>
@@ -233,6 +236,8 @@ if (!($mostrar_archivo)) {
                                     <center>Indicador - <?php echo $cont_ind; ?>
                                       <?php if ($editar_doc) { ?>
                                         <a class="btn btn-primary" href="evaluacion_b.php?data=<?php echo $id_prog; ?>&data2=<?php echo $cont_ind; ?>"><i class="fa fa-edit"></i> Evaluar</a>
+                                        <br>Mostrar:
+                                        <input type="checkbox" name="mostrar_calif_<?php echo $cont_ind; ?>" <?php if($r_b_calificacion['mostrar_calificacion']){ echo "checked";} ?>>
                                         <!--<br>Ponderado:
                                         <input type="number" class="nota_input" name="ponderad_<?php echo $cont_ind; ?>" value="<?php echo $r_b_calificacion['ponderado']; ?>" min="0" max="100">%-->
                                       <?php } else { ?>
@@ -278,7 +283,7 @@ if (!($mostrar_archivo)) {
                                   $dni = $r_b_est['dni'];
                                 }
 
-                              ?>
+                               ?>
                                 <tr <?php echo $fila_si_licencia; ?>>
                                   <td>
                                     <center><?php echo $r_b_det_mat['orden']; ?></font>

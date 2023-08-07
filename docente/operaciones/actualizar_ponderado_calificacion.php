@@ -20,24 +20,31 @@ if (!isset($_POST['id_prog'])) {
 	";
 } else {
     $id_prog = $_POST['id_prog'];
-
+    if (!isset($_POST['mostrar_calif_final'])){
+        $mostrar_calif_final = 0;
+    }else{ 
+        $mostrar_calif_final = 1;
+    }
     $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
     while ($r_b_det_mat = mysqli_fetch_array($b_detalle_mat)) {
         $id_det_mat = $r_b_det_mat['id'];
-        $n_ord = $_POST['ord_'.$r_b_det_mat['id']];
-        $c_up_ord = "UPDATE detalle_matricula_unidad_didactica SET orden='$n_ord' WHERE id='$id_det_mat'";
-        $ejec_c_up_ord = mysqli_query($conexion, $c_up_ord);
+        $c_up_ord = "UPDATE detalle_matricula_unidad_didactica SET mostrar_calificacion	='$mostrar_calif_final' WHERE id='$id_det_mat'";
+        mysqli_query($conexion, $c_up_ord);
 
         $b_calificacion = buscarCalificacionByIdDetalleMatricula($conexion, $r_b_det_mat['id']);
         $count = 1;
         while ($r_b_calificacion = mysqli_fetch_array($b_calificacion)) {
             $id = $r_b_calificacion['id'];
-            $dato = $_POST['ponderad_' . $count];
+            if (!isset($_POST['mostrar_calif_' . $count])){$mostrar_calif = 0;}else{ $mostrar_calif = 1;}
+                $consulta = "UPDATE calificaciones SET mostrar_calificacion='$mostrar_calif' WHERE id='$id'";
+                mysqli_query($conexion, $consulta);
+                $count += 1;
+            /*$dato = $_POST['ponderad_' . $count];
             if (is_numeric($dato)) {
                 $consulta = "UPDATE calificaciones SET ponderado='$dato' WHERE id='$id'";
                 $ejec_consulta = mysqli_query($conexion, $consulta);
                 $count += 1;
-            }
+            }*/
         }
         if (isset($_POST['recuperacion_' . $r_b_det_mat['id']])) {
             $recuperacion = $_POST['recuperacion_' . $r_b_det_mat['id']];
@@ -47,10 +54,10 @@ if (!isset($_POST['id_prog'])) {
             $ejec_act_recuperacion = mysqli_query($conexion, $act_recuperacion);
         }
     }
-}
-
-echo "<script>
+    echo "<script>
 			window.location= '../calificaciones.php?id=" . $id_prog . "';
 		</script>
 	";
   }
+}
+

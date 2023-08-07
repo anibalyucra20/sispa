@@ -170,16 +170,17 @@ if (!verificar_sesion($conexion)) {
                               <a title="Sesiones de Aprendizaje" class="btn btn-primary" href="sesiones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-briefcase"></i></a>
                               <?php
                             } ?>
-                            <?php if ($m_calificaciones) {
-                              ?>
-                              <a title="Calificaciones" class="btn btn-info" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
-                              <?php
-                            } ?>
                             <?php if ($m_asistencia) {
                               ?>
                               <a title="Asistencia" class="btn btn-success" href="asistencias.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-group"></i></a>
                               <?php
                             } ?>
+                            <?php if ($m_calificaciones) {
+                              ?>
+                              <a title="Calificaciones" class="btn btn-info" href="calificaciones.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                              <?php
+                            } ?>
+                            
                             <?php if ($m_caratula) {
                               ?>
                               <a title="Caratula" class="btn btn-default" target="_blank" href="imprimir_caratula.php?id=<?php echo $res_busc_prog['id']; ?>"><i class="fa fa-file-pdf-o"></i></a>
