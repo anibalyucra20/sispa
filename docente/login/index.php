@@ -33,7 +33,10 @@
           <section class="login_content">
             <form role="form" action="iniciar_sesion.php" method="POST">
               <h1>Inicio de Sesión</h1>
-              
+              <?php
+              $fecha_hora_inicio = date("Y-m-d h:i:s");
+              echo $fecha_hora_inicio;
+              ?>
               <h1>DOCENTES</h1>
               <div>
                 <input type="text" class="form-control" placeholder="usuario" required="" name="usuario" />
