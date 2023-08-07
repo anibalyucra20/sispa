@@ -19,7 +19,6 @@ function generar_llave()
 
 function reg_sesion($conexion, $id_docente, $token)
 {
-    date_default_timezone_set("America/Lima"); 
     $fecha_hora_inicio = date("Y-m-d h:i:s");
     $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_inicio','$token')";
     $ejecutar_insertar = mysqli_query($conexion, $insertar);
@@ -35,8 +34,9 @@ function reg_sesion($conexion, $id_docente, $token)
 
 function sesion_si_activa($conexion, $id_sesion, $token)
 {
-    date_default_timezone_set("America/Lima"); 
-    $hora_actual = date("Y-m-d h:i:s");
+    $hora_actuals = date("Y-m-d h:i:s");
+    $hora_actual = strtotime('-1 minute', strtotime($hora_actuals));
+    $hora_actual = date("Y-m-d h:i:s", $hora_actual);
     
     $b_sesion = buscarSesionLoginById($conexion, $id_sesion);
     $r_b_sesion = mysqli_fetch_array($b_sesion);
@@ -56,7 +56,6 @@ function sesion_si_activa($conexion, $id_sesion, $token)
 
 function actualizar_sesion($conexion, $id_sesion)
 {
-    date_default_timezone_set("America/Lima");
     $nueva_fecha_hora_fin = date("Y-m-d h:i:s");
     
     $actualizar = "UPDATE sesion SET fecha_hora_fin='$nueva_fecha_hora_fin' WHERE id=$id_sesion";
