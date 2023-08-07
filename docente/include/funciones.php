@@ -320,8 +320,6 @@ function realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $d
         //buscamos el id de lo ingresado para registrar la siguiente tabla
         $id_prog_act_silabo = mysqli_insert_id($conexion);
 
-
-
         //procedemos a registrar la tabla sesion_aprendizaje-- 1 para cada tabla anterior
         $reg_sesion_aprendizaje = "INSERT INTO sesion_aprendizaje (id_programacion_actividad_silabo, tipo_actividad, tipo_sesion, fecha_desarrollo, id_ind_logro_competencia_vinculado, id_ind_logro_capacidad_vinculado, logro_sesion, bibliografia_obligatoria_docente, bibliografia_opcional_docente, bibliografia_obligatoria_estudiantes, bibliografia_opcional_estudiante, anexos) VALUES ('$id_prog_act_silabo',' ',' ','$hoy', '$id_ind_logro_competencia', '$id_ind_logro_capacidad',' ',' ',' ',' ',' ',' ')";
         $ejec_reg_sesion = mysqli_query($conexion, $reg_sesion_aprendizaje);

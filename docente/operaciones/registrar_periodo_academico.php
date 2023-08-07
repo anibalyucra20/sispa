@@ -71,7 +71,7 @@ if ($ejecutar_insetar) {
 											$unidad_didactica = $r_b_uds['id'];
 											//>>>>>>>>>>>>>>>>>>>>> REGISTRAR PROGRAMACION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 											$res_registrar = realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $docente);
-											//echo ">>>>>>" . $r_b_uds['descripcion'] . "<br>";
+											echo ">>>>>>" . $r_b_uds['descripcion'] . "<br>";
 											if ($res_registrar == 0) {
 												$contar_reg_fallidos +=1;
 											}
@@ -86,7 +86,7 @@ if ($ejecutar_insetar) {
 
 											//>>>>>>>>>>>>>>>>>>>>> REGISTRAR PROGRAMACION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 											$res_registrar = realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $docente);
-											//echo ">>>>>>" . $r_b_uds['descripcion'] . "<br>";
+											echo ">>>>>>" . $r_b_uds['descripcion'] . "<br>";
 											if ($res_registrar == 0) {
 												$contar_reg_fallidos +=1;
 											}
@@ -102,7 +102,7 @@ if ($ejecutar_insetar) {
 		}
 		//echo "registros fallidos ".$contar_reg_fallidos;
 
-		if ($contar_reg_fallidos > 0) {
+/*		if ($contar_reg_fallidos > 0) {
 			echo "<script>
 			alert('Error al registrar Programación de ".$contar_reg_fallidos." unidades didácticas');
 			window.history.back();
@@ -113,7 +113,7 @@ if ($ejecutar_insetar) {
                 alert('Registro y Programación Existoso');
                 window.location= '../periodo_academico.php'
     			</script>";
-		}
+		} */
 		// <<<<<<<<<<<<<<<<<<<<<<< FIN GENERAMOS LA PROGRAMACION DE TODOS LOS UDS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
