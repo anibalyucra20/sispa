@@ -10,11 +10,10 @@ function verificar_sesion($conexion){
 		$id_cargo = $r_b_docente['id_cargo'];
 		$sesion_activa = sesion_si_activa($conexion, $_SESSION['id_sesion'], $_SESSION['token']);
 		if (!$sesion_activa) {
-			echo date("Y-m-d h:i:s");
-			/*echo "<script>
+			echo "<script>
                 alert('La Sesion Caducó, Inicie Sesión');
                 window.location.replace('../../include/cerrar_sesion.php');
-    		</script>";*/
+    		</script>";
 		}else {
 			if ($id_cargo == 2) {
 				return 1;
