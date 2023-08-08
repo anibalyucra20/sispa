@@ -1,5 +1,6 @@
 <?php
-function contar_inasistencia($conexion, $id_silabo, $id_est){
+function contar_inasistencia($conexion, $id_silabo, $id_est)
+{
     $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
     $cont_inasistencia = 0;
     while ($r_prog_act_sil = mysqli_fetch_array($b_prog_act_sil)) {
@@ -40,9 +41,9 @@ function generar_llave()
 
 function reg_sesion($conexion, $id_docente, $token)
 {
-    $fecha_hora_inicio = date("Y-m-d h:i:s");
+    $fecha_hora_inicio = date("Y-m-d H:i:s");
     $fecha_hora_fin = strtotime('+1 minute', strtotime($fecha_hora_inicio));
-    $fecha_hora_fin = date("Y-m-d h:i:s", $fecha_hora_fin);
+    $fecha_hora_fin = date("Y-m-d H:i:s", $fecha_hora_fin);
 
     $insertar = "INSERT INTO sesion (id_docente, fecha_hora_inicio, fecha_hora_fin, token) VALUES ('$id_docente','$fecha_hora_inicio','$fecha_hora_fin','$token')";
     $ejecutar_insertar = mysqli_query($conexion, $insertar);
@@ -50,41 +51,39 @@ function reg_sesion($conexion, $id_docente, $token)
         //ultimo registro de sesion
         $id_sesion = mysqli_insert_id($conexion);
         return $id_sesion;
-    }else {
+    } else {
         return 0;
     }
-    
 }
 
 function sesion_si_activa($conexion, $id_sesion, $token)
 {
-    
-    $hora_actuals = date("Y-m-d h:i:s");
+
+    $hora_actuals = date("Y-m-d H:i:s");
     $hora_actual = strtotime('-1 minute', strtotime($hora_actuals));
-    $hora_actual = date("Y-m-d h:i:s", $hora_actual);
-    
+    $hora_actual = date("Y-m-d H:i:s", $hora_actual);
+
     $b_sesion = buscarSesionLoginById($conexion, $id_sesion);
     $r_b_sesion = mysqli_fetch_array($b_sesion);
 
     $fecha_hora_fin_sesion = $r_b_sesion['fecha_hora_fin'];
     $fecha_hora_fin = strtotime('+1 hour', strtotime($fecha_hora_fin_sesion));
-    $fecha_hora_fin = date("Y-m-d h:i:s", $fecha_hora_fin);
+    $fecha_hora_fin = date("Y-m-d H:i:s", $fecha_hora_fin);
 
-    if ((password_verify($r_b_sesion['token'], $token))&&($hora_actual<=$fecha_hora_fin)) {
+    if ((password_verify($r_b_sesion['token'], $token)) && ($hora_actual <= $fecha_hora_fin)) {
         actualizar_sesion($conexion, $id_sesion);
         return true;
-    }else {
+    } else {
         return false;
     }
-
 }
 
 function actualizar_sesion($conexion, $id_sesion)
 {
-    $hora_actual = date("Y-m-d h:i:s");
+    $hora_actual = date("Y-m-d H:i:s");
     $nueva_fecha_hora_fin = strtotime('+1 minute', strtotime($hora_actual));
-    $nueva_fecha_hora_fin = date("Y-m-d h:i:s", $nueva_fecha_hora_fin);
-    
+    $nueva_fecha_hora_fin = date("Y-m-d H:i:s", $nueva_fecha_hora_fin);
+
     $actualizar = "UPDATE sesion SET fecha_hora_fin='$nueva_fecha_hora_fin' WHERE id=$id_sesion";
     mysqli_query($conexion, $actualizar);
 }
@@ -417,6 +416,33 @@ function realizar_programacion($conexion, $unidad_didactica, $id_ult_periodo, $d
 
 
 
+
+//>>>>>>>>>>>>>>>>>>>>> INICIO DE FUNCION PARA VER LA CANTIDAD DE CRITERIOS DE EVALUACION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+function buscar_cantidad_criterios_programacion($conexion, $id_prog, $det_evaluacion, $nro_calif)
+{
+    $b_det_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
+    if (mysqli_num_rows($b_det_mat) < 1) {
+        // si no hay ningun matriculado regresamos 5 como los criterios de evaluacion
+        return 2;
+    }
+    $r_b_det_mat = mysqli_fetch_array($b_det_mat);
+    
+    $b_califacion = buscarCalificacionByIdDetalleMatricula_nro($conexion, $r_b_det_mat['id'], $nro_calif);
+    $r_b_calificacion = mysqli_fetch_array($b_califacion);
+
+    $b_evaluacion = buscarEvaluacionByIdCalificacion_detalle($conexion, $r_b_calificacion['id'], $det_evaluacion);
+    $r_b_evaluacion = mysqli_fetch_array($b_evaluacion);
+
+    $b_crit_evaluacion = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_evaluacion['id']);
+    $cant_crit = mysqli_num_rows($b_crit_evaluacion);
+    if ($cant_crit<1) {
+        return 2;
+    }else {
+        return $cant_crit;
+    }
+    
+}
+//>>>>>>>>>>>>>>>>>>>>> FIN DE FUNCION PARA VER LA CANTIDAD DE CRITERIOS DE EVALUACION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 

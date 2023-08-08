@@ -74,6 +74,16 @@ if (!verificar_sesion($conexion)) {
       <link href="../Gentella/build/css/custom.min.css" rel="stylesheet">
       <!-- Script obtenido desde CDN jquery -->
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <script>
+      function confirmar_agregar() {
+        var r = confirm("Estas Seguro de Agregar nuevos Criterios de Evaluación?");
+        if (r == true) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
 
       <style>
         p.verticalll {
@@ -148,7 +158,19 @@ if (!verificar_sesion($conexion)) {
                               <input type="hidden" name="nro_calificacion" id="nro_calificacion" value="<?php echo $nro_calificacion; ?>">
                               <input type="hidden" name="cant_calif" value="<?php echo $total_indicadores; ?>">
                               <table id="" class="table table-striped table-bordered">
-
+                              <?php
+                                  $b_detalle_mat = buscarDetalleMatriculaByIdProgramacion($conexion, $id_prog);
+                                  $r_b_det_mat = mysqli_fetch_array($b_detalle_mat);
+                                  $b_calificacion = buscarCalificacionByIdDetalleMatricula_nro($conexion, $r_b_det_mat['id'], $nro_calificacion);
+                                  $r_b_calificacion = mysqli_fetch_array($b_calificacion);
+                                  $b_evaluacion = buscarEvaluacionByIdCalificacion($conexion, $r_b_calificacion['id']);
+                                  $cont_col = 0;
+                                  while ($r_b_evaluacion = mysqli_fetch_array($b_evaluacion)) {
+                                    $b_critt_eva = buscarCriterioEvaluacionByEvaluacion($conexion, $r_b_evaluacion['id']);
+                                    $c_b_critt = mysqli_num_rows($b_critt_eva);
+                                    $cont_col += $c_b_critt +1;
+                                  }
+                                  ?>
                                 <tr class="headings">
                                   <th rowspan="3">
                                     <center>
@@ -161,7 +183,7 @@ if (!verificar_sesion($conexion)) {
                                   <th rowspan="3">
                                     <center>APELLIDOS Y NOMBRES</center>
                                   </th>
-                                  <th colspan="18">
+                                  <th colspan="<?php echo $cont_col; ?>">
                                     <center>EVALUACIÓN</center>
                                   </th>
                                   <th rowspan="3" bgcolor="#D5D2D2">
@@ -188,6 +210,7 @@ if (!verificar_sesion($conexion)) {
                                       <center><?php echo $r_b_evaluacion['detalle'] ?><br>Ponderado: <?php echo $r_b_evaluacion['ponderado']; ?>%
                                         <?php if ($editar_doc) { ?>
                                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".edit_eva<?php echo $r_b_evaluacion['id']; ?>"><i class="fa fa-edit"></i></button>
+                                          <a title="Agregar Criterio de Evaluación" class="btn btn-success" href="operaciones/agregar_criterio_evaluacion.php?data=<?php echo $id_prog; ?>&data2=<?php echo $nro_calificacion; ?>&data3=<?php echo $r_b_evaluacion['detalle']; ?>" onclick="return confirmar_agregar();"><i class="fa fa-plus-square"></i></a>
                                         <?php } ?>
 
                                       </center>
