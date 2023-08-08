@@ -163,24 +163,9 @@ if (!($mostrar_archivo)) {
         if ($r_b_matriculados['recuperacion'] != '') {
             $calificacion_final = $r_b_matriculados['recuperacion'];
         }
-       
-        //asistencia
 
-        $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
-        $cont_inasistencia = 0;
-        while ($r_prog_act_sil = mysqli_fetch_array($b_prog_act_sil)) {
-            $id_prog_act_s = $r_prog_act_sil['id'];
-            $b_sesion_aprendizaje = buscarSesionByIdProgramacionActividades($conexion, $id_prog_act_s);
-            $r_b_sesion_apr = mysqli_fetch_array($b_sesion_aprendizaje);
-            $id_sesion_apr = $r_b_sesion_apr['id'];
-            $b_asistencia = buscarAsistenciaBySesionAndEstudiante($conexion, $id_sesion_apr, $r_b_estudiante['id']);
-            $r_b_asistencia = mysqli_fetch_array($b_asistencia);
-            $dataaa = $r_b_sesion_apr['fecha_desarrollo'];
-            $asistencia = $r_b_asistencia['asistencia'];
-            if ($r_b_asistencia['asistencia'] == "F") {
-                $cont_inasistencia += 1;
-            }
-        }
+        //asistencia
+        $cont_inasistencia = contar_inasistencia($conexion, $id_silabo, $r_b_estudiante['id']);
         if ($cont_inasistencia > 0) {
             $porcent_ina = round($cont_inasistencia * 100 / 16);
         } else {
@@ -188,10 +173,10 @@ if (!($mostrar_archivo)) {
         }
 
 
-        if ($calificacion_final >12 && $r_b_estudiante['id_genero']==1 && $porcent_ina < 30) {$cont_hombres_aprobados+=1;}
-        if ($calificacion_final >12 && $r_b_estudiante['id_genero']==2 && $porcent_ina < 30) {$cont_mujeres_aprobados+=1;} 
-        if (($calificacion_final <=12 || $porcent_ina > 30 ) && $r_b_matricula['licencia']=="" && $r_b_estudiante['id_genero']==1) {$cont_hombres_desaprobados+=1;}
-        if (($calificacion_final <=12 || $porcent_ina > 30 ) && $r_b_matricula['licencia']=="" && $r_b_estudiante['id_genero']==2 ) {$cont_mujeres_desaprobados+=1;}
+        if ($calificacion_final >12 && $r_b_estudiante['id_genero']==1 && $porcent_ina <= 30) {$cont_hombres_aprobados+=1;}
+        if ($calificacion_final >12 && $r_b_estudiante['id_genero']==2 && $porcent_ina <= 30) {$cont_mujeres_aprobados+=1;} 
+        if (($calificacion_final <=12 || $porcent_ina >= 30 ) && $r_b_matricula['licencia']=="" && $r_b_estudiante['id_genero']==1) {$cont_hombres_desaprobados+=1;}
+        if (($calificacion_final <=12 || $porcent_ina >= 30 ) && $r_b_matricula['licencia']=="" && $r_b_estudiante['id_genero']==2 ) {$cont_mujeres_desaprobados+=1;}
 
 
         if ($r_b_matricula['licencia']!="" && $r_b_estudiante['id_genero']==1) {$cont_hombres_retirados+=1;}

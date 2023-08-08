@@ -1,4 +1,25 @@
 <?php
+function contar_inasistencia($conexion, $id_silabo, $id_est){
+    $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
+    $cont_inasistencia = 0;
+    while ($r_prog_act_sil = mysqli_fetch_array($b_prog_act_sil)) {
+        $id_prog_act_s = $r_prog_act_sil['id'];
+        $b_sesion_aprendizaje = buscarSesionByIdProgramacionActividades($conexion, $id_prog_act_s);
+        $r_b_sesion_apr = mysqli_fetch_array($b_sesion_aprendizaje);
+        $id_sesion_apr = $r_b_sesion_apr['id'];
+        $b_asistencia = buscarAsistenciaBySesionAndEstudiante($conexion, $id_sesion_apr, $id_est);
+        $r_b_asistencia = mysqli_fetch_array($b_asistencia);
+
+        if ($r_b_asistencia['asistencia'] == "F") {
+            $cont_inasistencia += 1;
+        }
+    }
+    return $cont_inasistencia;
+}
+
+
+
+
 function generar_llave()
 {
     $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -78,6 +99,9 @@ function buscar_docente_sesion($conexion, $id_sesion, $token)
     }
     return 0;
 }
+
+
+
 function buscar_rol_sesion($conexion, $id_sesion, $token)
 {
     $b_sesion = buscarSesionLoginById($conexion, $id_sesion);

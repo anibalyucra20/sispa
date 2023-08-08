@@ -352,7 +352,7 @@ if (!verificar_sesion($conexion)) {
 
         <!-- FIN MODAL INDIVIDUAL-->
 
-        <!--MODAL REPORTE CONSOLIDADO-->
+        <!--MODAL REPORTE PRIMEROS PUESTOS-->
         <div class="modal fade rep_primeros_puestos" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -407,7 +407,7 @@ if (!verificar_sesion($conexion)) {
             </div>
         </div>
 
-        <!-- FIN MODAL CONSOLIDADO-->
+        <!-- FIN MODAL PRIMEROS PUESTOS-->
    
         Aún en desarrollo
           
