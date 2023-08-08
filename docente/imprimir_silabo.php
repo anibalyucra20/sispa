@@ -334,26 +334,14 @@ function NbLines($w,$txt)
     $pdf->Cell(180,3,'',0,1,'C',0);
     $pdf->SetFont('Arial','B',10);
 	$pdf->Cell(80,6,utf8_decode("VI.            METODOLOGÍA"),0,1,'',0);
-    $metodolog = explode(",", $r_b_silabo['metodologia']);
-    $metod = count($metodolog);
-    $metodologias = "";
     $pdf->SetFont('Arial','',10);
-    for ($i=0; $i < $metod; $i++) { 
-        $metodologias = $metodologias."         * ".$metodolog[$i]."\r\n";
-    }
-    $pdf->MultiCell(100,6,utf8_decode("".$metodologias),0,1,'',0);
+    $pdf->MultiCell(100,6,utf8_decode("".$r_b_silabo['metodologia']),0,1,'',0);
 
     $pdf->Cell(180,3,'',0,1,'C',0);
     $pdf->SetFont('Arial','B',10);
 	$pdf->Cell(80,6,utf8_decode("VII.            RECURSOS DIDÁCTICOS"),0,1,'',0);
-    $recuros_did = explode(",", $r_b_silabo['recursos_didacticos']);
-    $recur = count($recuros_did);
-    $recuros_didacticos = "";
     $pdf->SetFont('Arial','',10);
-    for ($i=0; $i < $recur; $i++) { 
-        $recuros_didacticos = $recuros_didacticos."         * ".$recuros_did[$i]."\r\n";
-    }
-    $pdf->MultiCell(100,6,utf8_decode("".$recuros_didacticos),0,1,'',0);
+    $pdf->MultiCell(100,6,utf8_decode("".$r_b_silabo['recursos_didacticos']),0,1,'',0);
 
     $pdf->Cell(180,3,'',0,1,'C',0);
     $pdf->SetFont('Arial','B',10);
@@ -368,23 +356,8 @@ function NbLines($w,$txt)
 	$pdf->Cell(80,6,utf8_decode("8.1.            ESTRATEGÍAS DE EVALUACIÓN"),0,1,'',0);
     $pdf->SetWidths(array(80,80));
     $pdf->Row(array(utf8_decode('                           INDICADORES'),utf8_decode("                             TÉCNICAS")));
-
-    $indic_est = explode(",", $r_b_silabo['estrategia_evaluacion_indicadores']);
-    $cont_indic = count($indic_est);
-    $indicadores_estrategias = "";
     $pdf->SetFont('Arial','',10);
-    for ($i=0; $i < $cont_indic; $i++) { 
-        $indicadores_estrategias = $indicadores_estrategias."* ".$indic_est[$i]."\r\n";
-    }
-
-    $tec_est = explode(",", $r_b_silabo['estrategia_evaluacion_tecnica']);
-    $cont_tec = count($tec_est);
-    $tecnicas_estrategias = "";
-    $pdf->SetFont('Arial','',10);
-    for ($i=0; $i < $cont_tec; $i++) { 
-        $tecnicas_estrategias = $tecnicas_estrategias."* ".$tec_est[$i]."\r\n";
-    }
-    $pdf->Row(array(utf8_decode($indicadores_estrategias),utf8_decode($tecnicas_estrategias)));
+    $pdf->Row(array(utf8_decode($r_b_silabo['estrategia_evaluacion_indicadores']),utf8_decode($r_b_silabo['estrategia_evaluacion_tecnica'])));
     
     $pdf->Cell(180,3,'',0,1,'C',0);
     $pdf->SetFont('Arial','B',10);
@@ -405,29 +378,13 @@ function NbLines($w,$txt)
 	$pdf->Cell(180,3,'',0,1,'C',0);
     $pdf->SetFont('Arial','B',10);
 	$pdf->Cell(80,6,utf8_decode("IX.            RECURSOS BIBLIOGRÁFICOS /BIBLIOGRAFÍA"),0,1,'',0);
-	$pdf->SetFont('Arial','',10);
-    $recur_bib = explode(",", $r_b_silabo['recursos_bibliograficos_impresos']);
-    $con_rec_bib = count($recur_bib);
-    $recursos_bibliograficos = "";
-    $pdf->SetFont('Arial','',10);
-    for ($i=0; $i < $con_rec_bib; $i++) { 
-        $recursos_bibliograficos = $recursos_bibliograficos."* ".$recur_bib[$i]."\r\n";
-    }
-    $recur_bib_d = explode(",", $r_b_silabo['recursos_bibliograficos_digitales']);
-    $con_rec_bib_d = count($recur_bib_d);
-    $recursos_bibliograficos_d = "";
-    $pdf->SetFont('Arial','',10);
-    for ($i=0; $i < $con_rec_bib_d; $i++) { 
-        $recursos_bibliograficos_d = $recursos_bibliograficos_d."* ".$recur_bib_d[$i]."\r\n";
-    }
-    $pdf->SetFont('Arial','B',10);
 	$pdf->Cell(175,6,'          - Impresos',1,1,'',0);
     $pdf->SetFont('Arial','',10);
-    $pdf->MultiCell(175,6,utf8_decode("".$recursos_bibliograficos),1,1,'',0);
+    $pdf->MultiCell(175,6,utf8_decode("".$r_b_silabo['recursos_bibliograficos_impresos']),1,1,'',0);
     $pdf->SetFont('Arial','B',10);
 	$pdf->Cell(175,6,'          - Digitales',1,1,'',0);
     $pdf->SetFont('Arial','',10);
-    $pdf->MultiCell(175,6,utf8_decode("".$recursos_bibliograficos_d),1,1,'',0);
+    $pdf->MultiCell(175,6,utf8_decode("".$r_b_silabo['recursos_bibliograficos_digitales']),1,1,'',0);
 
 
 	$pdf->Cell(180,3,'',0,1,'C',0);

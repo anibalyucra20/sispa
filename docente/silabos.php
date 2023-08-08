@@ -266,7 +266,7 @@ if (!($res_b_prog['id_docente'] == $id_docente_sesion)) {
                           <tbody>
                             <tr>
                               <td>
-                                <input type="text" name="metodologia" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['metodologia']; ?>">
+                              <textarea name="metodologia" style="width:100%; resize: none; height:auto;" rows="5"><?php echo $r_b_silabo['metodologia']; ?></textarea>
                               </td>
                             </tr>
                             <thead>
@@ -276,7 +276,7 @@ if (!($res_b_prog['id_docente'] == $id_docente_sesion)) {
                             </thead>
                             <tr>
                               <td>
-                                <input type="text" name="recursos_didacticos" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['recursos_didacticos']; ?>">
+                              <textarea name="recursos_didacticos" style="width:100%; resize: none; height:auto;" rows="5"><?php echo $r_b_silabo['recursos_didacticos']; ?></textarea> 
                               </td>
                             </tr>
                             <thead>
@@ -316,10 +316,12 @@ if (!($res_b_prog['id_docente'] == $id_docente_sesion)) {
                           <tbody>
                             <tr>
                               <td>
-                                <input type="text" name="indicadores_estrategias" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['estrategia_evaluacion_indicadores']; ?>">
+                              <textarea name="indicadores_estrategias" style="width:100%; resize: none; height:auto;" rows="8"><?php echo $r_b_silabo['estrategia_evaluacion_indicadores']; ?></textarea>
+                                
                               </td>
                               <td>
-                                <input type="text" name="tecnicas_estrategias" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['estrategia_evaluacion_tecnica']; ?>">
+                              <textarea name="tecnicas_estrategias" style="width:100%; resize: none; height:auto;" rows="8"><?php echo $r_b_silabo['estrategia_evaluacion_tecnica']; ?></textarea>
+                                
                               </td>
                             </tr>
                           </tbody>
@@ -336,8 +338,8 @@ if (!($res_b_prog['id_docente'] == $id_docente_sesion)) {
 
                             <tr>
                               <td>
-                                <input type="text" name="recursos_bib_imp" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['recursos_bibliograficos_impresos']; ?>">
-                              </td>
+                              <textarea name="recursos_bib_imp" style="width:100%; resize: none; height:auto;" rows="5"><?php echo $r_b_silabo['recursos_bibliograficos_impresos']; ?></textarea>
+                                
                             </tr>
                             <thead>
                               <tr>
@@ -346,7 +348,8 @@ if (!($res_b_prog['id_docente'] == $id_docente_sesion)) {
                             </thead>
                             <tr>
                               <td>
-                                <input type="text" name="recursos_bib_digi" class="bootstrap-tagsinput form-control" data-role="tagsinput" placeholder="Agregar+" value="<?php echo $r_b_silabo['recursos_bibliograficos_digitales']; ?>">
+                              <textarea name="recursos_bib_digi" style="width:100%; resize: none; height:auto;" rows="5"><?php echo $r_b_silabo['recursos_bibliograficos_digitales']; ?></textarea>
+                                
                               </td>
                             </tr>
                           </tbody>
