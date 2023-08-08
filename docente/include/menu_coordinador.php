@@ -63,8 +63,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <!--<li><a href="change_password.php">Cambiar mi contraseña</a></li>
-                    <li><a href="">Ayuda</a></li>-->
+                    <li><a href="login/enviar_correo.php"> Cambiar mi contraseña</a></li>
                     <li><a href="../include/cerrar_sesion.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
                   </ul>
                 </li>
