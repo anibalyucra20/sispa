@@ -1,13 +1,13 @@
 <?php
 
 include "../../include/conexion.php";
-include "../include/busquedas.php";
-include "../include/funciones.php";
+include "../../include/busquedas.php";
+include "../../include/funciones.php";
 include("../include/verificar_sesion_secretaria.php");
 if (!verificar_sesion($conexion)) {
     echo "<script>
 				  alert('Error Usted no cuenta con permiso para acceder a esta página');
-				  window.location.replace('login/');
+				  window.location.replace('../login/');
 			  </script>";
 } else {
 
@@ -36,9 +36,12 @@ if (!verificar_sesion($conexion)) {
         //REGISTRAMOS LA MATRICULA
         $reg_matricula = "INSERT INTO matricula (id_periodo_acad, id_programa_estudio, id_semestre, id_estudiante,licencia, fecha_reg) VALUES ('$id_periodo_acad','$carrera','$semestre','$id_est','','$hoy')";
         $ejecutar_reg_matricula = mysqli_query($conexion, $reg_matricula);
-
         //buscamos el ultimo registro de la matricula
         $id_matricula = mysqli_insert_id($conexion);
+
+        //actualizamos semestre del estudiante
+        $actualizar = "UPDATE estudiante SET id_semestre='$semestre' WHERE id = '$id_est'";
+        mysqli_query($conexion, $actualizar);
 
         //recorremos el array del detalle para buscar datos complementarios y registrar el detalle y las calificaciones
         foreach ($detalle_matricula as $valor) {

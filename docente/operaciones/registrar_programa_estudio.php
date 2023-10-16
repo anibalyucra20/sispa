@@ -1,12 +1,12 @@
 <?php
 include "../../include/conexion.php";
-include "../include/busquedas.php";
-include "../include/funciones.php";
+include "../../include/busquedas.php";
+include "../../include/funciones.php";
 include("../include/verificar_sesion_secretaria.php");
 if (!verificar_sesion($conexion)) {
 	echo "<script>
 				  alert('Error Usted no cuenta con permiso para acceder a esta página');
-				  window.location.replace('login/');
+				  window.location.replace('../login/');
 			  </script>";
   }else {
 
@@ -15,11 +15,12 @@ if (!verificar_sesion($conexion)) {
 
 $codigo = $_POST['codigo'];
 $tipo = $_POST['tipo'];
+$plan_estudio = $_POST['plan_estudio'];
 $nombre = $_POST['nombre'];
 $resolucion = $_POST['resolucion'];
 $perfil = $_POST['perfil_egreso'];
 
-	$insertar = "INSERT INTO programa_estudios (codigo, tipo, nombre, resolucion, perfil_egresado) VALUES ('$codigo','$tipo','$nombre','$resolucion','$perfil')";
+	$insertar = "INSERT INTO programa_estudios (codigo, tipo, plan_estudio, nombre, resolucion, perfil_egresado) VALUES ('$codigo','$tipo','$plan_estudio','$nombre','$resolucion','$perfil')";
 	$ejecutar_insetar = mysqli_query($conexion, $insertar);
 	if ($ejecutar_insetar) {
 			echo "<script>

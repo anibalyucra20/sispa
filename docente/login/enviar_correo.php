@@ -1,7 +1,7 @@
 <?php
 include "../../include/conexion.php";
-include '../include/busquedas.php';
-include '../include/funciones.php';
+include '../../include/busquedas.php';
+include '../../include/funciones.php';
 
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
@@ -38,7 +38,7 @@ if (!isset($_POST['email'])&&!isset($_POST['dni'])) {
     } else {
         $enviar = 0;
     }
-    echo $enviar;
+    //echo $enviar;
 }
 
 $llave = generar_llave();
@@ -91,6 +91,9 @@ if ($enviar) {
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->CharSet = 'UTF-8';
         $mail->Subject = $asunto;
+
+
+        $link = 'https://'.$r_b_datos_sistema['dominio_sistema'].'/docente/login/recuperar_password.php?id=' . $id_docente . '&token='.$token;
         $mail->Body = '<!DOCTYPE html>
                     <html lang="es">
                     <head>
@@ -109,7 +112,7 @@ if ($enviar) {
                             <h3 style="text-align:center; color: #3c4858;">CAMBIO DE CONTRASEÑA</h3>
                             <p style="font-size:1.0rem; color: #2A2C2B; margin-top: 2em; margin-bottom: 2em; margin-left: 1.5em;">
                     
-                                Hola ' . $r_b_docente['apellidos_nombres'] . ', para poder recuperar tu contraseña, Haz click <a href="'.$r_b_datos_sistema['dominio_sistema'].'/docente/login/recuperar_password.php?id=' . $id_docente . '&token='.$token.'">Aquí</a>.<br>
+                                Hola ' . $r_b_docente['apellidos_nombres'] . ', para poder recuperar tu contraseña, Haz click <a href="'.$link.'">Aquí</a>.<br>
                                 
                                 
                                 <br>
@@ -141,7 +144,7 @@ if ($enviar) {
         $ejec_consulta = mysqli_query($conexion, $sql);
         echo "<script>
     alert('Verifique su correo, sino encuentra en su bandeja de entrada. Verifique en Seccion de Spam');
-    window.location= '../index.php'
+    window.location= '../index.php' 
     </script>
     ";
     } catch (Exception $e) {

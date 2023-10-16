@@ -11,6 +11,5 @@
  6.- Acceder al sistema con el usuario por defecto y actualizar la contraseña.
  7.- Listo!!! ya puede cargar los demas datos al sistema.
 
- YA NO SE PUBLICARÁ MAS ACTUALIZACIONES.
-
-LAS ACTUALIZACIONES CONTINUARÁN EN SISTEMA-PORTAFOLIO-DOCENTE
+ OJO:
+ AÚN EN DESARROLLO!!!!!!!!!!!!!!!

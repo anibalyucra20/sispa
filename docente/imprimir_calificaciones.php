@@ -1,7 +1,7 @@
 <?php
 include("../include/conexion.php");
-include("include/busquedas.php");
-include("include/funciones.php");
+include("../include/busquedas.php");
+include("../include/funciones.php");
 include("include/verificar_sesion_docente_coordinador_secretaria.php");
 
 if (!verificar_sesion($conexion)) {
@@ -156,7 +156,7 @@ if (!($mostrar_archivo)) {
           }else {
             $licencia = 0;
           }
-        $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo($conexion, $id_silabo);
+        $b_prog_act_sil = buscarProgActividadesSilaboByIdSilabo_16($conexion, $id_silabo);
         $asis = '';
         $cont_inasistencia = 0;
         while ($r_prog_act_sil = mysqli_fetch_array($b_prog_act_sil)) {
@@ -179,8 +179,6 @@ if (!($mostrar_archivo)) {
                     $asis .= '<td align="center"><font size="10" color="blue">' . $asistencia . '</font></td>';
                 }
             }
-            
-
             if ($r_b_asistencia['asistencia'] == "F") {
                 $cont_inasistencia += 1;
             }
